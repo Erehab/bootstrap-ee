@@ -1,20 +1,29 @@
-Awesome Bootstrap Theme Designed with Atlassian Design
-===
-A Beautiful Free Bootstrap theme with fully responsive, powerful CSS utilities, expertly crafted components with Atlassian Design.
+# BootStrap EE
 
-[![npm version](https://img.shields.io/npm/v/fastbootstrap)](https://www.npmjs.com/package/fastbootstrap)
-[![MIT license](https://img.shields.io/github/license/fastbootstrap/atlassian-design-for-bootstrap)](https://github.com/fastbootstrap/atlassian-design-for-bootstrap/blob/master/LICENSE)
-[![](https://data.jsdelivr.com/v1/package/npm/fastbootstrap/badge)](https://www.jsdelivr.com/package/npm/fastbootstrap)
+## Overview
+Bootstrap EE is the Erehab version of https://fastbootstrap.com/. With extra classes and configuration choices.  The details of this will be found at https://github.com/Erehab/bootstrap-ee
 
-## Quick start 
+## ACP Setup
+See the **_bootstrap-ee.readme.md** file and how it is setup.
 
-### Install with NPM
+## Quick start
 
-This repository is distributed with npm. 
+***This is only for the CSS, you use the JS from Bootstrap***
 
-```sh
-npm install --save fastbootstrap
+Add this to package.json:
+
 ```
+"dependencies": {
+"bootstrap-ee": "github:Erehab/bootstrap-ee"
+}
+```
+
+Then:
+
+```
+npm install
+```
+Import into your build system (e.g., Vite, Webpack).
 
 ### Build 
 
@@ -24,19 +33,9 @@ After installion, you can building SCSS and JS using this snippet.
 npm run dist
 ```
 
-### from CDN
-
-Use a CDN for load compiled JS and CSS from jsdelivr.
-
-https://www.jsdelivr.com/package/npm/fastbootstrap
-
 ## Documentation
 
-Browse the online documentation, visit [fastbootstrap.com](https://fastbootstrap.com).
+Browse the base online documentation, visit [fastbootstrap.com](https://fastbootstrap.com).
 
-## Community
-
-For help, or a feature request:
-
-[Discuss on GitHub](https://github.com/fastbootstrap/atlassian-design-for-bootstrap/discussions)
+Erehab changes will be at the Repo https://github.com/Erehab/bootstrap-ee
 
