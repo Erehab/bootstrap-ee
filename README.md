@@ -39,3 +39,4 @@ Browse the online documentation, visit [fastbootstrap.com](https://fastbootstrap
 For help, or a feature request:
 
 [Discuss on GitHub](https://github.com/fastbootstrap/atlassian-design-for-bootstrap/discussions)
+
