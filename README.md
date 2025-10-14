@@ -1,7 +1,23 @@
 # BootStrap EE
 
+**Navigation:** [Developer Guide (CLAUDE.md)](CLAUDE.md) | [Tasks](TASKS.md)
+
 ## Overview
 Bootstrap EE is the Erehab version of https://fastbootstrap.com/. With extra classes and configuration choices.  The details of this will be found at https://github.com/Erehab/bootstrap-ee
+
+## Project Summary
+
+Bootstrap EE is a CSS framework built on Bootstrap 5.3.2 with customized styling and optional JavaScript component wrappers. It extends FastBootstrap with Erehab-specific design tokens, custom components, and configuration choices.
+
+**Key Features:**
+- Custom SCSS variables and design tokens based on Atlassian Design System
+- Extended utility classes and component styles
+- Lightweight TypeScript wrappers for bootstrap.native components
+- Support for both light and dark themes
+
+**For Developers:**
+- See [CLAUDE.md](CLAUDE.md) for complete architecture details, build system information, and development guidelines
+- See [TASKS.md](TASKS.md) for current project tasks and completed work
 
 ## ACP Setup
 See the **_bootstrap-ee.readme.md** file and how it is setup.
