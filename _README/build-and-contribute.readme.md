@@ -37,21 +37,27 @@ Output lands in `css/` and `js/`:
 
 ## Publishing dist to the public branch
 
-The `publish-dist` script (to be added to `package.json`):
-
 ```bash
 npm run publish-dist
 ```
 
-What it does:
-1. Verifies `css/` and `js/` exist and are non-empty
-2. Switches to (or creates) the `public` branch
-3. Copies `css/` and `js/` into the branch
-4. Commits with a message referencing the `main` commit SHA
-5. Pushes `public` to origin
-6. Switches back to `main`
+The script lives at `build/publish-dist.sh`. What it does:
 
-**This process can be run by Claude** — ask Claude to "publish dist to public branch" and it will handle the git operations with your approval at the commit/push steps.
+1. Verifies you are on `main` with a clean working tree
+2. Verifies `css/bs-ee.css` and `js/bs-ee.js` exist
+3. Stashes any untracked files for safety
+4. Switches to (or creates) the `public` branch, reset to match `main`
+5. Force-adds `css/`, `js/`, `package.json`, and `src/` (bypassing `.gitignore`)
+6. Commits with message `dist vX.Y.Z (<sha>)`
+7. Force-pushes `public` to origin
+8. Returns to `main` and pops the stash
+
+**Prerequisites before running:**
+```bash
+npm run dist        # builds css/
+npm run build-vite  # builds js/
+npm run publish-dist
+```
 
 ## Local development
 
@@ -73,6 +79,5 @@ Bootstrap JS and DataTables are bundled into `js/bs-ee.js` via the Vite build. C
 
 ## Planned additions
 
-- `npm run publish-dist` script — automates the `public` branch push (Claude can help implement this)
 - Font Awesome Pro integration into the build pipeline
 - Legacy CSS class compatibility layer

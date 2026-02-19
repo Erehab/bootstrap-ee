@@ -13,6 +13,7 @@
     "css-prefix": "npm-run-all --aggregate-output --parallel css-prefix-*",
     "css-prefix-main": "postcss --config build/postcss.config.js --replace \"css/*.css\" \"!css/*.rtl*.css\" \"!css/*.min.css\"",
     "dist": "npm-run-all --aggregate-output --parallel css",
+    "publish-dist": "bash build/publish-dist.sh",
     "build-vite": "vite build -c vite.config.ts",
     "lint:ts": "eslint -c .eslintrc.cjs --ext .ts src/ts"
   },
