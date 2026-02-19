@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastBootstrap Specifics — Bootstrap EE</title>
+    <link rel="stylesheet" href="../css/bs-ee.css">
+</head>
+<body class="p-4">
+
+<div class="bg-body-tertiary border-bottom mb-4 py-2">
+    <div class="container d-flex gap-3 fs-sm">
+        <a href="https://getbootstrap.com/docs/5.3/components/" target="_blank" class="text-decoration-none">Bootstrap 5 Docs &rarr;</a>
+        <a href="https://fastbootstrap.com/components/" target="_blank" class="text-decoration-none">FastBootstrap Docs &rarr;</a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="mb-4 d-flex align-items-center gap-3">
+        <a href="index.html" class="btn btn-outline-secondary btn-sm">&larr; Back</a>
+        <h1 class="mb-0">FastBootstrap Specifics</h1>
+    </div>
+
+    <!-- Avatars: sizes -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Avatar — Sizes</h2>
+        <div class="d-flex align-items-center gap-3 flex-wrap">
+            <span class="avatar avatar-xs text-bg-primary">XS</span>
+            <span class="avatar avatar-sm text-bg-secondary">SM</span>
+            <span class="avatar text-bg-info">D</span>
+            <span class="avatar avatar-lg text-bg-success">LG</span>
+            <span class="avatar avatar-xl text-bg-warning">XL</span>
+            <span class="avatar avatar-xxl text-bg-danger">XX</span>
+        </div>
+    </section>
+
+    <!-- Avatars: shapes -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Avatar — Shapes & Colors</h2>
+        <div class="d-flex align-items-center gap-3 flex-wrap">
+            <span class="avatar text-bg-primary">AB</span>
+            <span class="avatar rounded-0 text-bg-secondary">SQ</span>
+            <span class="avatar rounded-2 text-bg-success">R2</span>
+            <span class="avatar rounded-3 text-bg-danger">R3</span>
+            <span class="avatar text-bg-warning">WA</span>
+            <span class="avatar text-bg-info">IN</span>
+            <span class="avatar text-bg-dark">DK</span>
+            <span class="avatar" style="background-color: #7c3aed; color: white;">PR</span>
+        </div>
+    </section>
+
+    <!-- Avatar Group -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Avatar Group & Stack</h2>
+        <p class="text-secondary fs-sm mb-2">Group (spaced):</p>
+        <div class="avatar-group mb-3">
+            <span class="avatar text-bg-primary">AB</span>
+            <span class="avatar text-bg-success">CD</span>
+            <span class="avatar text-bg-danger">EF</span>
+            <span class="avatar text-bg-warning">GH</span>
+        </div>
+
+        <p class="text-secondary fs-sm mb-2">Stack (overlapping):</p>
+        <div class="avatar-stack">
+            <span class="avatar text-bg-primary">AB</span>
+            <span class="avatar text-bg-success">CD</span>
+            <span class="avatar text-bg-danger">EF</span>
+            <span class="avatar text-bg-warning">GH</span>
+            <span class="avatar text-bg-secondary">+3</span>
+        </div>
+    </section>
+
+    <!-- Blankslate / Empty State -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Blankslate (Empty State)</h2>
+        <div class="card p-4">
+            <div class="blankslate">
+                <svg class="blankslate-top-img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+                    <circle cx="50" cy="50" r="40" stroke="#d1d5db" stroke-width="4"/>
+                    <path d="M35 50 Q50 30 65 50 Q50 70 35 50Z" fill="#e5e7eb"/>
+                </svg>
+                <h3 class="h5 fw-semibold">No results found</h3>
+                <div class="blankslate-body text-secondary fs-sm">
+                    There are no items matching your current filters. Try adjusting your search or clearing the filters.
+                </div>
+                <div class="blankslate-actions">
+                    <button class="btn btn-primary">Clear filters</button>
+                    <button class="btn btn-outline-secondary">Learn more</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card p-4 mt-3">
+            <div class="blankslate blankslate-narrow">
+                <h3 class="h5 fw-semibold">Narrow blankslate</h3>
+                <div class="blankslate-body text-secondary fs-sm">
+                    Uses <code>blankslate-narrow</code> for a more constrained layout.
+                </div>
+                <div class="blankslate-actions">
+                    <button class="btn btn-primary btn-sm">Get started</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Animation helpers -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Animation Helpers</h2>
+        <div class="d-flex align-items-center gap-4 flex-wrap">
+            <div class="text-center">
+                <div class="avatar avatar-lg text-bg-primary animate-spin mb-2">&#9654;</div>
+                <code class="fs-xs">animate-spin</code>
+            </div>
+            <div class="text-center">
+                <div class="avatar avatar-lg text-bg-success animate-pulse mb-2">&#9632;</div>
+                <code class="fs-xs">animate-pulse</code>
+            </div>
+            <div class="text-center">
+                <div class="avatar avatar-lg text-bg-danger animate-bounce mb-2">&#8679;</div>
+                <code class="fs-xs">animate-bounce</code>
+            </div>
+            <div class="text-center">
+                <div class="d-inline-flex align-items-center justify-content-center animate-ping bg-warning rounded-circle mb-2" style="width:40px;height:40px"></div>
+                <br><code class="fs-xs">animate-ping</code>
+            </div>
+            <div class="text-center">
+                <div class="avatar avatar-lg text-bg-secondary animate-none mb-2">&#8226;</div>
+                <code class="fs-xs">animate-none</code>
+            </div>
+        </div>
+    </section>
+
+    <!-- Extended Utilities: letter-spacing -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Extended Utilities — Letter Spacing (<code>ls-*</code> / <code>tracking-*</code>)</h2>
+        <div class="d-flex flex-column gap-1">
+            <p class="ls-tighter mb-0">ls-tighter — The quick brown fox</p>
+            <p class="ls-tight mb-0">ls-tight — The quick brown fox</p>
+            <p class="ls-normal mb-0">ls-normal — The quick brown fox</p>
+            <p class="ls-wide mb-0">ls-wide — The quick brown fox</p>
+            <p class="ls-wider mb-0">ls-wider — The quick brown fox</p>
+            <p class="ls-widest mb-0">ls-widest — The quick brown fox</p>
+        </div>
+    </section>
+
+    <!-- Extended Utilities: max-width -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Extended Utilities — Max Width (<code>max-w-*</code>)</h2>
+        <div class="d-flex flex-column gap-2">
+            <div class="bg-primary-subtle p-2 max-w-xs rounded">max-w-xs (20rem)</div>
+            <div class="bg-success-subtle p-2 max-w-sm rounded">max-w-sm (24rem)</div>
+            <div class="bg-info-subtle p-2 max-w-md rounded">max-w-md (28rem)</div>
+            <div class="bg-warning-subtle p-2 max-w-lg rounded">max-w-lg (32rem)</div>
+        </div>
+    </section>
+
+    <!-- Extended Utilities: font sizes -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Extended Utilities — Font Sizes</h2>
+        <p class="fs-xs">fs-xs — Extra small text (0.75rem)</p>
+        <p class="fs-sm">fs-sm — Small text (0.875rem)</p>
+        <p class="fs-6">fs-6 — Bootstrap base</p>
+        <p class="fs-5">fs-5 — Larger</p>
+        <p class="fs-4">fs-4 — Even larger</p>
+        <p class="fw-thin">fw-thin — Weight 100</p>
+        <p class="fw-extralight">fw-extralight — Weight 200</p>
+        <p class="fw-black">fw-black — Weight 900</p>
+    </section>
+
+    <!-- Extended Utilities: flex-1 -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Extended Utilities — Flex (<code>flex-1</code>)</h2>
+        <div class="d-flex gap-2 border rounded p-2" style="width: 100%">
+            <div class="bg-primary text-white p-2 rounded">Fixed</div>
+            <div class="bg-success text-white p-2 rounded flex-1">flex-1 — grows to fill remaining space</div>
+            <div class="bg-danger text-white p-2 rounded">Fixed</div>
+        </div>
+    </section>
+
+    <!-- Extended Utilities: min-width -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Extended Utilities — Min Width (<code>min-w-*</code>)</h2>
+        <div class="d-flex gap-2 flex-wrap">
+            <div class="bg-secondary-subtle p-2 rounded min-w-0" style="max-width: 60px">
+                <span class="text-truncate d-block">min-w-0 enables text-truncate in flex</span>
+            </div>
+            <div class="bg-primary-subtle p-2 rounded min-w-full">min-w-full</div>
+        </div>
+    </section>
+
+</div>
+
+<script src="../js/bs-ee.js"></script>
+</body>
+</html>

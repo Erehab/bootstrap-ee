@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Components — Bootstrap EE</title>
+    <link rel="stylesheet" href="../css/bs-ee.css">
+</head>
+<body class="p-4">
+
+<div class="bg-body-tertiary border-bottom mb-4 py-2">
+    <div class="container d-flex gap-3 fs-sm">
+        <a href="https://getbootstrap.com/docs/5.3/components/" target="_blank" class="text-decoration-none">Bootstrap 5 Docs &rarr;</a>
+        <a href="https://fastbootstrap.com/components/" target="_blank" class="text-decoration-none">FastBootstrap Docs &rarr;</a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="mb-4 d-flex align-items-center gap-3">
+        <a href="index.html" class="btn btn-outline-secondary btn-sm">&larr; Back</a>
+        <h1 class="mb-0">Bootstrap Components</h1>
+    </div>
+
+    <!-- Buttons -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Buttons</h2>
+        <div class="d-flex flex-wrap gap-2 mb-3">
+            <button class="btn btn-primary">Primary</button>
+            <button class="btn btn-secondary">Secondary</button>
+            <button class="btn btn-success">Success</button>
+            <button class="btn btn-danger">Danger</button>
+            <button class="btn btn-warning">Warning</button>
+            <button class="btn btn-info">Info</button>
+            <button class="btn btn-light">Light</button>
+            <button class="btn btn-dark">Dark</button>
+            <button class="btn btn-link">Link</button>
+            <button class="btn btn-discovery">Discovery</button>
+        </div>
+        <div class="d-flex flex-wrap gap-2 mb-3">
+            <button class="btn btn-outline-primary">Outline Primary</button>
+            <button class="btn btn-outline-discovery">Outline Discovery</button>
+            <button class="btn btn-outline-secondary">Outline Secondary</button>
+            <button class="btn btn-outline-success">Outline Success</button>
+            <button class="btn btn-outline-danger">Outline Danger</button>
+            <button class="btn btn-outline-warning">Outline Warning</button>
+        </div>
+        <div class="d-flex flex-wrap gap-2 mb-3">
+            <button class="btn btn-primary btn-sm">Small</button>
+            <button class="btn btn-primary">Default</button>
+            <button class="btn btn-primary btn-lg">Large</button>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+            <button class="btn btn-primary" disabled>Disabled</button>
+            <button class="btn btn-primary">
+                <span class="spinner-border spinner-border-sm me-1" role="status"></span>
+                Loading…
+            </button>
+        </div>
+    </section>
+
+    <!-- Alerts -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Alerts</h2>
+        <div class="alert alert-primary" role="alert">A primary alert — check it out!</div>
+        <div class="alert alert-success" role="alert">
+            <strong>Success!</strong> Your changes have been saved.
+        </div>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Warning!</strong> Double-check your data before continuing.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <div class="alert alert-danger" role="alert">
+            <strong>Error!</strong> Something went wrong. Please try again.
+        </div>
+    </section>
+
+    <!-- Badges -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Badges</h2>
+        <div class="d-flex flex-wrap gap-2 mb-3">
+            <span class="badge text-bg-primary">Primary</span>
+            <span class="badge text-bg-secondary">Secondary</span>
+            <span class="badge text-bg-success">Success</span>
+            <span class="badge text-bg-danger">Danger</span>
+            <span class="badge text-bg-warning">Warning</span>
+            <span class="badge text-bg-info">Info</span>
+            <span class="badge text-bg-light">Light</span>
+            <span class="badge text-bg-dark">Dark</span>
+        </div>
+        <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+            <span class="badge rounded-pill text-bg-primary">Pill Primary</span>
+            <span class="badge rounded-pill text-bg-secondary">Pill Secondary</span>
+            <span class="badge rounded-pill text-bg-success">Pill Success</span>
+            <span class="badge rounded-pill text-bg-danger">Pill Danger</span>
+            <span class="badge rounded-pill text-bg-warning">Pill Warning</span>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+            <button class="btn btn-primary">
+                Notifications <span class="badge text-bg-danger ms-1">4</span>
+            </button>
+            <button class="btn btn-secondary">
+                Messages <span class="badge text-bg-light text-dark ms-1">12</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Cards -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Cards</h2>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Basic Card</h5>
+                        <p class="card-text text-secondary fs-sm">Some quick example text to build on the card title.</p>
+                        <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-header">Featured</div>
+                    <div class="card-body">
+                        <h5 class="card-title">With Header & Footer</h5>
+                        <p class="card-text text-secondary fs-sm">Content for the card body goes here.</p>
+                    </div>
+                    <div class="card-footer text-secondary fs-xs">Last updated 3 mins ago</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-primary">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">Bordered Card</h5>
+                        <p class="card-text text-secondary fs-sm">Card with a colored border variant.</p>
+                        <a href="#" class="stretched-link">Stretched link covers full card</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accordion -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Accordion</h2>
+        <div class="accordion" id="demoAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#acc1">
+                        Accordion Item #1
+                    </button>
+                </h2>
+                <div id="acc1" class="accordion-collapse collapse show" data-bs-parent="#demoAccordion">
+                    <div class="accordion-body">
+                        This is the first item's accordion body. It is visible by default.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#acc2">
+                        Accordion Item #2
+                    </button>
+                </h2>
+                <div id="acc2" class="accordion-collapse collapse" data-bs-parent="#demoAccordion">
+                    <div class="accordion-body">
+                        This is the second item's accordion body. It is hidden by default.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#acc3">
+                        Accordion Item #3
+                    </button>
+                </h2>
+                <div id="acc3" class="accordion-collapse collapse" data-bs-parent="#demoAccordion">
+                    <div class="accordion-body">
+                        Third item body content.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tabs -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Tabs</h2>
+        <ul class="nav nav-tabs mb-3" id="demoTabs">
+            <li class="nav-item">
+                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab1">Tab One</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab2">Tab Two</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab3">Tab Three</button>
+            </li>
+        </ul>
+        <div class="tab-content border rounded p-3">
+            <div class="tab-pane fade show active" id="tab1">Content for tab one.</div>
+            <div class="tab-pane fade" id="tab2">Content for tab two.</div>
+            <div class="tab-pane fade" id="tab3">Content for tab three.</div>
+        </div>
+    </section>
+
+    <!-- Pills -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Pills</h2>
+        <ul class="nav nav-pills mb-3">
+            <li class="nav-item"><a class="nav-link active" href="#">Active</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Another</a></li>
+            <li class="nav-item"><a class="nav-link disabled">Disabled</a></li>
+        </ul>
+        <ul class="nav nav-pills flex-column" style="max-width: 200px">
+            <li class="nav-item"><a class="nav-link active" href="#">Active vertical</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Another</a></li>
+        </ul>
+    </section>
+
+    <!-- Progress -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Progress</h2>
+        <div class="progress mb-2" style="height: 6px">
+            <div class="progress-bar" style="width: 25%"></div>
+        </div>
+        <div class="progress mb-2">
+            <div class="progress-bar bg-success" style="width: 50%">50%</div>
+        </div>
+        <div class="progress mb-2">
+            <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" style="width: 75%"></div>
+        </div>
+        <div class="progress mb-2">
+            <div class="progress-bar" style="width: 30%"></div>
+            <div class="progress-bar bg-success" style="width: 20%"></div>
+            <div class="progress-bar bg-danger" style="width: 10%"></div>
+        </div>
+    </section>
+
+    <!-- Spinners -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Spinners</h2>
+        <div class="d-flex flex-wrap align-items-center gap-3">
+            <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading…</span></div>
+            <div class="spinner-border text-secondary" role="status"><span class="visually-hidden">Loading…</span></div>
+            <div class="spinner-border text-success" role="status"><span class="visually-hidden">Loading…</span></div>
+            <div class="spinner-grow text-danger" role="status"><span class="visually-hidden">Loading…</span></div>
+            <div class="spinner-grow text-warning" role="status"><span class="visually-hidden">Loading…</span></div>
+            <div class="spinner-border spinner-border-sm text-primary" role="status"><span class="visually-hidden">Loading…</span></div>
+        </div>
+    </section>
+
+    <!-- Dropdowns -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Dropdowns</h2>
+        <div class="d-flex gap-2 flex-wrap">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">Dropdown</button>
+                <ul class="dropdown-menu">
+                    <li><h6 class="dropdown-header">Section header</h6></li>
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Separated link</a></li>
+                </ul>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">Primary</button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item active" href="#">Active item</a></li>
+                    <li><a class="dropdown-item" href="#">Normal item</a></li>
+                    <li><a class="dropdown-item disabled">Disabled item</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal trigger -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Modal</h2>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#demoModal">Launch Modal</button>
+        <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#largeModal">Large Modal</button>
+    </section>
+
+    <!-- List Group -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">List Group</h2>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <ul class="list-group">
+                    <li class="list-group-item active">Active item</li>
+                    <li class="list-group-item">A second item</li>
+                    <li class="list-group-item">A third item</li>
+                    <li class="list-group-item disabled">Disabled item</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Inbox
+                        <span class="badge text-bg-primary rounded-pill">14</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Drafts
+                        <span class="badge text-bg-primary rounded-pill">2</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Spam
+                        <span class="badge text-bg-danger rounded-pill">1</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toast trigger -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Toast</h2>
+        <button class="btn btn-primary" id="showToastBtn">Show Toast</button>
+    </section>
+
+    <!-- Placeholders -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Placeholders</h2>
+        <div class="card" style="max-width: 320px">
+            <div class="card-body">
+                <h5 class="card-title placeholder-glow">
+                    <span class="placeholder col-6"></span>
+                </h5>
+                <p class="card-text placeholder-glow">
+                    <span class="placeholder col-7"></span>
+                    <span class="placeholder col-4"></span>
+                    <span class="placeholder col-4"></span>
+                    <span class="placeholder col-6"></span>
+                </p>
+                <a class="btn btn-primary disabled placeholder col-6" aria-disabled="true"></a>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="demoModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Example Modal</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Modal body content goes here. This is a standard Bootstrap modal.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Large Modal -->
+<div class="modal fade" id="largeModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Large Modal</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>A larger modal dialog for more content.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="demoToast" class="toast" role="alert">
+        <div class="toast-header">
+            <span class="rounded me-2 bg-primary d-inline-block" style="width:16px;height:16px"></span>
+            <strong class="me-auto">Bootstrap EE</strong>
+            <small>just now</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+        </div>
+        <div class="toast-body">
+            Toast notification triggered successfully!
+        </div>
+    </div>
+</div>
+
+<script src="../js/bs-ee.js"></script>
+<script>
+    document.getElementById('showToastBtn').addEventListener('click', function () {
+        var toastEl = document.getElementById('demoToast');
+        var toast = bsee.Toast.getOrCreateInstance(toastEl);
+        toast.show();
+    });
+</script>
+
+</body>
+</html>
