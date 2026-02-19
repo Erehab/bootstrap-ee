@@ -1,0 +1,83 @@
+/*! FastBootstrap v2.1 (https://fastbootstrap.com) */
+
+@use "sass:meta";
+
+@import "bootstrap/scss/functions";
+@import "functions";
+@import "variables-tokens";
+@import "variables";
+@import "variables-dark";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+
+// Basic styles
+@import "root";
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+@import "bootstrap/scss/images";
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/tables";
+@import "bootstrap/scss/transitions";
+@import "tables";
+
+// Components
+@import "breadcrumb";
+@import "forms";
+@import "button";
+@import "button-group";
+@import "dropdown";
+@import "nav";
+@import "navbar";
+@import "tabs";
+@import "close";
+@import "offcanvas";
+@import "pagination";
+@import "card";
+@import "alert";
+@import "modal";
+@import "placeholders";
+@import "popover";
+@import "progress";
+@import "spinner";
+@import "toast";
+@import "tooltip";
+@import "avatar";
+@import "badge";
+@import "accordion";
+@import "blankslate";
+@import "carousel";
+@import "list-group";
+@import "layout";
+
+// Third-party libraries — DataTables + extensions
+@include meta.load-css("datatables.net-bs5/css/dataTables.bootstrap5.css");
+@include meta.load-css("datatables.net-buttons-bs5/css/buttons.bootstrap5.css");
+@include meta.load-css("datatables.net-responsive-bs5/css/responsive.bootstrap5.css");
+@include meta.load-css("datatables.net-select-bs5/css/select.bootstrap5.css");
+@include meta.load-css("datatables.net-searchpanes-bs5/css/searchPanes.bootstrap5.css");
+@include meta.load-css("datatables.net-searchbuilder-bs5/css/searchBuilder.bootstrap5.css");
+@include meta.load-css("datatables.net-rowgroup-bs5/css/rowGroup.bootstrap5.css");
+@include meta.load-css("datatables.net-rowreorder-bs5/css/rowReorder.bootstrap5.css");
+@include meta.load-css("datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5.css");
+@include meta.load-css("datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.css");
+@include meta.load-css("datatables.net-colreorder-bs5/css/colReorder.bootstrap5.css");
+@include meta.load-css("datatables.net-keytable-bs5/css/keyTable.bootstrap5.css");
+@include meta.load-css("datatables.net-scroller-bs5/css/scroller.bootstrap5.css");
+@include meta.load-css("datatables.net-autofill-bs5/css/autoFill.bootstrap5.css");
+@include meta.load-css("datatables.net-staterestore-bs5/css/stateRestore.bootstrap5.css");
+
+// utilities & helpers
+@import "bootstrap/scss/helpers";
+@import "helpers/animation";
+@import "helpers/text-truncation";
+@import "helpers/content";
+@import "helpers/transforms";
+@import "helpers/transitions";
+@import "utilities";
+@import "utilities_extended";
+@import "bootstrap/scss/utilities/api";
