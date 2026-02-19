@@ -19,6 +19,15 @@ Bootstrap EE is a CSS framework built on Bootstrap 5.3.2 with customized styling
 - See [CLAUDE.md](CLAUDE.md) for complete architecture details, build system information, and development guidelines
 - See [TASKS.md](TASKS.md) for current project tasks and completed work
 
+## Developer Documentation
+
+| Document | Description |
+|---|---|
+| [bs-ee.readme.md](_README/bs-ee.readme.md) | Package overview, what's bundled, how to consume in other projects |
+| [build-and-contribute.readme.md](_README/build-and-contribute.readme.md) | Build workflow, public branch publishing, contribution guidelines |
+| [scss.readme.md](_README/scss.readme.md) | SCSS architecture, variables, tokens, how to add overrides |
+| [ts.readme.md](_README/ts.readme.md) | TypeScript API, component wrappers, Bootstrap JS bundling |
+
 ## ACP Setup
 See the **_bootstrap-ee.readme.md** file and how it is setup.
 
