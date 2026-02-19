@@ -8,6 +8,9 @@
 #
 # This script must be run from the repo root after a successful build.
 # It never switches branches in the main working tree.
+#
+# The worktree at ../.public-worktree is left in place after publishing
+# so you can inspect what was committed before it is pushed.
 
 set -e
 
@@ -42,13 +45,6 @@ if ! git diff --quiet || ! git diff --cached --quiet; then
     exit 1
 fi
 
-# Worktree must not already exist
-if [ -d "$WORKTREE_DIR" ]; then
-    echo "Error: Worktree already exists at $WORKTREE_DIR. Remove it and retry:"
-    echo "  git worktree remove --force $WORKTREE_DIR"
-    exit 1
-fi
-
 # ── Read version from package.json ───────────────────────────────────────────
 
 VERSION="$(node -p "require('./package.json').version")"
@@ -69,9 +65,11 @@ if ! git show-ref --verify --quiet refs/heads/public; then
     git branch public "$(git commit-tree "$(git hash-object -t tree /dev/null)" -m 'init public branch')"
 fi
 
-# ── Create worktree pointing at public branch ─────────────────────────────────
+# ── Create worktree (reuse if already present) ───────────────────────────────
 
-git worktree add "$WORKTREE_DIR" public --quiet
+if [ ! -d "$WORKTREE_DIR" ]; then
+    git worktree add "$WORKTREE_DIR" public --quiet
+fi
 
 # ── Populate the worktree ─────────────────────────────────────────────────────
 
@@ -91,8 +89,7 @@ git add -A
 
 if git diff --cached --quiet; then
     echo "Nothing to publish — public branch is already up to date."
-    cd "$REPO_ROOT"
-    git worktree remove "$WORKTREE_DIR" --quiet
+    echo ""
     exit 0
 fi
 
@@ -103,11 +100,5 @@ git commit -m "$COMMIT_MSG" --quiet
 git push origin public --force --quiet
 
 echo "✓ Pushed to public branch: $COMMIT_MSG"
-
-# ── Clean up worktree ─────────────────────────────────────────────────────────
-
-cd "$REPO_ROOT"
-git worktree remove "$WORKTREE_DIR" --quiet
-
-echo "✓ Worktree removed"
+echo "  Worktree left at: $WORKTREE_DIR"
 echo ""
