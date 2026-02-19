@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms — Bootstrap EE</title>
+    <link rel="stylesheet" href="../css/bs-ee.css">
+</head>
+<body class="p-4">
+
+<div class="bg-body-tertiary border-bottom mb-4 py-2">
+    <div class="container d-flex gap-3 fs-sm">
+        <a href="https://getbootstrap.com/docs/5.3/components/" target="_blank" class="text-decoration-none">Bootstrap 5 Docs &rarr;</a>
+        <a href="https://fastbootstrap.com/components/" target="_blank" class="text-decoration-none">FastBootstrap Docs &rarr;</a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="mb-4 d-flex align-items-center gap-3">
+        <a href="index.html" class="btn btn-outline-secondary btn-sm">&larr; Back</a>
+        <h1 class="mb-0">Forms</h1>
+    </div>
+
+    <!-- Basic Text Inputs -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Text Fields</h2>
+        <div class="row g-3 max-w-2xl">
+            <div class="col-12">
+                <label class="form-label" for="inputDefault">Default input</label>
+                <input type="text" id="inputDefault" class="form-control" placeholder="Placeholder text">
+            </div>
+            <div class="col-12">
+                <label class="form-label" for="inputSm">Small input</label>
+                <input type="text" id="inputSm" class="form-control form-control-sm" placeholder="Small">
+            </div>
+            <div class="col-12">
+                <label class="form-label" for="inputLg">Large input</label>
+                <input type="text" id="inputLg" class="form-control form-control-lg" placeholder="Large">
+            </div>
+            <div class="col-12">
+                <label class="form-label" for="inputDisabled">Disabled</label>
+                <input type="text" id="inputDisabled" class="form-control" value="Can't touch this" disabled>
+            </div>
+            <div class="col-12">
+                <label class="form-label" for="inputReadonly">Readonly</label>
+                <input type="text" id="inputReadonly" class="form-control" value="Readonly value" readonly>
+            </div>
+            <div class="col-12">
+                <label class="form-label" for="inputTextarea">Textarea</label>
+                <textarea id="inputTextarea" class="form-control" rows="3" placeholder="Enter a longer description…"></textarea>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Labels -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Floating Labels</h2>
+        <div class="row g-3 max-w-2xl">
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input type="email" class="form-control" id="floatEmail" placeholder="name@example.com">
+                    <label for="floatEmail">Email address</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input type="password" class="form-control" id="floatPassword" placeholder="Password">
+                    <label for="floatPassword">Password</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <select class="form-select" id="floatSelect">
+                        <option selected>Open this select menu</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    <label for="floatSelect">Works with selects</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <textarea class="form-control" id="floatTextarea" style="height: 100px" placeholder="Leave a comment here"></textarea>
+                    <label for="floatTextarea">Comments</label>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Input Groups -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Input Groups</h2>
+        <div class="row g-3 max-w-2xl">
+            <div class="col-12">
+                <div class="input-group">
+                    <span class="input-group-text">@</span>
+                    <input type="text" class="form-control" placeholder="Username">
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="input-group">
+                    <input type="number" class="form-control" placeholder="Amount">
+                    <span class="input-group-text">.00</span>
+                    <span class="input-group-text">USD</span>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search…">
+                    <button class="btn btn-primary">Search</button>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="input-group">
+                    <span class="input-group-text">https://</span>
+                    <input type="text" class="form-control" placeholder="example.com">
+                    <span class="input-group-text">/path</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Select -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Select</h2>
+        <div class="row g-3 max-w-2xl">
+            <div class="col-md-6">
+                <label class="form-label" for="selectDefault">Default</label>
+                <select class="form-select" id="selectDefault">
+                    <option value="">Choose one…</option>
+                    <option value="1">Option one</option>
+                    <option value="2">Option two</option>
+                    <option value="3">Option three</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="selectMultiple">Multiple</label>
+                <select class="form-select" id="selectMultiple" multiple size="4">
+                    <option>Option 1</option>
+                    <option>Option 2</option>
+                    <option>Option 3</option>
+                    <option>Option 4</option>
+                    <option>Option 5</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkboxes & Radios -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Checkboxes & Radios</h2>
+        <div class="row g-4 max-w-2xl">
+            <div class="col-md-4">
+                <p class="fw-semibold fs-sm mb-2">Checkboxes</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="chk1" checked>
+                    <label class="form-check-label" for="chk1">Checked</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="chk2">
+                    <label class="form-check-label" for="chk2">Unchecked</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="chk3" disabled>
+                    <label class="form-check-label" for="chk3">Disabled</label>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <p class="fw-semibold fs-sm mb-2">Radios</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radioGroup" id="radio1" checked>
+                    <label class="form-check-label" for="radio1">Option one</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radioGroup" id="radio2">
+                    <label class="form-check-label" for="radio2">Option two</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radioGroup" id="radio3" disabled>
+                    <label class="form-check-label" for="radio3">Disabled</label>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <p class="fw-semibold fs-sm mb-2">Switches</p>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="switch1" checked>
+                    <label class="form-check-label" for="switch1">Enabled</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="switch2">
+                    <label class="form-check-label" for="switch2">Off</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="switch3" disabled>
+                    <label class="form-check-label" for="switch3">Disabled</label>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Range -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Range</h2>
+        <div class="max-w-2xl">
+            <label class="form-label" for="rangeDefault">Default range</label>
+            <input type="range" class="form-range" id="rangeDefault">
+            <label class="form-label mt-2" for="rangeSteps">Range with steps</label>
+            <input type="range" class="form-range" id="rangeSteps" min="0" max="100" step="10">
+        </div>
+    </section>
+
+    <!-- Validation States -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Validation States</h2>
+        <form class="row g-3 max-w-2xl needs-validation" novalidate>
+            <div class="col-md-6">
+                <label class="form-label" for="validInput">Valid input</label>
+                <input type="text" id="validInput" class="form-control is-valid" value="Looks good!">
+                <div class="valid-feedback">Looks good!</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="invalidInput">Invalid input</label>
+                <input type="text" id="invalidInput" class="form-control is-invalid" value="Wrong value">
+                <div class="invalid-feedback">Please provide a valid value.</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="validSelect">Valid select</label>
+                <select id="validSelect" class="form-select is-valid">
+                    <option value="1">Selected option</option>
+                </select>
+                <div class="valid-feedback">Correct choice.</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="invalidSelect">Invalid select</label>
+                <select id="invalidSelect" class="form-select is-invalid">
+                    <option value="">Please choose…</option>
+                </select>
+                <div class="invalid-feedback">Please select an option.</div>
+            </div>
+            <div class="col-12">
+                <div class="form-check">
+                    <input class="form-check-input is-invalid" type="checkbox" id="invalidCheck">
+                    <label class="form-check-label" for="invalidCheck">Agree to terms (required)</label>
+                    <div class="invalid-feedback">You must agree before submitting.</div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <!-- Complete Form Example -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Complete Form Example</h2>
+        <div class="card max-w-2xl">
+            <div class="card-header fw-semibold">New Contact</div>
+            <div class="card-body">
+                <form>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="firstName" placeholder="First name">
+                                <label for="firstName">First name</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="lastName" placeholder="Last name">
+                                <label for="lastName">Last name</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <input type="email" class="form-control" id="emailAddr" placeholder="Email">
+                                <label for="emailAddr">Email address</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="role">Role</label>
+                            <select class="form-select" id="role">
+                                <option value="">Select role…</option>
+                                <option>Admin</option>
+                                <option>Editor</option>
+                                <option>Viewer</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="status">Status</label>
+                            <div class="d-flex gap-3 mt-1">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="status" checked>
+                                    <label class="form-check-label" for="status">Active</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <textarea class="form-control" id="notes" style="height: 80px" placeholder="Notes"></textarea>
+                                <label for="notes">Notes</label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer d-flex justify-content-end gap-2">
+                <button class="btn btn-outline-secondary">Cancel</button>
+                <button class="btn btn-primary">Save contact</button>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<script src="../js/bs-ee.js"></script>
+</body>
+</html>
