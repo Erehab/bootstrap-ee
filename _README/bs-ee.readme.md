@@ -18,8 +18,8 @@ The `dist/` build includes:
 
 | Asset | Contents |
 |---|---|
-| `dist/css/bs-ee.css` | Bootstrap 5 + all EE overrides, tokens, components, utilities. Source map included. |
-| `dist/js/bs-ee.js` | Bootstrap 5 JS bundled — consumers do **not** need to include Bootstrap JS separately. |
+| `css/bs-ee.css` | Bootstrap 5 + all EE overrides, tokens, components, utilities. Source map included. |
+| `js/bs-ee.js` | Bootstrap 5 JS bundled — consumers do **not** need to include Bootstrap JS separately. |
 
 **Runtime dependencies bundled:**
 - `bootstrap` ^5.3.2 — core CSS and JS
@@ -51,15 +51,15 @@ Then `npm install`. No build step required — `dist/` is pre-built and committe
 Load the assets:
 
 ```html
-<link rel="stylesheet" href="node_modules/bootstrap-ee/dist/css/bs-ee.css">
-<script src="node_modules/bootstrap-ee/dist/js/bs-ee.js"></script>
+<link rel="stylesheet" href="node_modules/bootstrap-ee/css/bs-ee.css">
+<script src="node_modules/bootstrap-ee/js/bs-ee.js"></script>
 ```
 
 Or import in a bundler (Vite, Webpack):
 
 ```js
-import 'bootstrap-ee/dist/css/bs-ee.css';
-import 'bootstrap-ee/dist/js/bs-ee.js';
+import 'bootstrap-ee/css/bs-ee.css';
+import 'bootstrap-ee/js/bs-ee.js';
 ```
 
 Bootstrap JS is included — do **not** add a separate Bootstrap JS import alongside this.

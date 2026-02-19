@@ -1,3 +1,18 @@
+import DataTable from 'datatables.net-bs5';
+import 'datatables.net-buttons-bs5';
+import 'datatables.net-responsive-bs5';
+import 'datatables.net-select-bs5';
+import 'datatables.net-searchpanes-bs5';
+import 'datatables.net-searchbuilder-bs5';
+import 'datatables.net-rowgroup-bs5';
+import 'datatables.net-rowreorder-bs5';
+import 'datatables.net-fixedheader-bs5';
+import 'datatables.net-fixedcolumns-bs5';
+import 'datatables.net-colreorder-bs5';
+import 'datatables.net-keytable-bs5';
+import 'datatables.net-scroller-bs5';
+import 'datatables.net-autofill-bs5';
+import 'datatables.net-staterestore-bs5';
 import Alert from './alert';
 import Button from './button';
 import Carousel from './carousel';
@@ -13,6 +28,7 @@ import Tooltip from './tooltip';
 import { initCallback } from 'bootstrap.native';
 
 export {
+  DataTable,
   Alert,
   Button,
   Carousel,

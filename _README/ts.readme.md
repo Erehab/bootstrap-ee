@@ -4,7 +4,7 @@
 
 The `src/ts/` folder contains lightweight wrappers around `bootstrap.native` components. These wrappers add a `getOrCreateInstance` helper and re-export components from a single `index.ts` entry.
 
-The Vite build bundles Bootstrap JS and these wrappers into `dist/js/bs-ee.js`. Consuming projects load this one file and get Bootstrap JS included — no separate Bootstrap JS import needed.
+The Vite build bundles Bootstrap JS and these wrappers into `js/bs-ee.js`. Consuming projects load this one file and get Bootstrap JS included — no separate Bootstrap JS import needed.
 
 ## Key files
 
@@ -35,4 +35,4 @@ Bootstrap JS (`bootstrap` npm package) is imported and re-exported through the V
 
 ## Build
 
-JS is built with Vite into `dist/js/` as both an ES module (`bs-ee.mjs`) and an IIFE bundle (`bs-ee.js`/`bs-ee.min.js`), both with source maps. See [build-and-contribute.readme.md](build-and-contribute.readme.md) for the full workflow.
+JS is built with Vite into `js/` as both an ES module (`bs-ee.mjs`) and an IIFE bundle (`bs-ee.js`/`bs-ee.min.js`), both with source maps. See [build-and-contribute.readme.md](build-and-contribute.readme.md) for the full workflow.
