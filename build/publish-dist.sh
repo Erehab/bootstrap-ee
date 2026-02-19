@@ -88,6 +88,14 @@ cp -r src/ "$WORKTREE_DIR/src"
 
 cd "$WORKTREE_DIR"
 git add -A
+
+if git diff --cached --quiet; then
+    echo "Nothing to publish — public branch is already up to date."
+    cd "$REPO_ROOT"
+    git worktree remove "$WORKTREE_DIR" --quiet
+    exit 0
+fi
+
 git commit -m "$COMMIT_MSG" --quiet
 
 # ── Push ──────────────────────────────────────────────────────────────────────
