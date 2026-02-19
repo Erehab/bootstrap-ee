@@ -52,10 +52,6 @@ echo "  From    : main@$MAIN_SHA"
 echo "  Message : $COMMIT_MSG"
 echo ""
 
-# ── Stash untracked files so branch switch is safe ───────────────────────────
-
-git stash --include-untracked --quiet
-
 # ── Switch to / create public branch ─────────────────────────────────────────
 
 if git show-ref --verify --quiet refs/heads/public; then
@@ -67,6 +63,8 @@ else
     git checkout --orphan public --quiet
     # Remove everything tracked (orphan starts with main's index)
     git rm -rf . --quiet
+    # Restore source files from main (deleted by git rm above)
+    git checkout main -- package.json src/
 fi
 
 # ── Force-add the built output (bypasses .gitignore) ─────────────────────────
@@ -90,7 +88,6 @@ echo "✓ Pushed to public branch: $COMMIT_MSG"
 # ── Return to main ────────────────────────────────────────────────────────────
 
 git checkout main --quiet
-git stash pop --quiet 2>/dev/null || true
 
 echo "✓ Back on main"
 echo ""
