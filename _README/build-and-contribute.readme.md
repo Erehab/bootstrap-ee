@@ -6,8 +6,8 @@ This repo uses two branches:
 
 | Branch | Purpose |
 |---|---|
-| `main` | Source development. `dist/` is gitignored here. |
-| `public` | Pre-built release. `dist/` is committed here. Consuming projects use this branch. |
+| `main` | Source development. `css/` and `js/` are gitignored here. |
+| `public` | Pre-built release. `css/` and `js/` are committed here. Consuming projects use this branch. |
 
 **You never edit the `public` branch directly.** All changes happen on `main`, then the build output is pushed to `public`.
 
@@ -15,7 +15,7 @@ This repo uses two branches:
 
 1. Make changes on `main` (SCSS, TS, variables, etc.)
 2. Run the full build: `npm run dist`
-3. Run the publish script to push `dist/` to the `public` branch: `npm run publish-dist`
+3. Run the publish script to push `css/` and `js/` to the `public` branch: `npm run publish-dist`
    *(This script is documented below and can be automated via Claude.)*
 4. Consuming projects pick up the changes on their next `npm install`.
 
@@ -29,11 +29,11 @@ npm run dist
 
 This runs the full pipeline: compiles SCSS, adds vendor prefixes, minifies, and bundles JS. Source maps are included in the output. Individual step commands (`css-compile`, `css-prefix`, `css-minify`) exist but are not needed in normal development.
 
-Output lands in `dist/`:
-- `dist/css/bs-ee.css` — full CSS with source map
-- `dist/css/bs-ee.min.css` — minified CSS with source map
-- `dist/js/bs-ee.js` — JS bundle (Bootstrap JS included) with source map
-- `dist/js/bs-ee.mjs` — ES module format
+Output lands in `css/` and `js/`:
+- `css/bs-ee.css` — full CSS with source map
+- `css/bs-ee.min.css` — minified CSS with source map
+- `js/bs-ee.js` — JS bundle (Bootstrap + DataTables included) with source map
+- `js/bs-ee.mjs` — ES module format
 
 ## Publishing dist to the public branch
 
@@ -44,9 +44,9 @@ npm run publish-dist
 ```
 
 What it does:
-1. Verifies `dist/` exists and is non-empty
+1. Verifies `css/` and `js/` exist and are non-empty
 2. Switches to (or creates) the `public` branch
-3. Copies `dist/` into the branch
+3. Copies `css/` and `js/` into the branch
 4. Commits with a message referencing the `main` commit SHA
 5. Pushes `public` to origin
 6. Switches back to `main`
@@ -57,12 +57,12 @@ What it does:
 
 1. Install dependencies: `npm install`
 2. Make SCSS or TS changes
-3. Run `npm run dist` to see output in `dist/`
+3. Run `npm run dist` to see output in `css/` and `js/`
 4. When satisfied, commit to `main` and publish to `public`
 
 ## Bootstrap JS
 
-Bootstrap JS is bundled into `dist/js/bs-ee.js` via the Vite build. Consuming projects load this one file and get Bootstrap JS included — no separate Bootstrap JS import needed. When Bootstrap is updated here, a rebuild and publish propagates the new version to all consuming projects.
+Bootstrap JS and DataTables are bundled into `js/bs-ee.js` via the Vite build. Consuming projects load this one file and get Bootstrap JS included — no separate Bootstrap JS import needed. When Bootstrap is updated here, a rebuild and publish propagates the new version to all consuming projects.
 
 ## Contribution guidelines
 

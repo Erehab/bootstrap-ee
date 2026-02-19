@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Bootstrap EE is the Erehab version of FastBootstrap (https://fastbootstrap.com/), extended with custom classes and configuration choices. It's a CSS framework built on Bootstrap 5.3.2 with customized styling and optional JavaScript component wrappers using bootstrap.native.
 
-**Important**: This project provides CSS only. JavaScript functionality uses Bootstrap's JS directly or through bootstrap.native wrappers.
+**Important**: This project bundles both CSS and JS. Bootstrap JS, DataTables, and all extensions are bundled — consuming projects only need two tags.
 
 ## Build Commands
 
@@ -64,12 +64,12 @@ The TypeScript source (`src/ts/`) provides lightweight wrappers around bootstrap
 - Pattern: Import from bootstrap.native, extend with utility method, re-export
 
 Build output:
-- `dist/js/bs-ee.mjs`: ES module format
-- `dist/js/bs-ee.min.js`: IIFE format (minified)
+- `js/bs-ee.mjs`: ES module format
+- `js/bs-ee.js`: IIFE format
 
 ### Build System
 
-- **Sass**: Compiles SCSS with Bootstrap from node_modules, outputs to `dist/css/`
+- **Sass**: Compiles SCSS with Bootstrap from node_modules, outputs to `css/`
 - **PostCSS**: Autoprefixer adds vendor prefixes, rtlcss generates RTL versions
 - **CleanCSS**: Minifies CSS files with `.min` suffix
 - **Vite**: Bundles TypeScript with source maps
@@ -93,9 +93,9 @@ Build output:
 
 ### Distribution
 
-The `dist/` directory is gitignored. Built files are included in npm package via the `files` field in package.json:
-- CSS: `dist/css/*.{css,map}`
-- JS: `dist/js/*.{js,mjs,map}`
+The `css/` and `js/` directories are gitignored on `main`. Built files are included in npm package via the `files` field in package.json:
+- CSS: `css/*.{css,map}`
+- JS: `js/*.{js,mjs,map}`
 - Source: `src/{ts,scss}/**/*.{ts,scss}`
 
 ### Package Installation

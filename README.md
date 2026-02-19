@@ -12,6 +12,7 @@ Bootstrap EE is a CSS framework built on Bootstrap 5.3.2 with customized styling
 **Key Features:**
 - Custom SCSS variables and design tokens based on Atlassian Design System
 - Extended utility classes and component styles
+- Bootstrap 5 JS, DataTables + all extensions bundled — nothing to add per-project
 - Lightweight TypeScript wrappers for bootstrap.native components
 - Support for both light and dark themes
 
@@ -33,29 +34,40 @@ See the **_bootstrap-ee.readme.md** file and how it is setup.
 
 ## Quick start
 
-***This is only for the CSS, you use the JS from Bootstrap***
+Add to `package.json`:
 
-Add this to package.json:
-
-```
+```json
 "dependencies": {
-"bootstrap-ee": "github:Erehab/bootstrap-ee"
+  "bootstrap-ee": "github:Erehab/bootstrap-ee#public"
 }
 ```
 
-Then:
+Then `npm install`. No build step needed — `css/` and `js/` are pre-built on the `public` branch.
 
+Include two tags (CSS in `<head>`, JS before `</body>`):
+
+```html
+<link rel="stylesheet" href="node_modules/bootstrap-ee/css/bs-ee.css">
+<script src="node_modules/bootstrap-ee/js/bs-ee.js"></script>
 ```
-npm install
+
+Everything is available under the `bsee` global:
+
+```js
+// Bootstrap components
+new bsee.Modal(document.getElementById('myModal'));
+
+// DataTables (+ all extensions bundled)
+new bsee.DataTable('#myTable', { responsive: true });
 ```
-Import into your build system (e.g., Vite, Webpack).
 
-### Build 
+Do **not** add separate Bootstrap JS or DataTables imports — both are bundled here.
 
-After installion, you can building SCSS and JS using this snippet.
+### Build (this package only)
 
 ```sh
-npm run dist
+npm run dist        # CSS
+npm run build-vite  # JS
 ```
 
 ## Documentation

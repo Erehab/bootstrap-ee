@@ -1,11 +1,11 @@
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
-import { name, version, homepage } from './package.json';
+import { version } from './package.json';
 
-const NAME = 'bootstrap';
+const NAME = 'bsee';
 
 const getBanner = () => {
-  return `/*! FastBootstrap v${version} (${homepage}) */`;
+  return `/*! Bootstrap EE v${version} (https://github.com/Erehab/bootstrap-ee) */`;
 };
 
 export default defineConfig({
@@ -13,14 +13,14 @@ export default defineConfig({
   build: {
     minify: true,
     emptyOutDir: true,
-    outDir: 'dist/js',
+    outDir: 'js',
     lib: {
       entry: resolve(__dirname, 'src/ts/index.ts'),
       name: NAME,
       formats: ['es', 'iife'],
       fileName: (format: string) => {
-        if (format === 'es') return `${name}.mjs`;
-        else if (format === 'iife') return `${name}.min.js`;
+        if (format === 'es') return `bs-ee.mjs`;
+        else if (format === 'iife') return `bs-ee.js`;
         else throw new Error(`${format} format is not defined.`);
       },
     },
