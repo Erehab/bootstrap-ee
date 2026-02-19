@@ -45,12 +45,13 @@ The script lives at `build/publish-dist.sh`. What it does:
 
 1. Verifies you are on `main` with a clean working tree
 2. Verifies `css/bs-ee.css` and `js/bs-ee.js` exist
-3. Stashes any untracked files for safety
-4. Switches to (or creates) the `public` branch, reset to match `main`
-5. Force-adds `css/`, `js/`, `package.json`, and `src/` (bypassing `.gitignore`)
-6. Commits with message `dist vX.Y.Z (<sha>)`
-7. Force-pushes `public` to origin
-8. Returns to `main` and pops the stash
+3. Creates (or reuses) a git worktree at `../.public-worktree` pointing at the `public` branch
+4. Copies `css/`, `js/`, `package.json`, and `src/` into the worktree
+5. Commits with message `dist vX.Y.Z (<sha>)`
+6. Force-pushes `public` to origin
+7. Leaves the worktree in place so you can inspect what was published
+
+The main working tree is never touched — no branch switching, no stashing.
 
 **Prerequisites before running:**
 ```bash
