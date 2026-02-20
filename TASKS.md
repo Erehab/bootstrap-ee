@@ -3,9 +3,7 @@
 ## Active Tasks
 
 - Prepare for initial release: finalize package metadata, ensure build scripts are working, and write documentation for npm package usage.
-- Add TypeScript wrappers for remaining bootstrap.native components (e.g., tooltips, popovers).
-- Implement legacy CSS class compatibility layer as a separate partial.
-- Integrate Font Awesome Pro into the build and dist output.
+- Consider adding an `initBootstrap(container)` helper to the bundle for initializing tooltips/popovers in dynamically injected content (easy, low priority).
 
 ---
 
