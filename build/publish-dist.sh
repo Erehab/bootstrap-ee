@@ -79,6 +79,7 @@ find "$WORKTREE_DIR" -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
 # Copy built output and source files
 cp -r css/ "$WORKTREE_DIR/css"
 cp -r js/ "$WORKTREE_DIR/js"
+cp -r webfonts/ "$WORKTREE_DIR/webfonts"
 cp package.json "$WORKTREE_DIR/package.json"
 cp -r src/ "$WORKTREE_DIR/src"
 

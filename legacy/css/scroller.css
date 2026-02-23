@@ -1,0 +1,30 @@
+
+a#scroll_to_the_top:hover, a#scroll_to_the_bottom:hover,a#scroll_menu_edit:hover,a#scroll_menu_home:hover {
+  background: black!important;
+  color: whitesmoke!important;
+}
+#scroll_to_the_top{
+opacity:1;
+background: #7d9eda;
+}
+#scroll_to_the_bottom{
+opacity:1;
+background: #da7d7d;
+
+}
+
+#scroll_menu_edit,#scroll_menu_home{
+	background: #7dda91;
+}
+#scroll_to_the_top,#scroll_to_the_bottom,#scroll_menu_edit,#scroll_menu_home{	
+z-index: 99999;
+transition: .6s ease;
+/*background:whitesmoke;*/
+color:#000;
+width:24px;
+height:24px;
+text-align:center;
+border-radius:100px;
+display:inline-block;
+margin-right:5px; 
+}

@@ -43,4 +43,4 @@ Thumbs.db
 /css/
 /js/
 /dist/
-/legacy/
+# /legacy/  # TODO REMOVE — temporarily tracking this dir; remove line when legacy dir is cleaned up
