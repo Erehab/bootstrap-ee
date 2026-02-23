@@ -2,6 +2,21 @@
 
 ### 2026-02-23
 
+**Plan: migrate-legacy-css Phase 1 — Reconnaissance & Documentation**
+Completed all 6 audit/documentation tasks:
+- `audit_bootswatch.md` — Categorized every section of bootswatch.less (variables, component overrides, custom utilities, app-specific classes, dead code)
+- `audit_spacing.md` — Compared spacing.less against BS5 built-in utilities; determined what to keep, replace, or drop
+- `audit_icomoon.md` — Searched ptclinic.biz for `icon-` usage to determine if icomoon can be dropped
+- `audit_js.md` — Categorized all legacy JS files (vendor libs with npm equivalents, obsolete libs, custom JS, dead files)
+- `legacy-load-inventory.md` — Documented every `<link>` and `<script>` tag in the ptclinic.biz page load
+- `bs3-to-bs5-changes.md` — Documented BS3 → BS5 breaking changes relevant to ptclinic.biz
+
+### 2026-02-23
+
+- Plan complete: shared-bundle
+
+### 2026-02-23
+
 **Font Awesome Pro integration (Phase 3)**
 Installed `@fortawesome/fontawesome-pro` and imported all icon weights (solid, regular, light, thin, duotone, brands) into the CSS bundle. Added `copy-fonts` script to `npm run dist` — copies woff2 files to `webfonts/` at build time. Added `webfonts/` to the `public` branch publish and `package.json` files list. Created `htmltest/fontawesome.html` test page. Added `bs-ee-no-fa.css` variant (FA base utilities only, no `@font-face`) for projects that want to load icon weights selectively.
 
