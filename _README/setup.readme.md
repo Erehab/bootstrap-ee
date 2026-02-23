@@ -1,4 +1,44 @@
-# Build & Contribution Guide
+# Setup, Build & Contribution Guide
+
+## Using this package in a project
+
+**1. Add to your project's `package.json`:**
+
+```json
+"dependencies": {
+  "bootstrap-ee": "github:Erehab/bootstrap-ee#public"
+}
+```
+
+**2. Install:**
+
+```bash
+npm install
+```
+
+**3. Add two tags — CSS in `<head>`, JS before `</body>`:**
+
+```html
+<link rel="stylesheet" href="node_modules/bootstrap-ee/css/bs-ee.css">
+<script src="node_modules/bootstrap-ee/js/bs-ee.js"></script>
+```
+
+No build step needed. Bootstrap, DataTables, and Font Awesome Pro are all pre-built in the `public` branch.
+
+---
+
+## Prerequisites (contributing to this package)
+
+Before you can build this package locally, you need:
+
+1. **Node.js + npm** — install dependencies with `npm install`
+2. **Font Awesome Pro token** — required to install `@fortawesome/fontawesome-pro`. Add to `~/.npmrc`:
+   ```
+   @fortawesome:registry=https://npm.fontawesome.com/
+   //npm.fontawesome.com/:_authToken=YOUR_TOKEN_HERE
+   ```
+
+After that, `npm install` will pull everything including Font Awesome Pro.
 
 ## How the distribution workflow works
 
@@ -15,8 +55,7 @@ This repo uses two branches:
 
 1. Make changes on `main` (SCSS, TS, variables, etc.)
 2. Run the full build: `npm run dist`
-3. Run the publish script to push `css/` and `js/` to the `public` branch: `npm run publish-dist`
-   *(This script is documented below and can be automated via Claude.)*
+3. Run the publish script to push `css/`, `js/`, and `webfonts/` to the `public` branch: `npm run publish-dist`
 4. Consuming projects pick up the changes on their next `npm install`.
 
 ## Build command
@@ -27,13 +66,14 @@ There is one build command you need:
 npm run dist
 ```
 
-This runs the full pipeline: compiles SCSS, adds vendor prefixes, minifies, and bundles JS. Source maps are included in the output. Individual step commands (`css-compile`, `css-prefix`, `css-minify`) exist but are not needed in normal development.
+This runs the full pipeline: compiles SCSS, adds vendor prefixes, minifies, bundles JS, and copies Font Awesome font files to `webfonts/`. Individual step commands (`css-compile`, `css-prefix`, `css-minify`) exist but are not needed in normal development.
 
-Output lands in `css/` and `js/`:
+Output lands in `css/`, `js/`, and `webfonts/`:
 - `css/bs-ee.css` — full CSS with source map
 - `css/bs-ee.min.css` — minified CSS with source map
 - `js/bs-ee.js` — JS bundle (Bootstrap + DataTables included) with source map
 - `js/bs-ee.mjs` — ES module format
+- `webfonts/` — Font Awesome Pro woff2 font files
 
 ## Publishing dist to the public branch
 
@@ -46,19 +86,33 @@ The script lives at `build/publish-dist.sh`. What it does:
 1. Verifies you are on `main` with a clean working tree
 2. Verifies `css/bs-ee.css` and `js/bs-ee.js` exist
 3. Creates (or reuses) a git worktree at `../.public-worktree` pointing at the `public` branch
-4. Copies `css/`, `js/`, `package.json`, and `src/` into the worktree
+4. Copies `css/`, `js/`, `webfonts/`, `package.json`, and `src/` into the worktree
 5. Commits with message `dist vX.Y.Z (<sha>)`
 6. Force-pushes `public` to origin
 7. Leaves the worktree in place so you can inspect what was published
 
 The main working tree is never touched — no branch switching, no stashing.
 
-**Prerequisites before running:**
+**Full publish sequence:**
 ```bash
-npm run dist        # builds css/
+npm run dist        # builds css/, js/, and copies webfonts/
 npm run build-vite  # builds js/
 npm run publish-dist
 ```
+
+## Upgrading bundled libraries
+
+When Bootstrap, DataTables, Font Awesome, or any other bundled library releases a new version, the process is the same:
+
+1. Update the version in `package.json` (or run `npm update <package>`)
+2. Run `npm install`
+3. Run `npm run dist` and `npm run build-vite`
+4. Verify output looks correct
+5. Run `npm run publish-dist`
+
+**Consuming projects get the upgrade automatically on their next `npm install`.** No changes needed in those projects.
+
+Note: upgrading Font Awesome Pro requires the `~/.npmrc` token to be configured on the machine doing the upgrade.
 
 ## Local development
 
@@ -77,8 +131,3 @@ Bootstrap JS and DataTables are bundled into `js/bs-ee.js` via the Vite build. C
 - Keep SCSS and TS changes in separate commits where possible
 - Follow the token and variable conventions in [scss.readme.md](scss.readme.md)
 - Always run `npm run dist` and verify output before publishing to `public`
-
-## Planned additions
-
-- Font Awesome Pro integration into the build pipeline
-- Legacy CSS class compatibility layer

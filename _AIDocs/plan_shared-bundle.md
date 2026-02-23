@@ -38,7 +38,7 @@ This plan implements a unified distribution bundle strategy for bootstrap-ee, tu
 
 ---
 
-### Phase 2: Loader Documentation & Consuming Project Pattern
+### Phase 2: Loader Documentation & Consuming Project Pattern ✓
 
 **Summary**: Document exactly how consuming projects should include the bundles, and establish the pattern so adding future libraries requires zero changes in projects.
 
@@ -48,14 +48,14 @@ This plan implements a unified distribution bundle strategy for bootstrap-ee, tu
 - Document the "add a library here, get it everywhere" workflow for future maintainers
 
 **Tasks:**
-- Create `_README/` directory if it does not exist
-- Write `_README/shared-bundle.readme.md` covering: the two-tag include pattern, how DataTables is used in a project, and how to add future libraries to this package
-- Add a note to the root `README.md` linking to the new doc
-- Update `TASKS.md` to remove the now-covered "Prepare for initial release" task if appropriate
+- ✓ Create `_README/` directory if it does not exist
+- ✓ Write `_README/shared-bundle.readme.md` covering: the two-tag include pattern, how DataTables is used in a project, and how to add future libraries to this package
+- ✓ Add a note to the root `README.md` linking to the new doc
+- ✓ Update `TASKS.md` to remove the now-covered "Prepare for initial release" task if appropriate
 
 ---
 
-### Phase 3: Font Awesome Integration
+### Phase 3: Font Awesome Integration ✓
 
 **Summary**: Add Font Awesome Pro to the CSS bundle once the license/token situation is confirmed, following the same pattern established in Phase 1.
 
@@ -65,8 +65,8 @@ This plan implements a unified distribution bundle strategy for bootstrap-ee, tu
 - Add as a separate import block in `bs-ee.scss` after DataTables
 
 **Tasks:**
-- Confirm Font Awesome Pro npm registry token and document setup in `_README/shared-bundle.readme.md`
-- Install Font Awesome Pro package
-- Import Font Awesome CSS into `src/scss/bs-ee.scss`
-- Run `npm run dist` and verify icon classes render in a test page
-- Document any font file handling needed (woff2 paths, etc.)
+- ✓ Confirm Font Awesome Pro npm registry token and document setup in `_README/shared-bundle.readme.md`
+- ✓ Install Font Awesome Pro package
+- ✓ Import Font Awesome CSS into `src/scss/bs-ee.scss`
+- ✓ Run `npm run dist` and verify icon classes render in a test page
+- ✓ Document any font file handling needed (woff2 paths, etc.)

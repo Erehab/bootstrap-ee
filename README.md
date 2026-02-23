@@ -25,7 +25,8 @@ Bootstrap EE is a CSS framework built on Bootstrap 5.3.2 with customized styling
 | Document | Description |
 |---|---|
 | [bs-ee.readme.md](_README/bs-ee.readme.md) | Package overview, what's bundled, how to consume in other projects |
-| [build-and-contribute.readme.md](_README/build-and-contribute.readme.md) | Build workflow, public branch publishing, contribution guidelines |
+| [setup.readme.md](_README/setup.readme.md) | Prerequisites (FA Pro token), build workflow, upgrading libraries, publishing to public branch |
+| [shared-bundle.readme.md](_README/shared-bundle.readme.md) | Two-tag pattern, DataTables usage, Font Awesome usage, adding new libraries, upgrading |
 | [scss.readme.md](_README/scss.readme.md) | SCSS architecture, variables, tokens, how to add overrides |
 | [ts.readme.md](_README/ts.readme.md) | TypeScript API, component wrappers, Bootstrap JS bundling |
 
@@ -34,7 +35,7 @@ See the **_bootstrap-ee.readme.md** file and how it is setup.
 
 ## Quick start
 
-Add to `package.json`:
+**1. Add to `package.json`:**
 
 ```json
 "dependencies": {
@@ -42,33 +43,29 @@ Add to `package.json`:
 }
 ```
 
-Then `npm install`. No build step needed — `css/` and `js/` are pre-built on the `public` branch.
+**2. Install:**
 
-Include two tags (CSS in `<head>`, JS before `</body>`):
+```bash
+npm install
+```
+
+**3. Add two tags — CSS in `<head>`, JS before `</body>`:**
 
 ```html
 <link rel="stylesheet" href="node_modules/bootstrap-ee/css/bs-ee.css">
 <script src="node_modules/bootstrap-ee/js/bs-ee.js"></script>
 ```
 
+No build step needed — Bootstrap, DataTables, and Font Awesome Pro are all pre-built on the `public` branch.
+
 Everything is available under the `bsee` global:
 
 ```js
-// Bootstrap components
 new bsee.Modal(document.getElementById('myModal'));
-
-// DataTables (+ all extensions bundled)
 new bsee.DataTable('#myTable', { responsive: true });
 ```
 
-Do **not** add separate Bootstrap JS or DataTables imports — both are bundled here.
-
-### Build (this package only)
-
-```sh
-npm run dist        # CSS
-npm run build-vite  # JS
-```
+See [shared-bundle.readme.md](_README/shared-bundle.readme.md) for DataTables usage, Font Awesome usage, and selective FA loading.
 
 ## Documentation
 
