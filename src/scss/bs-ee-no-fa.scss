@@ -1,4 +1,10 @@
-/*! FastBootstrap v2.1 (https://fastbootstrap.com) */
+/*! Bootstrap EE — no Font Awesome styles (bs-ee-no-fa.css) */
+// Use this file when you want to load FA icon styles separately per weight.
+// The FA base (sizing, animation, stacking utilities) is included here.
+// Load individual style sheets from FA directly in your project:
+//   node_modules/@fortawesome/fontawesome-pro/css/solid.css
+//   node_modules/@fortawesome/fontawesome-pro/css/regular.css
+//   etc.
 
 @use "sass:meta";
 
@@ -71,14 +77,9 @@
 @include meta.load-css("datatables.net-autofill-bs5/css/autoFill.bootstrap5.css");
 @include meta.load-css("datatables.net-staterestore-bs5/css/stateRestore.bootstrap5.css");
 
-// Third-party libraries — Font Awesome Pro
+// Font Awesome Pro — base utilities only (no @font-face, no icon definitions)
+// Includes: sizing, animation, stacking, rotation, list styles
 @import "@fortawesome/fontawesome-pro/scss/fontawesome";
-@import "@fortawesome/fontawesome-pro/scss/solid";
-@import "@fortawesome/fontawesome-pro/scss/regular";
-@import "@fortawesome/fontawesome-pro/scss/light";
-@import "@fortawesome/fontawesome-pro/scss/thin";
-@import "@fortawesome/fontawesome-pro/scss/duotone";
-@import "@fortawesome/fontawesome-pro/scss/brands";
 
 // utilities & helpers
 @import "bootstrap/scss/helpers";
