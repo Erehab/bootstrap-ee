@@ -114,12 +114,43 @@ When Bootstrap, DataTables, Font Awesome, or any other bundled library releases 
 
 Note: upgrading Font Awesome Pro requires the `~/.npmrc` token to be configured on the machine doing the upgrade.
 
+## Development server
+
+For active development, use `npm run dev` — it starts a file watcher and a live-reload browser server in one command:
+
+```bash
+npm run dev
+```
+
+This runs two processes in parallel:
+
+| Process | Command | What it does |
+|---|---|---|
+| `watch:css` | `sass --watch src/scss/:css/` | Recompiles CSS automatically on every SCSS save |
+| `start` | `browser-sync` | Serves the project at `http://localhost:7788`, opens to `/htmltest/`, reloads the browser whenever `css/`, `js/`, or HTML files change |
+
+**Workflow:**
+1. `npm run dev` — starts everything
+2. Edit SCSS → Sass recompiles → browser reloads automatically
+3. Edit an HTML file in `htmltest/` → browser reloads automatically
+4. When satisfied: Ctrl+C, then `npm run dist` (for the full minified build) and `npm run publish-dist`
+
+**Individual commands** (if you need them separately):
+
+```bash
+npm start          # browser-sync server only (port 7788, no CSS watch)
+npm run watch:css  # Sass watcher only (no server)
+```
+
+**Note:** `npm run dev` uses the fast Sass watcher but skips PostCSS (autoprefixer) and minification. Run `npm run dist` before publishing to get the full production build.
+
 ## Local development
 
 1. Install dependencies: `npm install`
 2. Make SCSS or TS changes
-3. Run `npm run dist` to see output in `css/` and `js/`
-4. When satisfied, commit to `main` and publish to `public`
+3. Run `npm run dev` for live development with hot reload
+4. Run `npm run dist` for the full production build before publishing
+5. When satisfied, commit to `main` and publish to `public`
 
 ## Bootstrap JS
 

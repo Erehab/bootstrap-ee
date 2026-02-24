@@ -10,6 +10,15 @@
   background-color: var(--#{$prefix}navbar-bg);
 }
 
+.navbar-dark,
+.navbar[data-bs-theme="dark"] {
+  --#{$prefix}navbar-color: #93c5fd;
+  --#{$prefix}navbar-hover-color: #fff;
+  --#{$prefix}navbar-active-color: #fff;
+  --#{$prefix}navbar-brand-color: #fff;
+  --#{$prefix}navbar-brand-hover-color: #fff;
+}
+
 .navbar-nav {
   --#{$prefix}nav-link-padding-y: #{$navbar-nav-link-padding-y};
   --#{$prefix}nav-link-hover-color: #{$navbar-nav-link-hover-color};

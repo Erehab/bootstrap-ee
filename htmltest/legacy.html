@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legacy Style Sample — Bootstrap EE</title>
+    <link rel="stylesheet" href="../css/bs-ee.css">
+    <style>
+        /*
+         * Legacy style emulation — Bootstrap 3 / bootswatch.less era patterns
+         * These mimic the old Erehab UI: Lato, flat buttons, square corners, panels.
+         */
+
+        body {
+            font-family: 'Lato', 'Helvetica Neue', Arial, sans-serif;
+            background: #f5f5f5;
+        }
+
+        /* ── Panels (BS3) ─────────────────────────── */
+        .panel {
+            border-radius: 2px;
+            box-shadow: 0 1px 2px rgba(0,0,0,.08);
+            margin-bottom: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+        }
+        .panel-heading {
+            padding: 10px 15px;
+            border-bottom: 1px solid transparent;
+            border-radius: 2px 2px 0 0;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+        }
+        .panel-body { padding: 15px; }
+        .panel-default .panel-heading { background: #f5f5f5; border-color: #ddd; color: #555; }
+        .panel-primary .panel-heading { background: #337ab7; border-color: #337ab7; color: #fff; }
+        .panel-success .panel-heading { background: #5cb85c; border-color: #5cb85c; color: #fff; }
+        .panel-warning .panel-heading { background: #f0ad4e; border-color: #f0ad4e; color: #fff; }
+        .panel-danger  .panel-heading { background: #d9534f; border-color: #d9534f; color: #fff; }
+        .panel-info    .panel-heading { background: #5bc0de; border-color: #5bc0de; color: #fff; }
+
+        .panel-primary { border-color: #337ab7; }
+        .panel-success { border-color: #5cb85c; }
+        .panel-warning { border-color: #f0ad4e; }
+        .panel-danger  { border-color: #d9534f; }
+        .panel-info    { border-color: #5bc0de; }
+
+        /* ── Well (BS3) ─────────────────────────────── */
+        .well {
+            min-height: 20px;
+            padding: 19px;
+            margin-bottom: 20px;
+            background: #f5f5f5;
+            border: 1px solid #e3e3e3;
+            border-radius: 2px;
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+        }
+        .well-sm { padding: 9px; border-radius: 2px; }
+        .well-lg { padding: 24px; border-radius: 2px; }
+
+        /* ── Legacy buttons ──────────────────────────── */
+        .btn-legacy {
+            border-radius: 2px !important;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: .04em;
+            font-weight: 700;
+        }
+
+        /* ── Label (BS3 inline badge) ────────────────── */
+        .label-legacy {
+            display: inline;
+            padding: .2em .6em .3em;
+            font-size: 75%;
+            font-weight: 700;
+            line-height: 1;
+            color: #fff;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: .25em;
+        }
+        .label-default  { background: #777; }
+        .label-primary  { background: #337ab7; }
+        .label-success  { background: #5cb85c; }
+        .label-info     { background: #5bc0de; }
+        .label-warning  { background: #f0ad4e; }
+        .label-danger   { background: #d9534f; }
+
+        /* ── Legacy table ────────────────────────────── */
+        .table-legacy th {
+            background: #f5f5f5;
+            border-bottom: 2px solid #ddd !important;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            color: #555;
+        }
+
+        /* ── Legacy nav tabs ─────────────────────────── */
+        .nav-tabs-legacy {
+            border-bottom: 2px solid #337ab7;
+        }
+        .nav-tabs-legacy .nav-link {
+            border-radius: 0;
+            border: none;
+            color: #555;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+        }
+        .nav-tabs-legacy .nav-link.active {
+            background: #337ab7;
+            color: #fff;
+        }
+
+        /* ── Page header ──────────────────────────────── */
+        .page-header {
+            padding-bottom: 9px;
+            margin: 40px 0 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .page-header h2 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+            margin: 0;
+        }
+
+        /* ── Note item cards (legacy pattern) ─────────── */
+        .note-card {
+            border-radius: 2px;
+            overflow: hidden;
+            border: 2px solid;
+            margin-bottom: 12px;
+        }
+        .note-card-header {
+            padding: 4px 8px;
+            font-size: 12px;
+            font-weight: 700;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+        }
+        .note-card-body {
+            padding: 8px;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+<script src="bs-ee-nav.js"></script>
+<bs-ee-nav></bs-ee-nav>
+
+<div class="container py-4">
+    <h1 class="mb-1">Legacy Style Sample</h1>
+    <p class="text-secondary fs-sm mb-4">Bootstrap 3 / bootswatch.less era patterns — emulated using custom CSS on top of BSEE. Shows what the old Erehab UI looked like.</p>
+
+    <!-- Panels -->
+    <div class="page-header"><h2>Panels</h2></div>
+    <div class="row g-3 mb-4">
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">Default Panel</div>
+                <div class="panel-body">Panel body content goes here. Flat, square-cornered, minimal.</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Primary Panel</div>
+                <div class="panel-body">Used for the main content area or primary action zone.</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-success">
+                <div class="panel-heading">Success Panel</div>
+                <div class="panel-body">Confirmation, completed tasks, or positive status.</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-warning">
+                <div class="panel-heading">Warning Panel</div>
+                <div class="panel-body">Something needs attention before proceeding.</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-danger">
+                <div class="panel-heading">Danger Panel</div>
+                <div class="panel-body">Errors, destructive actions, or critical alerts.</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-info">
+                <div class="panel-heading">Info Panel</div>
+                <div class="panel-body">Informational content, help text, or guidance.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wells -->
+    <div class="page-header"><h2>Wells</h2></div>
+    <div class="row g-3 mb-4">
+        <div class="col-md-4">
+            <div class="well well-sm">Small well — <code>.well-sm</code></div>
+        </div>
+        <div class="col-md-4">
+            <div class="well">Default well — <code>.well</code></div>
+        </div>
+        <div class="col-md-4">
+            <div class="well well-lg">Large well — <code>.well-lg</code></div>
+        </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="page-header"><h2>Buttons — Legacy Style</h2></div>
+    <div class="mb-4">
+        <p class="text-secondary fs-sm">Square corners, uppercase, all-caps labels. Classic BS3 feel.</p>
+        <div class="d-flex flex-wrap gap-2 mb-2">
+            <button class="btn btn-primary btn-legacy">Primary</button>
+            <button class="btn btn-default btn-legacy">Default</button>
+            <button class="btn btn-success btn-legacy">Success</button>
+            <button class="btn btn-warning btn-legacy">Warning</button>
+            <button class="btn btn-danger btn-legacy">Danger</button>
+            <button class="btn btn-info btn-legacy">Info</button>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+            <button class="btn btn-primary btn-legacy btn-sm">Small</button>
+            <button class="btn btn-primary btn-legacy">Default</button>
+            <button class="btn btn-primary btn-legacy btn-lg">Large</button>
+            <button class="btn btn-primary btn-legacy" disabled>Disabled</button>
+        </div>
+    </div>
+
+    <!-- Labels (BS3 inline badges) -->
+    <div class="page-header"><h2>Labels</h2></div>
+    <div class="mb-4">
+        <span class="label-legacy label-default me-1">Default</span>
+        <span class="label-legacy label-primary me-1">Primary</span>
+        <span class="label-legacy label-success me-1">Success</span>
+        <span class="label-legacy label-info me-1">Info</span>
+        <span class="label-legacy label-warning me-1">Warning</span>
+        <span class="label-legacy label-danger me-1">Danger</span>
+    </div>
+
+    <!-- Table -->
+    <div class="page-header"><h2>Table</h2></div>
+    <div class="mb-4">
+        <table class="table table-bordered table-legacy">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Office</th>
+                    <th>Salary</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Tiger Nixon</td><td><span class="label-legacy label-success">Active</span></td><td>Edinburgh</td><td>$320,800</td></tr>
+                <tr><td>Garrett Winters</td><td><span class="label-legacy label-warning">On Leave</span></td><td>Tokyo</td><td>$170,750</td></tr>
+                <tr><td>Ashton Cox</td><td><span class="label-legacy label-danger">Inactive</span></td><td>San Francisco</td><td>$86,000</td></tr>
+                <tr><td>Cedric Kelly</td><td><span class="label-legacy label-success">Active</span></td><td>Edinburgh</td><td>$433,060</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Nav tabs -->
+    <div class="page-header"><h2>Navigation Tabs</h2></div>
+    <div class="mb-4">
+        <ul class="nav nav-tabs-legacy mb-3">
+            <li class="nav-item"><a class="nav-link active" href="#">Active</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Messages</a></li>
+            <li class="nav-item"><a class="nav-link disabled" href="#">Disabled</a></li>
+        </ul>
+        <div class="well well-sm">Tab content would appear here.</div>
+    </div>
+
+    <!-- Note item cards -->
+    <div class="page-header"><h2>Note Item Cards</h2></div>
+    <p class="text-secondary fs-sm mb-3">Domain-coded note cards — a core legacy UI pattern used throughout Erehab apps.</p>
+    <div class="row g-3 mb-4">
+        <div class="col-sm-6 col-lg-3">
+            <div class="note-card" style="border-color:#FFC100;">
+                <div class="note-card-header" style="background:#FFC100;color:#1F1F1F;">Status</div>
+                <div class="note-card-body" style="background:#FFFBEB;">Note body — golden yellow. Used for status and scheduling notes.</div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="note-card" style="border-color:#248AFD;">
+                <div class="note-card-header" style="background:#248AFD;color:#fff;">Domain</div>
+                <div class="note-card-body" style="background:#EBF4FF;">Note body — bright blue. Used for domain and technical notes.</div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="note-card" style="border-color:#57B657;">
+                <div class="note-card-header" style="background:#57B657;color:#fff;">Finance</div>
+                <div class="note-card-body" style="background:#EDFAED;">Note body — green. Used for billing and financial notes.</div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+            <div class="note-card" style="border-color:#4B49AC;">
+                <div class="note-card-header" style="background:#4B49AC;color:#fff;">SEO</div>
+                <div class="note-card-body" style="background:#F0EEFF;color:#3a3895;">Note body — purple. Used for SEO and marketing notes.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alerts (BS3 style) -->
+    <div class="page-header"><h2>Alerts</h2></div>
+    <div class="mb-4" style="border-radius:0!important;">
+        <div class="alert alert-success rounded-0">
+            <strong>Well done!</strong> You successfully read this important alert message.
+        </div>
+        <div class="alert alert-info rounded-0">
+            <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
+        </div>
+        <div class="alert alert-warning rounded-0">
+            <strong>Warning!</strong> Better check yourself, you're not looking too good.
+        </div>
+        <div class="alert alert-danger rounded-0">
+            <strong>Oh snap!</strong> Change a few things up and try submitting again.
+        </div>
+    </div>
+
+</div>
+
+<script src="../js/bs-ee.js"></script>
+</body>
+</html>

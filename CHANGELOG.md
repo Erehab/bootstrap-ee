@@ -2,6 +2,17 @@
 
 ### 2026-02-23
 
+**Plan: migrate-legacy-css Phase 2 — Design Review**
+Completed all 6 design review tasks. Decisions documented in `_AIDocs/design-decisions.md`:
+- Review brand colors — keep all 5 brand colors; fix body text (#004080→#333), links (green→blue), link hover (red→darken)
+- Review typography — keep Lato+Arvo, update to Google Fonts v2 with display=swap, change base font size 15px→16px
+- Review component design decisions — keep tight gutter/padding/radius; keep button invert hover; map dark button to .btn-secondary
+- Review utility color palette — keep all 29 named colors; fix green/fuchsia duplicates; fix .deepblue_text bug
+- Review note_item variants — keep all 18 variants, no color changes, note BS5 selector migration needed in Phase 3
+- Create design decisions doc — written at `_AIDocs/design-decisions.md`
+
+### 2026-02-23
+
 **Plan: migrate-legacy-css Phase 1 — Reconnaissance & Documentation**
 Completed all 6 audit/documentation tasks:
 - `audit_bootswatch.md` — Categorized every section of bootswatch.less (variables, component overrides, custom utilities, app-specific classes, dead code)

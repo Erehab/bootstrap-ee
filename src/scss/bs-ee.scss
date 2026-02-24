@@ -1,6 +1,9 @@
-/*! FastBootstrap v2.1 (https://fastbootstrap.com) */
+/*! Bootstrap EE (https://github.com/Erehab/bootstrap-ee) */
 
 @use "sass:meta";
+
+// Self-hosted webfonts (Nunito)
+@import "fonts";
 
 @import "bootstrap/scss/functions";
 @import "functions";

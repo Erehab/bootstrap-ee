@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design Compare: Legacy vs BSEE Themes</title>
+  <!-- FA Pro 6 (bundled in BSEE) — loaded for FA section -->
+  <link rel="stylesheet" href="../css/bs-ee.css">
+  <!-- Load Lato + Arvo (Legacy) + Inter + Nunito (themes) from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Lato:wght@400;700&family=Inter:wght@400;500;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── PAGE SHELL ─────────────────────────────────────────────── */
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 14px;
+      background: #e8e8e8;
+    }
+
+    h1 {
+      margin: 0;
+      padding: 14px 24px;
+      background: #222;
+      color: #fff;
+      font-size: 17px;
+      font-family: inherit;
+      font-weight: 600;
+      letter-spacing: .02em;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    /* ── THEME TABS ─────────────────────────────────────────────── */
+    .theme-tabs {
+      background: #333;
+      display: flex;
+      gap: 0;
+      padding: 0 24px;
+      border-bottom: 3px solid #555;
+    }
+
+    .theme-tab {
+      padding: 10px 18px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #aaa;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -3px;
+      transition: color .15s, border-color .15s;
+    }
+
+    .theme-tab:hover { color: #fff; }
+
+    .theme-tab.active {
+      color: #fff;
+      border-bottom-color: #f59e0b;
+    }
+
+    /* ── LAYOUT ─────────────────────────────────────────────────── */
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      min-height: calc(100vh - 88px);
+    }
+
+    .col {
+      padding: 28px 24px;
+      border-right: 1px solid #ccc;
+    }
+    .col:last-child { border-right: none; }
+
+    .col-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #ccc;
+    }
+
+    .section { margin-bottom: 32px; }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #aaa;
+      margin: 0 0 12px 0;
+    }
+
+    /* ── THEME PANELS ────────────────────────────────────────────── */
+    .theme-panel { display: none; }
+    .theme-panel.active { display: block; }
+
+    /* ── SHARED DEMO BLOCKS ─────────────────────────────────────── */
+    .swatch-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .swatch {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      color: #555;
+    }
+
+    .swatch-box {
+      width: 56px;
+      height: 40px;
+      border: 1px solid rgba(0,0,0,0.15);
+    }
+
+    .radius-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .radius-box {
+      width: 60px;
+      height: 40px;
+      border: 2px solid #555;
+    }
+
+    .font-sample { margin-bottom: 6px; line-height: 1.4; }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    /* ────────────────────────────────────────────────────────────── */
+    /* LEGACY STYLES                                                  */
+    /* ────────────────────────────────────────────────────────────── */
+    .L { --primary: #004080; --success: #1E993D; --warning: #F39C12; --danger: #E74C3C; --info: #3498DB; }
+
+    .L .font-body    { font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 15px; color: #004080; }
+    .L .font-heading { font-family: "Arvo", Georgia, "Times New Roman", Times, serif; font-size: 22px; font-weight: 400; color: #52340C; }
+    .L .font-link    { color: #1E993D; text-decoration: underline; cursor: pointer; }
+    .L .font-link:hover { color: #E74C3C; }
+
+    .L .btn-base {
+      display: inline-block; padding: 6px 14px; cursor: pointer; font-size: 14px;
+      font-family: "Lato", sans-serif; border: 1px solid; text-decoration: none;
+      box-shadow: 0 0 4px rgba(0,0,0,.35) inset, 2px 2px 2px rgba(0,0,0,.15);
+      transition: color .15s, background-color .15s;
+    }
+    .L .btn-default { color: #fff; background: #333; border-color: #000; border-radius: 2px; }
+    .L .btn-default:hover { color: #333 !important; background: #fff !important; border-color: #333; box-shadow: 0 0 4px #000; }
+    .L .btn-primary { color: #fff; background: #004080; border-color: #003367; border-radius: 2px; }
+    .L .btn-primary:hover { color: #004080 !important; background: #fff !important; border-color: #004080; box-shadow: 0 0 4px #000; }
+    .L .btn-success { color: #fff; background: #1E993D; border-color: #156b2a; border-radius: 2px; }
+    .L .btn-success:hover { color: #1E993D !important; background: #fff !important; border-color: #1E993D; box-shadow: 0 0 4px #000; }
+    .L .btn-danger  { color: #fff; background: #E74C3C; border-color: #c0392b; border-radius: 2px; }
+    .L .btn-danger:hover  { color: #E74C3C !important; background: #fff !important; border-color: #E74C3C; box-shadow: 0 0 4px #000; }
+
+    .L .card { border: 1px solid #ccc; border-radius: 2px; margin-bottom: 8px; background: #fff; }
+    .L .card-header { padding: 2px 4px; background: #D9D9D9; color: #333; font-family: "Arvo", Georgia, serif; font-size: 13px; text-align: center; border-bottom: 1px solid #ccc; }
+    .L .card-body { padding: 4px; font-size: 13px; color: #004080; }
+    .L .card-footer { background: #E6DFD1; border-top: 1px solid #C5C0B6; padding: 4px 10px; font-size: 12px; color: #2C3E50; }
+
+    .L .input-demo { border: 1px solid #ccc; border-radius: 2px; padding: 5px 8px; font-family: "Lato", sans-serif; font-size: 15px; color: #004080; outline: none; background: #fff; transition: background .15s; }
+    .L .input-demo:focus { background: #DAFF91; border-color: #1E993D; outline: none; }
+
+    .L .navbar-demo { background: #154764; padding: 8px 12px; border-radius: 2px; display: flex; align-items: center; gap: 16px; font-family: "Lato", sans-serif; }
+    .L .navbar-demo .brand { color: #fff; font-weight: 700; font-size: 15px; }
+    .L .navbar-demo a { color: #fff; font-size: 14px; text-decoration: none; }
+    .L .navbar-demo a:hover { color: #1E993D; }
+
+    .L .badge-demo { display: inline-block; padding: 2px 8px; border-radius: 2px; font-size: 12px; font-weight: 700; color: #fff; }
+
+    .L .alert-demo { border-radius: 2px; padding: 6px 10px; font-size: 13px; margin-bottom: 4px; border: 1px solid; }
+
+    .L .note-status  { border: 1px solid #FFA523; background: #FFF4E6; border-radius: 2px; overflow: hidden; margin-bottom: 4px; }
+    .L .note-domain  { border: 2px solid #0080FF; background: #FFFFBC; border-radius: 2px; overflow: hidden; margin-bottom: 4px; }
+    .L .note-finance { border: 2px solid #61AB5D; background: #008040; color: #a5ffa2; border-radius: 2px; overflow: hidden; margin-bottom: 4px; }
+    .L .note-seo     { border: 2px solid #c8b7d9; background: #400080; color: #fff; border-radius: 2px; overflow: hidden; margin-bottom: 4px; }
+    .L .note-header  { padding: 2px 6px; font-family: "Arvo", serif; font-size: 12px; color: #fff; text-align: center; }
+    .L .note-body    { padding: 4px 6px; font-size: 12px; }
+
+    /* ────────────────────────────────────────────────────────────── */
+    /* FASTBS THEME (FastBootstrap-aligned)                          */
+    /* ────────────────────────────────────────────────────────────── */
+    .fastbs { --primary: #0c66e4; --success: #1f845a; --warning: #f5cd47; --danger: #ca3521; --info: #1d7f8c; }
+
+    .fastbs .font-body    { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 16px; color: #333; }
+    .fastbs .font-heading { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 22px; font-weight: 700; color: #333; }
+    .fastbs .font-link    { color: #0c66e4; text-decoration: underline; cursor: pointer; }
+    .fastbs .font-link:hover { color: #0047b3; }
+
+    .fastbs .btn-base {
+      display: inline-block; padding: 6px 14px; cursor: pointer; font-size: 14px;
+      font-family: "Inter", sans-serif; border: 1px solid; text-decoration: none;
+      transition: color .15s, background-color .15s;
+    }
+    .fastbs .btn-bare     { color: #333; background: #fff; border-color: #bbb; border-radius: 6px; }
+    .fastbs .btn-bare:hover { background: #f5f5f5; }
+    .fastbs .btn-secondary { color: #fff; background: #333; border-color: #000; border-radius: 6px; }
+    .fastbs .btn-secondary:hover { color: #333 !important; background: #fff !important; border-color: #333; }
+    .fastbs .btn-primary  { color: #fff; background: #0c66e4; border-color: #0a52b8; border-radius: 6px; }
+    .fastbs .btn-primary:hover { color: #0c66e4 !important; background: #fff !important; border-color: #0c66e4; }
+    .fastbs .btn-success  { color: #fff; background: #1f845a; border-color: #175f41; border-radius: 6px; }
+    .fastbs .btn-success:hover { color: #1f845a !important; background: #fff !important; border-color: #1f845a; }
+    .fastbs .btn-danger   { color: #fff; background: #ca3521; border-color: #a02a1a; border-radius: 6px; }
+    .fastbs .btn-danger:hover  { color: #ca3521 !important; background: #fff !important; border-color: #ca3521; }
+
+    .fastbs .card { border: 1px solid #ccc; border-radius: 6px; margin-bottom: 8px; background: #fff; overflow: hidden; }
+    .fastbs .card-header { padding: 4px 8px; background: #f0f0f0; color: #333; font-family: "Inter", sans-serif; font-size: 13px; font-weight: 600; text-align: center; border-bottom: 1px solid #ddd; }
+    .fastbs .card-body { padding: 8px; font-size: 13px; color: #333; }
+    .fastbs .card-footer { background: #f8f8f8; border-top: 1px solid #e0e0e0; padding: 4px 10px; font-size: 12px; color: #555; }
+
+    .fastbs .input-demo { border: 1px solid #ccc; border-radius: 6px; padding: 5px 8px; font-family: "Inter", sans-serif; font-size: 16px; color: #333; outline: none; background: #fff; transition: background .15s; }
+    .fastbs .input-demo:focus { background: #DAFF91; border-color: #1f845a; outline: none; }
+
+    .fastbs .navbar-demo { background: #154764; padding: 8px 12px; border-radius: 6px; display: flex; align-items: center; gap: 16px; font-family: "Inter", sans-serif; }
+    .fastbs .navbar-demo .brand { color: #fff; font-weight: 700; font-size: 16px; }
+    .fastbs .navbar-demo a { color: #fff; font-size: 14px; text-decoration: none; }
+    .fastbs .navbar-demo a:hover { color: #2abb7f; }
+
+    .fastbs .badge-demo { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 12px; font-weight: 700; color: #fff; }
+
+    .fastbs .alert-demo { border-radius: 6px; padding: 6px 10px; font-size: 13px; margin-bottom: 4px; border: 1px solid; }
+
+    .fastbs .note-status  { border: 1px solid #FFA523; background: #FFF4E6; border-radius: 6px; overflow: hidden; margin-bottom: 4px; }
+    .fastbs .note-domain  { border: 2px solid #0080FF; background: #FFFFBC; border-radius: 6px; overflow: hidden; margin-bottom: 4px; }
+    .fastbs .note-finance { border: 2px solid #61AB5D; background: #008040; color: #a5ffa2; border-radius: 6px; overflow: hidden; margin-bottom: 4px; }
+    .fastbs .note-seo     { border: 2px solid #c8b7d9; background: #400080; color: #fff; border-radius: 6px; overflow: hidden; margin-bottom: 4px; }
+    .fastbs .note-header  { padding: 2px 6px; font-family: "Inter", sans-serif; font-size: 12px; font-weight: 600; color: #fff; text-align: center; }
+    .fastbs .note-body    { padding: 4px 6px; font-size: 12px; }
+
+    /* ────────────────────────────────────────────────────────────── */
+    /* FLOWBITE THEME                                                 */
+    /* ────────────────────────────────────────────────────────────── */
+    /* Colors derived from Flowbite v4 computed styles:
+       primary: #1a56db (oklch 0.488 0.243 264 → ~#1a56db)
+       success: #046c4e (oklch 0.508 0.118 166 → ~#046c4e)
+       danger:  #e02424 (oklch 0.514 0.222 17 → ~#e02424)
+       warning: #d97706 (oklch 0.705 0.213 47 → orange-amber, NOT yellow)
+       secondary: neutral gray
+       pill buttons (12px radius), no shadow
+    */
+    .flowbite { --primary: #1a56db; --success: #046c4e; --warning: #d97706; --danger: #e02424; --info: #0e9f6e; }
+
+    .flowbite .font-body    { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 16px; color: #111827; }
+    .flowbite .font-heading { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 22px; font-weight: 700; color: #111827; }
+    .flowbite .font-link    { color: #1a56db; text-decoration: underline; cursor: pointer; }
+    .flowbite .font-link:hover { color: #1e429f; }
+
+    .flowbite .btn-base {
+      display: inline-block; padding: 8px 16px; cursor: pointer; font-size: 14px; font-weight: 500;
+      font-family: "Inter", sans-serif; border: 1px solid transparent; text-decoration: none;
+      transition: background-color .15s, color .15s;
+    }
+    .flowbite .btn-bare      { color: #374151; background: #f9fafb; border-color: #d1d5db; border-radius: 12px; }
+    .flowbite .btn-bare:hover { background: #f3f4f6; }
+    .flowbite .btn-dark      { color: #fff; background: #1f2937; border-radius: 12px; }
+    .flowbite .btn-dark:hover { background: #111827; }
+    .flowbite .btn-primary   { color: #fff; background: #1a56db; border-radius: 12px; }
+    .flowbite .btn-primary:hover { background: #1e429f; }
+    .flowbite .btn-success   { color: #fff; background: #057a55; border-radius: 12px; }
+    .flowbite .btn-success:hover { background: #046c4e; }
+    .flowbite .btn-danger    { color: #fff; background: #e02424; border-radius: 12px; }
+    .flowbite .btn-danger:hover  { background: #c81e1e; }
+    .flowbite .btn-warning   { color: #fff; background: #d97706; border-radius: 12px; }
+    .flowbite .btn-warning:hover { background: #b45309; }
+
+    .flowbite .card { border: 1px solid #e5e7eb; border-radius: 12px; margin-bottom: 8px; background: #fff; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+    .flowbite .card-header { padding: 10px 14px; background: #f9fafb; color: #111827; font-family: "Inter", sans-serif; font-size: 13px; font-weight: 600; border-bottom: 1px solid #e5e7eb; }
+    .flowbite .card-body { padding: 12px 14px; font-size: 13px; color: #374151; }
+    .flowbite .card-footer { background: #f9fafb; border-top: 1px solid #e5e7eb; padding: 8px 14px; font-size: 12px; color: #6b7280; }
+
+    .flowbite .input-demo { border: 1px solid #d1d5db; border-radius: 12px; padding: 8px 12px; font-family: "Inter", sans-serif; font-size: 14px; color: #111827; outline: none; background: #f9fafb; transition: border-color .15s, box-shadow .15s; }
+    .flowbite .input-demo:focus { background: #fff; border-color: #1a56db; box-shadow: 0 0 0 3px rgba(26,86,219,.15); outline: none; }
+
+    .flowbite .navbar-demo { background: #1e3a5f; padding: 10px 14px; border-radius: 12px; display: flex; align-items: center; gap: 16px; font-family: "Inter", sans-serif; }
+    .flowbite .navbar-demo .brand { color: #fff; font-weight: 700; font-size: 16px; }
+    .flowbite .navbar-demo a { color: #93c5fd; font-size: 14px; text-decoration: none; }
+    .flowbite .navbar-demo a:hover { color: #fff; }
+
+    .flowbite .badge-demo { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; color: #fff; }
+
+    .flowbite .alert-demo { border-radius: 12px; padding: 10px 12px; font-size: 13px; margin-bottom: 4px; border: 1px solid; }
+
+    .flowbite .note-status  { border: 1px solid #FFA523; background: #FFF4E6; border-radius: 12px; overflow: hidden; margin-bottom: 4px; }
+    .flowbite .note-domain  { border: 2px solid #1a56db; background: #EFF6FF; border-radius: 12px; overflow: hidden; margin-bottom: 4px; }
+    .flowbite .note-finance { border: 2px solid #057a55; background: #ECFDF5; color: #064e3b; border-radius: 12px; overflow: hidden; margin-bottom: 4px; }
+    .flowbite .note-seo     { border: 2px solid #7c3aed; background: #f5f3ff; color: #4c1d95; border-radius: 12px; overflow: hidden; margin-bottom: 4px; }
+    .flowbite .note-header  { padding: 4px 10px; font-family: "Inter", sans-serif; font-size: 12px; font-weight: 700; color: #fff; text-align: center; }
+    .flowbite .note-body    { padding: 6px 10px; font-size: 12px; }
+
+    /* ────────────────────────────────────────────────────────────── */
+    /* DAISYUI THEME (light default theme)                           */
+    /* ────────────────────────────────────────────────────────────── */
+    /* Colors from DaisyUI computed styles (light theme):
+       neutral:   #1d1d1d (near-black) text
+       primary:   ~#570df8 (oklch 0.45 0.24 277 → deep indigo-blue)
+       secondary: ~#f000b8 (oklch 0.65 0.241 354 → hot pink)
+       accent:    ~#37cdbe (oklch 0.77 0.152 182 → teal-cyan)
+       info:      ~#3abff8 (oklch 0.74 0.16 233 → sky blue)
+       success:   ~#36d399 (oklch 0.76 0.177 163 → mint green)
+       warning:   ~#fbbd23 (oklch 0.82 0.189 84 → amber yellow)
+       error:     ~#f87272 (oklch 0.71 0.194 13 → coral red)
+       4px radius, semantic vibrant colors
+    */
+    .daisy { --primary: #570df8; --secondary: #f000b8; --accent: #37cdbe; --success: #36d399; --warning: #fbbd23; --danger: #f87272; --info: #3abff8; }
+
+    .daisy .font-body    { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 16px; color: #1d1d1d; }
+    .daisy .font-heading { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 22px; font-weight: 700; color: #1d1d1d; }
+    .daisy .font-link    { color: #570df8; text-decoration: underline; cursor: pointer; }
+    .daisy .font-link:hover { color: #3b08c0; }
+
+    .daisy .btn-base {
+      display: inline-block; padding: 8px 16px; cursor: pointer; font-size: 14px; font-weight: 600;
+      font-family: inherit; border: 1px solid transparent; text-decoration: none;
+      transition: background-color .15s;
+    }
+    .daisy .btn-neutral  { color: #e5e5e5; background: #1d1d1d; border-radius: 4px; }
+    .daisy .btn-neutral:hover { background: #333; }
+    .daisy .btn-primary  { color: #e9d5ff; background: #570df8; border-radius: 4px; }
+    .daisy .btn-primary:hover { background: #4506c6; }
+    .daisy .btn-secondary { color: #fce7f3; background: #f000b8; border-radius: 4px; }
+    .daisy .btn-secondary:hover { background: #c40095; }
+    .daisy .btn-success  { color: #d1fae5; background: #36d399; border-radius: 4px; color: #065f46; }
+    .daisy .btn-success:hover { background: #2cc48c; }
+    .daisy .btn-warning  { color: #78350f; background: #fbbd23; border-radius: 4px; }
+    .daisy .btn-warning:hover { background: #efa61a; }
+    .daisy .btn-error    { color: #7f1d1d; background: #f87272; border-radius: 4px; }
+    .daisy .btn-error:hover { background: #f55e5e; }
+
+    .daisy .card { border: 1px solid #e5e5e5; border-radius: 4px; margin-bottom: 8px; background: #fff; overflow: hidden; }
+    .daisy .card-header { padding: 8px 12px; background: #f5f5f5; color: #1d1d1d; font-size: 13px; font-weight: 700; border-bottom: 1px solid #e5e5e5; }
+    .daisy .card-body { padding: 12px; font-size: 13px; color: #1d1d1d; }
+    .daisy .card-footer { background: #fafafa; border-top: 1px solid #e5e5e5; padding: 6px 12px; font-size: 12px; color: #666; }
+
+    .daisy .input-demo { border: 1px solid #e5e5e5; border-radius: 4px; padding: 8px 12px; font-size: 14px; color: #1d1d1d; outline: none; background: #fff; transition: border-color .15s; }
+    .daisy .input-demo:focus { border-color: #570df8; box-shadow: 0 0 0 2px rgba(87,13,248,.2); outline: none; }
+
+    .daisy .navbar-demo { background: #1d1d1d; padding: 8px 12px; border-radius: 4px; display: flex; align-items: center; gap: 16px; }
+    .daisy .navbar-demo .brand { color: #fff; font-weight: 700; font-size: 16px; }
+    .daisy .navbar-demo a { color: #a3a3a3; font-size: 14px; text-decoration: none; }
+    .daisy .navbar-demo a:hover { color: #37cdbe; }
+
+    .daisy .badge-demo { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; color: #fff; }
+
+    .daisy .alert-demo { border-radius: 4px; padding: 8px 12px; font-size: 13px; margin-bottom: 4px; border: 1px solid; }
+
+    .daisy .note-status  { border: 1px solid #fbbd23; background: #fffbeb; border-radius: 4px; overflow: hidden; margin-bottom: 4px; }
+    .daisy .note-domain  { border: 2px solid #3abff8; background: #eff6ff; border-radius: 4px; overflow: hidden; margin-bottom: 4px; }
+    .daisy .note-finance { border: 2px solid #36d399; background: #f0fdf4; color: #065f46; border-radius: 4px; overflow: hidden; margin-bottom: 4px; }
+    .daisy .note-seo     { border: 2px solid #570df8; background: #faf5ff; color: #3b0764; border-radius: 4px; overflow: hidden; margin-bottom: 4px; }
+    .daisy .note-header  { padding: 3px 8px; font-size: 12px; font-weight: 700; color: #fff; text-align: center; }
+    .daisy .note-body    { padding: 5px 8px; font-size: 12px; }
+
+    /* ────────────────────────────────────────────────────────────── */
+    /* SKYDASH THEME (Bootstrap 5 admin, purple-based)               */
+    /* ────────────────────────────────────────────────────────────── */
+    /* Colors from Skydash computed CSS vars:
+       primary:   #4B49AC (medium purple)
+       success:   #57B657 (green)
+       danger:    #FF4747 (bright red)
+       warning:   #FFC100 (golden yellow)
+       info:      #248AFD (bright blue)
+       secondary: #a3a4a5
+       15px button radius, Nunito font, white bg, #1F1F1F text
+    */
+    .skydash { --primary: #4B49AC; --success: #57B657; --warning: #FFC100; --danger: #FF4747; --info: #248AFD; }
+
+    .skydash .font-body    { font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 15px; color: #1F1F1F; }
+    .skydash .font-heading { font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 22px; font-weight: 700; color: #1F1F1F; }
+    .skydash .font-link    { color: #4B49AC; text-decoration: underline; cursor: pointer; }
+    .skydash .font-link:hover { color: #3a3895; }
+
+    .skydash .btn-base {
+      display: inline-block; padding: 8px 20px; cursor: pointer; font-size: 14px; font-weight: 600;
+      font-family: "Nunito", sans-serif; border: 1px solid transparent; text-decoration: none;
+      transition: background-color .15s, opacity .15s;
+    }
+    .skydash .btn-secondary { color: #fff; background: #a3a4a5; border-radius: 15px; }
+    .skydash .btn-secondary:hover { background: #898a8b; }
+    .skydash .btn-primary   { color: #fff; background: #4B49AC; border-radius: 15px; }
+    .skydash .btn-primary:hover { background: #3a3895; }
+    .skydash .btn-success   { color: #fff; background: #57B657; border-radius: 15px; }
+    .skydash .btn-success:hover { background: #3f9f3f; }
+    .skydash .btn-danger    { color: #fff; background: #FF4747; border-radius: 15px; }
+    .skydash .btn-danger:hover  { background: #dd3232; }
+    .skydash .btn-warning   { color: #1F1F1F; background: #FFC100; border-radius: 15px; }
+    .skydash .btn-warning:hover { background: #dda500; }
+
+    .skydash .card { border: 0; border-radius: 20px; margin-bottom: 8px; background: #fff; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,.08); }
+    .skydash .card-header { padding: 12px 16px; background: #fff; color: #1F1F1F; font-family: "Nunito", sans-serif; font-size: 14px; font-weight: 700; border-bottom: 1px solid #f0f0f0; }
+    .skydash .card-body { padding: 14px 16px; font-size: 13px; color: #555; }
+    .skydash .card-footer { background: #fafafa; border-top: 1px solid #f0f0f0; padding: 8px 16px; font-size: 12px; color: #888; }
+
+    .skydash .input-demo { border: 1px solid #CED4DA; border-radius: 8px; padding: 8px 12px; font-family: "Nunito", sans-serif; font-size: 15px; color: #1F1F1F; outline: none; background: #fff; transition: border-color .15s, box-shadow .15s; }
+    .skydash .input-demo:focus { border-color: #4B49AC; box-shadow: 0 0 0 3px rgba(75,73,172,.15); outline: none; }
+
+    .skydash .navbar-demo { background: #fff; border: 1px solid #f0f0f0; padding: 8px 14px; border-radius: 12px; display: flex; align-items: center; gap: 16px; font-family: "Nunito", sans-serif; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    .skydash .navbar-demo .brand { color: #4B49AC; font-weight: 800; font-size: 16px; }
+    .skydash .navbar-demo a { color: #555; font-size: 14px; text-decoration: none; font-weight: 600; }
+    .skydash .navbar-demo a:hover { color: #4B49AC; }
+
+    .skydash .badge-demo { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; color: #fff; }
+
+    .skydash .alert-demo { border-radius: 12px; padding: 10px 14px; font-size: 13px; margin-bottom: 4px; border: 0; }
+
+    .skydash .note-status  { border: 0; background: #FFF8E6; border-radius: 12px; overflow: hidden; margin-bottom: 4px; box-shadow: 0 1px 4px rgba(255,193,0,.2); }
+    .skydash .note-domain  { border: 0; background: #EBF4FF; border-radius: 12px; overflow: hidden; margin-bottom: 4px; box-shadow: 0 1px 4px rgba(36,138,253,.2); }
+    .skydash .note-finance { border: 0; background: #EDFAED; color: #2a6e2a; border-radius: 12px; overflow: hidden; margin-bottom: 4px; box-shadow: 0 1px 4px rgba(87,182,87,.2); }
+    .skydash .note-seo     { border: 0; background: #f0eeff; color: #3a3895; border-radius: 12px; overflow: hidden; margin-bottom: 4px; box-shadow: 0 1px 4px rgba(75,73,172,.2); }
+    .skydash .note-header  { padding: 4px 10px; font-family: "Nunito", sans-serif; font-size: 12px; font-weight: 700; color: #fff; text-align: center; }
+    .skydash .note-body    { padding: 6px 10px; font-size: 12px; }
+
+    /* ────────────────────────────────────────────────────────────── */
+    /* COMBO THEME (Flowbite structure + Skydash colors, Nunito)     */
+    /* ────────────────────────────────────────────────────────────── */
+    /* Colors: Skydash palette
+       primary:   #4B49AC (purple)
+       success:   #57B657 (green)
+       danger:    #FF4747 (red)
+       warning:   #FFC100 (golden yellow)
+       info:      #248AFD (bright blue)
+       Rounding: Flowbite-style (12px buttons, pill badges)
+       Navbar: Flowbite dark navy
+       Font: Nunito (Skydash)
+       BG: #F5F7FF (Skydash content-wrapper blue-tint)
+    */
+    .combo { --primary: #3B5BDB; --success: #57B657; --warning: #FFC100; --danger: #FF4747; --info: #248AFD; }
+
+    /* Panel gets the light-blue bg */
+    #panel-combo { background: #F5F7FF; }
+
+    .combo .font-body    { font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 15px; color: #1F1F1F; }
+    .combo .font-heading { font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 22px; font-weight: 700; color: #1F1F1F; }
+    .combo .font-link    { color: #3B5BDB; text-decoration: underline; cursor: pointer; }
+    .combo .font-link:hover { color: #2c44b0; }
+
+    .combo .btn-base {
+      display: inline-block; padding: 5px 16px; cursor: pointer; font-size: 14px; font-weight: 600;
+      font-family: "Nunito", sans-serif; border: 1px solid; text-decoration: none;
+      transition: background-color .15s, color .15s;
+    }
+    /* Default = info blue filled */
+    .combo .btn-default   { color: #fff; background: #248AFD; border-color: #1a6fd4; border-radius: 12px; }
+    .combo .btn-default:hover { color: #248AFD !important; background: #fff !important; border-color: #248AFD; }
+    /* Primary = indigo-blue */
+    .combo .btn-primary   { color: #fff; background: #3B5BDB; border-color: #2c44b0; border-radius: 12px; }
+    .combo .btn-primary:hover { color: #3B5BDB !important; background: #fff !important; border-color: #3B5BDB; }
+    /* Alt-primary = purple (FastBS invert style) */
+    .combo .btn-alt-primary { color: #fff; background: #4B49AC; border-color: #3a3895; border-radius: 12px; }
+    .combo .btn-alt-primary:hover { color: #4B49AC !important; background: #fff !important; border-color: #4B49AC; }
+    .combo .btn-success   { color: #fff; background: #57B657; border-color: #3f9f3f; border-radius: 12px; }
+    .combo .btn-success:hover { color: #57B657 !important; background: #fff !important; border-color: #57B657; }
+    .combo .btn-danger    { color: #fff; background: #FF4747; border-color: #dd3232; border-radius: 12px; }
+    .combo .btn-danger:hover  { color: #FF4747 !important; background: #fff !important; border-color: #FF4747; }
+    .combo .btn-warning   { color: #1F1F1F; background: #FFC100; border-color: #dda500; border-radius: 12px; }
+    .combo .btn-warning:hover { color: #996200 !important; background: #fff !important; border-color: #FFC100; }
+    .combo .btn-info      { color: #fff; background: #248AFD; border-color: #1a6fd4; border-radius: 12px; }
+    .combo .btn-info:hover { color: #248AFD !important; background: #fff !important; border-color: #248AFD; }
+
+    .combo .card { border: 1px solid #e5e7eb; border-radius: 12px; margin-bottom: 8px; background: #fff; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+    .combo .card-header { padding: 10px 14px; background: #fff; color: #1F1F1F; font-family: "Nunito", sans-serif; font-size: 13px; font-weight: 700; border-bottom: 1px solid #e5e7eb; }
+    .combo .card-body { padding: 12px 14px; font-size: 13px; color: #555; }
+    .combo .card-footer { background: #f8f9fc; border-top: 1px solid #e5e7eb; padding: 6px 14px; font-size: 12px; color: #888; }
+
+    .combo .input-demo { border: 1px solid #d1d5db; border-radius: 10px; padding: 7px 12px; font-family: "Nunito", sans-serif; font-size: 15px; color: #1F1F1F; outline: none; background: #fff; transition: border-color .15s, box-shadow .15s; }
+    .combo .input-demo:focus { border-color: #3B5BDB; box-shadow: 0 0 0 3px rgba(59,91,219,.15); outline: none; }
+
+    /* Flowbite-style navbar: dark navy + light blue links */
+    .combo .navbar-demo { background: #1e3a5f; padding: 10px 14px; border-radius: 12px; display: flex; align-items: center; gap: 16px; font-family: "Nunito", sans-serif; }
+    .combo .navbar-demo .brand { color: #fff; font-weight: 800; font-size: 16px; }
+    .combo .navbar-demo a { color: #93c5fd; font-size: 14px; text-decoration: none; font-weight: 600; }
+    .combo .navbar-demo a:hover { color: #fff; }
+
+    /* Pill badges (both Flowbite + Skydash approach) */
+    .combo .badge-demo { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; color: #fff; }
+
+    /* Rounded alerts with visible colored borders (Flowbite style) */
+    .combo .alert-demo { border-radius: 12px; padding: 10px 12px; font-size: 13px; margin-bottom: 4px; border: 1px solid; }
+
+    /* Note cards: thicker colored borders (Flowbite style), light pastel fills */
+    .combo .note-status  { border: 2px solid #FFC100; background: #FFFBEB; border-radius: 12px; overflow: hidden; margin-bottom: 4px; }
+    .combo .note-domain  { border: 2px solid #248AFD; background: #EBF4FF; border-radius: 12px; overflow: hidden; margin-bottom: 4px; }
+    .combo .note-finance { border: 2px solid #57B657; background: #EDFAED; color: #2a6e2a; border-radius: 12px; overflow: hidden; margin-bottom: 4px; }
+    .combo .note-seo     { border: 2px solid #4B49AC; background: #f0eeff; color: #3a3895; border-radius: 12px; overflow: hidden; margin-bottom: 4px; }
+    .combo .note-header  { padding: 4px 10px; font-family: "Nunito", sans-serif; font-size: 12px; font-weight: 700; color: #fff; text-align: center; }
+    .combo .note-body    { padding: 6px 10px; font-size: 12px; }
+
+    /* Named Color Utilities swatches — 2 columns per row (name + light) */
+    .color-util-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+    }
+    .color-util-swatch {
+      border-radius: 8px;
+      overflow: hidden;
+      font-size: 10px;
+      font-family: "Nunito", sans-serif;
+    }
+    .color-util-block {
+      height: 36px;
+    }
+    .color-util-label {
+      padding: 3px 5px;
+      background: #fff;
+      color: #444;
+      font-weight: 700;
+      border: 1px solid #e5e7eb;
+      border-top: 0;
+      border-radius: 0 0 8px 8px;
+      text-align: center;
+      line-height: 1.3;
+    }
+    .color-util-group-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #888;
+      margin: 10px 0 4px;
+      font-family: "Nunito", sans-serif;
+    }
+
+    /* ── CHANGE CALLOUT TAG ─────────────────────────────────────── */
+    .change-tag {
+      display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: .05em;
+      padding: 1px 5px; border-radius: 3px; background: #f59e0b; color: #fff;
+      vertical-align: middle; margin-left: 6px;
+    }
+
+    .meta-note {
+      font-size: 11px;
+      color: #777;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>
+  Design Compare — Legacy&nbsp;&nbsp;vs&nbsp;&nbsp;Theme Options
+</h1>
+
+<!-- ── THEME TABS ──────────────────────────────────────────────── -->
+<div class="theme-tabs">
+  <div class="theme-tab active" data-theme="fastbs">FastBS</div>
+  <div class="theme-tab" data-theme="flowbite">Flowbite</div>
+  <div class="theme-tab" data-theme="daisy">DaisyUI</div>
+  <div class="theme-tab" data-theme="skydash">Skydash</div>
+  <div class="theme-tab" data-theme="combo">Sky+Flow Combo</div>
+</div>
+
+<!-- ── LAYOUT ──────────────────────────────────────────────────── -->
+<div class="layout">
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- LEGACY COLUMN (always visible)                              -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <div class="col L">
+    <div class="col-label">Legacy (Bootstrap 3 / bootswatch.less)</div>
+
+    <div class="section">
+      <div class="section-title">Typography</div>
+      <div class="font-body">Body text — Lato 15px, color: #004080 (brand primary)</div>
+      <div class="font-heading" style="margin-top:8px;">Heading — Arvo 400, color: #52340C</div>
+      <div style="margin-top:8px; font-family:'Lato',sans-serif; font-size:15px; color:#004080;">
+        Paragraph: <span class="font-link">Green link #1E993D</span> — hover turns red.
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Brand Colors</div>
+      <div class="swatch-row">
+        <div class="swatch"><div class="swatch-box" style="background:#004080;"></div><span>primary<br>#004080</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#1E993D;"></div><span>success<br>#1E993D</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#F39C12;"></div><span>warning<br>#F39C12</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#E74C3C;"></div><span>danger<br>#E74C3C</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#3498DB;"></div><span>info<br>#3498DB</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#154764;"></div><span>navbar<br>#154764</span></div>
+      </div>
+      <div class="meta-note">Body text = primary | Links = success | Hover = danger</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Border Radius</div>
+      <div class="radius-row">
+        <div><div class="radius-box" style="border-radius:2px;"></div><div class="meta-note">base — 2px</div></div>
+        <div><div class="radius-box" style="border-radius:4px;"></div><div class="meta-note">lg — 4px</div></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Buttons</div>
+      <div class="btn-row">
+        <span class="btn-base btn-default">Default</span>
+        <span class="btn-base btn-primary">Primary</span>
+        <span class="btn-base btn-success">Success</span>
+        <span class="btn-base btn-danger">Danger</span>
+      </div>
+      <div class="meta-note">Inset shadow. All invert on hover. 2px radius.</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Card (was Panel)</div>
+      <div class="card">
+        <div class="card-header">Card Heading — Arvo, centered</div>
+        <div class="card-body">Card body — #004080 text (brand blue).</div>
+        <div class="card-footer">Footer — #E6DFD1 background</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Form Input (click to focus)</div>
+      <input class="input-demo" type="text" placeholder="Focus — turns #DAFF91" style="width:100%;">
+      <div class="meta-note">15px Lato | #DAFF91 focus | 2px radius</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Navbar</div>
+      <div class="navbar-demo">
+        <span class="brand">App Name</span>
+        <a href="#">Dashboard</a>
+        <a href="#">Customers</a>
+        <a href="#">Reports</a>
+      </div>
+      <div class="meta-note">bg #154764 | white text | hover green</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Badges &amp; Alerts</div>
+      <div class="swatch-row" style="margin-bottom:8px;">
+        <span class="badge-demo" style="background:#004080;">Primary</span>
+        <span class="badge-demo" style="background:#1E993D;">Success</span>
+        <span class="badge-demo" style="background:#F39C12;">Warning</span>
+        <span class="badge-demo" style="background:#E74C3C;">Danger</span>
+        <span class="badge-demo" style="background:#3498DB;">Info</span>
+      </div>
+      <div class="alert-demo" style="background:#B1F097;border-color:#5b9b3d;color:#3c763d;">Success alert</div>
+      <div class="alert-demo" style="background:#EEA5A8;border-color:#c0392b;color:#a94442;">Danger alert</div>
+      <div class="alert-demo" style="background:#E6DDA5;border-color:#b8a84c;color:#8a6d3b;">Warning alert</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Note Item Cards</div>
+      <div class="note-status">
+        <div class="note-header" style="background:#FFA523;color:#333;">Status</div>
+        <div class="note-body">Note content — bg #FFF4E6</div>
+      </div>
+      <div class="note-domain">
+        <div class="note-header" style="background:#0080FF;">Domain</div>
+        <div class="note-body" style="color:#333;">Note content — bg #FFFFBC</div>
+      </div>
+      <div class="note-finance">
+        <div class="note-header" style="background:#61AB5D;">Finance</div>
+        <div class="note-body">Note content — dark green bg</div>
+      </div>
+      <div class="note-seo">
+        <div class="note-header" style="background:#c8b7d9;color:#400080;">SEO</div>
+        <div class="note-body">Note content — bg #400080</div>
+      </div>
+    </div>
+
+  </div><!-- /col L -->
+
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- THEME PANELS (right column, one active at a time)           -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+
+  <!-- ─── FASTBS ───────────────────────────────────────────────── -->
+  <div class="col fastbs theme-panel active" id="panel-fastbs">
+    <div class="col-label">FastBootstrap-aligned (Inter + 6px + FastBS palette)</div>
+
+    <div class="section">
+      <div class="section-title">Typography <span class="change-tag">CHANGED</span></div>
+      <div class="font-body">Body text — <strong>Inter</strong> 16px, color: <strong>#333</strong></div>
+      <div class="font-heading" style="margin-top:8px;">Heading — Inter 700, #333 (no Arvo)</div>
+      <div style="margin-top:8px; font-family:'Inter',sans-serif; font-size:16px; color:#333;">
+        Paragraph: <span class="font-link">Blue link #0c66e4</span> — hover darkens.
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Brand Colors <span class="change-tag">CHANGED</span></div>
+      <div class="swatch-row">
+        <div class="swatch"><div class="swatch-box" style="background:#0c66e4;"></div><span>primary<br>#0c66e4</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#1f845a;"></div><span>success<br>#1f845a</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#f5cd47;"></div><span>warning<br>#f5cd47</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#ca3521;"></div><span>danger<br>#ca3521</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#1d7f8c;"></div><span>info<br>#1d7f8c</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#154764;"></div><span>navbar<br>#154764</span></div>
+      </div>
+      <div class="meta-note">FastBootstrap palette. Near-black body (#333). Blue links.</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Border Radius <span class="change-tag">CHANGED</span></div>
+      <div class="radius-row">
+        <div><div class="radius-box" style="border-radius:4px;"></div><div class="meta-note">sm — 4px</div></div>
+        <div><div class="radius-box" style="border-radius:6px;"></div><div class="meta-note">base — 6px</div></div>
+        <div><div class="radius-box" style="border-radius:12px;"></div><div class="meta-note">lg — 12px</div></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Buttons</div>
+      <div class="btn-row">
+        <span class="btn-base btn-bare">Default</span>
+        <span class="btn-base btn-secondary">Secondary</span>
+        <span class="btn-base btn-primary">Primary</span>
+        <span class="btn-base btn-success">Success</span>
+        <span class="btn-base btn-danger">Danger</span>
+      </div>
+      <div class="meta-note">6px radius. Invert hover. Dark = .btn-secondary.</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Card</div>
+      <div class="card">
+        <div class="card-header">Card Heading — Inter 600</div>
+        <div class="card-body">Card body — #333 text (not brand blue).</div>
+        <div class="card-footer">Footer — light gray</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Form Input (click to focus)</div>
+      <input class="input-demo" type="text" placeholder="Focus — turns #DAFF91" style="width:100%;">
+      <div class="meta-note">16px Inter | #DAFF91 focus (unchanged) | 6px radius</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Navbar</div>
+      <div class="navbar-demo">
+        <span class="brand">App Name</span>
+        <a href="#">Dashboard</a>
+        <a href="#">Customers</a>
+        <a href="#">Reports</a>
+      </div>
+      <div class="meta-note">Same dark navy (#154764) | hover green</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Badges &amp; Alerts</div>
+      <div class="swatch-row" style="margin-bottom:8px;">
+        <span class="badge-demo" style="background:#0c66e4;">Primary</span>
+        <span class="badge-demo" style="background:#1f845a;">Success</span>
+        <span class="badge-demo" style="background:#f5cd47;color:#333;">Warning</span>
+        <span class="badge-demo" style="background:#ca3521;">Danger</span>
+        <span class="badge-demo" style="background:#1d7f8c;">Info</span>
+      </div>
+      <div class="alert-demo" style="background:#d1fae5;border-color:#6ee7b7;color:#065f46;">Success alert</div>
+      <div class="alert-demo" style="background:#fee2e2;border-color:#fca5a5;color:#991b1b;">Danger alert</div>
+      <div class="alert-demo" style="background:#fef9c3;border-color:#fde68a;color:#713f12;">Warning alert</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Note Item Cards</div>
+      <div class="note-status">
+        <div class="note-header" style="background:#FFA523;color:#333;">Status</div>
+        <div class="note-body">Note content — bg #FFF4E6</div>
+      </div>
+      <div class="note-domain">
+        <div class="note-header" style="background:#0080FF;">Domain</div>
+        <div class="note-body" style="color:#333;">Note content — bg #FFFFBC</div>
+      </div>
+      <div class="note-finance">
+        <div class="note-header" style="background:#61AB5D;">Finance</div>
+        <div class="note-body">Note content — dark green</div>
+      </div>
+      <div class="note-seo">
+        <div class="note-header" style="background:#c8b7d9;color:#400080;">SEO</div>
+        <div class="note-body">Note content — bg #400080</div>
+      </div>
+    </div>
+
+  </div><!-- /panel-fastbs -->
+
+
+  <!-- ─── FLOWBITE ──────────────────────────────────────────────── -->
+  <div class="col flowbite theme-panel" id="panel-flowbite">
+    <div class="col-label">Flowbite (Tailwind-based, pill buttons, gray inputs)</div>
+
+    <div class="section">
+      <div class="section-title">Typography</div>
+      <div class="font-body">Body text — Inter 16px, color: <strong>#111827</strong> (near-black)</div>
+      <div class="font-heading" style="margin-top:8px;">Heading — Inter 700, #111827</div>
+      <div style="margin-top:8px; font-family:'Inter',sans-serif; font-size:16px; color:#111827;">
+        Paragraph: <span class="font-link">Blue link #1a56db</span> — hover darkens.
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Brand Colors</div>
+      <div class="swatch-row">
+        <div class="swatch"><div class="swatch-box" style="background:#1a56db;"></div><span>primary<br>#1a56db</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#057a55;"></div><span>success<br>#057a55</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#d97706;"></div><span>warning<br>#d97706</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#e02424;"></div><span>danger<br>#e02424</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#1f2937;"></div><span>dark<br>#1f2937</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#f9fafb;border:1px solid #ccc;"></div><span>surface<br>#f9fafb</span></div>
+      </div>
+      <div class="meta-note">Warning = amber-orange (not yellow). Light gray UI surfaces.</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Border Radius</div>
+      <div class="radius-row">
+        <div><div class="radius-box" style="border-radius:8px;"></div><div class="meta-note">base — 8px</div></div>
+        <div><div class="radius-box" style="border-radius:12px;"></div><div class="meta-note">buttons — 12px</div></div>
+        <div><div class="radius-box" style="border-radius:999px;"></div><div class="meta-note">pill — 999</div></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Buttons</div>
+      <div class="btn-row">
+        <span class="btn-base btn-bare">Default</span>
+        <span class="btn-base btn-dark">Dark</span>
+        <span class="btn-base btn-primary">Primary</span>
+        <span class="btn-base btn-success">Success</span>
+        <span class="btn-base btn-danger">Danger</span>
+        <span class="btn-base btn-warning">Warning</span>
+      </div>
+      <div class="meta-note">12px radius (rounded-lg). No shadow. Medium weight.</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Card</div>
+      <div class="card">
+        <div class="card-header">Card Heading — Inter 600</div>
+        <div class="card-body">Card body — #374151 text, subtle shadow.</div>
+        <div class="card-footer">Footer — gray surface</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Form Input (click to focus)</div>
+      <input class="input-demo" type="text" placeholder="Focus — blue ring" style="width:100%;">
+      <div class="meta-note">14px Inter | Gray bg (#f9fafb) | Blue focus ring | 12px radius</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Navbar</div>
+      <div class="navbar-demo">
+        <span class="brand">App Name</span>
+        <a href="#">Dashboard</a>
+        <a href="#">Customers</a>
+        <a href="#">Reports</a>
+      </div>
+      <div class="meta-note">Dark navy bg | light blue links | white on hover</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Badges &amp; Alerts</div>
+      <div class="swatch-row" style="margin-bottom:8px;">
+        <span class="badge-demo" style="background:#1a56db;">Primary</span>
+        <span class="badge-demo" style="background:#057a55;">Success</span>
+        <span class="badge-demo" style="background:#d97706;">Warning</span>
+        <span class="badge-demo" style="background:#e02424;">Danger</span>
+        <span class="badge-demo" style="background:#0e9f6e;">Info</span>
+      </div>
+      <div class="alert-demo" style="background:#f3faf7;border-color:#84e1bc;color:#046c4e;">Success alert</div>
+      <div class="alert-demo" style="background:#fdf2f2;border-color:#f8b4b4;color:#c81e1e;">Danger alert</div>
+      <div class="alert-demo" style="background:#fffbeb;border-color:#fcd34d;color:#92400e;">Warning alert</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Note Item Cards</div>
+      <div class="note-status">
+        <div class="note-header" style="background:#d97706;">Status</div>
+        <div class="note-body">Note content — amber tones</div>
+      </div>
+      <div class="note-domain">
+        <div class="note-header" style="background:#1a56db;">Domain</div>
+        <div class="note-body" style="color:#1e3a5f;">Note content — blue bg</div>
+      </div>
+      <div class="note-finance">
+        <div class="note-header" style="background:#057a55;">Finance</div>
+        <div class="note-body">Note content — green tones</div>
+      </div>
+      <div class="note-seo">
+        <div class="note-header" style="background:#7c3aed;">SEO</div>
+        <div class="note-body">Note content — purple tones</div>
+      </div>
+    </div>
+
+  </div><!-- /panel-flowbite -->
+
+
+  <!-- ─── DAISYUI ───────────────────────────────────────────────── -->
+  <div class="col daisy theme-panel" id="panel-daisy">
+    <div class="col-label">DaisyUI (Tailwind, semantic vibrant colors, 4px radius)</div>
+
+    <div class="section">
+      <div class="section-title">Typography</div>
+      <div class="font-body">Body text — System UI 16px, color: <strong>#1d1d1d</strong></div>
+      <div class="font-heading" style="margin-top:8px;">Heading — System UI 700, #1d1d1d</div>
+      <div style="margin-top:8px; font-size:16px; color:#1d1d1d;">
+        Paragraph: <span class="font-link">Purple link #570df8</span> — hover darkens.
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Brand Colors</div>
+      <div class="swatch-row">
+        <div class="swatch"><div class="swatch-box" style="background:#570df8;"></div><span>primary<br>#570df8</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#f000b8;"></div><span>secondary<br>#f000b8</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#37cdbe;"></div><span>accent<br>#37cdbe</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#36d399;"></div><span>success<br>#36d399</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#fbbd23;"></div><span>warning<br>#fbbd23</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#f87272;"></div><span>error<br>#f87272</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#3abff8;"></div><span>info<br>#3abff8</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#1d1d1d;"></div><span>neutral<br>#1d1d1d</span></div>
+      </div>
+      <div class="meta-note">Vibrant semantic palette. Pink secondary. Teal accent. Near-black neutral.</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Border Radius</div>
+      <div class="radius-row">
+        <div><div class="radius-box" style="border-radius:2px;"></div><div class="meta-note">sm — 2px</div></div>
+        <div><div class="radius-box" style="border-radius:4px;"></div><div class="meta-note">base — 4px</div></div>
+        <div><div class="radius-box" style="border-radius:8px;"></div><div class="meta-note">lg — 8px</div></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Buttons</div>
+      <div class="btn-row">
+        <span class="btn-base btn-neutral">Neutral</span>
+        <span class="btn-base btn-primary">Primary</span>
+        <span class="btn-base btn-secondary">Secondary</span>
+        <span class="btn-base btn-success">Success</span>
+        <span class="btn-base btn-warning">Warning</span>
+        <span class="btn-base btn-error">Error</span>
+      </div>
+      <div class="meta-note">4px radius. Vibrant tones. Text color matches semantic tone.</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Card</div>
+      <div class="card">
+        <div class="card-header">Card Heading — bold</div>
+        <div class="card-body">Card body — #1d1d1d text, clean white.</div>
+        <div class="card-footer">Footer — near-white</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Form Input (click to focus)</div>
+      <input class="input-demo" type="text" placeholder="Focus — purple ring" style="width:100%;">
+      <div class="meta-note">14px | Purple focus ring | 4px radius</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Navbar</div>
+      <div class="navbar-demo">
+        <span class="brand">App Name</span>
+        <a href="#">Dashboard</a>
+        <a href="#">Customers</a>
+        <a href="#">Reports</a>
+      </div>
+      <div class="meta-note">Near-black bg | gray links | teal hover</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Badges &amp; Alerts</div>
+      <div class="swatch-row" style="margin-bottom:8px;">
+        <span class="badge-demo" style="background:#570df8;">Primary</span>
+        <span class="badge-demo" style="background:#f000b8;">Secondary</span>
+        <span class="badge-demo" style="background:#36d399;color:#065f46;">Success</span>
+        <span class="badge-demo" style="background:#fbbd23;color:#78350f;">Warning</span>
+        <span class="badge-demo" style="background:#f87272;color:#7f1d1d;">Error</span>
+      </div>
+      <div class="alert-demo" style="background:#f0fdf4;border-color:#86efac;color:#14532d;">Success alert</div>
+      <div class="alert-demo" style="background:#fef2f2;border-color:#fca5a5;color:#7f1d1d;">Error alert</div>
+      <div class="alert-demo" style="background:#fefce8;border-color:#fde047;color:#713f12;">Warning alert</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Note Item Cards</div>
+      <div class="note-status">
+        <div class="note-header" style="background:#fbbd23;color:#78350f;">Status</div>
+        <div class="note-body">Note content — amber tones</div>
+      </div>
+      <div class="note-domain">
+        <div class="note-header" style="background:#3abff8;color:#0c4a6e;">Domain</div>
+        <div class="note-body" style="color:#0c4a6e;">Note content — sky blue</div>
+      </div>
+      <div class="note-finance">
+        <div class="note-header" style="background:#36d399;color:#065f46;">Finance</div>
+        <div class="note-body">Note content — mint green</div>
+      </div>
+      <div class="note-seo">
+        <div class="note-header" style="background:#570df8;">SEO</div>
+        <div class="note-body">Note content — purple</div>
+      </div>
+    </div>
+
+  </div><!-- /panel-daisy -->
+
+
+  <!-- ─── SKYDASH ───────────────────────────────────────────────── -->
+  <div class="col skydash theme-panel" id="panel-skydash">
+    <div class="col-label">Skydash (Bootstrap 5 admin, purple, Nunito, 15px radius)</div>
+
+    <div class="section">
+      <div class="section-title">Typography</div>
+      <div class="font-body">Body text — Nunito 15px, color: <strong>#1F1F1F</strong></div>
+      <div class="font-heading" style="margin-top:8px;">Heading — Nunito 700, #1F1F1F</div>
+      <div style="margin-top:8px; font-family:'Nunito',sans-serif; font-size:15px; color:#1F1F1F;">
+        Paragraph: <span class="font-link">Purple link #4B49AC</span> — hover darkens.
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Brand Colors</div>
+      <div class="swatch-row">
+        <div class="swatch"><div class="swatch-box" style="background:#4B49AC;"></div><span>primary<br>#4B49AC</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#57B657;"></div><span>success<br>#57B657</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#FFC100;"></div><span>warning<br>#FFC100</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#FF4747;"></div><span>danger<br>#FF4747</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#248AFD;"></div><span>info<br>#248AFD</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#a3a4a5;"></div><span>secondary<br>#a3a4a5</span></div>
+      </div>
+      <div class="meta-note">Purple primary. Saturated, clear semantic colors. White bg.</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Border Radius</div>
+      <div class="radius-row">
+        <div><div class="radius-box" style="border-radius:8px;"></div><div class="meta-note">inputs — 8px</div></div>
+        <div><div class="radius-box" style="border-radius:15px;"></div><div class="meta-note">buttons — 15px</div></div>
+        <div><div class="radius-box" style="border-radius:20px;"></div><div class="meta-note">cards — 20px</div></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Buttons</div>
+      <div class="btn-row">
+        <span class="btn-base btn-secondary">Secondary</span>
+        <span class="btn-base btn-primary">Primary</span>
+        <span class="btn-base btn-success">Success</span>
+        <span class="btn-base btn-danger">Danger</span>
+        <span class="btn-base btn-warning">Warning</span>
+      </div>
+      <div class="meta-note">15px radius (pill-ish). Nunito 600. Warning has dark text.</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Card</div>
+      <div class="card">
+        <div class="card-header">Card Heading — Nunito 700</div>
+        <div class="card-body">Card body — #555 text, shadow instead of border.</div>
+        <div class="card-footer">Footer — near-white</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Form Input (click to focus)</div>
+      <input class="input-demo" type="text" placeholder="Focus — purple ring" style="width:100%;">
+      <div class="meta-note">15px Nunito | Purple focus ring | 8px radius</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Navbar</div>
+      <div class="navbar-demo">
+        <span class="brand">App Name</span>
+        <a href="#">Dashboard</a>
+        <a href="#">Customers</a>
+        <a href="#">Reports</a>
+      </div>
+      <div class="meta-note">White bg navbar | purple brand | gray links | purple hover</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Badges &amp; Alerts</div>
+      <div class="swatch-row" style="margin-bottom:8px;">
+        <span class="badge-demo" style="background:#4B49AC;">Primary</span>
+        <span class="badge-demo" style="background:#57B657;">Success</span>
+        <span class="badge-demo" style="background:#FFC100;color:#1F1F1F;">Warning</span>
+        <span class="badge-demo" style="background:#FF4747;">Danger</span>
+        <span class="badge-demo" style="background:#248AFD;">Info</span>
+      </div>
+      <div class="alert-demo" style="background:#edfaed;border-radius:12px;color:#2a6e2a;">Success alert</div>
+      <div class="alert-demo" style="background:#fff0f0;border-radius:12px;color:#cc2a2a;">Danger alert</div>
+      <div class="alert-demo" style="background:#fff8e6;border-radius:12px;color:#996200;">Warning alert</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Note Item Cards</div>
+      <div class="note-status">
+        <div class="note-header" style="background:#FFC100;color:#1F1F1F;">Status</div>
+        <div class="note-body">Note content — golden yellow</div>
+      </div>
+      <div class="note-domain">
+        <div class="note-header" style="background:#248AFD;">Domain</div>
+        <div class="note-body" style="color:#1e3a5f;">Note content — bright blue</div>
+      </div>
+      <div class="note-finance">
+        <div class="note-header" style="background:#57B657;">Finance</div>
+        <div class="note-body">Note content — green</div>
+      </div>
+      <div class="note-seo">
+        <div class="note-header" style="background:#4B49AC;">SEO</div>
+        <div class="note-body" style="color:#3a3895;">Note content — purple</div>
+      </div>
+    </div>
+
+  </div><!-- /panel-skydash -->
+
+
+  <!-- ─── COMBO (Sky+Flow) ─────────────────────────────────────── -->
+  <div class="col combo theme-panel" id="panel-combo">
+    <div class="col-label">Sky+Flow Combo (Skydash colors + Flowbite structure, Nunito)</div>
+
+    <div class="section">
+      <div class="section-title">Typography</div>
+      <div class="font-body">Body text — <strong>Nunito</strong> 15px, color: <strong>#1F1F1F</strong></div>
+      <div class="font-heading" style="margin-top:8px;">Heading — Nunito 700, #1F1F1F</div>
+      <div style="margin-top:8px; font-family:'Nunito',sans-serif; font-size:15px; color:#1F1F1F;">
+        Paragraph: <span class="font-link">Purple link #4B49AC</span> — hover darkens.
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Brand Colors</div>
+      <div class="swatch-row">
+        <div class="swatch"><div class="swatch-box" style="background:#3B5BDB;border-radius:6px;"></div><span>primary<br>#3B5BDB</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#4B49AC;border-radius:6px;"></div><span>purple<br>#4B49AC</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#57B657;border-radius:6px;"></div><span>success<br>#57B657</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#FFC100;border-radius:6px;"></div><span>warning<br>#FFC100</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#FF4747;border-radius:6px;"></div><span>danger<br>#FF4747</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#248AFD;border-radius:6px;"></div><span>info<br>#248AFD</span></div>
+        <div class="swatch"><div class="swatch-box" style="background:#1e3a5f;border-radius:6px;"></div><span>navbar<br>#1e3a5f</span></div>
+      </div>
+      <div class="meta-note">Primary = indigo-blue #3B5BDB. Purple alt #4B49AC. Skydash semantic colors. Light-blue bg (#F5F7FF).</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Border Radius</div>
+      <div class="radius-row">
+        <div><div class="radius-box" style="border-radius:8px;"></div><div class="meta-note">inputs — 10px</div></div>
+        <div><div class="radius-box" style="border-radius:12px;"></div><div class="meta-note">buttons — 12px</div></div>
+        <div><div class="radius-box" style="border-radius:999px;width:80px;"></div><div class="meta-note">pill — 999</div></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Buttons</div>
+      <div class="btn-row">
+        <span class="btn-base btn-default">Default</span>
+        <span class="btn-base btn-primary">Primary</span>
+        <span class="btn-base btn-alt-primary">Alt-Primary</span>
+        <span class="btn-base btn-success">Success</span>
+        <span class="btn-base btn-danger">Danger</span>
+        <span class="btn-base btn-warning">Warning</span>
+      </div>
+      <div class="meta-note">12px radius. Nunito 600. <strong>5px</strong> vertical padding. All invert on hover. Default = info blue. Alt-Primary = purple (FastBS-style).</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Card</div>
+      <div class="card">
+        <div class="card-header">Card Heading — Nunito 700</div>
+        <div class="card-body">Card body — #555 text, subtle border + shadow.</div>
+        <div class="card-footer">Footer — light blue-tint surface</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Form Input (click to focus)</div>
+      <input class="input-demo" type="text" placeholder="Focus — purple ring" style="width:100%;">
+      <div class="meta-note">15px Nunito | Purple focus ring | 10px radius | White bg</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Navbar</div>
+      <div class="navbar-demo">
+        <span class="brand">App Name</span>
+        <a href="#">Dashboard</a>
+        <a href="#">Customers</a>
+        <a href="#">Reports</a>
+      </div>
+      <div class="meta-note">Flowbite dark navy (#1e3a5f) | light blue links (#93c5fd) | white hover</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Badges &amp; Alerts</div>
+      <div class="swatch-row" style="margin-bottom:8px;">
+        <span class="badge-demo" style="background:#4B49AC;">Primary</span>
+        <span class="badge-demo" style="background:#57B657;">Success</span>
+        <span class="badge-demo" style="background:#FFC100;color:#1F1F1F;">Warning</span>
+        <span class="badge-demo" style="background:#FF4747;">Danger</span>
+        <span class="badge-demo" style="background:#248AFD;">Info</span>
+      </div>
+      <!-- Flowbite-style: tinted bg + visible colored border -->
+      <div class="alert-demo" style="background:#EDFAED;border-color:#57B657;color:#2a6e2a;">Success alert — border matches color</div>
+      <div class="alert-demo" style="background:#FFF0F0;border-color:#FF4747;color:#cc2a2a;">Danger alert — border matches color</div>
+      <div class="alert-demo" style="background:#FFFBEB;border-color:#FFC100;color:#996200;">Warning alert — border matches color</div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Note Item Cards</div>
+      <div class="note-status">
+        <div class="note-header" style="background:#FFC100;color:#1F1F1F;">Status</div>
+        <div class="note-body">Note content — golden yellow border, pastel fill</div>
+      </div>
+      <div class="note-domain">
+        <div class="note-header" style="background:#248AFD;">Domain</div>
+        <div class="note-body" style="color:#1e3a5f;">Note content — bright blue border, pastel fill</div>
+      </div>
+      <div class="note-finance">
+        <div class="note-header" style="background:#57B657;">Finance</div>
+        <div class="note-body">Note content — green border, pastel fill</div>
+      </div>
+      <div class="note-seo">
+        <div class="note-header" style="background:#4B49AC;">SEO</div>
+        <div class="note-body">Note content — purple border, pastel fill</div>
+      </div>
+    </div>
+
+    <!-- Named Color Utilities — full 29-color palette, primary + light variant -->
+    <div class="section">
+      <div class="section-title">Named Color Utilities</div>
+      <div class="meta-note" style="margin-bottom:10px;">Full legacy palette — vivid primary + low-saturation light variant for each.</div>
+
+      <div class="color-util-grid">
+        <!-- cherry -->
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#D94040;"></div><div class="color-util-label">cherry<br>#D94040</div></div>
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#FDEAEA;border:1px solid #e8a9a9;"></div><div class="color-util-label">cherry-lt<br>#FDEAEA</div></div>
+        <!-- maroon -->
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#85144B;"></div><div class="color-util-label">maroon<br>#85144B</div></div>
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#FAE0ED;border:1px solid #dba3c3;"></div><div class="color-util-label">maroon-lt<br>#FAE0ED</div></div>
+        <!-- red -->
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#E62020;"></div><div class="color-util-label">red<br>#E62020</div></div>
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#FDEAEA;border:1px solid #f5a0a0;"></div><div class="color-util-label">red-lt<br>#FDEAEA</div></div>
+        <!-- orange -->
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#F39C12;"></div><div class="color-util-label">orange<br>#F39C12</div></div>
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#FEF5E7;border:1px solid #f5d08a;"></div><div class="color-util-label">orange-lt<br>#FEF5E7</div></div>
+        <!-- yellow -->
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#F1C40F;"></div><div class="color-util-label">yellow<br>#F1C40F</div></div>
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#FEFADC;border:1px solid #ede895;"></div><div class="color-util-label">yellow-lt<br>#FEFADC</div></div>
+        <!-- green -->
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#1E993D;"></div><div class="color-util-label">green<br>#1E993D</div></div>
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#EAFAF1;border:1px solid #82d9a0;"></div><div class="color-util-label">green-lt<br>#EAFAF1</div></div>
+        <!-- clover -->
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#27AE60;"></div><div class="color-util-label">clover<br>#27AE60</div></div>
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#E9F7EF;border:1px solid #7dcea0;"></div><div class="color-util-label">clover-lt<br>#E9F7EF</div></div>
+        <!-- lime -->
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#2ECC40;"></div><div class="color-util-label">lime<br>#2ECC40</div></div>
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#E8FAE9;border:1px solid #86e893;"></div><div class="color-util-label">lime-lt<br>#E8FAE9</div></div>
+        <!-- olive -->
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#7D8C3A;"></div><div class="color-util-label">olive<br>#7D8C3A</div></div>
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#F2F4E4;border:1px solid #c5cc97;"></div><div class="color-util-label">olive-lt<br>#F2F4E4</div></div>
+        <!-- teal -->
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#008080;"></div><div class="color-util-label">teal<br>#008080</div></div>
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#DFF5F5;border:1px solid #80c8c8;"></div><div class="color-util-label">teal-lt<br>#DFF5F5</div></div>
+        <!-- aqua -->
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#00BCD4;"></div><div class="color-util-label">aqua<br>#00BCD4</div></div>
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#E0F9FC;border:1px solid #80dcea;"></div><div class="color-util-label">aqua-lt<br>#E0F9FC</div></div>
+        <!-- navy -->
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#003580;"></div><div class="color-util-label">navy<br>#003580</div></div>
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#D6E4FF;border:1px solid #99b8f0;"></div><div class="color-util-label">navy-lt<br>#D6E4FF</div></div>
+        <!-- blue -->
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#3498DB;"></div><div class="color-util-label">blue<br>#3498DB</div></div>
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#EBF5FB;border:1px solid #90c8ed;"></div><div class="color-util-label">blue-lt<br>#EBF5FB</div></div>
+        <!-- ice -->
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#7EC8E3;"></div><div class="color-util-label">ice<br>#7EC8E3</div></div>
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#EAF7FC;border:1px solid #b8e3f0;"></div><div class="color-util-label">ice-lt<br>#EAF7FC</div></div>
+        <!-- deepblue -->
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#1A3A8F;"></div><div class="color-util-label">deepblue<br>#1A3A8F</div></div>
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#D6DFFF;border:1px solid #9aaeed;"></div><div class="color-util-label">deepblue-lt<br>#D6DFFF</div></div>
+        <!-- purple -->
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#7B2FBE;"></div><div class="color-util-label">purple<br>#7B2FBE</div></div>
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#F0E8FB;border:1px solid #c9a8e8;"></div><div class="color-util-label">purple-lt<br>#F0E8FB</div></div>
+        <!-- hotpink -->
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#E91E8C;"></div><div class="color-util-label">hotpink<br>#E91E8C</div></div>
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#FCE4F3;border:1px solid #f0a0ce;"></div><div class="color-util-label">hotpink-lt<br>#FCE4F3</div></div>
+        <!-- fuchsia -->
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#C0158C;"></div><div class="color-util-label">fuchsia<br>#C0158C</div></div>
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#FAE0F4;border:1px solid #e899d3;"></div><div class="color-util-label">fuchsia-lt<br>#FAE0F4</div></div>
+        <!-- slategrey -->
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#708090;"></div><div class="color-util-label">slategrey<br>#708090</div></div>
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#ECF0F1;border:1px solid #b0bec5;"></div><div class="color-util-label">slategrey-lt<br>#ECF0F1</div></div>
+        <!-- mauve -->
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#9C6B8A;"></div><div class="color-util-label">mauve<br>#9C6B8A</div></div>
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#F5EBF3;border:1px solid #d4b0c8;"></div><div class="color-util-label">mauve-lt<br>#F5EBF3</div></div>
+        <!-- pearl -->
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#B8A9A0;"></div><div class="color-util-label">pearl<br>#B8A9A0</div></div>
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#F5F0EE;border:1px solid #d8d0cc;"></div><div class="color-util-label">pearl-lt<br>#F5F0EE</div></div>
+        <!-- steelblue -->
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#4682B4;"></div><div class="color-util-label">steelblue<br>#4682B4</div></div>
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#E3EEF8;border:1px solid #9bbeda;"></div><div class="color-util-label">steelblue-lt<br>#E3EEF8</div></div>
+        <!-- mossgreen -->
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#5E7C3A;"></div><div class="color-util-label">mossgreen<br>#5E7C3A</div></div>
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#EBF2E4;border:1px solid #b0c995;"></div><div class="color-util-label">mossgreen-lt<br>#EBF2E4</div></div>
+        <!-- wheat -->
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#C8A96A;"></div><div class="color-util-label">wheat<br>#C8A96A</div></div>
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#FAF3E5;border:1px solid #e0cfa0;"></div><div class="color-util-label">wheat-lt<br>#FAF3E5</div></div>
+        <!-- coffee -->
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#7B4F2A;"></div><div class="color-util-label">coffee<br>#7B4F2A</div></div>
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#F3E9E0;border:1px solid #c9a888;"></div><div class="color-util-label">coffee-lt<br>#F3E9E0</div></div>
+        <!-- copper -->
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#B5651D;"></div><div class="color-util-label">copper<br>#B5651D</div></div>
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#F8EDE2;border:1px solid #deb28a;"></div><div class="color-util-label">copper-lt<br>#F8EDE2</div></div>
+        <!-- silver -->
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#A8A8A8;"></div><div class="color-util-label">silver<br>#A8A8A8</div></div>
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#F0F0F0;border:1px solid #d0d0d0;"></div><div class="color-util-label">silver-lt<br>#F0F0F0</div></div>
+        <!-- black -->
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#1A1A1A;"></div><div class="color-util-label">black<br>#1A1A1A</div></div>
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#E8E8E8;border:1px solid #c0c0c0;"></div><div class="color-util-label">black-lt<br>#E8E8E8</div></div>
+        <!-- white -->
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#FFFFFF;border:1px solid #ddd;"></div><div class="color-util-label">white<br>#FFFFFF</div></div>
+        <div class="color-util-swatch"><div class="color-util-block" style="background:#F8F8F8;border:1px solid #e0e0e0;"></div><div class="color-util-label">white-lt<br>#F8F8F8</div></div>
+      </div>
+    </div>
+
+  </div><!-- /panel-combo -->
+
+</div><!-- /layout -->
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- FONT AWESOME: OLD (4.x) vs NEW (6 Pro)                         -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<style>
+  .fa-section {
+    background: #fff;
+    border-top: 3px solid #222;
+    padding: 28px 24px 40px;
+  }
+  .fa-section h2 {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #222;
+    margin: 0 0 6px 0;
+  }
+  .fa-section .fa-intro {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 24px;
+  }
+  .fa-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .fa-col {
+    padding: 0 24px 0 0;
+    border-right: 1px solid #ddd;
+  }
+  .fa-col:last-child {
+    padding: 0 0 0 24px;
+    border-right: none;
+  }
+  .fa-col-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #ccc;
+  }
+  .fa-subsection { margin-bottom: 24px; }
+  .fa-subsection-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #aaa;
+    margin: 0 0 10px 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  .icon-row { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; }
+  .icon-item { display: flex; flex-direction: column; align-items: center; gap: 5px; width: 64px; text-align: center; }
+  .icon-item .icon-glyph { font-size: 24px; line-height: 1; color: #333; }
+  .icon-item .icon-label { font-size: 9px; color: #888; line-height: 1.3; font-family: monospace; word-break: break-all; }
+  .icon-item .icon-class { font-size: 9px; color: #bbb; font-family: monospace; }
+  .name-change-row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    font-size: 12px;
+    font-family: monospace;
+  }
+  .name-change-row .old { color: #c0392b; }
+  .name-change-row .arrow { color: #aaa; font-family: sans-serif; }
+  .name-change-row .new { color: #27ae60; font-weight: 600; }
+  .style-comparison-row { display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start; margin-bottom: 16px; }
+  .style-group { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .style-group-label { font-size: 10px; color: #888; font-family: monospace; text-align: center; }
+  .style-icons { display: flex; gap: 10px; align-items: center; }
+  .size-row { display: flex; gap: 16px; align-items: flex-end; margin-bottom: 8px; }
+  .size-item { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+  .size-label { font-size: 9px; color: #aaa; font-family: monospace; }
+  .context-demo { display: flex; align-items: center; gap: 8px; font-size: 14px; margin-bottom: 6px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #333; }
+  .context-demo i { color: #004080; }
+  .badge-icon-demo { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 2px; font-size: 12px; font-weight: 700; color: #fff; }
+</style>
+
+<div class="fa-section">
+  <h2>Font Awesome: Old (4.x) vs New (6 Pro)</h2>
+  <p class="fa-intro">
+    Legacy used FA 4.x — a single webfont with one weight (solid), loaded via <code>.fa</code> prefix.
+    BSEE bundles FA Pro 6 — six styles (solid, regular, light, thin, duotone, sharp), loaded via <code>.fa-solid</code> / <code>.fas</code> etc.
+    FA4 is loaded via CDN in the left column for comparison; FA6 Pro is served from <code>css/bs-ee.css</code> on the right.
+  </p>
+
+  <div class="fa-grid">
+
+    <!-- OLD FA4 COLUMN -->
+    <div class="fa-col">
+      <div class="fa-col-label">Legacy — Font Awesome 4.x</div>
+
+      <div class="fa-subsection">
+        <div class="fa-subsection-title">Usage Pattern</div>
+        <pre style="font-size:11px;background:#f5f5f5;padding:8px;border-radius:2px;color:#555;line-height:1.6;margin:0;">
+&lt;i class="fa fa-home"&gt;&lt;/i&gt;
+&lt;i class="fa fa-user"&gt;&lt;/i&gt;
+&lt;i class="fa fa-check"&gt;&lt;/i&gt;
+&lt;i class="fa fa-times"&gt;&lt;/i&gt;</pre>
+        <div style="font-size:11px;color:#888;margin-top:6px;">Single <code>.fa</code> prefix. One style only (solid).</div>
+      </div>
+
+      <iframe
+        id="fa4-iframe"
+        src="fa4-demo.html"
+        scrolling="no"
+        style="width:100%;border:none;display:block;"
+        onload="this.style.height = this.contentDocument.body.scrollHeight + 'px';"
+      ></iframe>
+
+      <div class="fa-subsection" style="margin-top:12px;">
+        <div style="padding:8px;background:#fff8e1;border:1px solid #f39c12;border-radius:2px;font-size:11px;color:#7a4f00;">
+          ⚠ Many FA4 icon names changed in FA5/FA6. Templates using <code>.fa-times</code>, <code>.fa-pencil</code>, <code>.fa-home</code> etc. need class updates.
+        </div>
+      </div>
+
+    </div><!-- /fa-col old -->
+
+    <!-- NEW FA6 PRO COLUMN -->
+    <div class="fa-col">
+      <div class="fa-col-label">New — Font Awesome 6 Pro (bundled)</div>
+
+      <div class="fa-subsection">
+        <div class="fa-subsection-title">Usage Pattern</div>
+        <pre style="font-size:11px;background:#f5f5f5;padding:8px;border-radius:2px;color:#555;line-height:1.6;margin:0;">
+&lt;i class="fa-solid fa-house"&gt;&lt;/i&gt;        &lt;!-- solid --&gt;
+&lt;i class="fa-regular fa-house"&gt;&lt;/i&gt;      &lt;!-- regular --&gt;
+&lt;i class="fa-light fa-house"&gt;&lt;/i&gt;        &lt;!-- light --&gt;
+&lt;i class="fa-thin fa-house"&gt;&lt;/i&gt;         &lt;!-- thin --&gt;
+&lt;i class="fa-duotone fa-house"&gt;&lt;/i&gt;      &lt;!-- duotone --&gt;</pre>
+        <div style="font-size:11px;color:#888;margin-top:6px;">Style-first prefix. Legacy shorthand still works: <code>.fas</code> = solid, <code>.far</code> = regular, <code>.fal</code> = light, <code>.fat</code> = thin, <code>.fad</code> = duotone.</div>
+      </div>
+
+      <div class="fa-subsection">
+        <div class="fa-subsection-title">Icons — Solid Style (fa-solid / .fas)</div>
+        <div class="icon-row">
+          <div class="icon-item">
+            <i class="fa-solid fa-house icon-glyph"></i>
+            <span class="icon-label">fa-house</span>
+            <span class="icon-class">(was fa-home)</span>
+          </div>
+          <div class="icon-item">
+            <i class="fa-solid fa-user icon-glyph"></i>
+            <span class="icon-label">fa-user</span>
+          </div>
+          <div class="icon-item">
+            <i class="fa-solid fa-check icon-glyph"></i>
+            <span class="icon-label">fa-check</span>
+          </div>
+          <div class="icon-item">
+            <i class="fa-solid fa-xmark icon-glyph"></i>
+            <span class="icon-label">fa-xmark</span>
+            <span class="icon-class">(was fa-times)</span>
+          </div>
+          <div class="icon-item">
+            <i class="fa-solid fa-envelope icon-glyph"></i>
+            <span class="icon-label">fa-envelope</span>
+          </div>
+          <div class="icon-item">
+            <i class="fa-solid fa-gear icon-glyph"></i>
+            <span class="icon-label">fa-gear</span>
+            <span class="icon-class">(was fa-cog)</span>
+          </div>
+          <div class="icon-item">
+            <i class="fa-solid fa-pencil icon-glyph"></i>
+            <span class="icon-label">fa-pencil</span>
+          </div>
+          <div class="icon-item">
+            <i class="fa-solid fa-trash icon-glyph"></i>
+            <span class="icon-label">fa-trash</span>
+          </div>
+          <div class="icon-item">
+            <i class="fa-solid fa-phone icon-glyph"></i>
+            <span class="icon-label">fa-phone</span>
+          </div>
+          <div class="icon-item">
+            <i class="fa-solid fa-magnifying-glass icon-glyph"></i>
+            <span class="icon-label">fa-magnifying-glass</span>
+            <span class="icon-class">(was fa-search)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="fa-subsection">
+        <div class="fa-subsection-title">Six Styles — Same Icon, Different Weight</div>
+        <div class="style-comparison-row">
+          <div class="style-group">
+            <div class="style-icons"><i class="fa-solid fa-house" style="font-size:22px;color:#333;"></i></div>
+            <div class="style-group-label">fa-solid<br>.fas</div>
+          </div>
+          <div class="style-group">
+            <div class="style-icons"><i class="fa-regular fa-house" style="font-size:22px;color:#333;"></i></div>
+            <div class="style-group-label">fa-regular<br>.far</div>
+          </div>
+          <div class="style-group">
+            <div class="style-icons"><i class="fa-light fa-house" style="font-size:22px;color:#333;"></i></div>
+            <div class="style-group-label">fa-light<br>.fal</div>
+          </div>
+          <div class="style-group">
+            <div class="style-icons"><i class="fa-thin fa-house" style="font-size:22px;color:#333;"></i></div>
+            <div class="style-group-label">fa-thin<br>.fat</div>
+          </div>
+          <div class="style-group">
+            <div class="style-icons"><i class="fa-duotone fa-house" style="font-size:22px;color:#004080;"></i></div>
+            <div class="style-group-label">fa-duotone<br>.fad</div>
+          </div>
+          <div class="style-group">
+            <div class="style-icons"><i class="fa-sharp fa-solid fa-house" style="font-size:22px;color:#333;"></i></div>
+            <div class="style-group-label">fa-sharp<br>fa-solid</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:#888;">FA Pro required for light, thin, duotone, sharp.</div>
+      </div>
+
+      <div class="fa-subsection">
+        <div class="fa-subsection-title">Size Utilities</div>
+        <div class="size-row">
+          <div class="size-item"><i class="fa-solid fa-star fa-xs" style="color:#555;"></i><span class="size-label">fa-xs</span></div>
+          <div class="size-item"><i class="fa-solid fa-star fa-sm" style="color:#555;"></i><span class="size-label">fa-sm</span></div>
+          <div class="size-item"><i class="fa-solid fa-star" style="color:#555;font-size:16px;"></i><span class="size-label">(base)</span></div>
+          <div class="size-item"><i class="fa-solid fa-star fa-lg" style="color:#555;"></i><span class="size-label">fa-lg</span></div>
+          <div class="size-item"><i class="fa-solid fa-star fa-xl" style="color:#555;"></i><span class="size-label">fa-xl</span></div>
+          <div class="size-item"><i class="fa-solid fa-star fa-2x" style="color:#555;"></i><span class="size-label">fa-2x</span></div>
+          <div class="size-item"><i class="fa-solid fa-star fa-3x" style="color:#555;"></i><span class="size-label">fa-3x</span></div>
+        </div>
+      </div>
+
+      <div class="fa-subsection">
+        <div class="fa-subsection-title">In-Context Usage</div>
+        <div class="context-demo">
+          <i class="fa-solid fa-house" style="color:#004080;font-size:14px;"></i> Dashboard
+        </div>
+        <div class="context-demo">
+          <i class="fa-regular fa-calendar" style="color:#004080;font-size:14px;"></i> Appointments
+        </div>
+        <div class="context-demo">
+          <span class="badge-icon-demo" style="background:#004080;"><i class="fa-solid fa-user fa-sm"></i> Customer</span>
+          <span class="badge-icon-demo" style="background:#1E993D;margin-left:4px;"><i class="fa-solid fa-check fa-sm"></i> Done</span>
+          <span class="badge-icon-demo" style="background:#E74C3C;margin-left:4px;"><i class="fa-solid fa-xmark fa-sm"></i> Error</span>
+        </div>
+      </div>
+
+      <div class="fa-subsection">
+        <div class="fa-subsection-title">Key Name Changes (FA4 → FA6)</div>
+        <div class="name-change-row"><span class="old">fa-home</span><span class="arrow">→</span><span class="new">fa-house</span></div>
+        <div class="name-change-row"><span class="old">fa-times</span><span class="arrow">→</span><span class="new">fa-xmark</span></div>
+        <div class="name-change-row"><span class="old">fa-cog</span><span class="arrow">→</span><span class="new">fa-gear</span></div>
+        <div class="name-change-row"><span class="old">fa-search</span><span class="arrow">→</span><span class="new">fa-magnifying-glass</span></div>
+        <div class="name-change-row"><span class="old">fa-sign-out</span><span class="arrow">→</span><span class="new">fa-right-from-bracket</span></div>
+        <div class="name-change-row"><span class="old">fa-sign-in</span><span class="arrow">→</span><span class="new">fa-right-to-bracket</span></div>
+        <div style="font-size:11px;color:#888;margin-top:6px;">FA6 includes a compatibility shim — old class names continue to work temporarily.</div>
+      </div>
+
+    </div><!-- /fa-col new -->
+
+  </div><!-- /fa-grid -->
+</div><!-- /fa-section -->
+
+<script>
+  // Theme tab switching
+  const tabs = document.querySelectorAll('.theme-tab');
+  const panels = document.querySelectorAll('.theme-panel');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const theme = tab.dataset.theme;
+
+      // Update tabs
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      // Update panels
+      panels.forEach(p => p.classList.remove('active'));
+      document.getElementById('panel-' + theme).classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>

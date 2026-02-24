@@ -65,7 +65,7 @@ output.less
 
 ### Tasks
 
-- [ ] **Review brand colors** — Evaluate the current palette from `bootswatch.less`:
+- [x] **Review brand colors** — Evaluate the current palette from `bootswatch.less`:
   - Primary: `#004080` (dark blue)
   - Success: `#1E993D`
   - Warning: `#F39C12`
@@ -76,12 +76,12 @@ output.less
   - Body bg: `#f0f9ff`
   - Decide: keep, adjust, or redesign each
 
-- [ ] **Review typography** — Current stack uses Lato (sans) + Arvo (serif, headings). Evaluate:
+- [x] **Review typography** — Current stack uses Lato (sans) + Arvo (serif, headings). Evaluate:
   - Keep Lato/Arvo, update to newer weights/loading?
   - Switch to system font stack or a different Google Font pairing?
   - Base font size: 15px — appropriate for BS5?
 
-- [ ] **Review component design decisions** — Items that were deliberate choices in bootswatch.less:
+- [x] **Review component design decisions** — Items that were deliberate choices in bootswatch.less:
   - Tight panel/card padding (`panel-heading-padding: 2px 4px`, `panel-body-padding: 4px`)
   - Small border radius (`2px` base, `4px` large)
   - Tight gutter width (`20px`)
@@ -89,11 +89,11 @@ output.less
   - Dark default button (`#333` bg, `#000` border)
   - Decide which to keep vs. revisit for BS5
 
-- [ ] **Review utility color palette** — The 25+ named color classes (`.cherry`, `.navy`, `.teal`, etc.) with matching `_text` variants. Are these all needed? Any to add/rename?
+- [x] **Review utility color palette** — The 25+ named color classes (`.cherry`, `.navy`, `.teal`, etc.) with matching `_text` variants. Are these all needed? Any to add/rename?
 
-- [ ] **Review note_item variants** — The typed note card system (status, contact, link, work, domain, design, email, finance, local, seo, mss, nc, g5, top, pdr, activity). Confirm all are still in use and the color scheme is correct.
+- [x] **Review note_item variants** — The typed note card system (status, contact, link, work, domain, design, email, finance, local, seo, mss, nc, g5, top, pdr, activity). Confirm all are still in use and the color scheme is correct.
 
-- [ ] **Create design decisions doc** — Write `_AIDocs/design-decisions.md` capturing all choices made in this phase. This becomes the source of truth before implementation.
+- [x] **Create design decisions doc** — Write `_AIDocs/design-decisions.md` capturing all choices made in this phase. This becomes the source of truth before implementation.
 
 ---
 
