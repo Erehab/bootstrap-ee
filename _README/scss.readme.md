@@ -6,37 +6,46 @@ This document explains the SCSS architecture used by Bootstrap EE and how to ext
 
 ## Entrypoint
 
-- `src/scss/bs-ee.scss` — primary entry; imports tokens, variables, Bootstrap layers, components, and utilities in order.
+`src/scss/bs-ee.scss` — primary entry; imports variables, Bootstrap core, component overrides, and utilities in order.
 
-## Variables & Tokens
+## Variables
 
-- `src/scss/_variables-tokens.scss` — design tokens (color system, spacing scale, semantic tokens) following Atlassian Design System conventions
-- `src/scss/_variables.scss` — Bootstrap variable overrides (colors, component defaults)
-- `src/scss/_variables-dark.scss` — dark-mode overrides
+- `src/scss/_bsee-base.scss` — **start here**. All Erehab brand overrides: colors, fonts, radii, spacing (~50 lines, all readable).
+- `src/scss/_variables.scss` — Bootstrap variable overrides beyond what's in `_bsee-base.scss`.
+- `src/scss/_variables-dark.scss` — dark-mode overrides.
+- `src/scss/_fbs-colors.scss` — legacy FBS palette reference (`$fbs-*` vars). Not wired in by default; available for reference only.
 
-## Structure
+## Component Partials
 
-- `src/scss/*` — component partials (e.g., `_button.scss`, `_modal.scss`)
-- `src/scss/helpers/` — helper utilities (animations, content, transforms)
-- `src/scss/forms/` — form-related partials
-- `src/scss/_utilities.scss` and `_utilities_extended.scss` — utility classes and extensions
+All partials live flat in `src/scss/`:
 
-## How to add overrides
+| File | Purpose |
+|---|---|
+| `_navbar.scss` | Navbar overrides |
+| `_buttons.scss` | Button variants and hover behavior |
+| `_cards.scss` | Card padding and style overrides |
+| `_dropdowns.scss` | Dropdown overrides |
+| `_forms.scss` | Form control overrides |
+| `_note-items.scss` | ptclinic.biz note card variants (18 types) |
+| `_biz-utilities.scss` | Named color utilities (29 colors + `_text` variants) |
+| `_layout.scss` | App layout — sidebar, main-content |
+| `_legacy-spacing.scss` | Compat layer for old `m-t`/`p-b` class names |
+| `_print.scss` | Print media styles |
+| `_bsee-pre.scss` | Imports before Bootstrap core |
+| `_bsee-post.scss` | Imports after Bootstrap core |
 
-1. Prefer adding new tokens in `_variables-tokens.scss`.
-2. Add default variable values or overrides in `_variables.scss` (do not edit Bootstrap core files in `node_modules`).
-3. Create a new partial in `src/scss/` and import it from `bs-ee.scss`.
+## How to Add Overrides
 
-## Planned additions
+1. **Brand changes** (colors, fonts, radii): edit `src/scss/_bsee-base.scss`.
+2. **New component overrides**: create a new partial in `src/scss/` and import it in `bs-ee.scss`.
+3. **New utility classes**: use Bootstrap's utility API in `bs-ee.scss` before the `utilities/api` import, or add to `_biz-utilities.scss`.
+4. Never edit Bootstrap core files in `node_modules`.
 
-### Legacy CSS classes
+## Build
 
-A compatibility layer of legacy class names will be added as a new partial (e.g., `_legacy.scss`) and imported in `bs-ee.scss`. This allows older markup to continue working without changes while the codebase migrates. This will be built into the dist output automatically.
+```bash
+npm run dist   # compile, prefix, minify
+npm run css    # CSS only
+```
 
-### Font Awesome Pro
-
-Font Awesome Pro will be integrated into the SCSS build and included in the dist output. The goal is that consuming projects load it through this package rather than managing the FA dependency separately. Implementation details TBD — likely a separate partial and additional dist CSS file.
-
-## Build notes
-
-Use `npm run dist` to build CSS. See [build-and-contribute.readme.md](build-and-contribute.readme.md) for the full workflow.
+See [setup.readme.md](setup.readme.md) for the full workflow including publishing to the `public` branch.

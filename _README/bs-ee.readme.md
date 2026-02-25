@@ -2,9 +2,9 @@
 
 ## Overview
 
-Bootstrap EE is an **extension** of Bootstrap 5 following the same pattern as [FastBootstrap](https://fastbootstrap.com/) — meaning Bootstrap is pulled in from npm and customized via SCSS variable overrides and additional component partials. We do not fork Bootstrap's source. Bumping the Bootstrap version is as simple as updating the npm dependency.
+Bootstrap EE is a custom Bootstrap 5 distribution for Erehab/ptclinic.biz. Bootstrap is pulled in from npm and customized via SCSS variable overrides and additional component partials — we do not fork Bootstrap's source. Bumping the Bootstrap version is as simple as updating the npm dependency.
 
-FastBootstrap's online documentation covers the base component API and utility classes. Erehab-specific additions and overrides are documented in this repo.
+**Not based on FastBootstrap.** The old FBS/Atlassian Design System token layer was removed. The SCSS is clean Bootstrap 5 with straightforward Erehab brand overrides in `src/scss/_bsee-base.scss`.
 
 ## Package
 

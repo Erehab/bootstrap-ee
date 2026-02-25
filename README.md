@@ -3,18 +3,17 @@
 **Navigation:** [Developer Guide (CLAUDE.md)](CLAUDE.md) | [Tasks](TASKS.md)
 
 ## Overview
-Bootstrap EE is the Erehab version of https://fastbootstrap.com/. With extra classes and configuration choices.  The details of this will be found at https://github.com/Erehab/bootstrap-ee
 
-## Project Summary
+Bootstrap EE is a custom Bootstrap 5 distribution for Erehab/ptclinic.biz. Built directly on Bootstrap 5.3.2 with Erehab brand overrides, DataTables + Font Awesome Pro bundled, and optional JavaScript component wrappers.
 
-Bootstrap EE is a CSS framework built on Bootstrap 5.3.2 with customized styling and optional JavaScript component wrappers. It extends FastBootstrap with Erehab-specific design tokens, custom components, and configuration choices.
+**Not based on FastBootstrap** — the old FBS/Atlassian Design System token layer was removed. The SCSS is clean Bootstrap 5 with straightforward variable overrides.
 
 **Key Features:**
-- Custom SCSS variables and design tokens based on Atlassian Design System
-- Extended utility classes and component styles
+- Brand colors, fonts, and spacing defined in `src/scss/_bsee-base.scss`
+- Extended utility classes and component overrides
 - Bootstrap 5 JS, DataTables + all extensions bundled — nothing to add per-project
+- Font Awesome Pro bundled
 - Lightweight TypeScript wrappers for bootstrap.native components
-- Support for both light and dark themes
 
 **For Developers:**
 - See [CLAUDE.md](CLAUDE.md) for complete architecture details, build system information, and development guidelines
@@ -69,7 +68,5 @@ See [shared-bundle.readme.md](_README/shared-bundle.readme.md) for DataTables us
 
 ## Documentation
 
-Browse the base online documentation, visit [fastbootstrap.com](https://fastbootstrap.com).
-
-Erehab changes will be at the Repo https://github.com/Erehab/bootstrap-ee
+Source and issue tracking: [github.com/Erehab/bootstrap-ee](https://github.com/Erehab/bootstrap-ee)
 
