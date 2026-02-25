@@ -29,26 +29,26 @@ output.less
 
 ### Tasks
 
-- [ ] **Audit bootswatch.less** — Categorize every section:
+- [x] **Audit bootswatch.less** — Categorize every section:
   - Variables that map to BS5 custom properties (colors, fonts, spacing)
   - Component overrides that should become BSEE SCSS partials
   - Custom utility classes (color helpers, text variants, note_item variants)
   - App-specific classes (sidebar, main-content, customer-info-row, etc.)
   - Dead/commented-out code
 
-- [ ] **Audit spacing.less** — Compare against BS5 built-in spacing utilities (mt-1, pt-3 etc.). Determine: keep as legacy compat layer, replace with BS5 classes, or drop.
+- [x] **Audit spacing.less** — Compare against BS5 built-in spacing utilities (mt-1, pt-3 etc.). Determine: keep as legacy compat layer, replace with BS5 classes, or drop.
 
-- [ ] **Audit icomoon usage** — Search ptclinic.biz templates/PHP for `icon-` class usage. If zero hits: drop entirely. If hits exist: document which icons are needed.
+- [x] **Audit icomoon usage** — Search ptclinic.biz templates/PHP for `icon-` class usage. If zero hits: drop entirely. If hits exist: document which icons are needed.
 
-- [ ] **Audit JS files** — Categorize each file:
+- [x] **Audit JS files** — Categorize each file:
   - Vendor libs that have npm equivalents (moment, parsley, typeahead, bloodhound, clipboard, etc.)
   - Vendor libs that are obsolete/abandoned
   - Custom JS files (customer.js, initilize.js, gridTable.js, etc.) — document what they do
   - Files that are clearly dead (zeroclip, landbot_masterbot, BugSnagJqueryFinder, etc.)
 
-- [ ] **Document the current ptclinic.biz page load** — What CSS and JS files does the site currently load? Create `_AIDocs/legacy-load-inventory.md` listing every `<link>` and `<script>` tag with source.
+- [x] **Document the current ptclinic.biz page load** — What CSS and JS files does the site currently load? Create `_AIDocs/legacy-load-inventory.md` listing every `<link>` and `<script>` tag with source.
 
-- [ ] **Document BS3 → BS5 breaking changes relevant to ptclinic.biz** — Create `_AIDocs/bs3-to-bs5-changes.md` covering:
+- [x] **Document BS3 → BS5 breaking changes relevant to ptclinic.biz** — Create `_AIDocs/bs3-to-bs5-changes.md` covering:
   - Component renames and restructures (panels→cards, wells→removed, glyphicons→FA, navbar restructure)
   - Class name changes (`.col-xs-` removed, `.text-left`→`.text-start`, `.float-left`→`.float-start`, etc.)
   - JavaScript API changes (data attributes renamed to `data-bs-*`)
@@ -103,21 +103,21 @@ output.less
 
 ### Tasks
 
-- [ ] **Update brand variables** — Set colors, fonts, and spacing in `src/scss/_variables.scss` per design decisions
+- [x] **Update brand variables** — Set colors, fonts, and spacing in `src/scss/_variables.scss` per design decisions
 
-- [ ] **Migrate/update component overrides** — Navbar, cards (was panels), buttons, dropdowns, forms into existing or new BSEE SCSS partials. Apply BS5 class names throughout.
+- [x] **Migrate/update component overrides** — Navbar, cards (was panels), buttons, dropdowns, forms into existing or new BSEE SCSS partials. Apply BS5 class names throughout.
 
-- [ ] **Migrate custom utility classes** — Color helpers, `_text` variants, note_item variants — into `src/scss/_utilities.scss` or a new `_custom-utilities.scss`
+- [x] **Migrate custom utility classes** — Color helpers, `_text` variants, note_item variants — into `src/scss/_utilities.scss` or a new `_custom-utilities.scss`
 
-- [ ] **Handle spacing utilities** — Either map old `m-t`/`p-b` classes to BS5 equivalents via `@extend` or keep as a `_legacy-spacing.scss` compat partial. Decision depends on usage audit from Phase 1.
+- [x] **Handle spacing utilities** — Either map old `m-t`/`p-b` classes to BS5 equivalents via `@extend` or keep as a `_legacy-spacing.scss` compat partial. Decision depends on usage audit from Phase 1.
 
-- [ ] **Migrate app layout classes** — `#sidebar`, `#main-content`, `.customerpage`, `.content`, `.customer-info-row` variants — into a `_layout.scss` partial, updated for BS5 flexbox/grid
+- [x] **Migrate app layout classes** — `#sidebar`, `#main-content`, `.customerpage`, `.content`, `.customer-info-row` variants — into a `_layout.scss` partial, updated for BS5 flexbox/grid
 
-- [ ] **Migrate print styles** — Port and update `@media print` rules
+- [x] **Migrate print styles** — Port and update `@media print` rules
 
-- [ ] **Drop Bootstrap 3 source** — `legacy/css/bootstrap/` is not migrated; replaced entirely by BS 5.3.2
+- [x] **Drop Bootstrap 3 source** — `legacy/css/bootstrap/` is not migrated; replaced entirely by BS 5.3.2
 
-- [ ] **Run `npm run dist`** — Verify build succeeds with no errors
+- [x] **Run `npm run dist`** — Verify build succeeds with no errors
 
 ---
 
@@ -127,10 +127,10 @@ output.less
 
 ### Tasks
 
-- [ ] **Obtain FA Pro kit or package** — Determine delivery method (npm package, kit CDN, or self-hosted)
-- [ ] **Integrate into BSEE SCSS** — Import FA SCSS into `bs-ee.scss`
-- [ ] **Verify icon names** — FA 4→6 icon name changes; audit any `.fa-*` class usage in ptclinic.biz templates and map to new names
-- [ ] **Remove old FA font files** from legacy/
+- [x] **Obtain FA Pro kit or package** — Determine delivery method (npm package, kit CDN, or self-hosted)
+- [x] **Integrate into BSEE SCSS** — Import FA SCSS into `bs-ee.scss`
+- [ ] **Verify icon names** — FA 4→6 icon name changes; audit any `.fa-*` class usage in ptclinic.biz templates and map to new names (tracked in TASKS.md)
+- [x] **Remove old FA font files** from legacy/
 
 ---
 
@@ -140,24 +140,13 @@ output.less
 
 ### Tasks
 
-- [ ] **Identify npm-available packages** — For each legacy JS lib, find the current npm package name and version:
-  - `moment.js` → consider `dayjs` (lighter) or keep moment
-  - `parsley.js` → `parsleyjs`
-  - `typeahead.bundle.js` + `bloodhound.js` → `typeahead.js` (or Algolia alternatives)
-  - `clipboard.min.js` → `clipboard.js` (ClipboardJS)
-  - `jquery.bootstrap-growl` → likely replace with BS5 toasts
-  - `bootstrap-datetimepicker` → replace with modern datepicker (Flatpickr or Pikaday)
-  - `handlebars` → still on npm
+- [x] **Identify npm-available packages** — See `_AIDocs/audit_js.md` §1. dayjs, parsleyjs, typeahead.js, clipboard, handlebars, tablesorter, sortablejs, flatpickr. Bootstrap-growl → replace with BS5 toasts.
 
-- [ ] **Identify dead JS** — Files that can simply be dropped:
-  - `zeroclip.js` — Flash-based clipboard, dead
-  - `landbot_masterbot.js` — Third-party chatbot, not BSEE's concern
-  - `BugSnagJqueryFinder.js` — Debugging tool
-  - `bootstrap.min.js` — Replaced by BSEE's bundled BS JS
+- [x] **Identify dead JS** — See `_AIDocs/audit_js.md` §2. zeroclip, BugSnagJqueryFinder, bootstrap.min.js, dataTables.bootstrap.js, bootstrap-hover-dropdown, jquery-ui-slide, jquery.matchHeight, jquery.metadata, landbot_masterbot. Plus verify: jquery-ui-for-layout, jquery.bootgrid, sherlock.
 
-- [ ] **Classify custom JS files** — For each of: `customer.js`, `initilize.js`, `gridTable.js`, `review_edit.js`, `review_edit2.js`, `nlSignup.js`, `nlSignupRecaptcha.js`, `slideDown.js`, `formatDate.js`, `date.js` — document purpose and whether it belongs in BSEE or stays in the consuming project
+- [x] **Classify custom JS files** — See `_AIDocs/audit_js.md` §4. All custom files (customer.js, gridTable.js, review_edit*.js, nlSignup*.js, slideDown.js) stay in ptclinic.biz. initilize.js is actually a vendored plugin, replaceable with native MutationObserver.
 
-- [ ] **Write JS migration plan** — Create `_AIDocs/plan_js-modernization.md` based on findings, proposing which packages to bundle into BSEE vs. keep in the consuming project
+- [x] **Write JS migration plan** — Created `_AIDocs/plan_js-modernization.md` with 5 phases: drop dead files, bundle vendor libs, clean up ptclinic.biz scripts, security cleanup, publish & verify.
 
 ---
 

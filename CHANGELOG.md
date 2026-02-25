@@ -2,6 +2,12 @@
 
 ### 2026-02-24
 
+**Plan: migrate-legacy-css Phase 5 — JS Modernization Strategy**
+- All recon was already in `audit_js.md`; used it to complete all 4 Phase 5 tasks
+- Created `_AIDocs/plan_js-modernization.md` — 5-phase plan covering dead file drops, npm bundling into BSEE, ptclinic.biz script cleanup, security, and publish
+
+### 2026-02-24
+
 **Removed FastBootstrap — migrated to clean Bootstrap 5**
 - Dropped the FastBootstrap/Atlassian Design System token layer entirely; `main` is now pure Bootstrap 5 with straightforward Erehab brand overrides
 - Archived the old FastBS SCSS in the `WithFastBS` branch (`old/scss/`) for reference — not carried forward

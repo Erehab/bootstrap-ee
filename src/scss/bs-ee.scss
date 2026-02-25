@@ -110,7 +110,3 @@ $theme-colors: map-merge($theme-colors, ("discovery": $discovery));
 @import "@fortawesome/fontawesome-pro/scss/thin";
 @import "@fortawesome/fontawesome-pro/scss/duotone";
 @import "@fortawesome/fontawesome-pro/scss/brands";
-
-.body {
-  background-color: #f0f9ff
-}
