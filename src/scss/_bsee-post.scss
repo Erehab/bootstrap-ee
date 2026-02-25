@@ -1,0 +1,22 @@
+// Bootstrap EE — Post-Bootstrap Variable Overrides
+// Loaded AFTER Bootstrap's _variables.scss.
+//
+// PUT HERE: anything that references a Bootstrap variable ($purple, $gray-500,
+// tint-color(), shade-color(), $theme-colors map, etc.).
+// Also: custom vars that don't override BS defaults and don't need to be pre.
+//
+// DO NOT PUT HERE: overrides of Bootstrap !default variables (those go in
+// _bsee-pre.scss or Bootstrap will set them before you can).
+
+// ─── Custom Theme Colors ───────────────────────────────────────────────────────
+// Discovery purple — use $purple from BS5, or override with a hex value.
+// $purple is BS5's #6f42c1. Current Erehab discovery is a slightly different shade.
+$discovery: $purple; // Purple — formerly FBS "discovery" color
+
+// ─── Navbar ───────────────────────────────────────────────────────────────────
+// Custom var (not a BS override) — used in _navbar.scss
+$navbar-dark-bg: #154764; // Deep navy
+
+// ─── Warning text helper ──────────────────────────────────────────────────────
+// When using warning color on text (not backgrounds), use for WCAG AA compliance.
+$warning-text: darken(#f39c12, 30%); // ≈ #7a4f00

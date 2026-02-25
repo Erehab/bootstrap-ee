@@ -1,0 +1,24 @@
+// Dropdowns
+// Tighter padding, multi-column variants, custom hover color.
+
+.dropdown {
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    min-width: 200px;
+}
+
+.dropdown-item {
+    padding: 3px 10px;
+}
+
+// Multi-column dropdown variants
+.dropdown-menu.columns-2 {
+    min-width: 300px;
+    text-align: right;
+}
+
+.dropdown-menu.columns-3 {
+    min-width: 500px;
+}

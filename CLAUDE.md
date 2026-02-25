@@ -4,7 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Bootstrap EE is the Erehab version of FastBootstrap (https://fastbootstrap.com/), extended with custom classes and configuration choices. It's a CSS framework built on Bootstrap 5.3.2 with customized styling and optional JavaScript component wrappers using bootstrap.native.
+Bootstrap EE is a custom Bootstrap 5 distribution for Erehab/ptclinic.biz. Built directly on Bootstrap 5.3.2 with Erehab brand overrides, DataTables + Font Awesome Pro bundled, and optional JavaScript component wrappers using bootstrap.native.
+
+**Not based on FastBootstrap** — the old FBS/Atlassian Design System token layer was removed. The SCSS is now clean Bootstrap 5 with straightforward variable overrides in `src/scss/_bsee-base.scss`.
 
 **Important**: This project bundles both CSS and JS. Bootstrap JS, DataTables, and all extensions are bundled — consuming projects only need two tags.
 
@@ -50,10 +52,14 @@ The main entry point is `src/scss/bs-ee.scss`, which orchestrates imports in thi
 5. **Utilities & Helpers**: Custom helpers (animation, text-truncation, content, transforms, transitions) and extended utilities
 
 **Key customization files:**
-- `src/scss/_variables-tokens.scss`: Design token definitions
-- `src/scss/_variables.scss`: Bootstrap variable overrides (colors, spacing, component styles)
-- `src/scss/_variables-dark.scss`: Dark mode variable overrides
-- Component files in `src/scss/` override Bootstrap defaults while maintaining Bootstrap structure
+- `src/scss/_bsee-base.scss`: All Erehab brand overrides — colors, fonts, radii, spacing. **Edit this first.**
+- `src/scss/_fbs-colors.scss`: FBS palette reference (`$fbs-*` vars, not wired in by default)
+- `src/scss/_legacy-spacing.scss`: Old `m-t`/`p-b` compat classes for ptclinic.biz templates
+- `src/scss/_navbar.scss`, `_buttons.scss`, `_cards.scss`, `_dropdowns.scss`, `_forms.scss`: Component overrides
+- `src/scss/_note-items.scss`: ptclinic.biz note card variants (18 types)
+- `src/scss/_biz-utilities.scss`: 29 named color utilities + typography helpers
+- `src/scss/_layout.scss`: App-specific layout (sidebar, main-content)
+- `old/scss/`: Archive of previous FBS/Atlassian token-based SCSS — do not edit
 
 ### TypeScript Structure
 
@@ -79,10 +85,10 @@ Build output:
 
 ### Working with Styles
 
-1. Bootstrap variables are overridden in `src/scss/_variables.scss` - modify these rather than Bootstrap source
-2. Design tokens follow Atlassian Design System conventions (prefixed with `$ds-`)
-3. Custom utilities are defined in `src/scss/_utilities.scss` and `src/scss/_utilities_extended.scss`
-4. When adding new component styles, create a new partial in `src/scss/` and import it in `bs-ee.scss`
+1. **To change brand colors, fonts, or radii**: edit `src/scss/_bsee-base.scss` — it's ~50 lines, all readable
+2. **To add component overrides**: create a new partial in `src/scss/` and import it in `bs-ee.scss`
+3. **Discovery color** (`$discovery: #4b49ac`) is injected into Bootstrap's `$theme-colors` map in `bs-ee.scss`, so `.btn-discovery`, `.badge-discovery`, `.alert-discovery`, `.text-discovery` etc. all work automatically
+4. **Future utilities**: use Bootstrap 5's utility API (`$utilities` map before `@import "bootstrap/scss/utilities/api"`) — see `_AIDocs/future-ideas.md`
 
 ### Working with TypeScript
 

@@ -1,0 +1,161 @@
+// FBS Color Palette
+// Source: FastBootstrap / Atlassian Design System color palette
+// These are curated explicit hex values (100–1000 scale) as an optional reference.
+// Use these to pick specific shades when Bootstrap's tint-color()/shade-color() aren't precise enough.
+// Prefix: $fbs- to make origin clear. Not wired into any Bootstrap variables by default.
+// Reference: https://atlassian.design/foundations/color-new/color-palette-new
+// Note: Bootstrap 5 provides $blue-100 through $blue-900 via tint-color()/shade-color().
+//       These FBS vars give explicit values and extend to 1000, plus extra color families.
+
+// Lime
+$fbs-lime-100: #eefbda;
+$fbs-lime-200: #d3f1a7;
+$fbs-lime-300: #b3df72;
+$fbs-lime-400: #94c748;
+$fbs-lime-500: #82b536;
+$fbs-lime-600: #6a9a23;
+$fbs-lime-700: #5b7f24;
+$fbs-lime-800: #4c6b1f;
+$fbs-lime-900: #37471f;
+$fbs-lime-1000: #2a3818;
+
+// Blue
+$fbs-blue-50:  #f5f7ff;
+$fbs-blue-100: #e9f2ff;
+$fbs-blue-200: #cce0ff;
+$fbs-blue-300: #85b8ff;
+$fbs-blue-400: #579dff;
+$fbs-blue-500: #388bff;
+$fbs-blue-600: #1d7afc;
+$fbs-blue-700: #0c66e4;
+$fbs-blue-800: #0055cc;
+$fbs-blue-900: #09326c;
+$fbs-blue-1000: #092957;
+
+// Purple
+$fbs-purple-100: #f3f0ff;
+$fbs-purple-200: #dfd8fd;
+$fbs-purple-300: #b8acf6;
+$fbs-purple-400: #9f8fef;
+$fbs-purple-500: #8f7ee7;
+$fbs-purple-600: #8270db;
+$fbs-purple-700: #6e5dc6;
+$fbs-purple-800: #5e4db2;
+$fbs-purple-900: #352c63;
+$fbs-purple-1000: #2b2451;
+
+// Red
+$fbs-red-100: #ffedeb;
+$fbs-red-200: #ffd2cc;
+$fbs-red-300: #ff9c8f;
+$fbs-red-400: #f87462;
+$fbs-red-500: #ef5c48;
+$fbs-red-600: #e34935;
+$fbs-red-700: #ca3521;
+$fbs-red-800: #ae2a19;
+$fbs-red-900: #601e16;
+$fbs-red-1000: #4f1c16;
+
+// Orange
+$fbs-orange-100: #fff4e5;
+$fbs-orange-200: #ffe2bd;
+$fbs-orange-300: #fec57b;
+$fbs-orange-400: #faa53d;
+$fbs-orange-500: #f18d13;
+$fbs-orange-600: #d97008;
+$fbs-orange-700: #b65c02;
+$fbs-orange-800: #974f0c;
+$fbs-orange-900: #5f3811;
+$fbs-orange-1000: #4a2b0f;
+
+// Yellow
+$fbs-yellow-100: #fffde7;
+$fbs-yellow-200: #fff9c4;
+$fbs-yellow-300: #fff176;
+$fbs-yellow-400: #ffee58;
+$fbs-yellow-500: #ffeb3b;
+$fbs-yellow-600: #fdd835;
+$fbs-yellow-700: #f9a825;
+$fbs-yellow-800: #f57f17;
+$fbs-yellow-900: #5c4200;
+$fbs-yellow-1000: #3d2c00;
+
+// Green
+$fbs-green-100: #dffcf0;
+$fbs-green-200: #baf3db;
+$fbs-green-300: #7ee2b8;
+$fbs-green-400: #4bce97;
+$fbs-green-500: #2abb7f;
+$fbs-green-600: #22a06b;
+$fbs-green-700: #1f845a;
+$fbs-green-800: #216e4e;
+$fbs-green-900: #164b35;
+$fbs-green-1000: #143c2b;
+
+// Teal
+$fbs-teal-100: #e3fafc;
+$fbs-teal-200: #c1f0f5;
+$fbs-teal-300: #8bdbe5;
+$fbs-teal-400: #60c6d2;
+$fbs-teal-500: #37b4c3;
+$fbs-teal-600: #1d9aaa;
+$fbs-teal-700: #1d7f8c;
+$fbs-teal-800: #206b74;
+$fbs-teal-900: #1d474c;
+$fbs-teal-1000: #15373b;
+
+// Magenta
+$fbs-magenta-100: #ffecf8;
+$fbs-magenta-200: #fdd0ec;
+$fbs-magenta-300: #f797d2;
+$fbs-magenta-400: #e774bb;
+$fbs-magenta-500: #da62ac;
+$fbs-magenta-600: #cd519d;
+$fbs-magenta-700: #ae4787;
+$fbs-magenta-800: #943d73;
+$fbs-magenta-900: #50253f;
+$fbs-magenta-1000: #421f34;
+
+// Neutral (light theme)
+$fbs-neutral-0:    #ffffff;
+$fbs-neutral-100:  #f7f8f9;
+$fbs-neutral-200:  #f1f2f4;
+$fbs-neutral-300:  #dcdfe4;
+$fbs-neutral-400:  #b3b9c4;
+$fbs-neutral-500:  #8590a2;
+$fbs-neutral-600:  #758195;
+$fbs-neutral-700:  #626f86;
+$fbs-neutral-800:  #44546f;
+$fbs-neutral-900:  #2c3e5d;
+$fbs-neutral-1000: #172b4d;
+$fbs-neutral-1100: #091e42;
+$fbs-neutral-100a: rgba(9, 30, 66, 0.03);
+$fbs-neutral-200a: rgba(9, 30, 66, 0.06);
+$fbs-neutral-300a: rgba(9, 30, 66, 0.14);
+$fbs-neutral-400a: rgba(9, 30, 66, 0.31);
+$fbs-neutral-500a: rgba(9, 30, 66, 0.49);
+
+// Dark neutral (dark theme)
+$fbs-dark-neutral-n100:  #101214;
+$fbs-dark-neutral-0:     #161a1d;
+$fbs-dark-neutral-100:   #1d2125;
+$fbs-dark-neutral-200:   #22272b;
+$fbs-dark-neutral-250:   #282e33;
+$fbs-dark-neutral-300:   #2c333a;
+$fbs-dark-neutral-350:   #38414a;
+$fbs-dark-neutral-400:   #454f59;
+$fbs-dark-neutral-500:   #596773;
+$fbs-dark-neutral-600:   #738496;
+$fbs-dark-neutral-700:   #8c9bab;
+$fbs-dark-neutral-800:   #9fadbc;
+$fbs-dark-neutral-900:   #b6c2cf;
+$fbs-dark-neutral-1000:  #c7d1db;
+$fbs-dark-neutral-1100:  #dee4ea;
+$fbs-dark-neutral-n100a: rgba(3, 4, 4, 0.26);
+$fbs-dark-neutral-100a:  rgba(188, 214, 240, 0.04);
+$fbs-dark-neutral-200a:  rgba(161, 189, 217, 0.08);
+$fbs-dark-neutral-250a:  rgba(200, 225, 249, 0.1);
+$fbs-dark-neutral-300a:  rgba(166, 197, 226, 0.16);
+$fbs-dark-neutral-350a:  rgba(195, 222, 254, 0.2);
+$fbs-dark-neutral-400a:  rgba(191, 219, 248, 0.28);
+$fbs-dark-neutral-500a:  rgba(155, 180, 202, 0.5);

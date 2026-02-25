@@ -1,0 +1,86 @@
+// Bootstrap EE — Pre-Bootstrap Variable Overrides
+// Loaded BEFORE Bootstrap's _variables.scss.
+//
+// PUT HERE: anything that overrides a Bootstrap variable marked !default.
+// Bootstrap's !default means "only set if not already defined" — so your
+// value must exist before Bootstrap's file runs or Bootstrap wins.
+//
+// DO NOT PUT HERE: variables that reference Bootstrap vars like $purple,
+// $gray-500, $theme-colors, tint-color(), shade-color(), etc.
+// Those belong in _bsee-post.scss.
+//
+// Source of truth: _AIDocs/design-decisions.md
+
+
+
+
+// ─── Brand Colors ─────────────────────────────────────────────────────────────
+$primary:     $fbs-blue-800; // Erehab navy blue
+$success:     $fbs-green-500;
+$warning:     $fbs-orange-400; // Use as bg/badge — 2.9:1 contrast fails WCAG AA on text
+$danger:      $fbs-red-500;
+$info:        $fbs-blue-600;
+
+$bsee-black:  #0a0909;
+
+// ─── Typography ───────────────────────────────────────────────────────────────
+// Nunito (body + headings) — loaded via Google Fonts in bs-ee.scss.
+// Sky+Flow decision: single font, headings bold not serif.
+$font-family-sans-serif: "Nunito", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$headings-font-family:   $font-family-sans-serif; // Nunito for headings too — no Arvo
+$headings-font-weight:   700;
+$headings-color:         $bsee-black; // Dark — same as body, no brown
+
+$font-size-base: 0.9375rem; // 15px — matches Sky+Flow and legacy feel
+
+// ─── Body ─────────────────────────────────────────────────────────────────────
+$body-color: $bsee-black; // Near-black
+// $body-bg:    #f0f9ff; // Light blue page background — keep legacy
+body {
+  // background-color: $fbs-blue-200 !important;
+  background-color: #F9F9F9 !important;
+}
+
+// ─── Links ────────────────────────────────────────────────────────────────────
+$link-color:       $info;
+$link-hover-color: $danger;
+
+// ─── Spacing & Layout ─────────────────────────────────────────────────────────
+$grid-gutter-width: 20px; // Tighter than BS default (30px) — dense CRM
+
+// ─── Borders Radius ────────────────────────────────────────────────────────────
+// Sky+Flow: more rounded — inputs 10px, buttons 12px
+$border-radius:      10px; // inputs, cards, dropdowns
+$border-radius-lg:   14px;
+$border-radius-sm:   6px;
+$border-radius-pill: 999px;
+$border-width:      2px;
+$border-color:      $fbs-neutral-300;
+
+// ─── Dropdowns ────────────────────────────────────────────────────────────────
+$dropdown-link-hover-bg: #dad2c5;
+$dropdown-border-radius: $border-radius;
+
+// ─── Buttons ──────────────────────────────────────────────────────────────────
+$btn-border-radius:    12px; // Sky+Flow: more rounded than inputs
+$btn-border-radius-lg: 14px;
+$btn-border-radius-sm: 8px;
+$btn-padding-y:        0.3125rem; // 5px — Sky+Flow tight vertical padding
+$btn-font-weight:      600;
+
+// ─── Cards ────────────────────────────────────────────────────────────────────
+// Tight padding — appropriate for dense CRM data pages
+$card-bg:            #ffffff; // White — don't inherit light-blue body-bg
+$card-title-color:   $info;
+$card-cap-padding-y: 0.35rem; // Smaller header — ~5px feel
+$card-cap-padding-x: 0.75rem;
+$card-spacer-y:      0.5rem;
+$card-spacer-x:      0.75rem;
+$card-border-radius: $border-radius;
+
+// ─── Badges ───────────────────────────────────────────────────────────────────
+$badge-border-radius: $border-radius-pill; // Pill badges by default
+
+// ─── Alerts ───────────────────────────────────────────────────────────────────
+$alert-padding-x: .75rem;
+$alert-padding-y: .25rem;

@@ -1,0 +1,92 @@
+// Legacy Spacing Compat Layer
+// Source: legacy/css/spacing.less
+// Rationale: ptclinic.biz templates use these class names extensively.
+//            Keep until templates are migrated to BS5 utility classes (mt-1, pt-3, etc.).
+// See: _AIDocs/audit_spacing.md for full mapping to BS5 equivalents.
+// FUTURE: Delete this file once ptclinic.biz templates are migrated.
+
+$_sp: 1rem; // base spacer (matches BS5 default)
+
+// Margins
+.m-a-0 { margin: 0 !important; }
+.m-t-0 { margin-top: 0 !important; }
+.m-b-0 { margin-bottom: 0 !important; }
+.m-l-0 { margin-left: 0 !important; }
+.m-r-0 { margin-right: 0 !important; }
+.m-x-0 { margin-left: 0 !important; margin-right: 0 !important; }
+.m-y-0 { margin-top: 0 !important; margin-bottom: 0 !important; }
+
+.m-a    { margin: $_sp !important; }
+.m-t    { margin-top: $_sp !important; }
+.m-b    { margin-bottom: $_sp !important; }
+.m-l    { margin-left: $_sp !important; }
+.m-r    { margin-right: $_sp !important; }
+.m-x    { margin-left: $_sp !important; margin-right: $_sp !important; }
+.m-y    { margin-top: $_sp !important; margin-bottom: $_sp !important; }
+
+.m-a-xs { margin: ($_sp * 0.5) !important; }
+.m-t-xs { margin-top: ($_sp * 0.5) !important; }
+.m-b-xs { margin-bottom: ($_sp * 0.5) !important; }
+.m-l-xs { margin-left: ($_sp * 0.5) !important; }
+.m-r-xs { margin-right: ($_sp * 0.5) !important; }
+.m-x-xs { margin-left: ($_sp * 0.5) !important; margin-right: ($_sp * 0.5) !important; }
+.m-y-xs { margin-top: ($_sp * 0.5) !important; margin-bottom: ($_sp * 0.5) !important; }
+
+.m-a-md { margin: ($_sp * 1.5) !important; }
+.m-t-md { margin-top: ($_sp * 1.5) !important; }
+.m-b-md { margin-bottom: ($_sp * 1.5) !important; }
+.m-l-md { margin-left: ($_sp * 1.5) !important; }
+.m-r-md { margin-right: ($_sp * 1.5) !important; }
+.m-x-md { margin-left: ($_sp * 1.5) !important; margin-right: ($_sp * 1.5) !important; }
+.m-y-md { margin-top: ($_sp * 1.5) !important; margin-bottom: ($_sp * 1.5) !important; }
+
+.m-a-lg { margin: ($_sp * 3) !important; }
+.m-t-lg { margin-top: ($_sp * 3) !important; }
+.m-b-lg { margin-bottom: ($_sp * 3) !important; }
+.m-l-lg { margin-left: ($_sp * 3) !important; }
+.m-r-lg { margin-right: ($_sp * 3) !important; }
+.m-x-lg { margin-left: ($_sp * 3) !important; margin-right: ($_sp * 3) !important; }
+.m-y-lg { margin-top: ($_sp * 3) !important; margin-bottom: ($_sp * 3) !important; }
+
+.m-x-auto { margin-left: auto !important; margin-right: auto !important; }
+
+// Paddings
+.p-a-0 { padding: 0 !important; }
+.p-t-0 { padding-top: 0 !important; }
+.p-b-0 { padding-bottom: 0 !important; }
+.p-l-0 { padding-left: 0 !important; }
+.p-r-0 { padding-right: 0 !important; }
+.p-x-0 { padding-left: 0 !important; padding-right: 0 !important; }
+.p-y-0 { padding-top: 0 !important; padding-bottom: 0 !important; }
+
+.p-a    { padding: $_sp !important; }
+.p-t    { padding-top: $_sp !important; }
+.p-b    { padding-bottom: $_sp !important; }
+.p-l    { padding-left: $_sp !important; }
+.p-r    { padding-right: $_sp !important; }
+.p-x    { padding-left: $_sp !important; padding-right: $_sp !important; }
+.p-y    { padding-top: $_sp !important; padding-bottom: $_sp !important; }
+
+.p-a-xs { padding: ($_sp * 0.5) !important; }
+.p-t-xs { padding-top: ($_sp * 0.5) !important; }
+.p-b-xs { padding-bottom: ($_sp * 0.5) !important; }
+.p-l-xs { padding-left: ($_sp * 0.5) !important; }
+.p-r-xs { padding-right: ($_sp * 0.5) !important; }
+.p-x-xs { padding-left: ($_sp * 0.5) !important; padding-right: ($_sp * 0.5) !important; }
+.p-y-xs { padding-top: ($_sp * 0.5) !important; padding-bottom: ($_sp * 0.5) !important; }
+
+.p-a-md { padding: ($_sp * 1.5) !important; }
+.p-t-md { padding-top: ($_sp * 1.5) !important; }
+.p-b-md { padding-bottom: ($_sp * 1.5) !important; }
+.p-l-md { padding-left: ($_sp * 1.5) !important; }
+.p-r-md { padding-right: ($_sp * 1.5) !important; }
+.p-x-md { padding-left: ($_sp * 1.5) !important; padding-right: ($_sp * 1.5) !important; }
+.p-y-md { padding-top: ($_sp * 1.5) !important; padding-bottom: ($_sp * 1.5) !important; }
+
+.p-a-lg { padding: ($_sp * 3) !important; }
+.p-t-lg { padding-top: ($_sp * 3) !important; }
+.p-b-lg { padding-bottom: ($_sp * 3) !important; }
+.p-l-lg { padding-left: ($_sp * 3) !important; }
+.p-r-lg { padding-right: ($_sp * 3) !important; }
+.p-x-lg { padding-left: ($_sp * 3) !important; padding-right: ($_sp * 3) !important; }
+.p-y-lg { padding-top: ($_sp * 3) !important; padding-bottom: ($_sp * 3) !important; }

@@ -2,22 +2,34 @@
 
 @use "sass:meta";
 
-// Self-hosted webfonts (Nunito)
-@import "fonts";
+// ─── Fonts ────────────────────────────────────────────────────────────────────
+// Nunito (body + headings) via Google Fonts v2
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap");
 
+// ─── Bootstrap Setup ──────────────────────────────────────────────────────────
+// 1. Bootstrap functions first (needed for tint-color, shade-color, etc.)
 @import "bootstrap/scss/functions";
-@import "functions";
-@import "variables-tokens";
-@import "variables";
-@import "variables-dark";
+
+// 2. Erehab pre-Bootstrap overrides (must come before Bootstrap's _variables.scss)
+@import "fbs-colors";   // Optional FBS palette reference ($fbs-* vars)
+@import "bsee-pre";     // Overrides BS !default vars ($primary, fonts, spacing, etc.)
+
+// 3. Bootstrap variables, then dark mode, then maps + mixins + utilities
 @import "bootstrap/scss/variables";
 @import "bootstrap/scss/variables-dark";
+
+// 4. Erehab post-Bootstrap vars (can reference BS vars like $purple, $gray-500)
+@import "bsee-post";    // Custom vars that reference BS variables
+
+// Add $discovery to Bootstrap's theme-colors map so it generates all variants
+// (.btn-discovery, .badge-discovery, .alert-discovery, .text-discovery, etc.)
+$theme-colors: map-merge($theme-colors, ("discovery": $discovery));
+
 @import "bootstrap/scss/maps";
 @import "bootstrap/scss/mixins";
 @import "bootstrap/scss/utilities";
 
-// Basic styles
-@import "root";
+// ─── Bootstrap Core ───────────────────────────────────────────────────────────
 @import "bootstrap/scss/root";
 @import "bootstrap/scss/reboot";
 @import "bootstrap/scss/type";
@@ -26,38 +38,54 @@
 @import "bootstrap/scss/grid";
 @import "bootstrap/scss/tables";
 @import "bootstrap/scss/transitions";
-@import "tables";
 
-// Components
-@import "breadcrumb";
-@import "forms";
-@import "button";
-@import "button-group";
-@import "dropdown";
-@import "nav";
+// ─── Bootstrap Components ─────────────────────────────────────────────────────
+@import "bootstrap/scss/forms";
+@import "bootstrap/scss/buttons";
+@import "bootstrap/scss/button-group";
+@import "bootstrap/scss/dropdown";
+@import "bootstrap/scss/nav";
+@import "bootstrap/scss/navbar";
+@import "bootstrap/scss/breadcrumb";
+@import "bootstrap/scss/pagination";
+@import "bootstrap/scss/badge";
+@import "bootstrap/scss/alert";
+@import "bootstrap/scss/progress";
+@import "bootstrap/scss/list-group";
+@import "bootstrap/scss/close";
+@import "bootstrap/scss/toasts";
+@import "bootstrap/scss/modal";
+@import "bootstrap/scss/tooltip";
+@import "bootstrap/scss/popover";
+@import "bootstrap/scss/carousel";
+@import "bootstrap/scss/spinners";
+@import "bootstrap/scss/offcanvas";
+@import "bootstrap/scss/placeholders";
+@import "bootstrap/scss/accordion";
+@import "bootstrap/scss/card";
+
+// ─── BSEE Component Overrides ─────────────────────────────────────────────────
 @import "navbar";
-@import "tabs";
-@import "close";
-@import "offcanvas";
-@import "pagination";
-@import "card";
-@import "alert";
-@import "modal";
-@import "placeholders";
-@import "popover";
-@import "progress";
-@import "spinner";
-@import "toast";
-@import "tooltip";
-@import "avatar";
-@import "badge";
-@import "accordion";
-@import "blankslate";
-@import "carousel";
-@import "list-group";
-@import "layout";
+@import "buttons";
+@import "cards";
+@import "dropdowns";
+@import "forms";
 
-// Third-party libraries — DataTables + extensions
+// ─── BIZ-Specific Styles ──────────────────────────────────────────────────────
+@import "note-items";
+@import "biz-utilities";
+@import "layout";
+@import "print";
+
+// ─── Bootstrap Helpers & Utility API ─────────────────────────────────────────
+@import "bootstrap/scss/helpers";
+@import "bootstrap/scss/utilities/api";
+
+// ─── Legacy Spacing Compat (ptclinic.biz templates) ──────────────────────────
+// TODO REMOVE - Delete once ptclinic.biz templates are migrated to BS5 utility classes
+@import "legacy-spacing";
+
+// ─── Third-party: DataTables + Extensions ────────────────────────────────────
 @include meta.load-css("datatables.net-bs5/css/dataTables.bootstrap5.css");
 @include meta.load-css("datatables.net-buttons-bs5/css/buttons.bootstrap5.css");
 @include meta.load-css("datatables.net-responsive-bs5/css/responsive.bootstrap5.css");
@@ -74,7 +102,7 @@
 @include meta.load-css("datatables.net-autofill-bs5/css/autoFill.bootstrap5.css");
 @include meta.load-css("datatables.net-staterestore-bs5/css/stateRestore.bootstrap5.css");
 
-// Third-party libraries — Font Awesome Pro
+// ─── Third-party: Font Awesome Pro ───────────────────────────────────────────
 @import "@fortawesome/fontawesome-pro/scss/fontawesome";
 @import "@fortawesome/fontawesome-pro/scss/solid";
 @import "@fortawesome/fontawesome-pro/scss/regular";
@@ -83,13 +111,6 @@
 @import "@fortawesome/fontawesome-pro/scss/duotone";
 @import "@fortawesome/fontawesome-pro/scss/brands";
 
-// utilities & helpers
-@import "bootstrap/scss/helpers";
-@import "helpers/animation";
-@import "helpers/text-truncation";
-@import "helpers/content";
-@import "helpers/transforms";
-@import "helpers/transitions";
-@import "utilities";
-@import "utilities_extended";
-@import "bootstrap/scss/utilities/api";
+.body {
+  background-color: #f0f9ff
+}

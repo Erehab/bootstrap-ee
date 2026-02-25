@@ -1,0 +1,16 @@
+// Print Styles
+
+@media print {
+    // Suppress URL printing after links
+    a[href]:after {
+        content: none;
+    }
+
+    body {
+        font-size: 18px;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: #000000;
+    }
+}

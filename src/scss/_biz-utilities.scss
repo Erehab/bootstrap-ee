@@ -1,0 +1,90 @@
+// BIZ Utility Classes
+// 29 named background/border color utilities + _text variants + typography helpers.
+// All use !important — these are intentional utility overrides.
+// Keep _text suffix for backward compatibility with ptclinic.biz templates.
+// FUTURE: Migrate templates to BS5-compatible .text-cherry style names.
+// Reference: _AIDocs/audit_bootswatch.md, _AIDocs/design-decisions.md
+
+// ─── Named Color Utilities ────────────────────────────────────────────────────
+// Pattern: .{name} = bg + border, .{name}_text = text color only
+
+$_biz-colors: (
+    "cherry":     #c11010,
+    "maroon":     #85144b,
+    "red":        #ff4136,
+    "orange":     #ff851b,
+    "yellow":     #ffdc00,
+    "green":      #27ae60,  // distinct from lime (was #2ECC40 — duplicate fixed)
+    "clover":     #3d9970,
+    "lime":       #2ecc40,
+    "olive":      #3d9970,
+    "teal":       #008080,
+    "aqua":       #7fdbff,
+    "navy":       #001f3f,
+    "blue":       #0074d9,
+    "ice":        #b0d4e3,
+    "deepblue":   #092334,
+    "purple":     #b10dc9,
+    "hotpink":    #ff69b4,
+    "fuchsia":    #e30687,  // distinct from maroon (was #85144B — duplicate fixed)
+    "slategrey":  #708090,
+    "mauve":      #9c7c8a,
+    "pearl":      #f0f0f0,
+    "steelblue":  #4682b4,
+    "mossgreen":  #8a9a5b,
+    "wheat":      #f5deb3,
+    "coffee":     #6f4e37,
+    "copper":     #b87333,
+    "silver":     #c0c0c0,
+    "black":      #111111,
+    "white":      #ffffff,
+);
+
+@each $name, $color in $_biz-colors {
+    .#{$name} {
+        background-color: $color !important;
+        border-color: $color !important;
+    }
+
+    .#{$name}_text {
+        color: $color !important;
+    }
+}
+
+// Bug fix: legacy .deepblue_text targeted `i` descendants only
+// Now correctly targets the element itself (override above handles it)
+
+// ─── Typography Helpers ───────────────────────────────────────────────────────
+.uppercase {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.largetext {
+    font-family: $headings-font-family;
+    letter-spacing: 0.1em;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.vertpad {
+    padding: 8px 0;
+}
+
+.vertpad4 {
+    padding: 4px 0;
+}
+
+// ─── Status Helpers ───────────────────────────────────────────────────────────
+.next-step-description,
+.latest-status-description {
+    font-weight: bold;
+}
+
+.next-step-target-date,
+.latest-status-type {
+    font-weight: bold;
+    color: $success;
+}
