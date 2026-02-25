@@ -25,3 +25,44 @@
     color: $white;
     padding: 4px 10px;
 }
+
+// ─── Card Variants ────────────────────────────────────────────────────────────
+// Semantic color variants: .card-primary, .card-success, .card-warning, etc.
+// Header/footer use the accent color; body uses a tinted bg in light mode
+// and a dark surface in dark mode.
+//
+// Usage: <div class="card card-warning">
+
+@mixin card-variant($accent, $body-bg-light, $header-color: #ffffff) {
+    overflow: hidden; // Clip card-body bg to card border-radius
+    border-color: $accent;
+
+    > .card-header,
+    > .card-footer {
+        background-color: $accent;
+        border-color: $accent;
+        color: $header-color;
+    }
+
+    > .card-body {
+        background-color: $body-bg-light;
+        color: color-contrast($body-bg-light);
+    }
+
+    [data-bs-theme="dark"] & > .card-body {
+        $dark-bg: mix(#1a1d21, $accent, 75%); // Dark surface tinted with accent
+        background-color: $dark-bg;
+        color: color-contrast($dark-bg);
+    }
+
+    [data-bs-theme="dark"] & {
+        border-color: lighten($accent, 10%);
+    }
+}
+
+.card-primary   { @include card-variant($primary,   tint-color($primary,   85%)); }
+.card-success   { @include card-variant($success,   tint-color($success,   85%)); }
+.card-warning   { @include card-variant($warning,   tint-color($warning,   85%)); }
+.card-danger    { @include card-variant($danger,    tint-color($danger,    85%)); }
+.card-info      { @include card-variant($info,      tint-color($info,      85%)); }
+.card-discovery { @include card-variant($discovery, tint-color($discovery, 85%)); }

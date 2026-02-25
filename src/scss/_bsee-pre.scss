@@ -35,10 +35,11 @@ $font-size-base: 0.9375rem; // 15px — matches Sky+Flow and legacy feel
 
 // ─── Body ─────────────────────────────────────────────────────────────────────
 $body-color: $bsee-black; // Near-black
-// $body-bg:    #f0f9ff; // Light blue page background — keep legacy
 body {
-  // background-color: $fbs-blue-200 !important;
-  background-color: #F9F9F9 !important;
+  background-color: #e9e9e9 !important;
+}
+[data-bs-theme="dark"] body {
+  background-color: #1a1d21 !important;
 }
 
 // ─── Links ────────────────────────────────────────────────────────────────────
@@ -70,7 +71,6 @@ $btn-font-weight:      600;
 
 // ─── Cards ────────────────────────────────────────────────────────────────────
 // Tight padding — appropriate for dense CRM data pages
-$card-bg:            #ffffff; // White — don't inherit light-blue body-bg
 $card-title-color:   $info;
 $card-cap-padding-y: 0.35rem; // Smaller header — ~5px feel
 $card-cap-padding-x: 0.75rem;

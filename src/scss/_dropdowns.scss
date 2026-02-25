@@ -13,6 +13,12 @@
     padding: 3px 10px;
 }
 
+// Dark mode: dropdown hover — replace warm tan with dark surface
+[data-bs-theme="dark"] .dropdown-item:hover,
+[data-bs-theme="dark"] .dropdown-item:focus {
+    background-color: #3a3f45;
+}
+
 // Multi-column dropdown variants
 .dropdown-menu.columns-2 {
     min-width: 300px;

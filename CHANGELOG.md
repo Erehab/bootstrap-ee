@@ -1,5 +1,16 @@
 # CHANGELOG
 
+### 2026-02-25
+
+**Dark/Light mode toggle — htmltest/index.html + component CSS**
+- Added dark/light toggle to `bs-ee-nav.js` web component with FA sun/moon icons and `localStorage` persistence; IIFE prevents flash-of-wrong-theme on load
+- Made body background theme-aware (`#e9e9e9` light / `#1a1d21` dark) via `_bsee-pre.scss`; removed `$card-bg: #ffffff` override that was locking cards to white
+- Added dark mode hover/active states to `bsee-button-variant` mixin in `_buttons.scss`
+- Added dark mode dropdown item hover in `_dropdowns.scss`
+- Created `card-variant` mixin in `_cards.scss` generating `.card-primary/success/warning/danger/info/discovery` with Bootstrap `color-contrast()` for auto text and `mix()` for dark surface tints
+- Updated `note-item` mixin in `_note-items.scss` to use `color-contrast()` + `!important` to resist Bootstrap dark mode CSS var overrides; theme-mapped variants aliased via `@extend`
+- Replaced inline-style note card samples in `index.html` with proper class-based markup; removed `bg-white` from color palette labels
+
 ### 2026-02-24
 
 **Update docs — remove FastBootstrap references**

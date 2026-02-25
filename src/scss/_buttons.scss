@@ -20,6 +20,20 @@
         border-color: darken($border, 10%);
         color: #ffffff;
     }
+
+    [data-bs-theme="dark"] &:hover,
+    [data-bs-theme="dark"] &:focus {
+        background-color: #2c2f33;
+        border-color: $bg;
+        color: $bg;
+    }
+
+    [data-bs-theme="dark"] &:active,
+    [data-bs-theme="dark"] &.active {
+        background-color: #1a1d21;
+        border-color: $border;
+        color: $bg;
+    }
 }
 
 .btn-primary   { @include bsee-button-variant($primary); }

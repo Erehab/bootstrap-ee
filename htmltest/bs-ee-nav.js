@@ -1,24 +1,32 @@
+// Apply saved theme immediately to avoid flash on load
+(function () {
+    const saved = localStorage.getItem('bsee-theme');
+    if (saved) {
+        document.documentElement.setAttribute('data-bs-theme', saved);
+    }
+}());
+
 /**
  * <bs-ee-nav> — shared navigation for Bootstrap EE htmltest pages.
  *
  * Usage: <bs-ee-nav></bs-ee-nav>
  * Active link is detected automatically from window.location.pathname.
- * External doc links are always present on the right side.
+ * Dark/light mode toggle persists via localStorage (key: bsee-theme).
  */
 class BsEeNav extends HTMLElement {
     connectedCallback() {
         const current = window.location.pathname.split('/').pop().replace('.html', '') || 'index';
 
         const pages = [
-            { id: 'index',        href: 'index.html',        label: 'Home' },
-            { id: 'components',   href: 'components.html',   label: 'Components' },
-            { id: 'forms',        href: 'forms.html',        label: 'Forms' },
-            { id: 'datatables',   href: 'datatables.html',   label: 'DataTables' },
-            { id: 'fastbootstrap',href: 'fastbootstrap.html',label: 'FastBS' },
-            { id: 'fontawesome',  href: 'fontawesome.html',  label: 'Icons' },
-            { id: 'tokens',          href: 'tokens.html',          label: 'Tokens' },
-            { id: 'design-compare',  href: 'design-compare.html',  label: 'Design Compare' },
-            { id: 'legacy',          href: 'legacy.html',          label: 'Legacy' },
+            { id: 'index',          href: 'index.html',          label: 'Home' },
+            { id: 'components',     href: 'components.html',      label: 'Components' },
+            { id: 'forms',          href: 'forms.html',           label: 'Forms' },
+            { id: 'datatables',     href: 'datatables.html',      label: 'DataTables' },
+            { id: 'fastbootstrap',  href: 'fastbootstrap.html',   label: 'FastBS' },
+            { id: 'fontawesome',    href: 'fontawesome.html',     label: 'Icons' },
+            { id: 'tokens',         href: 'tokens.html',          label: 'Tokens' },
+            { id: 'design-compare', href: 'design-compare.html',  label: 'Design Compare' },
+            { id: 'legacy',         href: 'legacy.html',          label: 'Legacy' },
         ];
 
         const external = [
@@ -42,8 +50,31 @@ class BsEeNav extends HTMLElement {
                     ${pageLinks}
                     <span style="width:1px;height:16px;background:rgba(255,255,255,.2);display:inline-block;"></span>
                     ${extLinks}
+                    <span style="width:1px;height:16px;background:rgba(255,255,255,.2);display:inline-block;"></span>
+                    <button id="bsee-theme-toggle" title="Toggle dark/light mode"
+                        style="background:none;border:none;cursor:pointer;padding:4px 6px;color:#93c5fd;font-size:1rem;line-height:1;">
+                    </button>
                 </div>
             </nav>`;
+
+        this._applyTheme(localStorage.getItem('bsee-theme') || 'light');
+
+        this.querySelector('#bsee-theme-toggle').addEventListener('click', () => {
+            const next = document.documentElement.getAttribute('data-bs-theme') === 'dark' ? 'light' : 'dark';
+            this._applyTheme(next);
+            localStorage.setItem('bsee-theme', next);
+        });
+    }
+
+    _applyTheme(theme) {
+        document.documentElement.setAttribute('data-bs-theme', theme);
+        const btn = this.querySelector('#bsee-theme-toggle');
+        if (btn) {
+            btn.innerHTML = theme === 'dark'
+                ? '<i class="fa-solid fa-sun"></i>'
+                : '<i class="fa-solid fa-moon"></i>';
+            btn.title = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+        }
     }
 }
 

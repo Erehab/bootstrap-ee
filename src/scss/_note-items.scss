@@ -5,13 +5,18 @@
 
 // ─── Mixin ─────────────────────────────────────────────────────────────────
 @mixin note-item($border, $bg, $header-bg: $border, $header-color: #ffffff) {
+    overflow: hidden; // Clip card-body bg to card border-radius
     border-color: $border;
-    background-color: $bg;
 
     > .card-header {
         background-color: $header-bg;
         border-color: $border;
         color: $header-color;
+    }
+
+    > .card-body {
+        background-color: $bg !important;           // Resist Bootstrap dark mode CSS var override
+        color: color-contrast($bg) !important;      // Auto black/white based on bg luminance
     }
 
     > .card-footer {
@@ -27,25 +32,23 @@
 }
 
 // ─── Variants ──────────────────────────────────────────────────────────────
+// Theme-color aliases — map to card-variant classes for dark mode support
 .note_item,
-.note_item1 {
-    @include note-item(#ffa523, #ffffff, #ffa523, #ffffff);
-}
+.note_item1       { @extend .card-warning; }
+.note_item_status { @extend .card-warning; }
+.note_item_work   { @extend .card-warning; }
+.note_item_g5     { @extend .card-primary; }
+.note_item_finance { @extend .card-success; }
+.note_item_top    { @extend .card-danger; }
+.note_item_design { @extend .card-discovery; }
 
-.note_item_status {
-    @include note-item(#ffa523, #fff4e6, #ffa523, #ffffff);
-}
-
+// Custom variants — specific legacy colors, not mapped to theme colors
 .note_item_contact {
     @include note-item(#ffa523, #f0ffff, #ffa523, #ffffff);
 }
 
 .note_item_link {
     @include note-item(#ffa523, #f0fff0, #ffa523, #ffffff);
-}
-
-.note_item_work {
-    @include note-item(#ffa523, #fffacd, #ffa523, #ffffff);
 }
 
 .note_item_other,
@@ -57,16 +60,8 @@
     @include note-item(#0080ff, #ffffbc, #0080ff, #ffffff);
 }
 
-.note_item_design {
-    @include note-item(#8400a3, #fdedff, #8400a3, #ffffff);
-}
-
 .note_item_email {
     @include note-item(#0037ff, #b5c4ff, #0037ff, #ffffff);
-}
-
-.note_item_finance {
-    @include note-item(#61ab5d, #008040, #008040, #ffffff);
 }
 
 .note_item_local {
@@ -83,14 +78,6 @@
 
 .note_item_nc {
     @include note-item(#004646, #008080, #008080, #ffffff);
-}
-
-.note_item_g5 {
-    @include note-item(#004080, #e6e6e6, #004080, #ffffff);
-}
-
-.note_item_top {
-    @include note-item(#bb0a00, #ff0000, #ff0000, #ffff00);
 }
 
 .note_item_pdr {
