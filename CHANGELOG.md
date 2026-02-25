@@ -1,5 +1,13 @@
 # CHANGELOG
 
+### 2026-02-24
+
+**Removed FastBootstrap — migrated to clean Bootstrap 5**
+- Dropped the FastBootstrap/Atlassian Design System token layer entirely; `main` is now pure Bootstrap 5 with straightforward Erehab brand overrides
+- Archived the old FastBS SCSS in the `WithFastBS` branch (`old/scss/`) for reference — not carried forward
+- Replaced legacy partials with new focused component files: `_buttons.scss`, `_cards.scss`, `_dropdowns.scss`, `_note-items.scss`, `_biz-utilities.scss`, `_legacy-spacing.scss`, `_fbs-colors.scss`, `_bsee-pre.scss`, `_bsee-post.scss`, `_print.scss`
+- Added `old/` and `.playwright-mcp/` to `.gitignore`
+
 ### 2026-02-23
 
 **Plan: migrate-legacy-css Phase 2 — Design Review**
