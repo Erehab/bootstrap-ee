@@ -2,6 +2,12 @@
 
 ### 2026-02-24
 
+**Update docs — remove FastBootstrap references**
+- README.md, bs-ee.readme.md, scss.readme.md updated to reflect current state (plain Bootstrap 5, no FBS/Atlassian layer)
+- scss.readme.md rewritten to match actual current file structure
+
+### 2026-02-24
+
 **Plan: migrate-legacy-css Phase 5 — JS Modernization Strategy**
 - All recon was already in `audit_js.md`; used it to complete all 4 Phase 5 tasks
 - Created `_AIDocs/plan_js-modernization.md` — 5-phase plan covering dead file drops, npm bundling into BSEE, ptclinic.biz script cleanup, security, and publish

@@ -2,7 +2,8 @@
 
 ## Active Tasks
 
-- Update docs to make it clear that FastBootstrap is no longer part of this
+- Test Dark/Light mode on the htmltest/index.html this might be part of the navbar webcomponent
+- Add in an animation library. Make sure there is good documentation.
 - Create a documented method/process for auditing a consuming project's templates for FA 4.x icon classes and mapping them to FA 6 Pro names — needed each time BSEE is added to a project (medium).
 - Consider adding an `initBootstrap(container)` helper to the bundle for initializing tooltips/popovers in dynamically injected content (easy, low priority).
 
