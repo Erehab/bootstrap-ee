@@ -38,6 +38,32 @@
     border-radius: $border-radius-sm;
 }
 
+// Test page nav links (bs-ee-nav.js custom element)
+.bsee-nav-link {
+    color: #93c5fd;
+    font-weight: 400;
+    transition: color 0.15s ease;
+
+    &:hover,
+    &:focus {
+        color: #ffffff;
+    }
+
+    &.active {
+        color: $fbs-lime-300; // Bright lime — pops against navy, clear active indicator
+        font-weight: 600;
+    }
+}
+
+.bsee-nav-link--ext {
+    opacity: 0.7;
+
+    &:hover,
+    &:focus {
+        opacity: 1;
+    }
+}
+
 // Navbar search input
 .navbar-form .form-control {
     background-color: #e6dfd1;

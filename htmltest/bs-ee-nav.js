@@ -35,11 +35,11 @@ class BsEeNav extends HTMLElement {
 
         const pageLinks = pages.map(p => {
             const active = p.id === current;
-            return `<a href="${p.href}" class="text-decoration-none" style="color:${active ? '#fff' : '#93c5fd'};font-weight:${active ? '600' : '400'};">${p.label}</a>`;
+            return `<a href="${p.href}" class="bsee-nav-link text-decoration-none${active ? ' active' : ''}">${p.label}</a>`;
         }).join('');
 
         const extLinks = external.map(e =>
-            `<a href="${e.href}" target="_blank" rel="noopener" class="text-decoration-none" style="color:#93c5fd;opacity:.7;">${e.label} ↗</a>`
+            `<a href="${e.href}" target="_blank" rel="noopener" class="bsee-nav-link bsee-nav-link--ext text-decoration-none">${e.label} ↗</a>`
         ).join('');
 
         this.innerHTML = `

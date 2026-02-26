@@ -2,6 +2,14 @@
 
 ### 2026-02-25
 
+**Navbar rollovers, HTML cleanup, card header, utility classes**
+- Fixed navbar hover: `bs-ee-nav.js` links used inline `style="color:..."` which blocked CSS `:hover` rules; replaced with `.bsee-nav-link` / `.bsee-nav-link--ext` / `.active` classes; added ruleset to `_navbar.scss` with transition and active color `$fbs-lime-300` (lime against navy)
+- Stripped `text-secondary` color overrides from `htmltest/animations.html` (all descriptive paragraphs + `<code>` animation labels) and `htmltest/legacy.html` (3 intro paragraphs); cleaned empty `class=""` attrs from `index.html` and `components.html`; `design-compare.html` excluded (intentional overrides)
+- Card header (`_cards.scss`): bumped from 13px/fw-600 to 1rem/fw-700 — bolder and slightly above body text
+- Added to `_biz-utilities.scss`: letterspacing utilities with both `.tracking-*` and `.letterspacing-*` aliases (tight/normal/wide/wider/widest); extended display scale `.display-7` (2rem) through `.display-13` (0.25rem)
+
+### 2026-02-25
+
 **Remove FastBS page + Add animation library**
 - Deleted `htmltest/fastbootstrap.html` — referenced components (avatars, blankslate, legacy animate classes) no longer exist
 - Removed FastBS nav entry and FSB Docs external link from `bs-ee-nav.js`; removed FastBootstrap card from `index.html`; added Animations nav/card

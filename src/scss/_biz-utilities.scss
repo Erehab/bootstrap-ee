@@ -77,6 +77,25 @@ $_biz-colors: (
     padding: 4px 0;
 }
 
+// ─── Letter Spacing ───────────────────────────────────────────────────────────
+// Both .tracking-* and .letterspacing-* work — aliases for the same values.
+.tracking-tight,   .letterspacing-tight   { letter-spacing: -0.025em !important; }
+.tracking-normal,  .letterspacing-normal  { letter-spacing: 0em !important; }
+.tracking-wide,    .letterspacing-wide    { letter-spacing: 0.05em !important; }
+.tracking-wider,   .letterspacing-wider   { letter-spacing: 0.1em !important; }
+.tracking-widest,  .letterspacing-widest  { letter-spacing: 0.2em !important; }
+
+// ─── Display Font Sizes 7–13 ──────────────────────────────────────────────────
+// Extends Bootstrap's .display-1 through .display-6 scale downward.
+// Usage: .display-7 through .display-13
+.display-7  { font-size: 2rem !important;    font-weight: 300; line-height: 1.2; }
+.display-8  { font-size: 1.5rem !important;  font-weight: 300; line-height: 1.2; }
+.display-9  { font-size: 1.25rem !important; font-weight: 300; line-height: 1.2; }
+.display-10 { font-size: 1rem !important;    font-weight: 300; line-height: 1.2; }
+.display-11 { font-size: 0.75rem !important; font-weight: 300; line-height: 1.2; }
+.display-12 { font-size: 0.5rem !important;  font-weight: 300; line-height: 1.2; }
+.display-13 { font-size: 0.25rem !important; font-weight: 300; line-height: 1.2; }
+
 // ─── Status Helpers ───────────────────────────────────────────────────────────
 .next-step-description,
 .latest-status-description {
