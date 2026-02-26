@@ -2,6 +2,12 @@
 
 ### 2026-02-25
 
+**Improve Icons page**
+- Expanded `icons.html` to be more comprehensive: added animation section (spin, beat, bounce, fade, flip, shake, beat-fade, with live demos and copy-pasteable class snippets), icon search tips (how to browse FA Pro, use icon kit, filter by category/style), sizing reference table (xs→2xl), stacking examples, and a fixed-width/list example
+- Mirrored the stronger icon grid layout from `design-compare.html`
+
+### 2026-02-25
+
 **Replace tokens.html with colors.html; add -lt color variants**
 - Deleted `tokens.html` (full of stale `--ds-*` token tables from removed FBS/Atlassian system)
 - Created `htmltest/colors.html`: FBS palette swatches with `$fbs-*` variable names on hover, Bootstrap theme color table (primary/success/warning/danger/info/discovery) with hex values and FBS source, live button/badge samples, named BSEE color chip grids

@@ -5,10 +5,11 @@
 .card {
     margin-bottom: 0.4em;
     border: 2px solid $primary;
+    overflow: hidden; // Clip children (tables, images) to card border-radius
 }
 
 .card-body {
-    overflow: hidden;
+    overflow: visible;
 }
 
 .card-header {

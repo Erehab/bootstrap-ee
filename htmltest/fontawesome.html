@@ -3,70 +3,489 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Font Awesome Pro Test</title>
+    <title>Icons — Bootstrap EE</title>
     <link rel="stylesheet" href="../css/bs-ee.css">
+    <style>
+        .icon-item { width: 72px; }
+        .name-change-table {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 6px 12px;
+            align-items: center;
+            max-width: 380px;
+        }
+        .name-old { color: #c0392b; font-family: monospace; font-size: 13px; }
+        .name-arrow { font-family: monospace; }
+        .name-new { color: #27ae60; font-family: monospace; font-size: 13px; font-weight: 600; }
+    </style>
 </head>
 <body>
 <script src="bs-ee-nav.js"></script>
 <bs-ee-nav></bs-ee-nav>
 
 <div class="container py-4">
-<h1 class="mb-4">Font Awesome Pro — Icon Test</h1>
+    <h1 class="mb-1">Icons</h1>
+    <p class="mb-5">Bootstrap EE bundles <strong>Font Awesome Pro 6</strong> — six styles, thousands of icons. No separate script or kit required.</p>
 
-<h2>Solid</h2>
-<p>
-    <i class="fa-solid fa-house"></i>
-    <i class="fa-solid fa-envelope"></i>
-    <i class="fa-solid fa-user"></i>
-    <i class="fa-solid fa-star"></i>
-    <i class="fa-solid fa-check"></i>
-    <i class="fa-solid fa-xmark"></i>
-</p>
+    <!-- ── HOW TO FIND ICONS ──────────────────────────────────────── -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">How to Find Icons</h2>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h6 class="fw-semibold mb-2"><i class="fa-solid fa-magnifying-glass me-2 text-primary"></i>Search fontawesome.com</h6>
+                        <p class="mb-2">The official icon search at <code>fontawesome.com/icons</code> lists every icon with its exact class name. Filter by style (solid, regular, light, thin, duotone, sharp).</p>
+                        <div class="bg-body-secondary rounded p-2">
+                            <code>fontawesome.com/icons?f=classic&amp;s=solid</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h6 class="fw-semibold mb-2"><i class="fa-solid fa-lightbulb me-2 text-warning"></i>Naming Tips</h6>
+                        <ul class="mb-0 ps-3">
+                            <li>Icon names use kebab-case: <code>fa-magnifying-glass</code></li>
+                            <li>When unsure, try common words first: <code>fa-house</code>, <code>fa-gear</code></li>
+                            <li>Medical terms often exist: <code>fa-stethoscope</code>, <code>fa-tooth</code>, <code>fa-syringe</code></li>
+                            <li>Many FA4 names still work via the compatibility shim</li>
+                            <li>Prefer light/thin weight for decorative UI; solid for functional</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<h2>Regular</h2>
-<p>
-    <i class="fa-regular fa-house"></i>
-    <i class="fa-regular fa-envelope"></i>
-    <i class="fa-regular fa-user"></i>
-    <i class="fa-regular fa-star"></i>
-    <i class="fa-regular fa-check"></i>
-    <i class="fa-regular fa-circle"></i>
-</p>
+    <!-- ── BASIC USAGE ──────────────────────────────────────────────── -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Basic Usage</h2>
+        <div class="bg-body-secondary rounded p-3 mb-3">
+            <pre class="mb-0"><code>&lt;!-- Solid (default — use for UI actions) --&gt;
+&lt;i class="fa-solid fa-house"&gt;&lt;/i&gt;
 
-<h2>Light</h2>
-<p>
-    <i class="fa-light fa-house"></i>
-    <i class="fa-light fa-envelope"></i>
-    <i class="fa-light fa-user"></i>
-    <i class="fa-light fa-star"></i>
-    <i class="fa-light fa-bell"></i>
-    <i class="fa-light fa-calendar"></i>
-</p>
+&lt;!-- Regular (medium weight) --&gt;
+&lt;i class="fa-regular fa-envelope"&gt;&lt;/i&gt;
 
-<h2>Thin</h2>
-<p>
-    <i class="fa-thin fa-house"></i>
-    <i class="fa-thin fa-envelope"></i>
-    <i class="fa-thin fa-user"></i>
-    <i class="fa-thin fa-star"></i>
-</p>
+&lt;!-- Light (thin strokes — decorative) --&gt;
+&lt;i class="fa-light fa-star"&gt;&lt;/i&gt;
 
-<h2>Brands</h2>
-<p>
-    <i class="fa-brands fa-github"></i>
-    <i class="fa-brands fa-twitter"></i>
-    <i class="fa-brands fa-slack"></i>
-</p>
+&lt;!-- Thin (thinnest — large sizes only) --&gt;
+&lt;i class="fa-thin fa-calendar"&gt;&lt;/i&gt;
 
-<h2>Sizing</h2>
-<p>
-    <i class="fa-solid fa-star fa-xs"></i>
-    <i class="fa-solid fa-star fa-sm"></i>
-    <i class="fa-solid fa-star"></i>
-    <i class="fa-solid fa-star fa-lg"></i>
-    <i class="fa-solid fa-star fa-xl"></i>
-    <i class="fa-solid fa-star fa-2xl"></i>
-</p>
+&lt;!-- Duotone (two-color — Pro only) --&gt;
+&lt;i class="fa-duotone fa-house"&gt;&lt;/i&gt;
 
+&lt;!-- Sharp solid (squared corners — Pro only) --&gt;
+&lt;i class="fa-sharp fa-solid fa-house"&gt;&lt;/i&gt;
+
+&lt;!-- Legacy shorthand aliases still work --&gt;
+&lt;i class="fas fa-house"&gt;&lt;/i&gt;   &lt;!-- solid --&gt;
+&lt;i class="far fa-house"&gt;&lt;/i&gt;   &lt;!-- regular --&gt;
+&lt;i class="fal fa-house"&gt;&lt;/i&gt;   &lt;!-- light --&gt;
+&lt;i class="fat fa-house"&gt;&lt;/i&gt;   &lt;!-- thin --&gt;
+&lt;i class="fad fa-house"&gt;&lt;/i&gt;   &lt;!-- duotone --&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ── SIX STYLES ──────────────────────────────────────────────── -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Six Styles</h2>
+        <p class="mb-3">Same icon, six weights. Pro-only styles require the FA Pro kit bundled in BSEE.</p>
+        <div class="d-flex flex-wrap gap-4 align-items-end mb-3">
+            <div class="d-flex flex-column align-items-center gap-1">
+                <i class="fa-solid fa-house fs-4"></i>
+                <code>fa-solid</code>
+                <small>.fas</small>
+            </div>
+            <div class="d-flex flex-column align-items-center gap-1">
+                <i class="fa-regular fa-house fs-4"></i>
+                <code>fa-regular</code>
+                <small>.far</small>
+            </div>
+            <div class="d-flex flex-column align-items-center gap-1">
+                <i class="fa-light fa-house fs-4"></i>
+                <code>fa-light</code>
+                <small>.fal — Pro</small>
+            </div>
+            <div class="d-flex flex-column align-items-center gap-1">
+                <i class="fa-thin fa-house fs-4"></i>
+                <code>fa-thin</code>
+                <small>.fat — Pro</small>
+            </div>
+            <div class="d-flex flex-column align-items-center gap-1">
+                <i class="fa-duotone fa-house fs-4 text-primary"></i>
+                <code>fa-duotone</code>
+                <small>.fad — Pro</small>
+            </div>
+            <div class="d-flex flex-column align-items-center gap-1">
+                <i class="fa-sharp fa-solid fa-house fs-4"></i>
+                <code>fa-sharp</code>
+                <small>+ fa-solid — Pro</small>
+            </div>
+        </div>
+        <div class="alert alert-info mb-0 py-2">
+            <i class="fa-solid fa-circle-info me-1"></i>
+            Use <strong>solid</strong> for interactive/action icons (buttons, nav). Use <strong>light or thin</strong> for decorative or large display icons.
+        </div>
+    </section>
+
+    <!-- ── SIZING ──────────────────────────────────────────────────── -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Sizing</h2>
+        <p class="mb-3">Use FA size classes or set <code>font-size</code> directly in CSS/style.</p>
+        <table class="mb-3">
+            <tr>
+                <td class="text-center px-3 pb-1"><code class="font-monospace small">fa-xs</code></td>
+                <td class="text-center px-3 pb-1"><code class="font-monospace small">fa-sm</code></td>
+                <td class="text-center px-3 pb-1"><code class="font-monospace small">(base)</code></td>
+                <td class="text-center px-3 pb-1"><code class="font-monospace small">fa-lg</code></td>
+                <td class="text-center px-3 pb-1"><code class="font-monospace small">fa-xl</code></td>
+                <td class="text-center px-3 pb-1"><code class="font-monospace small">fa-2xl</code></td>
+                <td class="text-center px-3 pb-1"><code class="font-monospace small">fa-2x</code></td>
+                <td class="text-center px-3 pb-1"><code class="font-monospace small">fa-3x</code></td>
+                <td class="text-center px-3 pb-1"><code class="font-monospace small">fa-4x</code></td>
+            </tr>
+            <tr>
+                <td class="text-center px-3 py-2"><i class="fa-solid fa-star fa-xs"></i></td>
+                <td class="text-center px-3 py-2"><i class="fa-solid fa-star fa-sm"></i></td>
+                <td class="text-center px-3 py-2"><i class="fa-solid fa-star"></i></td>
+                <td class="text-center px-3 py-2"><i class="fa-solid fa-star fa-lg"></i></td>
+                <td class="text-center px-3 py-2"><i class="fa-solid fa-star fa-xl"></i></td>
+                <td class="text-center px-3 py-2"><i class="fa-solid fa-star fa-2xl"></i></td>
+                <td class="text-center px-3 py-2"><i class="fa-solid fa-star fa-2x"></i></td>
+                <td class="text-center px-3 py-2"><i class="fa-solid fa-star fa-3x"></i></td>
+                <td class="text-center px-3 py-2"><i class="fa-solid fa-star fa-4x"></i></td>
+            </tr>
+        </table>
+        <div class="bg-body-secondary rounded p-3">
+            <pre class="mb-0"><code>&lt;!-- FA size classes --&gt;
+&lt;i class="fa-solid fa-star fa-xs"&gt;&lt;/i&gt;      &lt;!-- 0.75em --&gt;
+&lt;i class="fa-solid fa-star fa-sm"&gt;&lt;/i&gt;      &lt;!-- 0.875em --&gt;
+&lt;i class="fa-solid fa-star fa-lg"&gt;&lt;/i&gt;      &lt;!-- 1.25em --&gt;
+&lt;i class="fa-solid fa-star fa-xl"&gt;&lt;/i&gt;      &lt;!-- 1.5em --&gt;
+&lt;i class="fa-solid fa-star fa-2xl"&gt;&lt;/i&gt;     &lt;!-- 2em --&gt;
+&lt;i class="fa-solid fa-star fa-2x"&gt;&lt;/i&gt;      &lt;!-- 2em (same as 2xl) --&gt;
+&lt;i class="fa-solid fa-star fa-3x"&gt;&lt;/i&gt;      &lt;!-- 3em --&gt;
+
+&lt;!-- Or just use CSS --&gt;
+&lt;i class="fa-solid fa-star" style="font-size: 2rem;"&gt;&lt;/i&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ── ANIMATIONS ─────────────────────────────────────────────── -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Animations</h2>
+        <p class="mb-3">Font Awesome 6 includes built-in animation classes. Add them alongside the icon class.</p>
+        <div class="d-flex flex-wrap gap-4 mb-4">
+            <div class="d-flex flex-column align-items-center gap-2 text-center" style="width:80px;">
+                <i class="fa-solid fa-rotate fa-spin fs-4 text-primary"></i>
+                <code>fa-spin</code>
+            </div>
+            <div class="d-flex flex-column align-items-center gap-2 text-center" style="width:80px;">
+                <i class="fa-solid fa-rotate fa-spin fa-spin-reverse fs-4 text-primary"></i>
+                <code>fa-spin-reverse</code>
+            </div>
+            <div class="d-flex flex-column align-items-center gap-2 text-center" style="width:80px;">
+                <i class="fa-solid fa-rotate fa-spin fa-spin-pulse fs-4 text-primary"></i>
+                <code>fa-spin-pulse</code>
+            </div>
+            <div class="d-flex flex-column align-items-center gap-2 text-center" style="width:80px;">
+                <i class="fa-solid fa-heart fa-beat fs-4 text-primary"></i>
+                <code>fa-beat</code>
+            </div>
+            <div class="d-flex flex-column align-items-center gap-2 text-center" style="width:80px;">
+                <i class="fa-solid fa-bell fa-shake fs-4 text-primary"></i>
+                <code>fa-shake</code>
+            </div>
+            <div class="d-flex flex-column align-items-center gap-2 text-center" style="width:80px;">
+                <i class="fa-solid fa-triangle-exclamation fa-bounce fs-4 text-primary"></i>
+                <code>fa-bounce</code>
+            </div>
+            <div class="d-flex flex-column align-items-center gap-2 text-center" style="width:80px;">
+                <i class="fa-solid fa-star fa-flip fs-4 text-primary"></i>
+                <code>fa-flip</code>
+            </div>
+            <div class="d-flex flex-column align-items-center gap-2 text-center" style="width:80px;">
+                <i class="fa-solid fa-heart fa-beat-fade fs-4 text-primary"></i>
+                <code>fa-beat-fade</code>
+            </div>
+            <div class="d-flex flex-column align-items-center gap-2 text-center" style="width:80px;">
+                <i class="fa-solid fa-circle fa-fade fs-4 text-primary"></i>
+                <code>fa-fade</code>
+            </div>
+        </div>
+        <div class="bg-body-secondary rounded p-3 mb-3">
+            <pre class="mb-0"><code>&lt;!-- Basic spin --&gt;
+&lt;i class="fa-solid fa-rotate fa-spin"&gt;&lt;/i&gt;
+
+&lt;!-- Reverse spin --&gt;
+&lt;i class="fa-solid fa-rotate fa-spin fa-spin-reverse"&gt;&lt;/i&gt;
+
+&lt;!-- Pulse/stepped spin (loading indicator) --&gt;
+&lt;i class="fa-solid fa-rotate fa-spin fa-spin-pulse"&gt;&lt;/i&gt;
+
+&lt;!-- Beat (scale pulse) --&gt;
+&lt;i class="fa-solid fa-heart fa-beat"&gt;&lt;/i&gt;
+
+&lt;!-- Beat + fade combined --&gt;
+&lt;i class="fa-solid fa-heart fa-beat-fade"&gt;&lt;/i&gt;
+
+&lt;!-- Shake --&gt;
+&lt;i class="fa-solid fa-bell fa-shake"&gt;&lt;/i&gt;
+
+&lt;!-- Bounce --&gt;
+&lt;i class="fa-solid fa-triangle-exclamation fa-bounce"&gt;&lt;/i&gt;
+
+&lt;!-- Flip (horizontal by default) --&gt;
+&lt;i class="fa-solid fa-star fa-flip"&gt;&lt;/i&gt;
+
+&lt;!-- Fade --&gt;
+&lt;i class="fa-solid fa-circle fa-fade"&gt;&lt;/i&gt;</code></pre>
+        </div>
+        <div class="card mb-3">
+            <div class="card-header fw-semibold">CSS Custom Properties for Animations</div>
+            <div class="card-body p-0">
+                <table class="table table-sm mb-0">
+                    <thead>
+                        <tr>
+                            <th class="ps-3">Property</th>
+                            <th>Default</th>
+                            <th class="pe-3">Applies to</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="ps-3"><code>--fa-animation-duration</code></td><td><code>1s</code></td><td class="pe-3">All animations</td></tr>
+                        <tr><td class="ps-3"><code>--fa-animation-delay</code></td><td><code>0s</code></td><td class="pe-3">All animations</td></tr>
+                        <tr><td class="ps-3"><code>--fa-animation-iteration-count</code></td><td><code>infinite</code></td><td class="pe-3">All animations</td></tr>
+                        <tr><td class="ps-3"><code>--fa-animation-direction</code></td><td><code>normal</code></td><td class="pe-3">All animations</td></tr>
+                        <tr><td class="ps-3"><code>--fa-beat-scale</code></td><td><code>1.25</code></td><td class="pe-3">fa-beat, fa-beat-fade</td></tr>
+                        <tr><td class="ps-3"><code>--fa-bounce-height</code></td><td><code>-0.5em</code></td><td class="pe-3">fa-bounce</td></tr>
+                        <tr><td class="ps-3"><code>--fa-flip-x</code>, <code>--fa-flip-y</code></td><td><code>1</code> / <code>0</code></td><td class="pe-3">fa-flip</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="bg-body-secondary rounded p-3">
+            <pre class="mb-0"><code>&lt;!-- Slow spin with custom duration --&gt;
+&lt;i class="fa-solid fa-rotate fa-spin"
+   style="--fa-animation-duration: 3s;"&gt;&lt;/i&gt;
+
+&lt;!-- Bigger beat --&gt;
+&lt;i class="fa-solid fa-heart fa-beat"
+   style="--fa-beat-scale: 1.5;"&gt;&lt;/i&gt;
+
+&lt;!-- Vertical flip --&gt;
+&lt;i class="fa-solid fa-star fa-flip"
+   style="--fa-flip-x: 0; --fa-flip-y: 1;"&gt;&lt;/i&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ── IN-CONTEXT USAGE ───────────────────────────────────────── -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">In-Context Examples</h2>
+
+        <h6 class="fw-semibold text-uppercase mb-2">Navigation &amp; Menu Items</h6>
+        <div class="list-group list-group-flush mb-3" style="max-width: 280px;">
+            <a href="#" class="list-group-item list-group-item-action"><i class="fa-solid fa-house fa-fw me-2 text-primary"></i> Dashboard</a>
+            <a href="#" class="list-group-item list-group-item-action"><i class="fa-regular fa-calendar fa-fw me-2 text-primary"></i> Appointments</a>
+            <a href="#" class="list-group-item list-group-item-action"><i class="fa-solid fa-users fa-fw me-2 text-primary"></i> Patients</a>
+            <a href="#" class="list-group-item list-group-item-action"><i class="fa-solid fa-file-lines fa-fw me-2 text-primary"></i> Reports</a>
+            <a href="#" class="list-group-item list-group-item-action"><i class="fa-solid fa-gear fa-fw me-2 text-primary"></i> Settings</a>
+        </div>
+
+        <h6 class="fw-semibold text-uppercase mb-2">Buttons</h6>
+        <div class="d-flex gap-2 flex-wrap mb-3">
+            <button class="btn btn-primary"><i class="fa-solid fa-plus me-2"></i>Add Patient</button>
+            <button class="btn btn-outline-secondary"><i class="fa-solid fa-pencil me-2"></i>Edit</button>
+            <button class="btn btn-danger"><i class="fa-solid fa-trash me-2"></i>Delete</button>
+            <button class="btn btn-success"><i class="fa-solid fa-check me-2"></i>Confirm</button>
+            <button class="btn btn-secondary"><i class="fa-solid fa-rotate fa-spin me-2"></i>Loading…</button>
+        </div>
+
+        <h6 class="fw-semibold text-uppercase mb-2">Badges &amp; Status</h6>
+        <div class="d-flex gap-2 flex-wrap mb-3">
+            <span class="badge bg-success"><i class="fa-solid fa-check me-1"></i>Complete</span>
+            <span class="badge bg-danger"><i class="fa-solid fa-xmark me-1"></i>Cancelled</span>
+            <span class="badge bg-warning text-dark"><i class="fa-solid fa-clock me-1"></i>Pending</span>
+            <span class="badge bg-info"><i class="fa-solid fa-rotate fa-spin me-1"></i>Processing</span>
+            <span class="badge bg-primary"><i class="fa-solid fa-stethoscope me-1"></i>In Progress</span>
+        </div>
+
+        <h6 class="fw-semibold text-uppercase mb-2">Alerts</h6>
+        <div class="alert alert-success py-2"><i class="fa-solid fa-circle-check me-2"></i>Record saved successfully.</div>
+        <div class="alert alert-danger py-2"><i class="fa-solid fa-circle-xmark me-2"></i>An error occurred. Please try again.</div>
+        <div class="alert alert-warning py-2"><i class="fa-solid fa-triangle-exclamation me-2"></i>This action cannot be undone.</div>
+        <div class="alert alert-info py-2"><i class="fa-solid fa-circle-info me-2"></i>Your session will expire in 5 minutes.</div>
+
+        <h6 class="fw-semibold text-uppercase mb-2">Fixed-Width (fa-fw) — Aligned Lists</h6>
+        <p class="mb-2"><code>fa-fw</code> forces a consistent width, keeping icons aligned in lists or menus.</p>
+        <div class="bg-body-secondary rounded p-3 mb-3">
+            <pre class="mb-0"><code>&lt;i class="fa-solid fa-house fa-fw"&gt;&lt;/i&gt; Dashboard
+&lt;i class="fa-solid fa-envelope fa-fw"&gt;&lt;/i&gt; Messages
+&lt;i class="fa-solid fa-magnifying-glass fa-fw"&gt;&lt;/i&gt; Search</code></pre>
+        </div>
+    </section>
+
+    <!-- ── ICON CATEGORIES ────────────────────────────────────────── -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Common Icon Categories</h2>
+        <p class="mb-3">A curated set of icons relevant to ptclinic.biz / healthcare contexts.</p>
+
+        <h6 class="fw-semibold text-uppercase mb-2 mt-3">Navigation &amp; UI</h6>
+        <div class="d-flex flex-wrap gap-3 mb-3">
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-house fs-5"></i><span class="font-monospace small">fa-house</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-bars fs-5"></i><span class="font-monospace small">fa-bars</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-xmark fs-5"></i><span class="font-monospace small">fa-xmark</span><span class="font-monospace small">(fa-times)</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-check fs-5"></i><span class="font-monospace small">fa-check</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-magnifying-glass fs-5"></i><span class="font-monospace small">fa-magnifying-glass</span><span class="font-monospace small">(fa-search)</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-gear fs-5"></i><span class="font-monospace small">fa-gear</span><span class="font-monospace small">(fa-cog)</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-ellipsis fs-5"></i><span class="font-monospace small">fa-ellipsis</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-ellipsis-vertical fs-5"></i><span class="font-monospace small">fa-ellipsis-vertical</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-chevron-right fs-5"></i><span class="font-monospace small">fa-chevron-right</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-chevron-down fs-5"></i><span class="font-monospace small">fa-chevron-down</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-arrow-right fs-5"></i><span class="font-monospace small">fa-arrow-right</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-filter fs-5"></i><span class="font-monospace small">fa-filter</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-sort fs-5"></i><span class="font-monospace small">fa-sort</span></div>
+        </div>
+
+        <h6 class="fw-semibold text-uppercase mb-2 mt-3">Actions</h6>
+        <div class="d-flex flex-wrap gap-3 mb-3">
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-plus fs-5"></i><span class="font-monospace small">fa-plus</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-pencil fs-5"></i><span class="font-monospace small">fa-pencil</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-pen-to-square fs-5"></i><span class="font-monospace small">fa-pen-to-square</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-trash fs-5"></i><span class="font-monospace small">fa-trash</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-trash-can fs-5"></i><span class="font-monospace small">fa-trash-can</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-copy fs-5"></i><span class="font-monospace small">fa-copy</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-download fs-5"></i><span class="font-monospace small">fa-download</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-upload fs-5"></i><span class="font-monospace small">fa-upload</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-print fs-5"></i><span class="font-monospace small">fa-print</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-floppy-disk fs-5"></i><span class="font-monospace small">fa-floppy-disk</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-lock fs-5"></i><span class="font-monospace small">fa-lock</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-eye fs-5"></i><span class="font-monospace small">fa-eye</span></div>
+        </div>
+
+        <h6 class="fw-semibold text-uppercase mb-2 mt-3">People &amp; Users</h6>
+        <div class="d-flex flex-wrap gap-3 mb-3">
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-user fs-5"></i><span class="font-monospace small">fa-user</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-users fs-5"></i><span class="font-monospace small">fa-users</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-user-plus fs-5"></i><span class="font-monospace small">fa-user-plus</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-user-gear fs-5"></i><span class="font-monospace small">fa-user-gear</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-user-doctor fs-5"></i><span class="font-monospace small">fa-user-doctor</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-user-nurse fs-5"></i><span class="font-monospace small">fa-user-nurse</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-address-card fs-5"></i><span class="font-monospace small">fa-address-card</span></div>
+        </div>
+
+        <h6 class="fw-semibold text-uppercase mb-2 mt-3">Communication</h6>
+        <div class="d-flex flex-wrap gap-3 mb-3">
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-envelope fs-5"></i><span class="font-monospace small">fa-envelope</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-phone fs-5"></i><span class="font-monospace small">fa-phone</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-comment fs-5"></i><span class="font-monospace small">fa-comment</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-comments fs-5"></i><span class="font-monospace small">fa-comments</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-bell fs-5"></i><span class="font-monospace small">fa-bell</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-paper-plane fs-5"></i><span class="font-monospace small">fa-paper-plane</span></div>
+        </div>
+
+        <h6 class="fw-semibold text-uppercase mb-2 mt-3">Medical &amp; Health</h6>
+        <div class="d-flex flex-wrap gap-3 mb-3">
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-stethoscope fs-5"></i><span class="font-monospace small">fa-stethoscope</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-syringe fs-5"></i><span class="font-monospace small">fa-syringe</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-pills fs-5"></i><span class="font-monospace small">fa-pills</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-tooth fs-5"></i><span class="font-monospace small">fa-tooth</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-heart-pulse fs-5"></i><span class="font-monospace small">fa-heart-pulse</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-heart fs-5"></i><span class="font-monospace small">fa-heart</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-hospital fs-5"></i><span class="font-monospace small">fa-hospital</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-notes-medical fs-5"></i><span class="font-monospace small">fa-notes-medical</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-clipboard-list fs-5"></i><span class="font-monospace small">fa-clipboard-list</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-thermometer fs-5"></i><span class="font-monospace small">fa-thermometer</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-bandage fs-5"></i><span class="font-monospace small">fa-bandage</span></div>
+        </div>
+
+        <h6 class="fw-semibold text-uppercase mb-2 mt-3">Calendar &amp; Time</h6>
+        <div class="d-flex flex-wrap gap-3 mb-3">
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-calendar fs-5"></i><span class="font-monospace small">fa-calendar</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-regular fa-calendar fs-5"></i><span class="font-monospace small">fa-calendar</span><span class="font-monospace small">regular</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-calendar-days fs-5"></i><span class="font-monospace small">fa-calendar-days</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-calendar-check fs-5"></i><span class="font-monospace small">fa-calendar-check</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-calendar-plus fs-5"></i><span class="font-monospace small">fa-calendar-plus</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-clock fs-5"></i><span class="font-monospace small">fa-clock</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-regular fa-clock fs-5"></i><span class="font-monospace small">fa-clock</span><span class="font-monospace small">regular</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-hourglass fs-5"></i><span class="font-monospace small">fa-hourglass</span></div>
+        </div>
+
+        <h6 class="fw-semibold text-uppercase mb-2 mt-3">Files &amp; Documents</h6>
+        <div class="d-flex flex-wrap gap-3 mb-3">
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-file fs-5"></i><span class="font-monospace small">fa-file</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-file-lines fs-5"></i><span class="font-monospace small">fa-file-lines</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-file-pdf fs-5"></i><span class="font-monospace small">fa-file-pdf</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-folder fs-5"></i><span class="font-monospace small">fa-folder</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-folder-open fs-5"></i><span class="font-monospace small">fa-folder-open</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-paperclip fs-5"></i><span class="font-monospace small">fa-paperclip</span></div>
+        </div>
+
+        <h6 class="fw-semibold text-uppercase mb-2 mt-3">Status &amp; Feedback</h6>
+        <div class="d-flex flex-wrap gap-3 mb-3">
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-circle-check fs-5 text-success"></i><span class="font-monospace small">fa-circle-check</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-circle-xmark fs-5 text-danger"></i><span class="font-monospace small">fa-circle-xmark</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-circle-exclamation fs-5 text-warning"></i><span class="font-monospace small">fa-circle-exclamation</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-circle-info fs-5 text-info"></i><span class="font-monospace small">fa-circle-info</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-triangle-exclamation fs-5 text-warning"></i><span class="font-monospace small">fa-triangle-exclamation</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-star fs-5 text-warning"></i><span class="font-monospace small">fa-star</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-regular fa-star fs-5"></i><span class="font-monospace small">fa-star</span><span class="font-monospace small">regular</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-flag fs-5"></i><span class="font-monospace small">fa-flag</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-ban fs-5 text-danger"></i><span class="font-monospace small">fa-ban</span></div>
+        </div>
+
+        <h6 class="fw-semibold text-uppercase mb-2 mt-3">Finance &amp; Payment</h6>
+        <div class="d-flex flex-wrap gap-3 mb-3">
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-dollar-sign fs-5"></i><span class="font-monospace small">fa-dollar-sign</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-credit-card fs-5"></i><span class="font-monospace small">fa-credit-card</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-receipt fs-5"></i><span class="font-monospace small">fa-receipt</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-file-invoice fs-5"></i><span class="font-monospace small">fa-file-invoice</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-file-invoice-dollar fs-5"></i><span class="font-monospace small">fa-file-invoice-dollar</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-chart-line fs-5"></i><span class="font-monospace small">fa-chart-line</span></div>
+            <div class="icon-item d-flex flex-column align-items-center text-center gap-1"><i class="fa-solid fa-chart-bar fs-5"></i><span class="font-monospace small">fa-chart-bar</span></div>
+        </div>
+    </section>
+
+    <!-- ── FA4 → FA6 NAME CHANGES ──────────────────────────────────── -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">FA4 → FA6 Name Changes</h2>
+        <p class="mb-3">Many icon names changed between FA4 and FA6. The compatibility shim allows old names to work temporarily, but templates should be migrated to FA6 names.</p>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="name-change-table">
+                    <span class="name-old">fa-home</span><span class="name-arrow">→</span><span class="name-new">fa-house</span>
+                    <span class="name-old">fa-times</span><span class="name-arrow">→</span><span class="name-new">fa-xmark</span>
+                    <span class="name-old">fa-cog</span><span class="name-arrow">→</span><span class="name-new">fa-gear</span>
+                    <span class="name-old">fa-search</span><span class="name-arrow">→</span><span class="name-new">fa-magnifying-glass</span>
+                    <span class="name-old">fa-sign-out</span><span class="name-arrow">→</span><span class="name-new">fa-right-from-bracket</span>
+                    <span class="name-old">fa-sign-in</span><span class="name-arrow">→</span><span class="name-new">fa-right-to-bracket</span>
+                    <span class="name-old">fa-pencil-square-o</span><span class="name-arrow">→</span><span class="name-new">fa-pen-to-square</span>
+                    <span class="name-old">fa-trash-o</span><span class="name-arrow">→</span><span class="name-new">fa-trash-can</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="name-change-table">
+                    <span class="name-old">fa-picture-o</span><span class="name-arrow">→</span><span class="name-new">fa-image</span>
+                    <span class="name-old">fa-exclamation-triangle</span><span class="name-arrow">→</span><span class="name-new">fa-triangle-exclamation</span>
+                    <span class="name-old">fa-info-circle</span><span class="name-arrow">→</span><span class="name-new">fa-circle-info</span>
+                    <span class="name-old">fa-check-circle</span><span class="name-arrow">→</span><span class="name-new">fa-circle-check</span>
+                    <span class="name-old">fa-times-circle</span><span class="name-arrow">→</span><span class="name-new">fa-circle-xmark</span>
+                    <span class="name-old">fa-bar-chart</span><span class="name-arrow">→</span><span class="name-new">fa-chart-bar</span>
+                    <span class="name-old">fa-bar-chart-o</span><span class="name-arrow">→</span><span class="name-new">fa-chart-bar</span>
+                    <span class="name-old">fa-area-chart</span><span class="name-arrow">→</span><span class="name-new">fa-chart-area</span>
+                </div>
+            </div>
+        </div>
+        <div class="alert alert-info mt-3 py-2">
+            <i class="fa-solid fa-circle-info me-1"></i>
+            The FA6 compatibility shim maps many FA4/FA5 class names automatically, but use correct FA6 names in new code.
+        </div>
+    </section>
+
+</div><!-- /container -->
 </body>
 </html>
