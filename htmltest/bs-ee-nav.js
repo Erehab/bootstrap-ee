@@ -22,7 +22,7 @@ class BsEeNav extends HTMLElement {
             { id: 'components',     href: 'components.html',      label: 'Components' },
             { id: 'forms',          href: 'forms.html',           label: 'Forms' },
             { id: 'datatables',     href: 'datatables.html',      label: 'DataTables' },
-            { id: 'fastbootstrap',  href: 'fastbootstrap.html',   label: 'FastBS' },
+            { id: 'animations',     href: 'animations.html',      label: 'Animations' },
             { id: 'fontawesome',    href: 'fontawesome.html',     label: 'Icons' },
             { id: 'tokens',         href: 'tokens.html',          label: 'Tokens' },
             { id: 'design-compare', href: 'design-compare.html',  label: 'Design Compare' },
@@ -31,7 +31,6 @@ class BsEeNav extends HTMLElement {
 
         const external = [
             { href: 'https://getbootstrap.com/docs/5.3/', label: 'BS Docs' },
-            { href: 'https://fastbootstrap.com/components/', label: 'FSB Docs' },
         ];
 
         const pageLinks = pages.map(p => {

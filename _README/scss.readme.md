@@ -10,8 +10,8 @@ This document explains the SCSS architecture used by Bootstrap EE and how to ext
 
 ## Variables
 
-- `src/scss/_bsee-base.scss` — **start here**. All Erehab brand overrides: colors, fonts, radii, spacing (~50 lines, all readable).
-- `src/scss/_variables.scss` — Bootstrap variable overrides beyond what's in `_bsee-base.scss`.
+- `src/scss/_bsee-pre.scss` — **start here**. All Erehab brand overrides: colors, fonts, radii, spacing (~50 lines, all readable).
+- `src/scss/_variables.scss` — Bootstrap variable overrides beyond what's in `_bsee-pre.scss`.
 - `src/scss/_variables-dark.scss` — dark-mode overrides.
 - `src/scss/_fbs-colors.scss` — legacy FBS palette reference (`$fbs-*` vars). Not wired in by default; available for reference only.
 
@@ -33,10 +33,11 @@ All partials live flat in `src/scss/`:
 | `_print.scss` | Print media styles |
 | `_bsee-pre.scss` | Imports before Bootstrap core |
 | `_bsee-post.scss` | Imports after Bootstrap core |
+| `_animate.scss` | Animation keyframes and utility classes (entrance, exit, attention, state flash) |
 
 ## How to Add Overrides
 
-1. **Brand changes** (colors, fonts, radii): edit `src/scss/_bsee-base.scss`.
+1. **Brand changes** (colors, fonts, radii): edit `src/scss/_bsee-pre.scss`.
 2. **New component overrides**: create a new partial in `src/scss/` and import it in `bs-ee.scss`.
 3. **New utility classes**: use Bootstrap's utility API in `bs-ee.scss` before the `utilities/api` import, or add to `_biz-utilities.scss`.
 4. Never edit Bootstrap core files in `node_modules`.

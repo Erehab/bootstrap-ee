@@ -4,16 +4,16 @@
 
 ## Overview
 
-Bootstrap EE is a custom Bootstrap 5 distribution for Erehab/ptclinic.biz. Built directly on Bootstrap 5.3.2 with Erehab brand overrides, DataTables + Font Awesome Pro bundled, and optional JavaScript component wrappers.
+Bootstrap EE is a custom Bootstrap 5 distribution for Erehab/ptclinic.biz. Built directly on Bootstrap 5.3.2 with Erehab brand overrides, DataTables + Font Awesome Pro bundled.
 
 **Not based on FastBootstrap** — the old FBS/Atlassian Design System token layer was removed. The SCSS is clean Bootstrap 5 with straightforward variable overrides.
 
 **Key Features:**
-- Brand colors, fonts, and spacing defined in `src/scss/_bsee-base.scss`
+- Brand colors, fonts, and spacing defined in `src/scss/_bsee-pre.scss`
 - Extended utility classes and component overrides
 - Bootstrap 5 JS, DataTables + all extensions bundled — nothing to add per-project
 - Font Awesome Pro bundled
-- Lightweight TypeScript wrappers for bootstrap.native components
+- Custom animation library with CSS custom property overrides (`bsee.animate`)
 
 **For Developers:**
 - See [CLAUDE.md](CLAUDE.md) for complete architecture details, build system information, and development guidelines
@@ -27,7 +27,8 @@ Bootstrap EE is a custom Bootstrap 5 distribution for Erehab/ptclinic.biz. Built
 | [setup.readme.md](_README/setup.readme.md) | Prerequisites (FA Pro token), build workflow, upgrading libraries, publishing to public branch |
 | [shared-bundle.readme.md](_README/shared-bundle.readme.md) | Two-tag pattern, DataTables usage, Font Awesome usage, adding new libraries, upgrading |
 | [scss.readme.md](_README/scss.readme.md) | SCSS architecture, variables, tokens, how to add overrides |
-| [ts.readme.md](_README/ts.readme.md) | TypeScript API, component wrappers, Bootstrap JS bundling |
+| [ts.readme.md](_README/ts.readme.md) | TypeScript API, Bootstrap JS bundling, animate helper |
+| [animate.readme.md](_README/animate.readme.md) | Animation utilities — entrance, exit, utility, state flash, scroll observe, infinite scroll |
 
 ## ACP Setup
 See the **_bootstrap-ee.readme.md** file and how it is setup.

@@ -2,6 +2,18 @@
 
 ### 2026-02-25
 
+**Remove FastBS page + Add animation library**
+- Deleted `htmltest/fastbootstrap.html` — referenced components (avatars, blankslate, legacy animate classes) no longer exist
+- Removed FastBS nav entry and FSB Docs external link from `bs-ee-nav.js`; removed FastBootstrap card from `index.html`; added Animations nav/card
+- Created `src/scss/_animate.scss` — custom keyframe animation library: entrance (fade-in, fade-in-up, fade-in-down, slide-in-left, slide-in-right, scale-in), exit (fade-out, fade-out-up, scale-out), attention (spin, pulse, beat, bounce, shake, fade, flip), state flash (flash-danger/success/warning/info using BS5 subtle color tokens); CSS custom properties for per-element overrides; `prefers-reduced-motion` support
+- Created `src/ts/animate.ts` — JS helpers: `trigger()` (one-shot with auto class cleanup), `observe()` (scroll entrance via IntersectionObserver), `onEnter()` (infinite scroll sentinel)
+- Created `htmltest/animations.html` — demo page using cards and buttons as animation subjects
+- Created `_README/animate.readme.md` — full documentation: quick start, CSS custom properties table, all classes with FA equivalents, JS API, examples, accessibility notes
+- Updated `src/ts/index.ts`, `src/scss/bs-ee.scss` to include animate module
+- README.md and all `_README/` docs audited and updated: removed stale bootstrap.native/FastBS references, fixed `_bsee-base.scss` → `_bsee-pre.scss` refs, added `_animate.scss` to SCSS partials table, fixed broken `build-and-contribute.readme.md` link → `setup.readme.md`, marked `bs-ee-no-fa.css` as Coming (SCSS source missing)
+
+### 2026-02-25
+
 **Dark/Light mode toggle — htmltest/index.html + component CSS**
 - Added dark/light toggle to `bs-ee-nav.js` web component with FA sun/moon icons and `localStorage` persistence; IIFE prevents flash-of-wrong-theme on load
 - Made body background theme-aware (`#e9e9e9` light / `#1a1d21` dark) via `_bsee-pre.scss`; removed `$card-bg: #ffffff` override that was locking cards to white

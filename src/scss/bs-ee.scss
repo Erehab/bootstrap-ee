@@ -71,6 +71,9 @@ $theme-colors: map-merge($theme-colors, ("discovery": $discovery));
 @import "dropdowns";
 @import "forms";
 
+// ─── BSEE Animations ─────────────────────────────────────────────────────────
+@import "animate";
+
 // ─── BIZ-Specific Styles ──────────────────────────────────────────────────────
 @import "note-items";
 @import "biz-utilities";

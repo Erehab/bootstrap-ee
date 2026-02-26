@@ -28,6 +28,8 @@ import {
   Tooltip,
 } from 'bootstrap';
 
+export { animate } from './animate';
+
 export {
   DataTable,
   Alert,

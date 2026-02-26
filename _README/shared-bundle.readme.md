@@ -4,37 +4,22 @@ This document covers how the bootstrap-ee shared bundle works, how consuming pro
 
 ## CSS Files
 
-Two CSS files are published:
+Currently one CSS file is published:
 
 | File | Font Awesome |
 |---|---|
 | `css/bs-ee.css` | Full — all icon weights bundled (solid, regular, light, thin, duotone, brands) |
-| `css/bs-ee-no-fa.css` | Base utilities only — no `@font-face`, no icon definitions. Load weights separately. |
 
-Both include Bootstrap, EE overrides, and DataTables. The JS file is the same for both.
+> **Coming:** `css/bs-ee-no-fa.css` — same as above but without FA `@font-face` declarations and icon definitions, for projects that load FA separately or need a lighter file. Not yet built. See TASKS.md.
+
+The JS file is the same regardless of which CSS file is used.
 
 ## The Two-Tag Pattern
-
-For most projects, use the full bundle:
 
 ```html
 <link rel="stylesheet" href="node_modules/bootstrap-ee/css/bs-ee.css">
 <script src="node_modules/bootstrap-ee/js/bs-ee.js"></script>
 ```
-
-## Selective Font Awesome Loading
-
-If you only need one or two icon weights, use `bs-ee-no-fa.css` and load FA styles individually. The FA base utilities (sizing, animation, stacking) are included in `bs-ee-no-fa.css` — only the per-weight files need to be added:
-
-```html
-<link rel="stylesheet" href="node_modules/bootstrap-ee/css/bs-ee-no-fa.css">
-<link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-pro/css/solid.css">
-<link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-pro/css/brands.css">
-<script src="node_modules/bootstrap-ee/js/bs-ee.js"></script>
-```
-
-Available weight files in `@fortawesome/fontawesome-pro/css/`:
-`solid.css`, `regular.css`, `light.css`, `thin.css`, `duotone.css`, `brands.css`
 
 **Do not add separate Bootstrap JS, DataTables, or Font Awesome tags.** Everything is bundled here.
 

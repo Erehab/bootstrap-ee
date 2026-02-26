@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animations — Bootstrap EE</title>
+    <link rel="stylesheet" href="../css/bs-ee.css">
+</head>
+<body>
+<script src="bs-ee-nav.js"></script>
+<bs-ee-nav></bs-ee-nav>
+
+<div class="container py-4">
+    <h1 class="mb-1">Animations</h1>
+    <p class="text-secondary mb-5">Custom animation utilities built into Bootstrap EE. No third-party dependency. All classes use <code>.animate</code> as a base plus a modifier. Override timing per-element with CSS custom properties.</p>
+
+    <!-- CSS Custom Properties -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">CSS Custom Property Overrides</h2>
+        <p class="text-secondary fs-sm mb-3">Override any animation per-element with a <code>style</code> attribute or a scoped <code>&lt;style&gt;</code> block. No extra classes needed.</p>
+        <div class="card">
+            <div class="card-body p-0">
+                <table class="table table-sm mb-0">
+                    <thead>
+                        <tr>
+                            <th class="ps-3">Property</th>
+                            <th>Default</th>
+                            <th class="pe-3">Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="ps-3"><code>--bsee-animate-duration</code></td><td><code>0.5s</code></td><td class="pe-3">Looping animations set their own defaults</td></tr>
+                        <tr><td class="ps-3"><code>--bsee-animate-delay</code></td><td><code>0s</code></td><td class="pe-3">Use for staggering elements in a group</td></tr>
+                        <tr><td class="ps-3"><code>--bsee-animate-repeat</code></td><td><code>1</code></td><td class="pe-3">Use <code>infinite</code> for continuous loops</td></tr>
+                        <tr><td class="ps-3"><code>--bsee-animate-timing</code></td><td><code>ease</code></td><td class="pe-3">Any CSS timing function</td></tr>
+                        <tr><td class="ps-3"><code>--bsee-animate-fill</code></td><td><code>both</code></td><td class="pe-3">State before/after animation</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="bg-body-secondary rounded p-3 mt-3">
+            <pre class="mb-0 fs-sm"><code>&lt;div class="animate animate-bounce"
+     style="--bsee-animate-duration: 2s; --bsee-animate-delay: 0.3s;"&gt;
+    ...
+&lt;/div&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- Entrance -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Entrance</h2>
+        <p class="text-secondary fs-sm mb-3">Click <strong>Replay all</strong> to retrigger. In production, use <code>data-animate</code> with <code>bsee.animate.observe()</code> for scroll-triggered entrance.</p>
+        <div class="row g-3" id="entrance-demos">
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="card p-3 text-center demo-box" data-anim="animate-fade-in">
+                    <div class="fw-semibold mb-1">fade-in</div>
+                    <code class="fs-xs text-secondary">animate-fade-in</code>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="card p-3 text-center demo-box" data-anim="animate-fade-in-up">
+                    <div class="fw-semibold mb-1">fade-in-up</div>
+                    <code class="fs-xs text-secondary">animate-fade-in-up</code>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="card p-3 text-center demo-box" data-anim="animate-fade-in-down">
+                    <div class="fw-semibold mb-1">fade-in-down</div>
+                    <code class="fs-xs text-secondary">animate-fade-in-down</code>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="card p-3 text-center demo-box" data-anim="animate-slide-in-left">
+                    <div class="fw-semibold mb-1">slide-in-left</div>
+                    <code class="fs-xs text-secondary">animate-slide-in-left</code>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="card p-3 text-center demo-box" data-anim="animate-slide-in-right">
+                    <div class="fw-semibold mb-1">slide-in-right</div>
+                    <code class="fs-xs text-secondary">animate-slide-in-right</code>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+                <div class="card p-3 text-center demo-box" data-anim="animate-scale-in">
+                    <div class="fw-semibold mb-1">scale-in</div>
+                    <code class="fs-xs text-secondary">animate-scale-in</code>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-outline-secondary btn-sm mt-3" id="replay-entrance">Replay all</button>
+    </section>
+
+    <!-- Exit -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Exit</h2>
+        <p class="text-secondary fs-sm mb-3">Triggered on dismiss/close. Click a card to preview — it animates out then reappears.</p>
+        <div class="d-flex gap-3 flex-wrap">
+            <div class="card p-3 text-center demo-exit" data-anim="animate-fade-out" style="width:140px; cursor:pointer;">
+                <div class="fw-semibold mb-1">fade-out</div>
+                <code class="fs-xs text-secondary">animate-fade-out</code>
+            </div>
+            <div class="card p-3 text-center demo-exit" data-anim="animate-fade-out-up" style="width:140px; cursor:pointer;">
+                <div class="fw-semibold mb-1">fade-out-up</div>
+                <code class="fs-xs text-secondary">animate-fade-out-up</code>
+            </div>
+            <div class="card p-3 text-center demo-exit" data-anim="animate-scale-out" style="width:140px; cursor:pointer;">
+                <div class="fw-semibold mb-1">scale-out</div>
+                <code class="fs-xs text-secondary">animate-scale-out</code>
+            </div>
+        </div>
+    </section>
+
+    <!-- Utility / Attention -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Utility &amp; Attention</h2>
+        <p class="text-secondary fs-sm mb-3">
+            These loop by default. Apply directly to any element — buttons, badges, cards.
+            Mirrors <a href="https://docs.fontawesome.com/web/style/animate/" target="_blank" rel="noopener">Font Awesome's animation classes</a>
+            (beat, bounce, fade, flip, shake, spin, pulse) so the same names work on both icons and elements.
+        </p>
+        <div class="d-flex gap-3 flex-wrap align-items-start">
+            <div class="text-center">
+                <button class="btn btn-primary animate animate-spin mb-2 d-block" style="--bsee-animate-timing: linear;">Loading</button>
+                <code class="fs-xs">animate-spin</code>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-danger animate animate-pulse mb-2 d-block">Pulse</button>
+                <code class="fs-xs">animate-pulse</code>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-danger animate animate-beat mb-2 d-block">Beat</button>
+                <code class="fs-xs">animate-beat</code>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-warning animate animate-bounce mb-2 d-block">Bounce</button>
+                <code class="fs-xs">animate-bounce</code>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-secondary animate animate-shake mb-2 d-block" style="--bsee-animate-repeat: infinite;">Shake</button>
+                <code class="fs-xs">animate-shake</code>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-info animate animate-fade mb-2 d-block">Fade</button>
+                <code class="fs-xs">animate-fade</code>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-primary animate animate-flip mb-2 d-block" style="--bsee-animate-repeat: infinite; --bsee-animate-duration: 2s;">Flip</button>
+                <code class="fs-xs">animate-flip</code>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom property override example -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Custom Property Overrides — Stagger Example</h2>
+        <p class="text-secondary fs-sm mb-3">Same <code>animate-bounce</code> class on four buttons — different durations and delays set per-element via <code>style</code>.</p>
+        <div class="d-flex gap-3 align-items-end flex-wrap">
+            <div class="text-center">
+                <button class="btn btn-primary animate animate-bounce mb-2"
+                        style="--bsee-animate-duration: 0.5s;">A</button>
+                <br><code class="fs-xs">0.5s</code>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-success animate animate-bounce mb-2"
+                        style="--bsee-animate-duration: 1s; --bsee-animate-delay: 0.1s;">B</button>
+                <br><code class="fs-xs">1s / 0.1s</code>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-warning animate animate-bounce mb-2"
+                        style="--bsee-animate-duration: 1.5s; --bsee-animate-delay: 0.2s;">C</button>
+                <br><code class="fs-xs">1.5s / 0.2s</code>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-danger animate animate-bounce mb-2"
+                        style="--bsee-animate-duration: 2s; --bsee-animate-delay: 0.3s;">D</button>
+                <br><code class="fs-xs">2s / 0.3s</code>
+            </div>
+        </div>
+    </section>
+
+    <!-- State Flash -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">State Flash</h2>
+        <p class="text-secondary fs-sm mb-3">One-shot color flash for feedback. Uses Bootstrap's subtle color tokens — dark mode aware. Click a card to trigger.</p>
+        <div class="d-flex gap-3 flex-wrap">
+            <div class="card p-3 text-center" id="flash-danger" style="width:140px; cursor:pointer;">
+                <div class="fw-semibold text-danger mb-1">Danger</div>
+                <code class="fs-xs text-secondary">flash-danger</code>
+            </div>
+            <div class="card p-3 text-center" id="flash-success" style="width:140px; cursor:pointer;">
+                <div class="fw-semibold text-success mb-1">Success</div>
+                <code class="fs-xs text-secondary">flash-success</code>
+            </div>
+            <div class="card p-3 text-center" id="flash-warning" style="width:140px; cursor:pointer;">
+                <div class="fw-semibold text-warning mb-1">Warning</div>
+                <code class="fs-xs text-secondary">flash-warning</code>
+            </div>
+            <div class="card p-3 text-center" id="flash-info" style="width:140px; cursor:pointer;">
+                <div class="fw-semibold text-info mb-1">Info</div>
+                <code class="fs-xs text-secondary">flash-info</code>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scroll Entrance Demo -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Scroll Entrance — <code>data-animate</code></h2>
+        <p class="text-secondary fs-sm mb-3">Add <code>data-animate="animate-fade-in-up"</code> to any element and call <code>bsee.animate.observe()</code> once after DOM ready. The animation fires when the element enters the viewport — once per element.</p>
+        <div class="bg-body-secondary rounded p-3 mb-3">
+            <pre class="mb-0 fs-sm"><code>&lt;div data-animate="animate-fade-in-up"&gt;...&lt;/div&gt;
+&lt;div data-animate="animate-fade-in-up" style="--bsee-animate-delay: 0.1s"&gt;...&lt;/div&gt;
+
+bsee.animate.observe();</code></pre>
+        </div>
+        <div class="row g-3">
+            <div class="col-md-4" data-animate="animate-fade-in-up">
+                <div class="card p-3 h-100">
+                    <div class="fw-semibold mb-1">Card 1</div>
+                    <p class="mb-0 fs-sm text-secondary">No delay — fires immediately on enter.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-animate="animate-fade-in-up" style="--bsee-animate-delay: 0.1s">
+                <div class="card p-3 h-100">
+                    <div class="fw-semibold mb-1">Card 2</div>
+                    <p class="mb-0 fs-sm text-secondary">Staggered — <code>delay: 0.1s</code></p>
+                </div>
+            </div>
+            <div class="col-md-4" data-animate="animate-fade-in-up" style="--bsee-animate-delay: 0.2s">
+                <div class="card p-3 h-100">
+                    <div class="fw-semibold mb-1">Card 3</div>
+                    <p class="mb-0 fs-sm text-secondary">Staggered — <code>delay: 0.2s</code></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Infinite Scroll Sentinel -->
+    <section class="mb-5">
+        <h2 class="h5 fw-semibold border-bottom pb-2 mb-3">Infinite Scroll — <code>animate.onEnter()</code></h2>
+        <p class="text-secondary fs-sm mb-3">Place an invisible sentinel at the bottom of a list. <code>bsee.animate.onEnter()</code> fires once when it enters the viewport, then disconnects. Attach a new sentinel after each page load.</p>
+        <div class="bg-body-secondary rounded p-3">
+            <pre class="mb-0 fs-sm"><code>function attachSentinel() {
+    const sentinel = document.createElement('div');
+    list.appendChild(sentinel);
+
+    bsee.animate.onEnter(sentinel, () => {
+        sentinel.remove();
+        loadNextPage().then(attachSentinel);
+    });
+}
+
+attachSentinel();</code></pre>
+        </div>
+    </section>
+
+</div>
+
+<script src="../js/bs-ee.js"></script>
+<script>
+    // Auto-play entrance demos on load with stagger
+    document.querySelectorAll('#entrance-demos .demo-box').forEach((box, i) => {
+        const cls = box.dataset.anim;
+        box.style.setProperty('--bsee-animate-delay', (i * 0.08) + 's');
+        box.classList.add('animate', cls);
+    });
+
+    // Replay entrance animations
+    document.getElementById('replay-entrance').addEventListener('click', () => {
+        document.querySelectorAll('#entrance-demos .demo-box').forEach((box, i) => {
+            const cls = box.dataset.anim;
+            box.classList.remove('animate', cls);
+            void box.offsetWidth;
+            box.style.setProperty('--bsee-animate-delay', (i * 0.08) + 's');
+            box.classList.add('animate', cls);
+        });
+    });
+
+    // Exit demos — animate out then restore opacity
+    document.querySelectorAll('.demo-exit').forEach(box => {
+        box.addEventListener('click', () => {
+            const cls = box.dataset.anim;
+            box.classList.remove('animate', cls);
+            void box.offsetWidth;
+            box.classList.add('animate', cls);
+            box.addEventListener('animationend', () => {
+                box.classList.remove('animate', cls);
+                box.style.opacity = '';
+            }, { once: true });
+        });
+    });
+
+    // State flash demos
+    ['danger', 'success', 'warning', 'info'].forEach(type => {
+        const el = document.getElementById('flash-' + type);
+        el.addEventListener('click', () => {
+            const cls = 'animate-flash-' + type;
+            el.classList.remove('animate', cls);
+            void el.offsetWidth;
+            el.classList.add('animate', cls);
+            el.addEventListener('animationend', () => el.classList.remove('animate', cls), { once: true });
+        });
+    });
+
+    // Scroll entrance
+    bsee.animate.observe();
+</script>
+</body>
+</html>

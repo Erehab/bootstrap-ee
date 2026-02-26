@@ -2,7 +2,12 @@
 
 ## Active Tasks
 
-- Add in an animation library. Make sure there is good documentation.
+- Make navbar rollovers work
+- Strip text/color overrides from all HTML pages, use base styles
+- Make card header font bold and bit bigger, not an override
+- Add in letterspacing classes. Add more display-font-sizes: 7 is 2 rem, 8 is 1.5, 9 is 1.25, 10 is 1 rem, 11 is .75, 12 is .5 13 is .25.
+- Tokens page needs to be striped down and then built up with BS5 colors. Rename to Colors. Use the fbs variable names.
+- Investigate ACP Setup section in README.md — `_bootstrap-ee.readme.md` is referenced but doesn't exist; clarify what ACP is and either create the doc or remove the section
 - Start on JS Modernization Plan
 - Create a documented method/process for auditing a consuming project's templates for FA 4.x icon classes and mapping them to FA 6 Pro names — needed each time BSEE is added to a project (medium).
 - Consider adding an `initBootstrap(container)` helper to the bundle for initializing tooltips/popovers in dynamically injected content (easy, low priority).
