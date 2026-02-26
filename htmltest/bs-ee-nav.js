@@ -24,7 +24,7 @@ class BsEeNav extends HTMLElement {
             { id: 'datatables',     href: 'datatables.html',      label: 'DataTables' },
             { id: 'animations',     href: 'animations.html',      label: 'Animations' },
             { id: 'fontawesome',    href: 'fontawesome.html',     label: 'Icons' },
-            { id: 'tokens',         href: 'tokens.html',          label: 'Tokens' },
+            { id: 'colors',         href: 'colors.html',          label: 'Colors' },
             { id: 'design-compare', href: 'design-compare.html',  label: 'Design Compare' },
             { id: 'legacy',         href: 'legacy.html',          label: 'Legacy' },
         ];

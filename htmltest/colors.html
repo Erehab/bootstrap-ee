@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colors — Bootstrap EE</title>
+    <link rel="stylesheet" href="../css/bs-ee.css">
+    <style>
+        /* Swatch grid helpers */
+        .swatch-row { display: flex; gap: 2px; margin-bottom: 6px; }
+        .swatch {
+            flex: 1;
+            height: 40px;
+            border-radius: 4px;
+            position: relative;
+            cursor: default;
+        }
+        .swatch:hover::after {
+            content: attr(data-label);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #172b4d;
+            color: #fff;
+            font-size: 10px;
+            white-space: nowrap;
+            padding: 2px 6px;
+            border-radius: 3px;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        /* Family label */
+        .family-label {
+            font-size: .65rem;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            font-weight: 700;
+            color: var(--bs-secondary-color);
+            width: 56px;
+            flex-shrink: 0;
+            padding-top: 12px;
+        }
+        .swatch-family { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 4px; }
+
+        /* Step labels under palette */
+        .step-labels {
+            display: flex;
+            gap: 2px;
+            padding-left: 64px;
+            margin-bottom: 24px;
+        }
+        .step-label {
+            flex: 1;
+            text-align: center;
+            font-size: .6rem;
+            color: var(--bs-secondary-color);
+        }
+
+        /* Named color grid */
+        .color-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+        .color-chip {
+            width: 80px;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,.08);
+            font-size: .65rem;
+        }
+        .color-chip-swatch { height: 44px; }
+        .color-chip-label {
+            padding: 3px 5px;
+            background: var(--bs-body-bg);
+            line-height: 1.3;
+            font-family: monospace;
+        }
+
+        /* Theme color table */
+        .theme-swatch {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            border: 1px solid rgba(0,0,0,.08);
+            display: inline-block;
+            vertical-align: middle;
+            flex-shrink: 0;
+        }
+        table.color-table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+        table.color-table th {
+            text-align: left;
+            padding: 6px 10px;
+            border-bottom: 2px solid var(--bs-border-color);
+            font-size: .7rem;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            color: var(--bs-secondary-color);
+        }
+        table.color-table td {
+            padding: 5px 10px;
+            border-bottom: 1px solid var(--bs-border-color);
+            vertical-align: middle;
+            font-family: monospace;
+            font-size: .8rem;
+        }
+        table.color-table tr:last-child td { border-bottom: none; }
+        table.color-table tr:hover td { background: var(--bs-tertiary-bg); }
+    </style>
+</head>
+<body>
+<script src="bs-ee-nav.js"></script>
+<bs-ee-nav></bs-ee-nav>
+
+<div class="container pb-5">
+
+    <div class="mb-4">
+        <h1 class="fw-bold">Colors</h1>
+        <p class="fs-sm mb-0">Color reference for Bootstrap EE. FBS palette variables, Bootstrap theme colors, and named BSEE utility classes.</p>
+    </div>
+
+    <!-- Jump nav -->
+    <div class="d-flex flex-wrap gap-2 mb-5">
+        <a href="#fbs-palette" class="badge text-bg-secondary text-decoration-none">FBS Palette</a>
+        <a href="#theme-colors" class="badge text-bg-secondary text-decoration-none">Theme Colors</a>
+        <a href="#named-colors" class="badge text-bg-secondary text-decoration-none">Named Colors</a>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         FBS PALETTE
+    ══════════════════════════════════════════ -->
+    <h2 class="h5 fw-bold mb-1" id="fbs-palette">FBS Palette</h2>
+    <p class="fs-sm mb-3">Raw SCSS variables from <code>_fbs-colors.scss</code>. Use these to pick specific shades when Bootstrap's <code>tint-color()</code>/<code>shade-color()</code> aren't precise enough.</p>
+
+    <!-- Step labels -->
+    <div class="step-labels">
+        <div class="step-label">100</div>
+        <div class="step-label">200</div>
+        <div class="step-label">300</div>
+        <div class="step-label">400</div>
+        <div class="step-label">500</div>
+        <div class="step-label">600</div>
+        <div class="step-label">700</div>
+        <div class="step-label">800</div>
+        <div class="step-label">900</div>
+        <div class="step-label">1000</div>
+    </div>
+
+    <!-- Lime -->
+    <div class="swatch-family">
+        <div class="family-label">Lime</div>
+        <div class="swatch-row flex-grow-1">
+            <div class="swatch" style="background:#eefbda" data-label="$fbs-lime-100 #eefbda"></div>
+            <div class="swatch" style="background:#d3f1a7" data-label="$fbs-lime-200 #d3f1a7"></div>
+            <div class="swatch" style="background:#b3df72" data-label="$fbs-lime-300 #b3df72"></div>
+            <div class="swatch" style="background:#94c748" data-label="$fbs-lime-400 #94c748"></div>
+            <div class="swatch" style="background:#82b536" data-label="$fbs-lime-500 #82b536"></div>
+            <div class="swatch" style="background:#6a9a23" data-label="$fbs-lime-600 #6a9a23"></div>
+            <div class="swatch" style="background:#5b7f24" data-label="$fbs-lime-700 #5b7f24"></div>
+            <div class="swatch" style="background:#4c6b1f" data-label="$fbs-lime-800 #4c6b1f"></div>
+            <div class="swatch" style="background:#37471f" data-label="$fbs-lime-900 #37471f"></div>
+            <div class="swatch" style="background:#2a3818" data-label="$fbs-lime-1000 #2a3818"></div>
+        </div>
+    </div>
+
+    <!-- Blue -->
+    <div class="swatch-family">
+        <div class="family-label">Blue</div>
+        <div class="swatch-row flex-grow-1">
+            <div class="swatch" style="background:#e9f2ff" data-label="$fbs-blue-100 #e9f2ff"></div>
+            <div class="swatch" style="background:#cce0ff" data-label="$fbs-blue-200 #cce0ff"></div>
+            <div class="swatch" style="background:#85b8ff" data-label="$fbs-blue-300 #85b8ff"></div>
+            <div class="swatch" style="background:#579dff" data-label="$fbs-blue-400 #579dff"></div>
+            <div class="swatch" style="background:#388bff" data-label="$fbs-blue-500 #388bff"></div>
+            <div class="swatch" style="background:#1d7afc" data-label="$fbs-blue-600 #1d7afc ★ info"></div>
+            <div class="swatch" style="background:#0c66e4" data-label="$fbs-blue-700 #0c66e4"></div>
+            <div class="swatch" style="background:#0055cc" data-label="$fbs-blue-800 #0055cc ★ primary"></div>
+            <div class="swatch" style="background:#09326c" data-label="$fbs-blue-900 #09326c"></div>
+            <div class="swatch" style="background:#092957" data-label="$fbs-blue-1000 #092957"></div>
+        </div>
+    </div>
+
+    <!-- Purple -->
+    <div class="swatch-family">
+        <div class="family-label">Purple</div>
+        <div class="swatch-row flex-grow-1">
+            <div class="swatch" style="background:#f3f0ff" data-label="$fbs-purple-100 #f3f0ff"></div>
+            <div class="swatch" style="background:#dfd8fd" data-label="$fbs-purple-200 #dfd8fd"></div>
+            <div class="swatch" style="background:#b8acf6" data-label="$fbs-purple-300 #b8acf6"></div>
+            <div class="swatch" style="background:#9f8fef" data-label="$fbs-purple-400 #9f8fef"></div>
+            <div class="swatch" style="background:#8f7ee7" data-label="$fbs-purple-500 #8f7ee7"></div>
+            <div class="swatch" style="background:#8270db" data-label="$fbs-purple-600 #8270db"></div>
+            <div class="swatch" style="background:#6e5dc6" data-label="$fbs-purple-700 #6e5dc6"></div>
+            <div class="swatch" style="background:#5e4db2" data-label="$fbs-purple-800 #5e4db2"></div>
+            <div class="swatch" style="background:#352c63" data-label="$fbs-purple-900 #352c63"></div>
+            <div class="swatch" style="background:#2b2451" data-label="$fbs-purple-1000 #2b2451"></div>
+        </div>
+    </div>
+
+    <!-- Red -->
+    <div class="swatch-family">
+        <div class="family-label">Red</div>
+        <div class="swatch-row flex-grow-1">
+            <div class="swatch" style="background:#ffedeb" data-label="$fbs-red-100 #ffedeb"></div>
+            <div class="swatch" style="background:#ffd2cc" data-label="$fbs-red-200 #ffd2cc"></div>
+            <div class="swatch" style="background:#ff9c8f" data-label="$fbs-red-300 #ff9c8f"></div>
+            <div class="swatch" style="background:#f87462" data-label="$fbs-red-400 #f87462"></div>
+            <div class="swatch" style="background:#ef5c48" data-label="$fbs-red-500 #ef5c48 ★ danger"></div>
+            <div class="swatch" style="background:#e34935" data-label="$fbs-red-600 #e34935"></div>
+            <div class="swatch" style="background:#ca3521" data-label="$fbs-red-700 #ca3521"></div>
+            <div class="swatch" style="background:#ae2a19" data-label="$fbs-red-800 #ae2a19"></div>
+            <div class="swatch" style="background:#601e16" data-label="$fbs-red-900 #601e16"></div>
+            <div class="swatch" style="background:#4f1c16" data-label="$fbs-red-1000 #4f1c16"></div>
+        </div>
+    </div>
+
+    <!-- Orange -->
+    <div class="swatch-family">
+        <div class="family-label">Orange</div>
+        <div class="swatch-row flex-grow-1">
+            <div class="swatch" style="background:#fff4e5" data-label="$fbs-orange-100 #fff4e5"></div>
+            <div class="swatch" style="background:#ffe2bd" data-label="$fbs-orange-200 #ffe2bd"></div>
+            <div class="swatch" style="background:#fec57b" data-label="$fbs-orange-300 #fec57b"></div>
+            <div class="swatch" style="background:#faa53d" data-label="$fbs-orange-400 #faa53d ★ warning"></div>
+            <div class="swatch" style="background:#f18d13" data-label="$fbs-orange-500 #f18d13"></div>
+            <div class="swatch" style="background:#d97008" data-label="$fbs-orange-600 #d97008"></div>
+            <div class="swatch" style="background:#b65c02" data-label="$fbs-orange-700 #b65c02"></div>
+            <div class="swatch" style="background:#974f0c" data-label="$fbs-orange-800 #974f0c"></div>
+            <div class="swatch" style="background:#5f3811" data-label="$fbs-orange-900 #5f3811"></div>
+            <div class="swatch" style="background:#4a2b0f" data-label="$fbs-orange-1000 #4a2b0f"></div>
+        </div>
+    </div>
+
+    <!-- Yellow -->
+    <div class="swatch-family">
+        <div class="family-label">Yellow</div>
+        <div class="swatch-row flex-grow-1">
+            <div class="swatch" style="background:#fffde7" data-label="$fbs-yellow-100 #fffde7"></div>
+            <div class="swatch" style="background:#fff9c4" data-label="$fbs-yellow-200 #fff9c4"></div>
+            <div class="swatch" style="background:#fff176" data-label="$fbs-yellow-300 #fff176"></div>
+            <div class="swatch" style="background:#ffee58" data-label="$fbs-yellow-400 #ffee58"></div>
+            <div class="swatch" style="background:#ffeb3b" data-label="$fbs-yellow-500 #ffeb3b"></div>
+            <div class="swatch" style="background:#fdd835" data-label="$fbs-yellow-600 #fdd835"></div>
+            <div class="swatch" style="background:#f9a825" data-label="$fbs-yellow-700 #f9a825"></div>
+            <div class="swatch" style="background:#f57f17" data-label="$fbs-yellow-800 #f57f17"></div>
+            <div class="swatch" style="background:#5c4200" data-label="$fbs-yellow-900 #5c4200"></div>
+            <div class="swatch" style="background:#3d2c00" data-label="$fbs-yellow-1000 #3d2c00"></div>
+        </div>
+    </div>
+
+    <!-- Green -->
+    <div class="swatch-family">
+        <div class="family-label">Green</div>
+        <div class="swatch-row flex-grow-1">
+            <div class="swatch" style="background:#dffcf0" data-label="$fbs-green-100 #dffcf0"></div>
+            <div class="swatch" style="background:#baf3db" data-label="$fbs-green-200 #baf3db"></div>
+            <div class="swatch" style="background:#7ee2b8" data-label="$fbs-green-300 #7ee2b8"></div>
+            <div class="swatch" style="background:#4bce97" data-label="$fbs-green-400 #4bce97"></div>
+            <div class="swatch" style="background:#2abb7f" data-label="$fbs-green-500 #2abb7f ★ success"></div>
+            <div class="swatch" style="background:#22a06b" data-label="$fbs-green-600 #22a06b"></div>
+            <div class="swatch" style="background:#1f845a" data-label="$fbs-green-700 #1f845a"></div>
+            <div class="swatch" style="background:#216e4e" data-label="$fbs-green-800 #216e4e"></div>
+            <div class="swatch" style="background:#164b35" data-label="$fbs-green-900 #164b35"></div>
+            <div class="swatch" style="background:#143c2b" data-label="$fbs-green-1000 #143c2b"></div>
+        </div>
+    </div>
+
+    <!-- Teal -->
+    <div class="swatch-family">
+        <div class="family-label">Teal</div>
+        <div class="swatch-row flex-grow-1">
+            <div class="swatch" style="background:#e3fafc" data-label="$fbs-teal-100 #e3fafc"></div>
+            <div class="swatch" style="background:#c1f0f5" data-label="$fbs-teal-200 #c1f0f5"></div>
+            <div class="swatch" style="background:#8bdbe5" data-label="$fbs-teal-300 #8bdbe5"></div>
+            <div class="swatch" style="background:#60c6d2" data-label="$fbs-teal-400 #60c6d2"></div>
+            <div class="swatch" style="background:#37b4c3" data-label="$fbs-teal-500 #37b4c3"></div>
+            <div class="swatch" style="background:#1d9aaa" data-label="$fbs-teal-600 #1d9aaa"></div>
+            <div class="swatch" style="background:#1d7f8c" data-label="$fbs-teal-700 #1d7f8c"></div>
+            <div class="swatch" style="background:#206b74" data-label="$fbs-teal-800 #206b74"></div>
+            <div class="swatch" style="background:#1d474c" data-label="$fbs-teal-900 #1d474c"></div>
+            <div class="swatch" style="background:#15373b" data-label="$fbs-teal-1000 #15373b"></div>
+        </div>
+    </div>
+
+    <!-- Magenta -->
+    <div class="swatch-family">
+        <div class="family-label">Magenta</div>
+        <div class="swatch-row flex-grow-1">
+            <div class="swatch" style="background:#ffecf8" data-label="$fbs-magenta-100 #ffecf8"></div>
+            <div class="swatch" style="background:#fdd0ec" data-label="$fbs-magenta-200 #fdd0ec"></div>
+            <div class="swatch" style="background:#f797d2" data-label="$fbs-magenta-300 #f797d2"></div>
+            <div class="swatch" style="background:#e774bb" data-label="$fbs-magenta-400 #e774bb"></div>
+            <div class="swatch" style="background:#da62ac" data-label="$fbs-magenta-500 #da62ac"></div>
+            <div class="swatch" style="background:#cd519d" data-label="$fbs-magenta-600 #cd519d"></div>
+            <div class="swatch" style="background:#ae4787" data-label="$fbs-magenta-700 #ae4787"></div>
+            <div class="swatch" style="background:#943d73" data-label="$fbs-magenta-800 #943d73"></div>
+            <div class="swatch" style="background:#50253f" data-label="$fbs-magenta-900 #50253f"></div>
+            <div class="swatch" style="background:#421f34" data-label="$fbs-magenta-1000 #421f34"></div>
+        </div>
+    </div>
+
+    <!-- Neutral -->
+    <div class="swatch-family">
+        <div class="family-label">Neutral</div>
+        <div class="swatch-row flex-grow-1">
+            <div class="swatch" style="background:#f7f8f9" data-label="$fbs-neutral-100 #f7f8f9"></div>
+            <div class="swatch" style="background:#f1f2f4" data-label="$fbs-neutral-200 #f1f2f4"></div>
+            <div class="swatch" style="background:#dcdfe4" data-label="$fbs-neutral-300 #dcdfe4"></div>
+            <div class="swatch" style="background:#b3b9c4" data-label="$fbs-neutral-400 #b3b9c4"></div>
+            <div class="swatch" style="background:#8590a2" data-label="$fbs-neutral-500 #8590a2"></div>
+            <div class="swatch" style="background:#758195" data-label="$fbs-neutral-600 #758195"></div>
+            <div class="swatch" style="background:#626f86" data-label="$fbs-neutral-700 #626f86"></div>
+            <div class="swatch" style="background:#44546f" data-label="$fbs-neutral-800 #44546f"></div>
+            <div class="swatch" style="background:#2c3e5d" data-label="$fbs-neutral-900 #2c3e5d"></div>
+            <div class="swatch" style="background:#172b4d" data-label="$fbs-neutral-1000 #172b4d"></div>
+        </div>
+    </div>
+
+    <hr class="my-5">
+
+    <!-- ══════════════════════════════════════════
+         BOOTSTRAP THEME COLORS
+    ══════════════════════════════════════════ -->
+    <h2 class="h5 fw-bold mb-1" id="theme-colors">Bootstrap Theme Colors</h2>
+    <p class="fs-sm mb-3">BSEE overrides for Bootstrap's semantic color system. Generates <code>.btn-*</code>, <code>.bg-*</code>, <code>.text-*</code>, <code>.badge</code>, <code>.alert-*</code> etc. automatically.</p>
+
+    <div class="card mb-5">
+        <table class="color-table">
+            <thead>
+                <tr>
+                    <th style="width:36px"></th>
+                    <th>Name</th>
+                    <th>SCSS Variable</th>
+                    <th>Hex</th>
+                    <th class="d-none d-md-table-cell">FBS Source</th>
+                    <th class="d-none d-lg-table-cell">Usage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="theme-swatch" style="background:#0055cc"></span></td>
+                    <td><strong>primary</strong></td>
+                    <td>$primary</td>
+                    <td>#0055cc</td>
+                    <td class="d-none d-md-table-cell">$fbs-blue-800</td>
+                    <td class="d-none d-lg-table-cell">Erehab navy — buttons, links, key actions</td>
+                </tr>
+                <tr>
+                    <td><span class="theme-swatch" style="background:#2abb7f"></span></td>
+                    <td><strong>success</strong></td>
+                    <td>$success</td>
+                    <td>#2abb7f</td>
+                    <td class="d-none d-md-table-cell">$fbs-green-500</td>
+                    <td class="d-none d-lg-table-cell">Positive status, confirmed actions</td>
+                </tr>
+                <tr>
+                    <td><span class="theme-swatch" style="background:#faa53d"></span></td>
+                    <td><strong>warning</strong></td>
+                    <td>$warning</td>
+                    <td>#faa53d</td>
+                    <td class="d-none d-md-table-cell">$fbs-orange-400</td>
+                    <td class="d-none d-lg-table-cell">Caution — use as bg/badge, low contrast for text</td>
+                </tr>
+                <tr>
+                    <td><span class="theme-swatch" style="background:#ef5c48"></span></td>
+                    <td><strong>danger</strong></td>
+                    <td>$danger</td>
+                    <td>#ef5c48</td>
+                    <td class="d-none d-md-table-cell">$fbs-red-500</td>
+                    <td class="d-none d-lg-table-cell">Errors, destructive actions</td>
+                </tr>
+                <tr>
+                    <td><span class="theme-swatch" style="background:#1d7afc"></span></td>
+                    <td><strong>info</strong></td>
+                    <td>$info</td>
+                    <td>#1d7afc</td>
+                    <td class="d-none d-md-table-cell">$fbs-blue-600</td>
+                    <td class="d-none d-lg-table-cell">Links, informational, card titles</td>
+                </tr>
+                <tr>
+                    <td><span class="theme-swatch" style="background:#6f42c1"></span></td>
+                    <td><strong>discovery</strong></td>
+                    <td>$discovery</td>
+                    <td>#6f42c1</td>
+                    <td class="d-none d-md-table-cell">$purple (Bootstrap)</td>
+                    <td class="d-none d-lg-table-cell">New features, AI, premium indicators</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Theme color samples -->
+    <div class="row g-2 mb-5">
+        <div class="col-auto"><button class="btn btn-primary btn-sm">primary</button></div>
+        <div class="col-auto"><button class="btn btn-success btn-sm">success</button></div>
+        <div class="col-auto"><button class="btn btn-warning btn-sm">warning</button></div>
+        <div class="col-auto"><button class="btn btn-danger btn-sm">danger</button></div>
+        <div class="col-auto"><button class="btn btn-info btn-sm">info</button></div>
+        <div class="col-auto"><button class="btn btn-discovery btn-sm">discovery</button></div>
+        <div class="col-auto"><button class="btn btn-outline-primary btn-sm">outline-primary</button></div>
+        <div class="col-auto"><button class="btn btn-outline-danger btn-sm">outline-danger</button></div>
+        <div class="col-auto"><span class="badge text-bg-primary">primary</span></div>
+        <div class="col-auto"><span class="badge text-bg-success">success</span></div>
+        <div class="col-auto"><span class="badge text-bg-warning">warning</span></div>
+        <div class="col-auto"><span class="badge text-bg-danger">danger</span></div>
+        <div class="col-auto"><span class="badge text-bg-info">info</span></div>
+        <div class="col-auto"><span class="badge text-bg-discovery">discovery</span></div>
+    </div>
+
+    <hr class="my-5">
+
+    <!-- ══════════════════════════════════════════
+         NAMED BSEE COLORS
+    ══════════════════════════════════════════ -->
+    <h2 class="h5 fw-bold mb-1" id="named-colors">Named BSEE Colors</h2>
+    <p class="fs-sm mb-3">From <code>_biz-utilities.scss</code>. <code>.{name}</code> sets <code>background-color</code> + <code>border-color</code>. <code>.{name}-lt</code> sets a tinted background (<code>tint-color($color, 85%)</code>). <code>.{name}_text</code> sets <code>color</code> only.</p>
+
+    <div class="color-grid mb-4">
+        <div class="color-chip"><div class="color-chip-swatch cherry"></div><div class="color-chip-label">.cherry</div></div>
+        <div class="color-chip"><div class="color-chip-swatch maroon"></div><div class="color-chip-label">.maroon</div></div>
+        <div class="color-chip"><div class="color-chip-swatch red"></div><div class="color-chip-label">.red</div></div>
+        <div class="color-chip"><div class="color-chip-swatch orange"></div><div class="color-chip-label">.orange</div></div>
+        <div class="color-chip"><div class="color-chip-swatch yellow"></div><div class="color-chip-label">.yellow</div></div>
+        <div class="color-chip"><div class="color-chip-swatch green"></div><div class="color-chip-label">.green</div></div>
+        <div class="color-chip"><div class="color-chip-swatch clover"></div><div class="color-chip-label">.clover</div></div>
+        <div class="color-chip"><div class="color-chip-swatch lime"></div><div class="color-chip-label">.lime</div></div>
+        <div class="color-chip"><div class="color-chip-swatch olive"></div><div class="color-chip-label">.olive</div></div>
+        <div class="color-chip"><div class="color-chip-swatch teal"></div><div class="color-chip-label">.teal</div></div>
+        <div class="color-chip"><div class="color-chip-swatch aqua"></div><div class="color-chip-label">.aqua</div></div>
+        <div class="color-chip"><div class="color-chip-swatch navy"></div><div class="color-chip-label">.navy</div></div>
+        <div class="color-chip"><div class="color-chip-swatch blue"></div><div class="color-chip-label">.blue</div></div>
+        <div class="color-chip"><div class="color-chip-swatch ice"></div><div class="color-chip-label">.ice</div></div>
+        <div class="color-chip"><div class="color-chip-swatch deepblue"></div><div class="color-chip-label">.deepblue</div></div>
+        <div class="color-chip"><div class="color-chip-swatch purple"></div><div class="color-chip-label">.purple</div></div>
+        <div class="color-chip"><div class="color-chip-swatch hotpink"></div><div class="color-chip-label">.hotpink</div></div>
+        <div class="color-chip"><div class="color-chip-swatch fuchsia"></div><div class="color-chip-label">.fuchsia</div></div>
+        <div class="color-chip"><div class="color-chip-swatch slategrey"></div><div class="color-chip-label">.slategrey</div></div>
+        <div class="color-chip"><div class="color-chip-swatch mauve"></div><div class="color-chip-label">.mauve</div></div>
+        <div class="color-chip"><div class="color-chip-swatch pearl"></div><div class="color-chip-label">.pearl</div></div>
+        <div class="color-chip"><div class="color-chip-swatch steelblue"></div><div class="color-chip-label">.steelblue</div></div>
+        <div class="color-chip"><div class="color-chip-swatch mossgreen"></div><div class="color-chip-label">.mossgreen</div></div>
+        <div class="color-chip"><div class="color-chip-swatch wheat"></div><div class="color-chip-label">.wheat</div></div>
+        <div class="color-chip"><div class="color-chip-swatch coffee"></div><div class="color-chip-label">.coffee</div></div>
+        <div class="color-chip"><div class="color-chip-swatch copper"></div><div class="color-chip-label">.copper</div></div>
+        <div class="color-chip"><div class="color-chip-swatch silver"></div><div class="color-chip-label">.silver</div></div>
+        <div class="color-chip"><div class="color-chip-swatch black"></div><div class="color-chip-label">.black</div></div>
+        <div class="color-chip"><div class="color-chip-swatch white"></div><div class="color-chip-label">.white</div></div>
+    </div>
+
+    <div class="color-grid mb-5">
+        <div class="color-chip"><div class="color-chip-swatch cherry-lt"></div><div class="color-chip-label">.cherry-lt</div></div>
+        <div class="color-chip"><div class="color-chip-swatch maroon-lt"></div><div class="color-chip-label">.maroon-lt</div></div>
+        <div class="color-chip"><div class="color-chip-swatch red-lt"></div><div class="color-chip-label">.red-lt</div></div>
+        <div class="color-chip"><div class="color-chip-swatch orange-lt"></div><div class="color-chip-label">.orange-lt</div></div>
+        <div class="color-chip"><div class="color-chip-swatch yellow-lt"></div><div class="color-chip-label">.yellow-lt</div></div>
+        <div class="color-chip"><div class="color-chip-swatch green-lt"></div><div class="color-chip-label">.green-lt</div></div>
+        <div class="color-chip"><div class="color-chip-swatch clover-lt"></div><div class="color-chip-label">.clover-lt</div></div>
+        <div class="color-chip"><div class="color-chip-swatch lime-lt"></div><div class="color-chip-label">.lime-lt</div></div>
+        <div class="color-chip"><div class="color-chip-swatch olive-lt"></div><div class="color-chip-label">.olive-lt</div></div>
+        <div class="color-chip"><div class="color-chip-swatch teal-lt"></div><div class="color-chip-label">.teal-lt</div></div>
+        <div class="color-chip"><div class="color-chip-swatch aqua-lt"></div><div class="color-chip-label">.aqua-lt</div></div>
+        <div class="color-chip"><div class="color-chip-swatch navy-lt"></div><div class="color-chip-label">.navy-lt</div></div>
+        <div class="color-chip"><div class="color-chip-swatch blue-lt"></div><div class="color-chip-label">.blue-lt</div></div>
+        <div class="color-chip"><div class="color-chip-swatch ice-lt"></div><div class="color-chip-label">.ice-lt</div></div>
+        <div class="color-chip"><div class="color-chip-swatch deepblue-lt"></div><div class="color-chip-label">.deepblue-lt</div></div>
+        <div class="color-chip"><div class="color-chip-swatch purple-lt"></div><div class="color-chip-label">.purple-lt</div></div>
+        <div class="color-chip"><div class="color-chip-swatch hotpink-lt"></div><div class="color-chip-label">.hotpink-lt</div></div>
+        <div class="color-chip"><div class="color-chip-swatch fuchsia-lt"></div><div class="color-chip-label">.fuchsia-lt</div></div>
+        <div class="color-chip"><div class="color-chip-swatch slategrey-lt"></div><div class="color-chip-label">.slategrey-lt</div></div>
+        <div class="color-chip"><div class="color-chip-swatch mauve-lt"></div><div class="color-chip-label">.mauve-lt</div></div>
+        <div class="color-chip"><div class="color-chip-swatch pearl-lt"></div><div class="color-chip-label">.pearl-lt</div></div>
+        <div class="color-chip"><div class="color-chip-swatch steelblue-lt"></div><div class="color-chip-label">.steelblue-lt</div></div>
+        <div class="color-chip"><div class="color-chip-swatch mossgreen-lt"></div><div class="color-chip-label">.mossgreen-lt</div></div>
+        <div class="color-chip"><div class="color-chip-swatch wheat-lt"></div><div class="color-chip-label">.wheat-lt</div></div>
+        <div class="color-chip"><div class="color-chip-swatch coffee-lt"></div><div class="color-chip-label">.coffee-lt</div></div>
+        <div class="color-chip"><div class="color-chip-swatch copper-lt"></div><div class="color-chip-label">.copper-lt</div></div>
+        <div class="color-chip"><div class="color-chip-swatch silver-lt"></div><div class="color-chip-label">.silver-lt</div></div>
+        <div class="color-chip"><div class="color-chip-swatch black-lt"></div><div class="color-chip-label">.black-lt</div></div>
+        <div class="color-chip"><div class="color-chip-swatch white-lt"></div><div class="color-chip-label">.white-lt</div></div>
+    </div>
+
+</div><!-- /container -->
+
+<script src="../js/bs-ee.js"></script>
+</body>
+</html>

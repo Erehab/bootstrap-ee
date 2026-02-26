@@ -46,6 +46,10 @@ $_biz-colors: (
         border-color: $color !important;
     }
 
+    .#{$name}-lt {
+        background-color: tint-color($color, 85%) !important;
+    }
+
     .#{$name}_text {
         color: $color !important;
     }
