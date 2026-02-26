@@ -2,6 +2,16 @@
 
 ### 2026-02-25
 
+**Replace tokens.html with colors.html; add -lt color variants**
+- Deleted `tokens.html` (full of stale `--ds-*` token tables from removed FBS/Atlassian system)
+- Created `htmltest/colors.html`: FBS palette swatches with `$fbs-*` variable names on hover, Bootstrap theme color table (primary/success/warning/danger/info/discovery) with hex values and FBS source, live button/badge samples, named BSEE color chip grids
+- Added `.{name}-lt` light variant classes to `_biz-utilities.scss` via `tint-color($color, 85%)` — generated alongside vivid classes in the existing `@each` loop
+- Both vivid and `-lt` grids shown in `colors.html` using the real CSS classes (no inline hex values)
+- Removed hand-coded named color section from `index.html` (now lives in colors.html)
+- Nav and index card updated: Tokens → Colors
+
+### 2026-02-25
+
 **Navbar rollovers, HTML cleanup, card header, utility classes**
 - Fixed navbar hover: `bs-ee-nav.js` links used inline `style="color:..."` which blocked CSS `:hover` rules; replaced with `.bsee-nav-link` / `.bsee-nav-link--ext` / `.active` classes; added ruleset to `_navbar.scss` with transition and active color `$fbs-lime-300` (lime against navy)
 - Stripped `text-secondary` color overrides from `htmltest/animations.html` (all descriptive paragraphs + `<code>` animation labels) and `htmltest/legacy.html` (3 intro paragraphs); cleaned empty `class=""` attrs from `index.html` and `components.html`; `design-compare.html` excluded (intentional overrides)
