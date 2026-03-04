@@ -1,7 +1,8 @@
 # Plan: JS Modernization
 
-**Source**: `legacy/js/` from ptclinic.biz project
-**Goal**: Define what gets bundled into BSEE, what stays in ptclinic.biz, and what gets dropped — then execute the migration in phases.
+**Source**: `/Users/masonjo/Sites/biz/ca/js/` — the `ca/` subdir of the ptclinic.biz project (`/Users/masonjo/Sites/biz/`)
+**This repo**: `/Users/masonjo/packages/bootstrap-ee/` — where replacement JS is bundled into `bs-ee.js`
+**Goal**: Move shared vendor libs into BSEE's npm bundle, drop obsolete files, and clean up ptclinic.biz app scripts.
 
 **Feeds from**: `audit_js.md` (Phase 5 output of Migrate Legacy CSS plan)
 
@@ -9,9 +10,9 @@
 
 ## Background
 
-The legacy JS stack is a mix of jQuery plugins, vendor utilities, and app-specific scripts served as loose files. The goal is:
+The legacy JS stack is a mix of jQuery plugins, vendor utilities, and app-specific scripts served as loose files from `ca/js/`. The goal is:
 
-1. Move shared vendor libs into BSEE's npm bundle
+1. Move shared vendor libs into BSEE's npm bundle (`bs-ee.js`)
 2. Keep app-specific scripts in ptclinic.biz (cleaned up)
 3. Drop dead/obsolete files entirely
 4. Reduce the number of `<script>` tags on every page load
@@ -23,31 +24,65 @@ The target state is two tags:
 ```
 ...plus ptclinic.biz-specific scripts only.
 
+### Key Entry Points (where `<script>` tags live)
+
+The `<script>` and `<link>` tags are concentrated in a small number of shared files — not scattered across every page. Primary locations to audit and update:
+
+| File | Role |
+|---|---|
+| `ca/customer.twig` | Main customer dashboard template — updated to use BSEE |
+| `ca/customer_original.twig` | Preserved legacy template — untouched, used as fallback |
+| `ca/customer.php` | PHP controller — routes to `customer_original.twig` if `?legacy` is present |
+| `ca/index.php` | Secondary entry point — also has a block of script tags |
+| `ca/includes/left_local.php` | NAP checker sidebar — loads jQuery + BS3 from CDN |
+
+Individual pages in `ca/page/` and `ca/includes/` may have their own `<script>` tags but these are exceptions, not the rule. Phase 4 audits these.
+
+### Testing Strategy
+
+`customer_original.twig` is preserved as the legacy fallback. Append `?legacy` to any customer URL to load the original stack. `customer.twig` is the active template being modernized. Use Playwright MCP to verify pages after each change.
+
+---
+
+## Phase 0: Preserve Legacy + Wire Up Fallback
+
+**Goal**: Snapshot the current `customer.twig` as `customer_original.twig` and add the `?legacy` routing switch to `customer.php`. Zero-risk — no behavior change unless `?legacy` is in the URL.
+
+### Tasks
+
+- [x] **Copy `ca/customer.twig` → `ca/customer_original.twig`** — exact copy, untouched
+- [x] **Update `ca/customer.php`** — check `isset($_GET['legacy'])` at template selection; use `customer_original.twig` if true, otherwise `customer.twig`
+- [x] **Verify fallback** in Playwright — load a customer page with `?legacy` and confirm it renders identically to before
+
 ---
 
 ## Phase 1: Drop Dead Files
 
-**Goal**: Remove files that are clearly obsolete with no migration needed. Zero-risk cleanup.
+**Goal**: Remove files from `ca/js/` that are clearly obsolete with no migration needed. Zero-risk cleanup.
 
 ### Tasks
 
-- [ ] **Drop `zeroclip.js`** — Flash-based clipboard. Flash is dead. Replace any usage with ClipboardJS (Phase 2).
-- [ ] **Drop `BugSnagJqueryFinder.js`** — Debugging tool. Should never be in production.
-- [ ] **Drop `bootstrap.min.js`** — Bootstrap 3 JS. Replaced by BSEE's bundled BS 5.3.2.
-- [ ] **Drop `dataTables.bootstrap.js`** — Bootstrap 3 DataTables integration. Replaced by BSEE's bundled `datatables.net-bs5`.
-- [ ] **Drop `bootstrap-hover-dropdown.js` / `.min.js`** — BS3-era hover dropdowns. BS5 handles this differently; replace with CSS if hover is needed.
-- [ ] **Drop `jquery-ui-slide.js`** — jQuery UI slide animation. Replace with CSS transitions.
-- [ ] **Drop `jquery.matchHeight-min.js`** — Not needed; use CSS flexbox/grid.
-- [ ] **Drop `jquery.metadata.js`** — Not needed; use `data-*` attributes.
-- [ ] **Drop `landbot_masterbot.js`** — Third-party chatbot. Not BSEE's concern; remove from ptclinic.biz directly.
-- [ ] **Verify then drop `jquery-ui-for-layout.js`** — jQuery UI layout plugin. Audit ptclinic.biz templates for usage first; if unused, drop.
-- [ ] **Verify then drop `jquery.bootgrid.min.js`** — Another data grid. Verify if used alongside DataTables or instead of it. If unused, drop.
-- [ ] **Verify then drop `sherlock.min.js`** — Unknown purpose. Audit usage; if unused, drop.
+- [x] **Drop `zeroclip.js`** — Flash-based clipboard. Flash is dead. Replace any usage with ClipboardJS (Phase 2). *(archived)*
+- [x] **Drop `BugSnagJqueryFinder.js`** — Debugging tool. Should never be in production. *(archived)*
+- [x] **Drop `bootstrap.min.js`** — Bootstrap 3 JS. Replaced by BSEE's bundled BS 5.3.2. *(archived)*
+- [x] **Drop `dataTables.bootstrap.js`** — Bootstrap 3 DataTables integration. Replaced by BSEE's bundled `datatables.net-bs5`. *(archived)*
+- [x] **Drop `bootstrap-hover-dropdown.js` / `.min.js`** — BS3-era hover dropdowns. BS5 handles this differently; replace with CSS if hover is needed. *(archived)*
+- [x] **Drop `jquery-ui-slide.js`** — jQuery UI slide animation. Replace with CSS transitions. *(archived)*
+- [x] **Drop `jquery.matchHeight-min.js`** — Not needed; use CSS flexbox/grid. *(archived)*
+- [x] **Drop `jquery.metadata.js`** — Not needed; use `data-*` attributes. *(archived)*
+- [x] **Drop `landbot_masterbot.js`** — Third-party chatbot. Not BSEE's concern; remove from ptclinic.biz directly. *(archived)*
+- [x] **Verify then drop `jquery-ui-for-layout.js`** — No references found; archived. *(archived)*
+- [x] **Verify then drop `jquery.bootgrid.min.js`** — No template/PHP references found; archived. *(archived)*
+- [ ] **Verify then drop `sherlock.min.js`** — Actively used in `todoform.php`, `edit_reviews_new.php`, `embedcustomer.php`, `customermdb.php` — **KEEP for now**.
 
 ### Notes
 
-- `date.js` and `formatDate.js` stay in ptclinic.biz for now; drop them once `dayjs` is bundled in Phase 2.
+- Archived files moved to `/Users/masonjo/Sites/biz/ca/js/_archive/` (not deleted, recoverable).
+- `date.js` and `formatDate.js` stay in `ca/js/` for now; drop them once `dayjs` is bundled in Phase 2.
 - `landbot_masterbot.js` is a ptclinic.biz concern — file a task there, not here.
+- `customer.twig` already loads `bootstrap.min.js` (BS3) from two CDNs AND `/ca/js/bootstrap.min.js` locally — all three are dropped once BSEE is the source.
+- `customer.twig` loads `clipboard.min.js` from `/ca/js/clipboard.min.js` — replaced by BSEE-bundled ClipboardJS in Phase 2.
+- `index.php` already uses CDN versions of typeahead, handlebars, and bootstrap-hover-dropdown (not local files) — still need to replace with BSEE bundle.
 
 ---
 
@@ -122,7 +157,7 @@ The target state is two tags:
 ## Phase 4: Security & Cleanup
 
 - [ ] **Remove `e-rehab-gmb-*.json`** from ptclinic.biz version control — Google My Business credentials should not be in git. Move to environment variables or a secrets manager.
-- [ ] **Audit ptclinic.biz `<script>` tags** — After Phase 2, remove `<script>` tags for every lib now bundled in BSEE. Fill in `legacy-load-inventory.md` to confirm what's actually loaded.
+- [ ] **Remove dead `<script>` tags** — Several files still reference archived libs via local `/ca/js/` paths or CDNs. These tags must be removed once BSEE is the source. Files with live references to archived libs: `ca/customer.twig`, `ca/embedcustomer.php`, `ca/report/edit_reviews_new.php`, `ca/report/include/todo.php`, `ca/report/include/tododone.php`, `ca/docs/layout.twig`, `ca/page/img_gen/index.php`, `ca/helpscout/set_practice_old.php`, `ca/ws.php`, `ca/kb/index.php`, `ca/page/training.php`, `ca/report/index.php`. Fill in `legacy-load-inventory.md` to confirm what's actually loaded.
 - [ ] **Verify page load** — Load a customer page in Playwright. Check console for JS errors, confirm all features work (typeahead, tablesorter, datepicker, clipboard, form validation, customer page AJAX).
 
 ---
@@ -144,6 +179,7 @@ The target state is two tags:
 | Native BS5 toasts over growl | No additional dependency; BS5 is already bundled |
 | Native `MutationObserver` over `initilize.js` | Removes jQuery dependency; lighter |
 | `sortablejs` over jQuery Sortable | No jQuery dependency; modern API |
+| `customer_original.twig` + `?legacy` flag | Simple fallback without APT complexity; preserved exactly as-is |
 
 ---
 
@@ -158,8 +194,34 @@ These stay in ptclinic.biz and are out of scope for BSEE:
 
 ---
 
+## Documentation Structure
+
+`_README/` is included in the `public` branch via `publish-dist.sh` and lands in
+`node_modules/bootstrap-ee/_README/` in consuming projects. **Write docs once in
+BSEE; point to them from biz.**
+
+### BSEE `_README/` files for this plan
+
+| File | Contents | Status |
+|---|---|---|
+| `ui-helpers.readme.md` | `dropdownHover`, `onInsert`, `toast` — native JS helpers | Started — dropdownHover done; onInsert + toast stubs added |
+| `forms.readme.md` | Parsley (validation), flatpickr (date picker), ClipboardJS | Phase 2 |
+| `data.readme.md` | tablesorter, sortablejs, typeahead + Bloodhound | Phase 2 |
+| `templating.readme.md` | Handlebars, dayjs | Phase 2 |
+
+### biz pointer
+
+`biz/_README/bootstrap-ee.readme.md` — one file listing what BSEE provides and
+directing developers to `node_modules/bootstrap-ee/_README/` for full docs.
+Do not duplicate API docs in biz.
+
+---
+
 ## References
 
 - `_AIDocs/audit_js.md` — Full JS audit with per-file decisions
 - `_AIDocs/legacy-load-inventory.md` — Template for documenting current page load (needs completion)
 - `_AIDocs/plan_migrate-legacy-css.md` — Parent plan; this plan is Phase 5 output
+- **ptclinic.biz repo**: `/Users/masonjo/Sites/biz/`
+- **Legacy JS files**: `/Users/masonjo/Sites/biz/ca/js/`
+- **Key templates**: `ca/customer.twig`, `ca/customer_original.twig`, `ca/customer.php`, `ca/index.php`, `ca/includes/left_local.php`

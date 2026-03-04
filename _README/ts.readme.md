@@ -9,10 +9,12 @@ The Vite build bundles everything into `js/bs-ee.js`. Consuming projects load th
 ## Key files
 
 - `src/ts/index.ts` — imports from `bootstrap` and DataTables, then re-exports everything
+- `src/ts/animate.ts` — animation helpers — see [animate.readme.md](animate.readme.md)
+- `src/ts/dropdown-hover.ts` — hover dropdown helper — see [ui-helpers.readme.md](ui-helpers.readme.md)
 
 ## Exports
 
-All standard Bootstrap components are exported by name (`Alert`, `Modal`, `Tooltip`, etc.) plus `DataTable`. Use them via the `bsee` global:
+All standard Bootstrap components are exported by name (`Alert`, `Modal`, `Tooltip`, etc.) plus `DataTable` and BSEE helpers. Use them via the `bsee` global:
 
 ```js
 const modal = new bsee.Modal(document.getElementById('my-modal'));

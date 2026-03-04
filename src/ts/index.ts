@@ -29,6 +29,8 @@ import {
 } from 'bootstrap';
 
 export { animate } from './animate';
+export { dropdownHover } from './dropdown-hover';
+export type { DropdownHoverOptions } from './dropdown-hover';
 
 export {
   DataTable,

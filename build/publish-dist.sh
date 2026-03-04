@@ -82,6 +82,7 @@ cp -r js/ "$WORKTREE_DIR/js"
 cp -r webfonts/ "$WORKTREE_DIR/webfonts"
 cp package.json "$WORKTREE_DIR/package.json"
 cp -r src/ "$WORKTREE_DIR/src"
+cp -r _README/ "$WORKTREE_DIR/_README"
 
 # ── Commit from the worktree ──────────────────────────────────────────────────
 
