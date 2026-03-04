@@ -6,8 +6,10 @@
 - `slideDown.js`: replaced BS3 class check with `classList.contains('fixed-top')`; updated injected div class; replaced `fa fa-times` with `fa-solid fa-xmark`
 - `customer.js`: replaced `$.initialize()` with `bsee.onInsert()`
 - Replaced `Handlebars.compile()` with template literal arrow functions in 7 files: `index.php`, `todo.php`, `tododone.php`, `ws.php`, `edit_customer.php`, `docs.js`, `set_practice_old.php`; removed all Handlebars `<script>` tags
-- `formatDate.js`/`date.js` not yet dropped — `review_edit.js`/`review_edit2.js` still use `Date.prototype.format()`, needs dayjs migration first
-- Audited: `review_edit.js`, `review_edit2.js`, `nlSignup.js`, `nlSignupRecaptcha.js`, `gridTable.js` — no other breaking deps
+- Migrated `Date.prototype.format()` to `bsee.dayjs()` in `review_edit.js`, `review_edit2.js`, `review_edit_col.php`, `training.php`, `docs.js`; archived `date.js`/`formatDate.js`; removed script tags from 6 templates with `<!-- NOTICE 2026-03-04 -->` comments
+- `gridTable.js`: updated FA4 sort icons to FA6 Pro (`fa-solid fa-sort/sort-up/sort-down`)
+- `nlSignup.js`, `nlSignupRecaptcha.js`: audited, no legacy deps — no changes needed
+- Added NOTICE comment convention to global `todo-comments.md` rules for tracking code removals
 
 **JS Modernization — Phase 2: Bundle vendor libs into BSEE**
 - Installed: dayjs (+ 7 plugins), parsleyjs, typeahead.js/Bloodhound, clipboard, tablesorter, sortablejs, flatpickr

@@ -146,13 +146,13 @@ Individual pages in `ca/page/` and `ca/includes/` may have their own `<script>` 
 
 ### Tasks
 
-- [ ] **Update `slideDown.js`** — Replace BS3 class references with BS5 equivalents; update FA4 `.fa-times` to FA6 class.
-- [ ] **Audit and update `customer.js`** — Replace `initilize.js` calls with `onInsert()`. Audit for any other dropped-lib usage.
-- [ ] **Audit `review_edit.js` / `review_edit2.js`** — Check for legacy deps and update.
-- [ ] **Audit `nlSignup.js` / `nlSignupRecaptcha.js`** — Check for legacy deps and update.
-- [ ] **Replace Handlebars with template literals** — In `index.php`, `todo.php`, `tododone.php`, `ws.php`, `edit_customer.php`, `document_edit.php`, `docs.js`: replace `suggestion: Handlebars.compile([...].join(''))` with `suggestion: (data) => \`...\``. Remove Handlebars `<script>` tag from each file.
-- [ ] **Drop `formatDate.js` and `date.js`** from ptclinic.biz (after dayjs is bundled in Phase 2).
-- [ ] **Update `gridTable.js`** if tablesorter API changed after npm upgrade.
+- [x] **Update `slideDown.js`** — Replaced BS3 class refs with BS5; updated FA4 `.fa-times` to FA6.
+- [x] **Audit and update `customer.js`** — Replaced `initilize.js` calls with `bsee.onInsert()`.
+- [x] **Audit `review_edit.js` / `review_edit2.js`** — Migrated all `Date.prototype.format()` calls to `bsee.dayjs()`.
+- [x] **Audit `nlSignup.js` / `nlSignupRecaptcha.js`** — No legacy deps found; no changes needed.
+- [x] **Replace Handlebars with template literals** — Done in `index.php`, `todo.php`, `tododone.php`, `ws.php`, `edit_customer.php`, `document_edit.php`, `docs.js`. Handlebars script tags removed.
+- [x] **Drop `formatDate.js` and `date.js`** — Migrated all callers (`review_edit.js`, `review_edit2.js`, `review_edit_col.php`, `training.php`, `docs.js`) to `bsee.dayjs()`. Archived to `ca/js/_archive/`. Script tags removed from 6 active templates with `<!-- NOTICE 2026-03-04 -->` comments.
+- [x] **Update `gridTable.js`** — Updated FA4 icon classes to FA6 Pro (`fa-solid fa-sort/sort-up/sort-down`). Tablesorter API compatible.
 
 ---
 
