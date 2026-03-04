@@ -1,5 +1,11 @@
 # TASKS for Bootstrap EE
 
+## Continue
+
+- 2026-03-04: Phase 3 complete. Next: Phase 4 — remove `e-rehab-gmb-*.json` credentials from biz git, remove dead script tags across ~12 templates, then Playwright smoke test.
+
+---
+
 ## Active Tasks
 
 - Delete customermdb.php
