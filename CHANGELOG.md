@@ -2,6 +2,13 @@
 
 ### 2026-03-04
 
+**JS Modernization — Phase 3: Clean up ptclinic.biz scripts**
+- `slideDown.js`: replaced BS3 class check with `classList.contains('fixed-top')`; updated injected div class; replaced `fa fa-times` with `fa-solid fa-xmark`
+- `customer.js`: replaced `$.initialize()` with `bsee.onInsert()`
+- Replaced `Handlebars.compile()` with template literal arrow functions in 7 files: `index.php`, `todo.php`, `tododone.php`, `ws.php`, `edit_customer.php`, `docs.js`, `set_practice_old.php`; removed all Handlebars `<script>` tags
+- `formatDate.js`/`date.js` not yet dropped — `review_edit.js`/`review_edit2.js` still use `Date.prototype.format()`, needs dayjs migration first
+- Audited: `review_edit.js`, `review_edit2.js`, `nlSignup.js`, `nlSignupRecaptcha.js`, `gridTable.js` — no other breaking deps
+
 **JS Modernization — Phase 2: Bundle vendor libs into BSEE**
 - Installed: dayjs (+ 7 plugins), parsleyjs, typeahead.js/Bloodhound, clipboard, tablesorter, sortablejs, flatpickr
 - Written as native TS: `toast.ts` (`bsee.toast` — replaces `$.bootstrapGrowl`), `on-insert.ts` (`bsee.onInsert` — replaces `initilize.js`)

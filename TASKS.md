@@ -2,7 +2,7 @@
 
 ## Continue
 
-- 2026-03-04: Phase 2 complete. All vendor libs installed and bundled: dayjs, parsleyjs, typeahead.js, clipboard, tablesorter, sortablejs, flatpickr. Native TS helpers written: `toast.ts` (bsee.toast), `on-insert.ts` (bsee.onInsert). Handlebars dropped — template literals in Phase 3 instead. Build clean at 894K. Next: Phase 3 — clean up ptclinic.biz scripts (slideDown.js, customer.js, Handlebars→template literals in 6 files, drop formatDate.js/date.js). See `plan_js-modernization.md` Phase 3 task list.
+- 2026-03-04: Phase 3 mostly done. slideDown.js (BS5 classes + FA6 icon), customer.js (bsee.onInsert), Handlebars→template literals in 7 files with script tags removed. Blocked: formatDate.js/date.js can't be dropped yet — review_edit.js/review_edit2.js use Date.prototype.format() and need dayjs migration first. Next: add task for dayjs migration in those files, then Phase 4.
 
 ---
 
