@@ -28,9 +28,22 @@ import {
   Tooltip,
 } from 'bootstrap';
 
+// Phase 2: vendor libs (jQuery plugins — side-effect imports)
+import './parsley';
+import './tablesorter';
+import './typeahead';
+
 export { animate } from './animate';
 export { dropdownHover } from './dropdown-hover';
 export type { DropdownHoverOptions } from './dropdown-hover';
+export { onInsert } from './on-insert';
+export { toast } from './toast';
+export type { ToastOptions } from './toast';
+export { dayjs } from './dayjs';
+export { ClipboardJS } from './clipboard';
+export { Sortable } from './sortable';
+export { flatpickr } from './flatpickr';
+export { Bloodhound } from './typeahead';
 
 export {
   DataTable,

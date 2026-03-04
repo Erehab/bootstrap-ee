@@ -2,6 +2,13 @@
 
 ### 2026-03-04
 
+**JS Modernization — Phase 2: Bundle vendor libs into BSEE**
+- Installed: dayjs (+ 7 plugins), parsleyjs, typeahead.js/Bloodhound, clipboard, tablesorter, sortablejs, flatpickr
+- Written as native TS: `toast.ts` (`bsee.toast` — replaces `$.bootstrapGrowl`), `on-insert.ts` (`bsee.onInsert` — replaces `initilize.js`)
+- Flatpickr CSS bundled into `bs-ee.scss`
+- Handlebars dropped — 6 call sites will use native template literals in Phase 3
+- Build clean: 591K → 894K minified IIFE
+
 **JS Modernization — Phase 1 + dropdownHover helper**
 - Archived 12 dead JS files from `biz/ca/js/` to `_archive/`: zeroclip, BugSnagJqueryFinder, bootstrap.min.js, dataTables.bootstrap, bootstrap-hover-dropdown (both), jquery-ui-slide, jquery.matchHeight-min, jquery.metadata, landbot_masterbot, jquery-ui-for-layout, jquery.bootgrid.min. Sherlock kept — actively used.
 - Added `src/ts/dropdown-hover.ts` — native BS5 hover dropdown helper (`bsee.dropdownHover.init()` / `.attach()`). Replaces jQuery `bootstrap-hover-dropdown` plugin. Desktop-only, touch-safe, configurable close delay.

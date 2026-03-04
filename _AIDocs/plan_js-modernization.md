@@ -98,7 +98,7 @@ Individual pages in `ca/page/` and `ca/includes/` may have their own `<script>` 
 | `parsley.js` | `parsleyjs` | Latest | Still maintained |
 | `typeahead.bundle.js` + `bloodhound.js` | `typeahead.js` | Latest | Bloodhound is included in the bundle |
 | `clipboard.min.js` | `clipboard` | Latest | ClipboardJS; also replaces zeroclip |
-| `handlebars-v1.3.0.js` | `handlebars` | Latest (4.x) | Very old version in use; test for API changes |
+| `handlebars-v1.3.0.js` | ~~`handlebars`~~ | N/A | **Drop entirely** — only used as typeahead suggestion renderers (6 files). Replace with native template literals in Phase 3. No lib needed. |
 | `jquery.tablesorter.js` + widgets | `tablesorter` | Latest (Mottie fork) | Used by `gridTable.js`; confirm plugin API compatibility |
 | `jquery-sortable` | `sortablejs` | Latest | No jQuery dependency; update any usage accordingly |
 | `jquery.bootstrap-growl` | Native BS5 toasts | N/A | No npm replacement; implement via BS5 Toast API |
@@ -107,17 +107,17 @@ Individual pages in `ca/page/` and `ca/includes/` may have their own `<script>` 
 
 ### Tasks
 
-- [ ] **Install `dayjs`** — `npm install dayjs`. Export from BSEE bundle. Update `bs-ee.mjs` entry to include it. Test against ptclinic.biz usage of moment (check for locale, duration, or relative time plugins — dayjs needs these imported separately).
-- [ ] **Install `parsleyjs`** — `npm install parsleyjs`. Bundle into BSEE.
-- [ ] **Install `typeahead.js`** — `npm install typeahead.js`. Bundle; confirm bloodhound is included.
-- [ ] **Install `clipboard`** — `npm install clipboard`. Bundle. Remove zeroclip usage.
-- [ ] **Install `handlebars`** — `npm install handlebars`. Bundle. Audit breaking changes from v1.3 → v4.
-- [ ] **Install `tablesorter`** — `npm install tablesorter`. Bundle with required widgets. Update `gridTable.js` in ptclinic.biz if API changed.
-- [ ] **Install `sortablejs`** — `npm install sortablejs`. Bundle. Audit ptclinic.biz for `jquery-sortable` usage and update calls.
-- [ ] **Implement BS5 toast wrapper** — Write a small helper in BSEE TypeScript that mimics `$.bootstrapGrowl()` API using BS5 Toast. Remove `jquery.bootstrap-growl`.
-- [ ] **Install `flatpickr`** — `npm install flatpickr`. Bundle. Audit ptclinic.biz `bootstrap-datetimepicker` usage and update initialization code.
-- [ ] **Replace `initilize.js`** — Write a small `onInsert(selector, callback)` helper using native `MutationObserver`. Add to BSEE TypeScript. Remove `initilize.js` from ptclinic.biz.
-- [ ] **Run `npm run dist`** — Verify build succeeds.
+- [x] **Install `dayjs`** — with plugins: relativeTime, duration, localizedFormat, customParseFormat, isSameOrBefore, isSameOrAfter, utc. Exported as `bsee.dayjs`.
+- [x] **Install `parsleyjs`** — side-effect import; attaches to `$.fn.parsley`.
+- [x] **Install `typeahead.js`** — Bloodhound exported as `bsee.Bloodhound`; typeahead attaches to `$.fn.typeahead`.
+- [x] **Install `clipboard`** — exported as `bsee.ClipboardJS`.
+- [x] ~~**Install `handlebars`**~~ — **Dropped**. All 6 usage sites are trivial typeahead suggestion renderers using `Handlebars.compile()`. Replace with native template literals in Phase 3 (no library needed).
+- [x] **Install `tablesorter`** — side-effect import; attaches to `$.fn.tablesorter`.
+- [x] **Install `sortablejs`** — exported as `bsee.Sortable`.
+- [x] **Implement BS5 toast wrapper** — `src/ts/toast.ts`; exported as `bsee.toast`. Mimics `$.bootstrapGrowl()` API (type, delay, offset).
+- [x] **Install `flatpickr`** — exported as `bsee.flatpickr`; CSS bundled via `bs-ee.scss`.
+- [x] **Replace `initilize.js`** — `src/ts/on-insert.ts`; exported as `bsee.onInsert`. Returns a stop function.
+- [x] **Run `npm run dist`** — Build succeeds. JS: 591K → 894K (minified IIFE).
 
 ### Notes
 
@@ -142,6 +142,7 @@ Individual pages in `ca/page/` and `ca/includes/` may have their own `<script>` 
 | `date.js` | Datejs library — superseded by dayjs | Drop once dayjs is available |
 | `review_edit.js` / `review_edit2.js` | Audit for any legacy deps | Audit and update as needed |
 | `nlSignup.js` / `nlSignupRecaptcha.js` | Audit for any legacy deps | Audit and update as needed |
+| `index.php`, `todo.php`, `tododone.php`, `ws.php`, `edit_customer.php`, `document_edit.php`, `docs.js` | `Handlebars.compile(...)` in typeahead `suggestion:` callbacks | Replace with native template literal functions; remove Handlebars `<script>` tag |
 
 ### Tasks
 
@@ -149,6 +150,7 @@ Individual pages in `ca/page/` and `ca/includes/` may have their own `<script>` 
 - [ ] **Audit and update `customer.js`** — Replace `initilize.js` calls with `onInsert()`. Audit for any other dropped-lib usage.
 - [ ] **Audit `review_edit.js` / `review_edit2.js`** — Check for legacy deps and update.
 - [ ] **Audit `nlSignup.js` / `nlSignupRecaptcha.js`** — Check for legacy deps and update.
+- [ ] **Replace Handlebars with template literals** — In `index.php`, `todo.php`, `tododone.php`, `ws.php`, `edit_customer.php`, `document_edit.php`, `docs.js`: replace `suggestion: Handlebars.compile([...].join(''))` with `suggestion: (data) => \`...\``. Remove Handlebars `<script>` tag from each file.
 - [ ] **Drop `formatDate.js` and `date.js`** from ptclinic.biz (after dayjs is bundled in Phase 2).
 - [ ] **Update `gridTable.js`** if tablesorter API changed after npm upgrade.
 
@@ -207,7 +209,7 @@ BSEE; point to them from biz.**
 | `ui-helpers.readme.md` | `dropdownHover`, `onInsert`, `toast` — native JS helpers | Started — dropdownHover done; onInsert + toast stubs added |
 | `forms.readme.md` | Parsley (validation), flatpickr (date picker), ClipboardJS | Phase 2 |
 | `data.readme.md` | tablesorter, sortablejs, typeahead + Bloodhound | Phase 2 |
-| `templating.readme.md` | Handlebars, dayjs | Phase 2 |
+| `templating.readme.md` | dayjs | Phase 2 (Handlebars dropped — no longer bundled) |
 
 ### biz pointer
 

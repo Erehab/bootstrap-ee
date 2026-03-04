@@ -105,6 +105,9 @@ $theme-colors: map-merge($theme-colors, ("discovery": $discovery));
 @include meta.load-css("datatables.net-autofill-bs5/css/autoFill.bootstrap5.css");
 @include meta.load-css("datatables.net-staterestore-bs5/css/stateRestore.bootstrap5.css");
 
+// ─── Third-party: Flatpickr ───────────────────────────────────────────────────
+@include meta.load-css("flatpickr/dist/flatpickr.min.css");
+
 // ─── Third-party: Font Awesome Pro ───────────────────────────────────────────
 @import "@fortawesome/fontawesome-pro/scss/fontawesome";
 @import "@fortawesome/fontawesome-pro/scss/solid";
