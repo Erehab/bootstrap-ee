@@ -135,7 +135,7 @@ Individual pages in `ca/page/` and `ca/includes/` may have their own `<script>` 
 
 | File | Issues | Action |
 |---|---|---|
-| `slideDown.js` | References BS3 class `navbar-default navbar-fixed-top`; uses `.fa-times` (FA4) | Update BS3 class refs to BS5 equivalents; update FA4 icon class to FA6 |
+| `slideDown.js` | References BS3 class `navbar-default navbar-fixed-top`; uses `.fa-times` (FA4) | Update BS3 class refs to BS5 equivalents; update FA4 icon class to FA Pro |
 | `gridTable.js` | Initializes `jquery.tablesorter`; may need API updates after npm upgrade | Update init code to match bundled tablesorter API |
 | `customer.js` | Uses `.initialize()` plugin (initilize.js) | Replace calls with the new `onInsert()` helper from BSEE |
 | `formatDate.js` | `Date.prototype.format()` — superseded by dayjs | Drop once dayjs is available |
@@ -146,13 +146,13 @@ Individual pages in `ca/page/` and `ca/includes/` may have their own `<script>` 
 
 ### Tasks
 
-- [x] **Update `slideDown.js`** — Replaced BS3 class refs with BS5; updated FA4 `.fa-times` to FA6.
+- [x] **Update `slideDown.js`** — Replaced BS3 class refs with BS5; updated FA4 `.fa-times` to FA Pro.
 - [x] **Audit and update `customer.js`** — Replaced `initilize.js` calls with `bsee.onInsert()`.
 - [x] **Audit `review_edit.js` / `review_edit2.js`** — Migrated all `Date.prototype.format()` calls to `bsee.dayjs()`.
 - [x] **Audit `nlSignup.js` / `nlSignupRecaptcha.js`** — No legacy deps found; no changes needed.
 - [x] **Replace Handlebars with template literals** — Done in `index.php`, `todo.php`, `tododone.php`, `ws.php`, `edit_customer.php`, `document_edit.php`, `docs.js`. Handlebars script tags removed.
 - [x] **Drop `formatDate.js` and `date.js`** — Migrated all callers (`review_edit.js`, `review_edit2.js`, `review_edit_col.php`, `training.php`, `docs.js`) to `bsee.dayjs()`. Archived to `ca/js/_archive/`. Script tags removed from 6 active templates with `<!-- NOTICE 2026-03-04 -->` comments.
-- [x] **Update `gridTable.js`** — Updated FA4 icon classes to FA6 Pro (`fa-solid fa-sort/sort-up/sort-down`). Tablesorter API compatible.
+- [x] **Update `gridTable.js`** — Updated FA4 icon classes to FA Pro (`fa-solid fa-sort/sort-up/sort-down`). Tablesorter API compatible.
 
 ---
 
@@ -194,7 +194,7 @@ Assets are served directly from `node_modules/` — no symlink or Nginx location
 - [x] **Add** `<script src="/node_modules/bootstrap-ee/js/bs-ee.js">` in `<head>` (not at bottom — inline scripts in sidebar/menu/page content use `$` before bottom scripts load)
 - [x] **Remove** CDN jQuery 1.11.1 from `<head>` (jQuery 4 now in BSEE)
 - [x] **Remove** `output.css`, `theme.bootstrap.css` → `bs-ee.css`
-- [x] **Remove** Font Awesome 4.7.0 CDN → FA6 Pro in `bs-ee.css`
+- [x] **Remove** Font Awesome 4.7.0 CDN → FA Pro in `bs-ee.css`
 - [x] **Remove** bootstrap-datepicker CDN CSS → flatpickr CSS in `bs-ee.css`
 - [x] **Remove** DataTables CDN CSS + JS → bundled in BSEE
 - [x] **Remove** tablesorter CDN CSS → bundled in BSEE
@@ -210,7 +210,7 @@ Assets are served directly from `node_modules/` — no symlink or Nginx location
 - [x] **Move** `jquery-filetypeLink.js`, `jquery.form`, `jquery.hotkeys`, `bootstrap-datepicker`, `sherlock.min.js` to after `bs-ee.js` (they need `window.jQuery` to exist)
 - [x] **Fix** navbar: `navbar-inverse navbar-fixed-top` → `navbar navbar-dark bg-dark fixed-top`
 - [x] **Fix** `data-toggle` → `data-bs-toggle`, `data-target` → `data-bs-target`
-- [x] **Fix** FA4 `fa fa-*` → FA6 Pro `fa-solid fa-*`
+- [x] **Fix** FA4 `fa fa-*` → FA Pro `fa-solid fa-*`
 
 #### customer.js changes (done)
 
@@ -260,7 +260,7 @@ Same pattern for each: add BSEE tags, remove dead tags, fix BS3 class names, Pla
 
 **Strategy**:
 - `ca/includes_bsee/` is the working copy — original `ca/includes/` untouched
-- `core/menumaker.php` gets a BSEE version (`core/menumaker_bsee.php`) — data-first, returns arrays for Twig instead of echoing HTML
+- `ca/includes_bsee/menumaker.php` — class-based data-first version, returns arrays for Twig instead of echoing HTML
 - Menu files (`brown_menu.php`, `customer_menu.php`, `nav_menu.php`) become PHP data builders + Twig partials
 - `customer.php` switches to `includes_bsee/` includes when the new files are ready; `customer.twig` uses Twig includes instead of `|raw` blobs
 
@@ -272,33 +272,31 @@ Returns structured arrays instead of echoing. Functions:
 - `ajaxSubItem($label, $link, $icon, $jsFunction, $end)` → returns array
 - `divider()` → returns `['type' => 'divider']`
 
-Icon format: caller passes FA6 Pro icon name with prefix, e.g. `'fas fa-home'`. menumaker no longer prepends `fa fa-`.
+Icon format: caller passes FA Pro icon name with prefix, e.g. `'fas fa-home'`. menumaker no longer prepends `fa fa-`.
 
-### Twig partials
+### Twig rendering
 
-- `ca/twig/brown_menu.twig` — top navbar (renders items from `$brownMenuData`)
-- `ca/twig/customer_menu.twig` — per-customer sub-nav (renders items from `$customerMenuData`)
-- `ca/twig/nav_menu.twig` — full admin top nav (renders items from `$navMenuData`)
+- `twig-views/menu-items.twig` — shared macro: renders any menu data array (item/dropdown/subitem/ajax-subitem/divider)
+- Menu sections are rendered inline in `customer.twig` using the macro — no separate per-menu Twig files
+- `customer.php` includes each `*_menu.php` builder, adds the resulting data arrays to `$layoutData`, passes to `customer.twig`
 
 ### Tasks
 
-**menumaker_bsee.php**
-- [ ] Write `core/menumaker_bsee.php` — data-first functions, FA6 icon format
+**menumaker.php (class)**
+- [x] Write `ca/includes_bsee/menumaker.php` — class-based, data-first, FA Pro icon format
 
 **brown_menu**
-- [ ] Write `ca/includes_bsee/brown_menu.php` — builds `$brownMenuData` array, no echo
-- [ ] Write `ca/twig/brown_menu.twig` — renders BS5 navbar from data
-- [ ] Wire into `customer.php` + `customer.twig`
+- [x] Write `twig-views/menu-items.twig` — shared macro for rendering any menu data array
+- [x] Write `ca/includes_bsee/brown_menu.php` — builds `$brownMenuData`, `$brownHelpscoutUrl`, `$brownTodoItems`
+- [ ] Wire into `customer.php` + render inline in `customer.twig` using menu-items macro
 
 **nav_menu**
-- [ ] Write `ca/includes_bsee/nav_menu.php` — builds `$navMenuData` array, no echo
-- [ ] Write `ca/twig/nav_menu.twig` — renders BS5 navbar from data
-- [ ] Wire into `customer.twig`
+- [ ] Write `ca/includes_bsee/nav_menu.php` — builds `$navMenuData` array
+- [ ] Wire into `customer.php` + render inline in `customer.twig`
 
 **customer_menu**
-- [ ] Write `ca/includes_bsee/customer_menu.php` — builds `$customerMenuData` array, no echo; migrate inline JS to `customer.twig {% block scripts %}`
-- [ ] Write `ca/twig/customer_menu.twig` — renders BS5 sub-nav from data
-- [ ] Wire into `customer.twig`
+- [ ] Write `ca/includes_bsee/customer_menu.php` — builds `$customerMenuData` array; migrate inline JS to `customer.twig {% block scripts %}`
+- [ ] Wire into `customer.php` + render inline in `customer.twig`
 
 **Remaining includes_bsee files** (in order from audit — easy first)
 - [ ] `send_notification.php` — `data-dismiss` → `data-bs-dismiss`

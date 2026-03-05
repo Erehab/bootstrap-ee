@@ -11,7 +11,7 @@
 - Installed BSEE into biz via npm (`package.json` + `node_modules/`); `.gitignore` updated
 - Bundled jQuery 4 into BSEE, exposed as `window.$`/`window.jQuery`; Vite alias added to deduplicate jQuery
 - Dropped Parsley from BSEE — 2 forms migrated to BS5 `needs-validation` / HTML5 validation; documented in `shared-bundle.readme.md`
-- `customer.twig`: replaced all legacy CDN/local tags with BSEE two-tag pattern; moved `bs-ee.js` to `<head>` (inline page scripts use `$` before body scripts load); fixed BS3→BS5 classes, FA4→FA6 icons
+- `customer.twig`: replaced all legacy CDN/local tags with BSEE two-tag pattern; moved `bs-ee.js` to `<head>` (inline page scripts use `$` before body scripts load); fixed BS3→BS5 classes, FA4→FA Pro icons
 - `customer.js`: replaced `.tooltip()` with `bsee.Tooltip`, `.parsley()` with BS5 native validation
 - Plan doc updated: Phase 4b fully documented and checked off, 3 new Decision Log entries
 
@@ -22,7 +22,7 @@
 - `customer.js`: replaced `$.initialize()` with `bsee.onInsert()`
 - Replaced `Handlebars.compile()` with template literal arrow functions in 7 files: `index.php`, `todo.php`, `tododone.php`, `ws.php`, `edit_customer.php`, `docs.js`, `set_practice_old.php`; removed all Handlebars `<script>` tags
 - Migrated `Date.prototype.format()` to `bsee.dayjs()` in `review_edit.js`, `review_edit2.js`, `review_edit_col.php`, `training.php`, `docs.js`; archived `date.js`/`formatDate.js`; removed script tags from 6 templates with `<!-- NOTICE 2026-03-04 -->` comments
-- `gridTable.js`: updated FA4 sort icons to FA6 Pro (`fa-solid fa-sort/sort-up/sort-down`)
+- `gridTable.js`: updated FA4 sort icons to FA Pro (`fa-solid fa-sort/sort-up/sort-down`)
 - `nlSignup.js`, `nlSignupRecaptcha.js`: audited, no legacy deps — no changes needed
 - Added NOTICE comment convention to global `todo-comments.md` rules for tracking code removals
 

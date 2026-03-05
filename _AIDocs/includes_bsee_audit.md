@@ -133,7 +133,7 @@ These are pure PHP logic with no markup — low risk, may need no changes:
 
 ## Notes
 
-- BSEE uses FA Pro — verify the icon names against FA Pro 6 docs
+- BSEE uses FA Pro 7.x — verify the icon names against FA Pro 7 docs (fas/far/fal/fab aliases still work)
 - `icon-pencil` (old glyphicon/icomoon) → `fas fa-pencil`
 - `data-hover="dropdown"` was a jQuery plugin (bootstrap-hover-dropdown) — removed in BSEE, just delete those attributes
 - Tooltip init: BS5 tooltips require explicit JS initialization. Confirm BSEE bundle handles this globally.
