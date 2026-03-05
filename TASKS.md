@@ -2,7 +2,7 @@
 
 ## Continue
 
-- [Plan: js-modernization Phase: 4c] Phase 4a + 4b complete. customer.twig wired to BSEE with zero console errors. Next: Phase 4c — apply same BSEE wiring to remaining files (training.php, todo.php, tododone.php, ws.php, etc.) one at a time with Playwright verify after each. (paused 2026-03-05)
+- [Plan: js-modernization Phase: 4d] Phase 4d planned and audited. includes_bsee/ copy created; includes_bsee_audit.md documents all 29 files. Next: write menumaker_bsee.php (data-first, FA6 format), then brown_menu → nav_menu → customer_menu as PHP data builders + Twig partials. (paused 2026-03-05)
 
 ---
 

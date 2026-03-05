@@ -252,6 +252,77 @@ Same pattern for each: add BSEE tags, remove dead tags, fix BS3 class names, Pla
 
 ---
 
+## Phase 4d: includes_bsee — BS5/FA Pro migration of ca/includes/
+
+**Goal**: Migrate `ca/includes/` files to BSEE-compatible markup (BS5 classes, FA Pro icons, BS5 data attributes). Work is done in a copy `ca/includes_bsee/` and wired into `customer.php` once each file is ready.
+
+**Audit**: See `_AIDocs/includes_bsee_audit.md` for the full per-file issue breakdown.
+
+**Strategy**:
+- `ca/includes_bsee/` is the working copy — original `ca/includes/` untouched
+- `core/menumaker.php` gets a BSEE version (`core/menumaker_bsee.php`) — data-first, returns arrays for Twig instead of echoing HTML
+- Menu files (`brown_menu.php`, `customer_menu.php`, `nav_menu.php`) become PHP data builders + Twig partials
+- `customer.php` switches to `includes_bsee/` includes when the new files are ready; `customer.twig` uses Twig includes instead of `|raw` blobs
+
+### menumaker_bsee.php design
+
+Returns structured arrays instead of echoing. Functions:
+- `menuItem($label, $link, $icon, $isDropdown, $external, $noblank)` → returns array
+- `subItem($label, $link, $icon, $external, $end, $noblank)` → returns array
+- `ajaxSubItem($label, $link, $icon, $jsFunction, $end)` → returns array
+- `divider()` → returns `['type' => 'divider']`
+
+Icon format: caller passes FA6 Pro icon name with prefix, e.g. `'fas fa-home'`. menumaker no longer prepends `fa fa-`.
+
+### Twig partials
+
+- `ca/twig/brown_menu.twig` — top navbar (renders items from `$brownMenuData`)
+- `ca/twig/customer_menu.twig` — per-customer sub-nav (renders items from `$customerMenuData`)
+- `ca/twig/nav_menu.twig` — full admin top nav (renders items from `$navMenuData`)
+
+### Tasks
+
+**menumaker_bsee.php**
+- [ ] Write `core/menumaker_bsee.php` — data-first functions, FA6 icon format
+
+**brown_menu**
+- [ ] Write `ca/includes_bsee/brown_menu.php` — builds `$brownMenuData` array, no echo
+- [ ] Write `ca/twig/brown_menu.twig` — renders BS5 navbar from data
+- [ ] Wire into `customer.php` + `customer.twig`
+
+**nav_menu**
+- [ ] Write `ca/includes_bsee/nav_menu.php` — builds `$navMenuData` array, no echo
+- [ ] Write `ca/twig/nav_menu.twig` — renders BS5 navbar from data
+- [ ] Wire into `customer.twig`
+
+**customer_menu**
+- [ ] Write `ca/includes_bsee/customer_menu.php` — builds `$customerMenuData` array, no echo; migrate inline JS to `customer.twig {% block scripts %}`
+- [ ] Write `ca/twig/customer_menu.twig` — renders BS5 sub-nav from data
+- [ ] Wire into `customer.twig`
+
+**Remaining includes_bsee files** (in order from audit — easy first)
+- [ ] `send_notification.php` — `data-dismiss` → `data-bs-dismiss`
+- [ ] `todoprocessor.php` — `data-dismiss` → `data-bs-dismiss`
+- [ ] `statusBadge.php` — data attribute fixes
+- [ ] `phase_lib2.php` — FA + tooltip data attrs
+- [ ] `mobilephaselist.php` — panel → card
+- [ ] `get_notes_local.php` — panel → card, FA, btn-xs, pull-right
+- [ ] `getnotes.php` — panel → card, FA, btn-xs, pull-right
+- [ ] `gettodos.php` — col, FA, btn-xs
+- [ ] `getneeds.php` — col, FA, btn-xs
+- [ ] `getDocs.php` — FA, btn-xs, pull-right
+- [ ] `left_local.php` — panel, col, FA, btn-xs
+- [ ] `left_nap_lookup.php` — panel, col, FA, btn-xs
+- [ ] `leftsidebar.php` — col, btn-xs, btn-secondary, FA
+- [ ] `badges.php` — FA fixes
+- [ ] `g_ad_account_lib.php` — panel → card
+
+**Switch customer.php to includes_bsee/**
+- [ ] Update all `include_once 'includes/...'` → `include_once 'includes_bsee/...'` in `customer.php`
+- [ ] Playwright verify customer page renders correctly
+
+---
+
 ## Phase 5: Publish & Verify
 
 - [ ] **Run `npm run publish-dist`** — Push built BSEE to `public` branch.
@@ -326,6 +397,7 @@ Do not duplicate API docs in biz.
 ## References
 
 - `_AIDocs/audit_js.md` — Full JS audit with per-file decisions
+- `_AIDocs/includes_bsee_audit.md` — Per-file BS5/FA Pro/data-attr issues for ca/includes/ (Phase 4d)
 - `_AIDocs/legacy-load-inventory.md` — Template for documenting current page load (needs completion)
 - `_AIDocs/plan_migrate-legacy-css.md` — Parent plan; this plan is Phase 5 output
 - **ptclinic.biz repo**: `/Users/masonjo/Sites/biz/`

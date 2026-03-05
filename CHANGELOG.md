@@ -2,6 +2,11 @@
 
 ### 2026-03-05
 
+- Plan: JS Modernization Phase 4d added — includes_bsee migration strategy
+  Audited all 29 ca/includes/ files; created includes_bsee_audit.md; added Phase 4d
+  to plan covering menumaker_bsee.php (data-first), Twig menu partials, and per-file
+  BS5/FA Pro fix checklist
+
 **JS Modernization — Phase 4: Wire BSEE into biz (Phase 4a + 4b complete)**
 - Installed BSEE into biz via npm (`package.json` + `node_modules/`); `.gitignore` updated
 - Bundled jQuery 4 into BSEE, exposed as `window.$`/`window.jQuery`; Vite alias added to deduplicate jQuery
