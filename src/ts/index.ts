@@ -38,17 +38,32 @@ import {
 import './tablesorter';
 import './typeahead';
 
-export { animate } from './animate';
-export { dropdownHover } from './dropdown-hover';
+import { animate } from './animate';
+import { dropdownHover } from './dropdown-hover';
+import { onInsert } from './on-insert';
+import { toast } from './toast';
+import { dayjs } from './dayjs';
+import { ClipboardJS } from './clipboard';
+import { Sortable } from './sortable';
+import { flatpickr } from './flatpickr';
+import { Bloodhound } from './typeahead';
+
+export { animate };
+export { dropdownHover };
 export type { DropdownHoverOptions } from './dropdown-hover';
-export { onInsert } from './on-insert';
-export { toast } from './toast';
+export { onInsert };
+export { toast };
 export type { ToastOptions } from './toast';
-export { dayjs } from './dayjs';
-export { ClipboardJS } from './clipboard';
-export { Sortable } from './sortable';
-export { flatpickr } from './flatpickr';
-export { Bloodhound } from './typeahead';
+export { dayjs };
+export { ClipboardJS };
+export { Sortable };
+export { flatpickr };
+export { Bloodhound };
+
+// Auto-init: wire hover dropdowns for all [data-hover="dropdown"] elements
+document.addEventListener('DOMContentLoaded', () => {
+    dropdownHover.init();
+});
 
 export {
   DataTable,
