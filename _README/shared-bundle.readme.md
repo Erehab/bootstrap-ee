@@ -97,6 +97,16 @@ When you add a library here, **all consuming projects get it automatically at th
 5. Run `npm run dist` then `npm run publish-dist`
 6. Document under the `bsee.*` namespace in this file
 
+## jQuery
+
+jQuery 4 is bundled and exposed as `window.$` and `window.jQuery`. Consuming projects do not need a separate jQuery script tag.
+
+jQuery plugins bundled as side-effects (attached to `$.fn`): **tablesorter**, **typeahead.js + Bloodhound**.
+
+**Parsley (form validation) was intentionally dropped.** It was only used on 2 forms in ptclinic.biz. Those forms were migrated to BS5 native validation (`needs-validation` + `was-validated` classes). Use HTML5 `required` / `pattern` attributes and BS5's built-in validation styles instead.
+
+---
+
 ## Font Awesome Pro
 
 Font Awesome Pro icons are compiled into `css/bs-ee.css` and font files are included in `webfonts/` on the `public` branch. **Consuming projects need no extra setup** — icons work as soon as the two-tag pattern is in place.
