@@ -34,7 +34,7 @@ import {
 } from 'bootstrap';
 
 // Phase 2: vendor libs (jQuery plugins — side-effect imports)
-import './parsley';
+// NOTICE 2026-03-05 parsleyjs removed — only 2 forms used it, native HTML5 validation sufficient
 import './tablesorter';
 import './typeahead';
 

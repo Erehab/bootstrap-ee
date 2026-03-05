@@ -10,6 +10,13 @@ const getBanner = () => {
 
 export default defineConfig({
   base: './',
+  resolve: {
+    // Force all jquery imports (including those inside vendor libs) to resolve
+    // to the same instance, so plugins can attach to the same jQuery.fn.
+    alias: {
+      jquery: resolve(__dirname, 'node_modules/jquery/dist/jquery.js'),
+    },
+  },
   build: {
     minify: true,
     emptyOutDir: true,
