@@ -2,13 +2,14 @@
 
 ## Continue
 
-- 2026-03-05: Phase 4 in progress. GMB keys removed from biz git (commit eb6bba4d). Plan doc updated with revised Phase 4 scope (4a/4b/4c) and new Phase 6. Next: Phase 4a — add package.json to biz, install BSEE, confirm /vendor/bootstrap-ee/ accessible.
+- [Plan: js-modernization Phase: 4c] Phase 4a + 4b complete. customer.twig wired to BSEE with zero console errors. Next: Phase 4c — apply same BSEE wiring to remaining files (training.php, todo.php, tododone.php, ws.php, etc.) one at a time with Playwright verify after each. (paused 2026-03-05)
 
 ---
 
 ## Active Tasks
 
 - JS Modernization Plan — Phase 4: Security & Cleanup
+- Is Parsley used? Can I replace with something easier? Look for integration to bsform
 - Setup way to create CSS/JS profiles. This might also include alternate SCSS files, but mostly it determines content of CSS/JS
 - Create a documented method/process for auditing a consuming project's templates for FA 4.x icon classes and mapping them to FA 6 Pro names — needed each time BSEE is added to a project (medium).
 - Consider adding an `initBootstrap(container)` helper to the bundle for initializing tooltips/popovers in dynamically injected content (easy, low priority).

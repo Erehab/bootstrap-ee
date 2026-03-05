@@ -1,5 +1,15 @@
 # CHANGELOG
 
+### 2026-03-05
+
+**JS Modernization — Phase 4: Wire BSEE into biz (Phase 4a + 4b complete)**
+- Installed BSEE into biz via npm (`package.json` + `node_modules/`); `.gitignore` updated
+- Bundled jQuery 4 into BSEE, exposed as `window.$`/`window.jQuery`; Vite alias added to deduplicate jQuery
+- Dropped Parsley from BSEE — 2 forms migrated to BS5 `needs-validation` / HTML5 validation; documented in `shared-bundle.readme.md`
+- `customer.twig`: replaced all legacy CDN/local tags with BSEE two-tag pattern; moved `bs-ee.js` to `<head>` (inline page scripts use `$` before body scripts load); fixed BS3→BS5 classes, FA4→FA6 icons
+- `customer.js`: replaced `.tooltip()` with `bsee.Tooltip`, `.parsley()` with BS5 native validation
+- Plan doc updated: Phase 4b fully documented and checked off, 3 new Decision Log entries
+
 ### 2026-03-04
 
 **JS Modernization — Phase 3: Clean up ptclinic.biz scripts**

@@ -178,32 +178,50 @@ Assets are served directly from `node_modules/` — no symlink or Nginx location
 
 `customer_original.twig` stays untouched — `?legacy` continues to work.
 
-**Add** (before `</head>`):
-```html
-<link rel="stylesheet" href="/node_modules/bootstrap-ee/css/bs-ee.css">
-```
-**Add** (before `</body>`, before `customer.js`):
-```html
-<script src="/node_modules/bootstrap-ee/js/bs-ee.js"></script>
-```
+**Status: COMPLETE — zero console errors verified in Playwright (2026-03-05)**
 
-**Remove** (fully covered by BSEE):
-- Lines 19–20: `output.css` + `theme.bootstrap.css` → `bs-ee.css`
-- Line 21: Font Awesome 4.7.0 CDN → FA6 Pro in `bs-ee.css`
-- Line 22: bootstrap-datepicker CDN CSS → flatpickr CSS in `bs-ee.css`
-- Lines 28–29: DataTables CDN CSS + JS → bundled in BSEE
-- Lines 39–40: tablesorter CDN CSS → bundled
-- Line 35: `/ca/js/bootstrap.min.js` → BS5 in `bs-ee.js`
-- Line 50: `/ca/js/clipboard.min.js` → `bsee.ClipboardJS`
-- Line 193: Bootstrap 3.3.7 CDN JS
-- Line 194: Bootstrap 3.0.0 CDN JS
-- Line 196: `moment.js` → `bsee.dayjs`
-- Line 198: `bootstrap-hover-dropdown` CDN → `bsee.dropdownHover`
-- Line 200: `bootstrap-growl` CDN → `bsee.toast`
-- Line 202: `jquery.metadata.js` (archived)
-- Line 203: `jquery.matchHeight-min.js` (archived)
-- Line 206: `parsley.min.js` → `bsee.Parsley`
-- Line 208: `initilize.js` → `bsee.onInsert`
+#### BSEE changes required (done in this phase)
+
+- [x] **Bundle jQuery 4 into BSEE** — exposed as `window.$` and `window.jQuery` so all jQuery plugins work globally. Consuming projects no longer need a jQuery script tag.
+- [x] **Drop Parsley from BSEE** — only 2 forms in ptclinic.biz used it. Removed `parsleyjs` import from `index.ts`. Replaced with BS5 `needs-validation` / HTML5 native validation.
+- [x] **Fix Vite jQuery alias** — added `resolve.alias` in `vite.config.ts` to deduplicate jQuery across all bundled modules.
+- [x] **Rebuild and publish** — `npm run dist && npm run build-vite && npm run publish-dist`; biz picked up changes via `npm install`.
+- [x] **Document jQuery bundling and Parsley removal** in `_README/shared-bundle.readme.md`.
+
+#### customer.twig changes (done)
+
+- [x] **Add** `<link href="/node_modules/bootstrap-ee/css/bs-ee.css">` in `<head>`
+- [x] **Add** `<script src="/node_modules/bootstrap-ee/js/bs-ee.js">` in `<head>` (not at bottom — inline scripts in sidebar/menu/page content use `$` before bottom scripts load)
+- [x] **Remove** CDN jQuery 1.11.1 from `<head>` (jQuery 4 now in BSEE)
+- [x] **Remove** `output.css`, `theme.bootstrap.css` → `bs-ee.css`
+- [x] **Remove** Font Awesome 4.7.0 CDN → FA6 Pro in `bs-ee.css`
+- [x] **Remove** bootstrap-datepicker CDN CSS → flatpickr CSS in `bs-ee.css`
+- [x] **Remove** DataTables CDN CSS + JS → bundled in BSEE
+- [x] **Remove** tablesorter CDN CSS → bundled in BSEE
+- [x] **Remove** `/ca/js/bootstrap.min.js` → BS5 in `bs-ee.js`
+- [x] **Remove** `/ca/js/clipboard.min.js` → `bsee.ClipboardJS`
+- [x] **Remove** Bootstrap 3.3.7 and 3.0.0 CDN JS → BS5 in `bs-ee.js`
+- [x] **Remove** `moment.js` → `bsee.dayjs`
+- [x] **Remove** `bootstrap-hover-dropdown` CDN → `bsee.dropdownHover`
+- [x] **Remove** `bootstrap-growl` CDN → `bsee.toast`
+- [x] **Remove** `jquery.metadata.js` (archived), `jquery.matchHeight-min.js` (archived)
+- [x] **Remove** `parsley.min.js` → dropped (see above)
+- [x] **Remove** `initilize.js` → `bsee.onInsert`
+- [x] **Move** `jquery-filetypeLink.js`, `jquery.form`, `jquery.hotkeys`, `bootstrap-datepicker`, `sherlock.min.js` to after `bs-ee.js` (they need `window.jQuery` to exist)
+- [x] **Fix** navbar: `navbar-inverse navbar-fixed-top` → `navbar navbar-dark bg-dark fixed-top`
+- [x] **Fix** `data-toggle` → `data-bs-toggle`, `data-target` → `data-bs-target`
+- [x] **Fix** FA4 `fa fa-*` → FA6 Pro `fa-solid fa-*`
+
+#### customer.js changes (done)
+
+- [x] **Replace** `.tooltip()` with `new bsee.Tooltip(el)` (BS5 API — jQuery `.tooltip()` not available in BS5)
+- [x] **Replace** `.parsley()` call with BS5 native validation pattern (`needs-validation` + `was-validated`)
+- [x] **Update** version string on script tag to `2026-03-05`
+
+#### Forms migrated off Parsley (done)
+
+- [x] `ca/page/make_prs_resource.php` — `parsleyvalidate` → `needs-validation novalidate`
+- [x] `ca/page/edit_ir.php` — `parsleyvalidate` → `needs-validation novalidate`
 
 **Keep** (deferred to Phase 6):
 - CodeMirror (CDN) — replacement TBD
@@ -213,13 +231,6 @@ Assets are served directly from `node_modules/` — no symlink or Nginx location
 - `bootstrap-datepicker` (CDN JS) — until flatpickr migration
 - `/ca/kb/jscolor.js` — until replacement chosen
 - `/ca/js/sherlock.min.js` — actively used (Phase 1: KEEP)
-
-**Fix BS3 → BS5 class names**:
-- `navbar-inverse navbar-fixed-top` → BS5 navbar classes
-- `data-toggle` → `data-bs-toggle`, `data-target` → `data-bs-target`
-- FA4 `fa fa-*` → FA6 Pro `fa-solid fa-*`
-
-**Playwright verify**: navbar, dropdowns, DataTables, clipboard, form validation, customer AJAX
 
 ### Phase 4c: Remaining files (one at a time)
 
@@ -272,6 +283,9 @@ Libraries kept as separate tags in Phase 4 because they need investigation or a 
 | Native `MutationObserver` over `initilize.js` | Removes jQuery dependency; lighter |
 | `sortablejs` over jQuery Sortable | No jQuery dependency; modern API |
 | `customer_original.twig` + `?legacy` flag | Simple fallback without APT complexity; preserved exactly as-is |
+| jQuery 4 bundled in BSEE, exposed as globals | All jQuery plugins need `window.$`/`window.jQuery`; consuming projects must not add a separate jQuery tag |
+| `bs-ee.js` in `<head>`, not at bottom | Inline `<script>` blocks in sidebar/menu/page content templates use `$` at parse time; must load before body content |
+| Drop Parsley, use BS5/HTML5 native validation | Only 2 forms used Parsley; Parsley's UMD module conflicted with IIFE bundle load order; native validation is simpler |
 
 ---
 
