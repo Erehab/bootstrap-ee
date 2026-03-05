@@ -2,6 +2,11 @@
 
 ### 2026-03-05
 
+**JS Modernization Phase 4d — BSEE bug fixes**
+- `dropdown-hover.ts`: fixed hover dropdowns to add `.show` to `.dropdown-menu` child (not just parent)
+- `index.ts`: exposed `window.bootstrap` so BS5 data-API (`data-bs-toggle="collapse"`) works; auto-init Collapse and Tooltip on DOMContentLoaded
+- `toast.ts`: added `id` option to support DOM-based deduplication
+
 - Plan: JS Modernization Phase 4d added — includes_bsee migration strategy
   Audited all 29 ca/includes/ files; created includes_bsee_audit.md; added Phase 4d
   to plan covering menumaker_bsee.php (data-first), Twig menu partials, and per-file
