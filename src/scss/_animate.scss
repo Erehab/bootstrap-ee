@@ -1,0 +1,121 @@
+// Bootstrap EE — Animation Utilities
+// Custom animation library. No third-party dependency.
+//
+// USAGE — Static (always animating):
+//   <i class="fa-solid fa-spinner animate animate-spin"></i>
+//
+// USAGE — Triggered via JS:
+//   el.classList.add('animate', 'animate-fade-out');
+//   el.addEventListener('animationend', () => el.remove(), { once: true });
+//
+// USAGE — Scroll-triggered entrance (via bsee.animate.observe):
+//   <div data-animate="fade-in-up">...</div>
+//   bsee.animate.observe('[data-animate]');
+//
+// CSS CUSTOM PROPERTY OVERRIDES:
+//   Override per-element in a style attribute or a scoped style block:
+//   <div class="animate animate-bounce" style="--bsee-animate-duration: 2s; --bsee-animate-delay: 0.3s;">
+//
+// Available custom properties:
+//   --bsee-animate-duration     default: 0.5s
+//   --bsee-animate-delay        default: 0s
+//   --bsee-animate-repeat       default: 1  (use 'infinite' for loops)
+//   --bsee-animate-timing       default: ease
+//   --bsee-animate-fill         default: both
+//
+// Respects prefers-reduced-motion automatically.
+
+// ─── Custom Properties (defaults) ────────────────────────────────────────────
+
+.animate {
+    --bsee-animate-duration: 0.5s;
+    --bsee-animate-delay:    0s;
+    --bsee-animate-repeat:   1;
+    --bsee-animate-timing:   ease;
+    --bsee-animate-fill:     both;
+
+    animation-duration:        var(--bsee-animate-duration);
+    animation-delay:           var(--bsee-animate-delay);
+    animation-iteration-count: var(--bsee-animate-repeat);
+    animation-timing-function: var(--bsee-animate-timing);
+    animation-fill-mode:       var(--bsee-animate-fill);
+}
+
+// ─── Reduced Motion ───────────────────────────────────────────────────────────
+
+@media (prefers-reduced-motion: reduce) {
+    .animate {
+        animation-duration:        0.01ms !important;
+        animation-delay:           0s !important;
+        animation-iteration-count: 1 !important;
+    }
+}
+
+// ─── Keyframes ────────────────────────────────────────────────────────────────
+
+// Entrance
+@keyframes bsee-fade-in        { from { opacity: 0; }                                          to { opacity: 1; } }
+@keyframes bsee-fade-in-up     { from { opacity: 0; transform: translateY(16px); }             to { opacity: 1; transform: translateY(0); } }
+@keyframes bsee-fade-in-down   { from { opacity: 0; transform: translateY(-16px); }            to { opacity: 1; transform: translateY(0); } }
+@keyframes bsee-slide-in-left  { from { opacity: 0; transform: translateX(-24px); }            to { opacity: 1; transform: translateX(0); } }
+@keyframes bsee-slide-in-right { from { opacity: 0; transform: translateX(24px); }             to { opacity: 1; transform: translateX(0); } }
+@keyframes bsee-scale-in       { from { opacity: 0; transform: scale(0.9); }                   to { opacity: 1; transform: scale(1); } }
+
+// Exit
+@keyframes bsee-fade-out       { from { opacity: 1; }                                          to { opacity: 0; } }
+@keyframes bsee-fade-out-up    { from { opacity: 1; transform: translateY(0); }                to { opacity: 0; transform: translateY(-16px); } }
+@keyframes bsee-scale-out      { from { opacity: 1; transform: scale(1); }                     to { opacity: 0; transform: scale(0.9); } }
+
+// Utility / Attention
+@keyframes bsee-spin           { from { transform: rotate(0deg); }                             to { transform: rotate(360deg); } }
+@keyframes bsee-pulse          { 0%, 100% { opacity: 1; }                                      50% { opacity: 0.4; } }
+@keyframes bsee-beat           { 0%, 100% { transform: scale(1); }                             50% { transform: scale(1.15); } }
+@keyframes bsee-bounce         { 0%, 100% { transform: translateY(0); animation-timing-function: ease-in; }
+                                  50%      { transform: translateY(-10px); animation-timing-function: ease-out; } }
+@keyframes bsee-shake          { 0%, 100% { transform: translateX(0); }
+                                  20%      { transform: translateX(-6px); }
+                                  40%      { transform: translateX(6px); }
+                                  60%      { transform: translateX(-4px); }
+                                  80%      { transform: translateX(4px); } }
+@keyframes bsee-fade           { 0%, 100% { opacity: 1; }                                      50% { opacity: 0.25; } }
+@keyframes bsee-flip           { from { transform: perspective(400px) rotateY(0deg); }         to { transform: perspective(400px) rotateY(360deg); } }
+
+// State flash — uses Bootstrap subtle color tokens (dark-mode aware)
+@keyframes bsee-flash-danger   { 0%, 100% { background-color: transparent; outline: 2px solid transparent; }
+                                  30%, 70% { background-color: var(--bs-danger-bg-subtle); outline: 2px solid var(--bs-danger-border-subtle); } }
+@keyframes bsee-flash-success  { 0%, 100% { background-color: transparent; outline: 2px solid transparent; }
+                                  30%, 70% { background-color: var(--bs-success-bg-subtle); outline: 2px solid var(--bs-success-border-subtle); } }
+@keyframes bsee-flash-warning  { 0%, 100% { background-color: transparent; outline: 2px solid transparent; }
+                                  30%, 70% { background-color: var(--bs-warning-bg-subtle); outline: 2px solid var(--bs-warning-border-subtle); } }
+@keyframes bsee-flash-info     { 0%, 100% { background-color: transparent; outline: 2px solid transparent; }
+                                  30%, 70% { background-color: var(--bs-info-bg-subtle); outline: 2px solid var(--bs-info-border-subtle); } }
+
+// ─── Animation Classes ────────────────────────────────────────────────────────
+
+// Entrance
+.animate-fade-in        { animation-name: bsee-fade-in; }
+.animate-fade-in-up     { animation-name: bsee-fade-in-up; }
+.animate-fade-in-down   { animation-name: bsee-fade-in-down; }
+.animate-slide-in-left  { animation-name: bsee-slide-in-left; }
+.animate-slide-in-right { animation-name: bsee-slide-in-right; }
+.animate-scale-in       { animation-name: bsee-scale-in; }
+
+// Exit
+.animate-fade-out       { animation-name: bsee-fade-out; }
+.animate-fade-out-up    { animation-name: bsee-fade-out-up; }
+.animate-scale-out      { animation-name: bsee-scale-out; }
+
+// Utility / Attention — looping by default
+.animate-spin           { animation-name: bsee-spin;   --bsee-animate-repeat: infinite; --bsee-animate-timing: linear; }
+.animate-pulse          { animation-name: bsee-pulse;  --bsee-animate-repeat: infinite; --bsee-animate-duration: 1.5s; }
+.animate-beat           { animation-name: bsee-beat;   --bsee-animate-repeat: infinite; --bsee-animate-duration: 0.8s; }
+.animate-bounce         { animation-name: bsee-bounce; --bsee-animate-repeat: infinite; --bsee-animate-duration: 1s; }
+.animate-shake          { animation-name: bsee-shake;  --bsee-animate-duration: 0.5s; }
+.animate-fade           { animation-name: bsee-fade;   --bsee-animate-repeat: infinite; --bsee-animate-duration: 2s; }
+.animate-flip           { animation-name: bsee-flip;   --bsee-animate-duration: 0.6s; --bsee-animate-timing: ease-in-out; }
+
+// State flash — one-shot, duration 0.7s
+.animate-flash-danger   { animation-name: bsee-flash-danger;  --bsee-animate-duration: 0.7s; }
+.animate-flash-success  { animation-name: bsee-flash-success; --bsee-animate-duration: 0.7s; }
+.animate-flash-warning  { animation-name: bsee-flash-warning; --bsee-animate-duration: 0.7s; }
+.animate-flash-info     { animation-name: bsee-flash-info;    --bsee-animate-duration: 0.7s; }
