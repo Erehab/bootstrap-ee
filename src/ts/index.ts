@@ -1,3 +1,8 @@
+import jQuery from 'jquery';
+// Expose jQuery globally so jQuery plugins bundled below can attach to it.
+(window as any).jQuery = jQuery;
+(window as any).$ = jQuery;
+
 import DataTable from 'datatables.net-bs5';
 import 'datatables.net-buttons-bs5';
 import 'datatables.net-responsive-bs5';
