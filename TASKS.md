@@ -2,13 +2,12 @@
 
 ## Continue
 
-- 2026-03-04: Phase 3 complete. Next: Phase 4 — remove `e-rehab-gmb-*.json` credentials from biz git, remove dead script tags across ~12 templates, then Playwright smoke test.
+- 2026-03-05: Phase 4 in progress. GMB keys removed from biz git (commit eb6bba4d). Plan doc updated with revised Phase 4 scope (4a/4b/4c) and new Phase 6. Next: Phase 4a — add package.json to biz, install BSEE, confirm /vendor/bootstrap-ee/ accessible.
 
 ---
 
 ## Active Tasks
 
-- Delete customermdb.php
 - JS Modernization Plan — Phase 4: Security & Cleanup
 - Setup way to create CSS/JS profiles. This might also include alternate SCSS files, but mostly it determines content of CSS/JS
 - Create a documented method/process for auditing a consuming project's templates for FA 4.x icon classes and mapping them to FA 6 Pro names — needed each time BSEE is added to a project (medium).

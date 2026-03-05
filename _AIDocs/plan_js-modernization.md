@@ -19,8 +19,8 @@ The legacy JS stack is a mix of jQuery plugins, vendor utilities, and app-specif
 
 The target state is two tags:
 ```html
-<link rel="stylesheet" href="/vendor/bootstrap-ee/css/bs-ee.css">
-<script src="/vendor/bootstrap-ee/js/bs-ee.js"></script>
+<link rel="stylesheet" href="/node_modules/bootstrap-ee/css/bs-ee.css">
+<script src="/node_modules/bootstrap-ee/js/bs-ee.js"></script>
 ```
 ...plus ptclinic.biz-specific scripts only.
 
@@ -156,11 +156,88 @@ Individual pages in `ca/page/` and `ca/includes/` may have their own `<script>` 
 
 ---
 
-## Phase 4: Security & Cleanup
+## Phase 4: Wire BSEE into biz Templates
 
-- [ ] **Remove `e-rehab-gmb-*.json`** from ptclinic.biz version control — Google My Business credentials should not be in git. Move to environment variables or a secrets manager.
-- [ ] **Remove dead `<script>` tags** — Several files still reference archived libs via local `/ca/js/` paths or CDNs. These tags must be removed once BSEE is the source. Files with live references to archived libs: `ca/customer.twig`, `ca/embedcustomer.php`, `ca/report/edit_reviews_new.php`, `ca/report/include/todo.php`, `ca/report/include/tododone.php`, `ca/docs/layout.twig`, `ca/page/img_gen/index.php`, `ca/helpscout/set_practice_old.php`, `ca/ws.php`, `ca/kb/index.php`, `ca/page/training.php`, `ca/report/index.php`. Fill in `legacy-load-inventory.md` to confirm what's actually loaded.
-- [ ] **Verify page load** — Load a customer page in Playwright. Check console for JS errors, confirm all features work (typeahead, tablesorter, datepicker, clipboard, form validation, customer page AJAX).
+**Target state per page**: one `bs-ee.css` tag + one `bs-ee.js` tag, plus a second file for project-specific JS (e.g. `customer.js`). All vendor libs come from BSEE — no separate CDN tags for bundled libraries.
+
+**Pattern**: BSEE is the default. The `?legacy` fallback (established in Phase 0 for `customer.twig`) is preserved untouched. Apply file-by-file, Playwright verify after each.
+
+Libraries not yet ready for consolidation (CodeMirror, html5sortable, jquery.form, jquery.hotkeys, jscolor, bootstrap-datepicker) are deferred to Phase 6.
+
+### Phase 4a: Install BSEE in biz
+
+Assets are served directly from `node_modules/` — no symlink or Nginx location block needed. Herd/Nginx serves static files from the site root, so `node_modules/bootstrap-ee/css/bs-ee.css` is accessible at `/node_modules/bootstrap-ee/css/bs-ee.css`. Apache in production works the same way.
+
+- [x] **Remove `e-rehab-gmb-*.json`** from ptclinic.biz version control — Done (commit eb6bba4d, biz repo, 2026-03-05). Added to `.gitignore`, documented in `README.md`.
+- [x] **Add `package.json`** to `/Users/masonjo/Sites/biz/` with dependency: `"bootstrap-ee": "github:Erehab/bootstrap-ee#public"`
+- [x] **Run `npm install`** — installs BSEE into `node_modules/bootstrap-ee/`
+- [x] **Confirm file access** — verify `bs-ee.css` and `bs-ee.js` are accessible at `/node_modules/bootstrap-ee/css/bs-ee.css` and `/node_modules/bootstrap-ee/js/bs-ee.js`
+- [x] **Playwright verify** — both assets return 200 (2026-03-05)
+
+### Phase 4b: customer.twig (tracer bullet)
+
+`customer_original.twig` stays untouched — `?legacy` continues to work.
+
+**Add** (before `</head>`):
+```html
+<link rel="stylesheet" href="/node_modules/bootstrap-ee/css/bs-ee.css">
+```
+**Add** (before `</body>`, before `customer.js`):
+```html
+<script src="/node_modules/bootstrap-ee/js/bs-ee.js"></script>
+```
+
+**Remove** (fully covered by BSEE):
+- Lines 19–20: `output.css` + `theme.bootstrap.css` → `bs-ee.css`
+- Line 21: Font Awesome 4.7.0 CDN → FA6 Pro in `bs-ee.css`
+- Line 22: bootstrap-datepicker CDN CSS → flatpickr CSS in `bs-ee.css`
+- Lines 28–29: DataTables CDN CSS + JS → bundled in BSEE
+- Lines 39–40: tablesorter CDN CSS → bundled
+- Line 35: `/ca/js/bootstrap.min.js` → BS5 in `bs-ee.js`
+- Line 50: `/ca/js/clipboard.min.js` → `bsee.ClipboardJS`
+- Line 193: Bootstrap 3.3.7 CDN JS
+- Line 194: Bootstrap 3.0.0 CDN JS
+- Line 196: `moment.js` → `bsee.dayjs`
+- Line 198: `bootstrap-hover-dropdown` CDN → `bsee.dropdownHover`
+- Line 200: `bootstrap-growl` CDN → `bsee.toast`
+- Line 202: `jquery.metadata.js` (archived)
+- Line 203: `jquery.matchHeight-min.js` (archived)
+- Line 206: `parsley.min.js` → `bsee.Parsley`
+- Line 208: `initilize.js` → `bsee.onInsert`
+
+**Keep** (deferred to Phase 6):
+- CodeMirror (CDN) — replacement TBD
+- `jquery.form` (CDN) — usage audit needed
+- `jquery.hotkeys` (CDN) — usage audit needed
+- `html5sortable` (CDN) — investigate vs `bsee.Sortable` on `?page=mss`
+- `bootstrap-datepicker` (CDN JS) — until flatpickr migration
+- `/ca/kb/jscolor.js` — until replacement chosen
+- `/ca/js/sherlock.min.js` — actively used (Phase 1: KEEP)
+
+**Fix BS3 → BS5 class names**:
+- `navbar-inverse navbar-fixed-top` → BS5 navbar classes
+- `data-toggle` → `data-bs-toggle`, `data-target` → `data-bs-target`
+- FA4 `fa fa-*` → FA6 Pro `fa-solid fa-*`
+
+**Playwright verify**: navbar, dropdowns, DataTables, clipboard, form validation, customer AJAX
+
+### Phase 4c: Remaining files (one at a time)
+
+Same pattern for each: add BSEE tags, remove dead tags, fix BS3 class names, Playwright verify.
+
+| File | Dead tags to remove |
+|---|---|
+| `ca/page/training.php` | tablesorter CSS/JS, jquery.metadata |
+| `ca/report/include/todo.php` | bootstrap.min.js CDN, typeahead (→ BSEE) |
+| `ca/report/include/tododone.php` | bootstrap.min.js CDN, typeahead (→ BSEE) |
+| `ca/ws.php` | bootstrap.min.js CDN, typeahead, hover-dropdown |
+| `ca/helpscout/set_practice_old.php` | bootstrap.min.js CDN, typeahead, hover-dropdown |
+| `ca/docs/layout.twig` | bootstrap.min.js CDN, typeahead, dataTables.bootstrap.css, hover-dropdown |
+| `ca/kb/index.php` | bootstrap.min.js CDN, moment, datetimepicker, growl, hover-dropdown, metadata |
+| `ca/report/index.php` | bootstrap.min.js CDN, moment, datetimepicker, growl, hover-dropdown, metadata |
+| `ca/page/img_gen/index.php` | bootstrap.min.js CDN, moment, datetimepicker, growl, hover-dropdown, metadata, dataTables.bootstrap.css |
+| `ca/report/edit_reviews_new.php` | bootstrap.min.js CDN, moment, datetimepicker, hover-dropdown, metadata, matchHeight, tablesorter |
+| `ca/embedcustomer.php` | bootstrap.min.js CDN (×2), moment, hover-dropdown, growl, metadata, matchHeight, parsley, initilize |
 
 ---
 
@@ -169,6 +246,19 @@ Individual pages in `ca/page/` and `ca/includes/` may have their own `<script>` 
 - [ ] **Run `npm run publish-dist`** — Push built BSEE to `public` branch.
 - [ ] **Update ptclinic.biz** — `npm install` to pick up new BSEE.
 - [ ] **Smoke test** — Load key pages in Playwright; verify no regressions.
+
+---
+
+## Phase 6: Deferred Library Replacements
+
+Libraries kept as separate tags in Phase 4 because they need investigation or a replacement decision before bundling into BSEE.
+
+- [ ] **CodeMirror** — evaluate replacement (CodeMirror 6, Monaco Editor, or similar); bundle chosen lib into BSEE; remove CDN tags from all templates
+- [ ] **html5sortable vs sortablejs** — investigate which is actively used on `?page=mss` (practice_id=719); pick one, migrate usage, bundle in BSEE, remove the other
+- [ ] **jquery.form** — audit usage across biz; evaluate native `fetch`-based TS helper as replacement; remove CDN tag
+- [ ] **jquery.hotkeys** — audit usage; evaluate native keyboard event handling; remove CDN tag if replaceable
+- [ ] **bootstrap-datepicker → flatpickr** — migrate remaining `.datepicker()` calls to `bsee.flatpickr`; remove CDN tags
+- [ ] **jscolor.js** — find a maintained color picker (or native `<input type="color">` if sufficient); bundle or drop
 
 ---
 
