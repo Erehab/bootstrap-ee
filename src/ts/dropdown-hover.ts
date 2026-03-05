@@ -73,6 +73,10 @@ function closeOthers(toggle: Element): void {
 
         if (parent) {
             parent.classList.remove('show');
+            const menu = parent.querySelector('.dropdown-menu');
+            if (menu) {
+                menu.classList.remove('show');
+            }
             other.setAttribute('aria-expanded', 'false');
         }
     });
@@ -108,6 +112,8 @@ function attach(toggle: Element, options: DropdownHoverOptions = {}): void {
 
     let closeTimer: ReturnType<typeof setTimeout> | null = null;
 
+    const menu = parent.querySelector('.dropdown-menu');
+
     function openMenu(): void {
         if (closeTimer !== null) {
             clearTimeout(closeTimer);
@@ -119,12 +125,18 @@ function attach(toggle: Element, options: DropdownHoverOptions = {}): void {
         }
 
         parent!.classList.add('show');
+        if (menu) {
+            menu.classList.add('show');
+        }
         toggle.setAttribute('aria-expanded', 'true');
     }
 
     function scheduleClose(): void {
         closeTimer = setTimeout(() => {
             parent!.classList.remove('show');
+            if (menu) {
+                menu.classList.remove('show');
+            }
             toggle.setAttribute('aria-expanded', 'false');
             closeTimer = null;
         }, opts.delay);

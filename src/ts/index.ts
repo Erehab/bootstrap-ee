@@ -60,9 +60,27 @@ export { Sortable };
 export { flatpickr };
 export { Bloodhound };
 
-// Auto-init: wire hover dropdowns for all [data-hover="dropdown"] elements
+// Expose Bootstrap components as window.bootstrap so data-bs-* data-API and
+// third-party code that checks window.bootstrap (e.g. bsee.toast fallback) works.
+(window as any).bootstrap = {
+    Alert, Button, Carousel, Collapse, Dropdown,
+    Modal, Offcanvas, Popover, ScrollSpy, Tab, Toast, Tooltip,
+};
+
+// Auto-init on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
+    // Hover dropdowns
     dropdownHover.init();
+
+    // Bootstrap data-bs-toggle="collapse" elements (navbar togglers, etc.)
+    document.querySelectorAll('[data-bs-toggle="collapse"]').forEach(el => {
+        Collapse.getOrCreateInstance(el as HTMLElement, { toggle: false });
+    });
+
+    // Bootstrap data-bs-toggle="tooltip" elements
+    document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => {
+        Tooltip.getOrCreateInstance(el as HTMLElement);
+    });
 });
 
 export {
