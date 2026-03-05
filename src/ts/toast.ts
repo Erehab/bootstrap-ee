@@ -24,6 +24,7 @@
 export interface ToastOptions {
     type?: 'success' | 'danger' | 'warning' | 'info' | 'primary' | 'secondary';
     delay?: number;
+    id?: string;
     offset?: {
         from?: 'top' | 'bottom';
         amount?: number;
@@ -69,6 +70,9 @@ function show(message: string, options: ToastOptions = {}): void {
 
     const toastEl = document.createElement('div');
     toastEl.className = `toast align-items-center text-bg-${type} border-0`;
+    if (options.id) {
+        toastEl.id = options.id;
+    }
     toastEl.setAttribute('role', 'alert');
     toastEl.setAttribute('aria-live', 'assertive');
     toastEl.setAttribute('aria-atomic', 'true');
