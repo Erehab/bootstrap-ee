@@ -1,5 +1,15 @@
 # CHANGELOG
 
+### 2026-03-06
+
+**JS Modernization Phase 4d — includes_bsee wiring + GCS fix complete**
+- `ca/customer.php`: consolidated legacy (`?legacy` fallback) and BSEE conditional branches; all menu includes now unified in single if/else block for clarity and maintainability
+- Wired `leftsidebar.php` to BSEE branch (now using `includes_bsee/leftsidebar.php` instead of legacy `includes/leftsidebar.php`)
+- All 29 files in `includes_bsee/` now complete and integrated (brown_menu, customer_menu, nav_menu, leftsidebar, badges, g_ad_account_lib, and 23 utility files)
+- **Fixed GCS 401 auth exception**: wrapped `is_dir()` call in todo_lib.php with try-catch to handle Google Cloud Storage auth errors gracefully (shows "Access Denied" instead of crashing page)
+- Syntax check & Pint formatting: passed
+- Playwright verify: both BSEE mode and `?legacy` mode load successfully without errors
+
 ### 2026-03-05
 
 **JS Modernization Phase 4d — BSEE bug fixes**
