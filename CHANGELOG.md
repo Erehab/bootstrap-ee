@@ -2,6 +2,11 @@
 
 ### 2026-03-06
 
+**jscolor color picker added to BSEE bundle**
+- Installed `@eastdesire/jscolor` npm package
+- Created `src/ts/jscolor.ts` wrapper, exported from index.ts
+- Auto-init on DOMContentLoaded for inputs with `data-jscolor` attribute
+
 **JS Modernization Phase 4d — includes_bsee wiring + GCS fix complete**
 - `ca/customer.php`: consolidated legacy (`?legacy` fallback) and BSEE conditional branches; all menu includes now unified in single if/else block for clarity and maintainability
 - Wired `leftsidebar.php` to BSEE branch (now using `includes_bsee/leftsidebar.php` instead of legacy `includes/leftsidebar.php`)

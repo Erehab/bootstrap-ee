@@ -288,15 +288,15 @@ Icon format: caller passes FA Pro icon name with prefix, e.g. `'fas fa-home'`. m
 **brown_menu**
 - [x] Write `twig-views/menu-items.twig` — shared macro for rendering any menu data array
 - [x] Write `ca/includes_bsee/brown_menu.php` — builds `$brownMenuData`, `$brownHelpscoutUrl`, `$brownTodoItems`
-- [ ] Wire into `customer.php` + render inline in `customer.twig` using menu-items macro
+- [x] Wire into `customer.php` + render inline in `customer.twig` using menu-items macro
 
 **nav_menu**
-- [ ] Write `ca/includes_bsee/nav_menu.php` — builds `$navMenuData` array
-- [ ] Wire into `customer.php` + render inline in `customer.twig`
+- [x] Write `ca/includes_bsee/nav_menu.php` — builds `$navMenuData` array
+- [ ] Wire into `customer.php` + render inline in `customer.twig` (deferred — nav_menu not on customer page currently)
 
 **customer_menu**
-- [ ] Write `ca/includes_bsee/customer_menu.php` — builds `$customerMenuData` array; migrate inline JS to `customer.twig {% block scripts %}`
-- [ ] Wire into `customer.php` + render inline in `customer.twig`
+- [x] Write `ca/includes_bsee/customer_menu.php` — builds `$customerMenuData` array; migrate inline JS to `customer.twig`
+- [x] Wire into `customer.php` + render inline in `customer.twig`
 
 **Remaining includes_bsee files** (in order from audit — easy first)
 - [ ] `send_notification.php` — `data-dismiss` → `data-bs-dismiss`
@@ -316,8 +316,9 @@ Icon format: caller passes FA Pro icon name with prefix, e.g. `'fas fa-home'`. m
 - [ ] `g_ad_account_lib.php` — panel → card
 
 **Switch customer.php to includes_bsee/**
-- [ ] Update all `include_once 'includes/...'` → `include_once 'includes_bsee/...'` in `customer.php`
-- [ ] Playwright verify customer page renders correctly
+- [x] Update all `include_once 'includes/...'` → `include_once 'includes_bsee/...'` in `customer.php` (consolidated legacy/BSEE branches into one conditional block; refactored for clarity)
+- [x] Syntax check — no errors
+- [x] Playwright verify customer page renders correctly (GCS 401 issue fixed with try-catch in todo_lib.php)
 
 ---
 
