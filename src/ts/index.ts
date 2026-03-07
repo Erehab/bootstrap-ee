@@ -46,6 +46,7 @@ import { dayjs } from './dayjs';
 import { ClipboardJS } from './clipboard';
 import { Sortable } from './sortable';
 import { flatpickr } from './flatpickr';
+import { jscolor } from './jscolor';
 import { Bloodhound } from './typeahead';
 
 export { animate };
@@ -58,6 +59,7 @@ export { dayjs };
 export { ClipboardJS };
 export { Sortable };
 export { flatpickr };
+export { jscolor };
 export { Bloodhound };
 
 // Expose Bootstrap components as window.bootstrap so data-bs-* data-API and
@@ -81,6 +83,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => {
         Tooltip.getOrCreateInstance(el as HTMLElement);
     });
+
+    // jscolor color picker auto-init (inputs with data-jscolor attribute)
+    // jscolor auto-initializes, but call install() to ensure any dynamically added elements are initialized
+    (jscolor as any).install?.();
 });
 
 export {
