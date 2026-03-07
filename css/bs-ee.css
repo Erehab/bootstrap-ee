@@ -7018,11 +7018,6 @@ textarea.form-control-lg {
   background-color: #e7f7f9;
 }
 
-@media (max-width: 999px) {
-  .navbar-collapse {
-    display: none;
-  }
-}
 .btn-primary {
   background-color: #0055cc;
   border-color: #0055cc;

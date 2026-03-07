@@ -73,9 +73,4 @@
     }
 }
 
-// Collapse breakpoint override (legacy was 1000px vs BS3 default 768px)
-@media (max-width: 999px) {
-    .navbar-collapse {
-        display: none;
-    }
-}
+// NOTICE 2026-03-06 Legacy BS3 navbar-collapse override removed; BS5 handles collapse via navbar-expand-{breakpoint}
