@@ -4,6 +4,8 @@
 
 ## Active Tasks
 
+-🟢 Go through bsee-legacy-audit.md and review pro/cons with John Mason
+
 - Retire/replace jquery filetype with a system that uses FA icons. The file-XXX icons are good. But if one is not available you can use the more generic file, video, audio icons. This needs to work on any project using bsee. Needs to have documentation in a readme.
 - Setup way to create CSS/JS profiles. This might also include alternate SCSS files, but mostly it determines content of CSS/JS
 - Create a documented method/process for auditing a consuming project's templates for FA 4.x icon classes and mapping them to FA 6 Pro names — needed each time BSEE is added to a project (medium).

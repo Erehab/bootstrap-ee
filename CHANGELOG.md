@@ -1,5 +1,10 @@
 # CHANGELOG
 
+### 2026-03-08
+
+- Add BSEE legacy audit doc — maps which SCSS files are framework vs. biz-only,
+  assesses effort to split biz styles into a separate `biz.css`, using dashboard.css as seed
+
 ### 2026-03-06
 
 **jscolor color picker added to BSEE bundle**
