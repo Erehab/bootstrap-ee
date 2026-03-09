@@ -2,6 +2,7 @@
 
 ### 2026-03-08
 
+- Ignore `.claude/` directory in git — local Claude Code settings are machine-specific
 - Add BSEE legacy audit doc — maps which SCSS files are framework vs. biz-only,
   assesses effort to split biz styles into a separate `biz.css`, using dashboard.css as seed
 

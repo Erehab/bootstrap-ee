@@ -16,6 +16,9 @@
 *.zip
 *~
 
+# Claude Code local settings
+/.claude/
+
 # OS or Editor folders
 ._*
 .cache
