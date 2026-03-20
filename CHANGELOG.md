@@ -2,6 +2,8 @@
 
 ### 2026-03-20
 
+- Document local dev workflow in `setup.readme.md` — `bsee-local`/`bsee-prod`/`bsee-check` scripts in consuming project, `watch:css` in BSEE
+
 - Split `_colors_text.scss` into `_colors.scss` (SCSS vars only, loaded early) and `_colors_text.scss` (CSS output — `:root` vars loop, utility classes, typography helpers, loaded after Bootstrap); fixes `$headings-font-family` undefined error
 - Add `--biz-*` CSS custom properties to `:root` via loop over `$_biz-colors` map (e.g. `var(--biz-cherry)`, `var(--biz-navy)`)
 
