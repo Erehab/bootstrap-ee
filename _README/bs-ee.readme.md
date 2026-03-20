@@ -1,55 +1,39 @@
-# Bootstrap EE (bs-ee) - Developer Readme
+# Bootstrap EE — Overview
 
-## Overview
+## What it is
 
-Bootstrap EE is a custom Bootstrap 5 distribution for Erehab/ptclinic.biz. Bootstrap is pulled in from npm and customized via SCSS variable overrides and additional component partials — we do not fork Bootstrap's source. Bumping the Bootstrap version is as simple as updating the npm dependency.
+Bootstrap EE is a custom Bootstrap 5 distribution for Erehab projects. It provides Erehab brand overrides on top of clean BS5 — colors, fonts, radii, spacing — plus Font Awesome Pro and a set of optional utility modules.
 
-**Not based on FastBootstrap.** The old FBS/Atlassian Design System token layer was removed. The SCSS is clean Bootstrap 5 with straightforward Erehab brand overrides in `src/scss/_bsee-pre.scss`.
+**Not a fork.** We pull Bootstrap from npm and override via SCSS variables. Bumping Bootstrap is just `npm update bootstrap`.
+
+## Profile system
+
+BSEE uses a **profile system** — different entry points produce different CSS and JS bundles depending on what a project needs.
+
+| Profile | CSS output | JS output | Includes |
+|---|---|---|---|
+| `bs-ee` | `css/bs-ee.css` | `js/bs-ee.js` | Bootstrap + FA Pro + BSEE brand overrides + utility libs |
+| `biz-bs-ee` | `css/biz-bs-ee.css` | `js/biz-bs-ee.js` | bs-ee + DataTables + jQuery + ptclinic.biz layout/notes/utilities |
 
 ## Package
 
-- NPM package name: `@erehab/bootstrap-ee`
+- NPM: `@erehab/bootstrap-ee`
 - GitHub: `github:Erehab/bootstrap-ee`
-- Consuming projects always point to the **`public` branch** which contains pre-built `dist/` artifacts (see [setup.readme.md](setup.readme.md))
+- Consuming projects point to the **`public` branch** which has pre-built `css/` and `js/` artifacts.
 
-## What is bundled in the dist output
+## Using in a project
 
-The `dist/` build includes:
-
-| Asset | Contents |
-|---|---|
-| `css/bs-ee.css` | Bootstrap 5 + all EE overrides, tokens, components, utilities. Source map included. |
-| `js/bs-ee.js` | Bootstrap 5 JS bundled — consumers do **not** need to include Bootstrap JS separately. |
-
-**Runtime dependencies bundled:**
-- `bootstrap` ^5.3.2 — core CSS and JS
-- `datatables.net-bs5` + all official extensions
-- `@fortawesome/fontawesome-pro` — all icon weights
-
-When this package is updated (e.g. Bootstrap version bump, new legacy classes, Font Awesome Pro), rebuilding and pushing to `public` propagates the change to all consuming projects at their next `npm install`.
-
-## What this repo contains
-
-- `src/scss/` — SCSS source. `bs-ee.scss` is the entrypoint. Variables, components, utilities layered on top of Bootstrap.
-- `src/ts/` — Animation helpers and utilities (`animate.ts`, `index.ts`).
-- `build/` — Build configuration (PostCSS, Vite, etc.)
-- `_README/` — Developer documentation (this folder)
-
-## Consuming this package in another project
-
-In your project's `package.json`, point to the `public` branch:
+Add to `package.json`:
 
 ```json
-{
-  "dependencies": {
-    "bootstrap-ee": "github:Erehab/bootstrap-ee#public"
-  }
+"dependencies": {
+  "bootstrap-ee": "github:Erehab/bootstrap-ee#public"
 }
 ```
 
-Then `npm install`. No build step required — `dist/` is pre-built and committed on the `public` branch.
+Then `npm install`. No build step needed — pre-built on the `public` branch.
 
-Load the assets:
+### Loading the bs-ee profile (core)
 
 ```html
 <link rel="stylesheet" href="node_modules/bootstrap-ee/css/bs-ee.css">
@@ -63,11 +47,30 @@ import 'bootstrap-ee/css/bs-ee.css';
 import 'bootstrap-ee/js/bs-ee.js';
 ```
 
-Bootstrap JS is included — do **not** add a separate Bootstrap JS import alongside this.
+### Loading the biz-bs-ee profile
+
+```html
+<link rel="stylesheet" href="node_modules/bootstrap-ee/css/biz-bs-ee.css">
+<script src="node_modules/bootstrap-ee/js/biz-bs-ee.js"></script>
+```
+
+Or import in a bundler:
+
+```js
+import 'bootstrap-ee/css/biz-bs-ee.css';
+import 'bootstrap-ee/js/biz-bs-ee.js';
+```
+
+Bootstrap JS is included in both profiles — do **not** add a separate Bootstrap JS tag.
+
+## biz.css — project-specific styles
+
+ptclinic.biz-specific styles that are NOT part of BSEE live in a `biz.css` file in the biz project itself. That file can use Bootstrap CSS custom properties freely — `var(--bs-primary)`, `var(--bs-spacer)`, etc. — without needing SCSS.
 
 ## Related docs
 
-- [SCSS Guide](scss.readme.md)
+- [SCSS Architecture](scss.readme.md)
 - [TypeScript API](ts.readme.md)
 - [Animation Utilities](animate.readme.md)
+- [UI Helpers](ui-helpers.readme.md)
 - [Setup, Build & Contribution Guide](setup.readme.md)

@@ -1,3 +1,6 @@
+// Bootstrap EE — biz-bs-ee profile entry point
+// Full bundle: Bootstrap + DataTables + jQuery + all BSEE modules + utility libs.
+
 import jQuery from 'jquery';
 // Expose jQuery globally so jQuery plugins bundled below can attach to it.
 (window as any).jQuery = jQuery;
@@ -18,6 +21,7 @@ import 'datatables.net-keytable-bs5';
 import 'datatables.net-scroller-bs5';
 import 'datatables.net-autofill-bs5';
 import 'datatables.net-staterestore-bs5';
+
 import {
   Alert,
   Button,
@@ -33,8 +37,6 @@ import {
   Tooltip,
 } from 'bootstrap';
 
-// Phase 2: vendor libs (jQuery plugins — side-effect imports)
-// NOTICE 2026-03-05 parsleyjs removed — only 2 forms used it, native HTML5 validation sufficient
 import './tablesorter';
 import './typeahead';
 
@@ -62,8 +64,7 @@ export { flatpickr };
 export { jscolor };
 export { Bloodhound };
 
-// Expose Bootstrap components as window.bootstrap so data-bs-* data-API and
-// third-party code that checks window.bootstrap (e.g. bsee.toast fallback) works.
+// Expose Bootstrap components as window.bootstrap so data-bs-* data-API works.
 (window as any).bootstrap = {
     Alert, Button, Carousel, Collapse, Dropdown,
     Modal, Offcanvas, Popover, ScrollSpy, Tab, Toast, Tooltip,
@@ -71,21 +72,16 @@ export { Bloodhound };
 
 // Auto-init on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
-    // Hover dropdowns
     dropdownHover.init();
 
-    // Bootstrap data-bs-toggle="collapse" elements (navbar togglers, etc.)
     document.querySelectorAll('[data-bs-toggle="collapse"]').forEach(el => {
         Collapse.getOrCreateInstance(el as HTMLElement, { toggle: false });
     });
 
-    // Bootstrap data-bs-toggle="tooltip" elements
     document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => {
         Tooltip.getOrCreateInstance(el as HTMLElement);
     });
 
-    // jscolor color picker auto-init (inputs with data-jscolor attribute)
-    // jscolor auto-initializes, but call install() to ensure any dynamically added elements are initialized
     (jscolor as any).install?.();
 });
 

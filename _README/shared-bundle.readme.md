@@ -1,115 +1,72 @@
 # Shared Bundle — Developer Guide
 
-This document covers how the bootstrap-ee shared bundle works, how consuming projects include it, and how to add new libraries to it.
+This document covers how to use the BSEE bundles in consuming projects, and how to add new libraries to a profile.
 
-## CSS Files
+## Profile outputs
 
-Currently one CSS file is published:
+| File | Profile | Contents |
+|---|---|---|
+| `css/bs-ee.css` | bs-ee | Bootstrap 5 + FA Pro + BSEE brand overrides |
+| `css/biz-bs-ee.css` | biz-bs-ee | bs-ee + biz layout + note cards + biz utilities + DataTables CSS |
+| `js/bs-ee.js` | bs-ee | Bootstrap JS + BSEE modules + utility libs (no DataTables/jQuery) |
+| `js/biz-bs-ee.js` | biz-bs-ee | bs-ee JS + DataTables + jQuery + tablesorter + typeahead |
 
-| File | Font Awesome |
-|---|---|
-| `css/bs-ee.css` | Full — all icon weights bundled (solid, regular, light, thin, duotone, brands) |
-
-> **Coming:** `css/bs-ee-no-fa.css` — same as above but without FA `@font-face` declarations and icon definitions, for projects that load FA separately or need a lighter file. Not yet built. See TASKS.md.
-
-The JS file is the same regardless of which CSS file is used.
-
-## The Two-Tag Pattern
+## The two-tag pattern
 
 ```html
+<!-- Core profile -->
 <link rel="stylesheet" href="node_modules/bootstrap-ee/css/bs-ee.css">
 <script src="node_modules/bootstrap-ee/js/bs-ee.js"></script>
+
+<!-- Biz profile -->
+<link rel="stylesheet" href="node_modules/bootstrap-ee/css/biz-bs-ee.css">
+<script src="node_modules/bootstrap-ee/js/biz-bs-ee.js"></script>
 ```
 
-**Do not add separate Bootstrap JS, DataTables, or Font Awesome tags.** Everything is bundled here.
+Do **not** add separate Bootstrap JS, DataTables, or Font Awesome tags — everything is bundled.
 
-## Global Namespace
+## biz.css
 
-All exports are available under the `bsee` global object:
+Project-specific styles for ptclinic.biz live in `biz.css` in the biz project, not in BSEE. Use Bootstrap CSS custom properties to stay in sync with the BSEE theme:
+
+```css
+/* biz.css */
+#sidebar {
+    background-color: var(--bs-primary);
+    width: 220px;
+}
+.customer-info-row {
+    border-left: 4px solid var(--bs-info);
+    padding: var(--bs-spacer);
+}
+```
+
+No SCSS needed — plain CSS with `var(--bs-*)` properties works everywhere BS5 generates CSS vars.
+
+## Global namespace
+
+All exports are available under the `bsee` global:
 
 ```js
 // Bootstrap components
 new bsee.Modal(document.getElementById('myModal'));
 new bsee.Tooltip(document.getElementById('myTooltip'));
 
-// DataTables
-new bsee.DataTable('#myTable', { responsive: true });
-
-// DataTables extensions (bundled)
-new bsee.DataTable('#myTable', {
-    buttons: ['copy', 'csv', 'excel'],
-    responsive: true,
-    select: true,
-});
-```
-
-## DataTables Usage
-
-DataTables core and all 14 official extensions are bundled. No separate DataTables install needed.
-
-### Basic table
-
-```js
-new bsee.DataTable('#myTable');
-```
-
-### With extensions
-
-```js
+// DataTables (biz-bs-ee only)
 new bsee.DataTable('#myTable', {
     dom: 'Bfrtip',
-    buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+    buttons: ['copy', 'csv', 'excel'],
     responsive: true,
-    select: true,
-    colReorder: true,
 });
+
+// BSEE modules
+bsee.animate.trigger(el, 'animate-flash-success');
+bsee.dropdownHover.init();
 ```
-
-### Available extensions
-
-All extensions from `datatables.net-bs5` are included: AutoFill, Buttons, ColReorder, DateTime, FixedColumns, FixedHeader, KeyTable, Responsive, RowGroup, RowReorder, Scroller, SearchBuilder, SearchPanes, Select, StateRestore.
-
-## Adding a New Library
-
-When you add a library here, **all consuming projects get it automatically at their next `npm install`**. No project-level changes needed.
-
-### CSS-only library
-
-1. Install the npm package: `npm install my-library`
-2. Import the CSS in `src/scss/bs-ee.scss` after the DataTables block:
-   ```scss
-   // My Library
-   @import 'my-library/dist/my-library.css';
-   ```
-3. Run `npm run dist` to rebuild the CSS bundle
-4. Run `npm run publish-dist` to push to the `public` branch
-5. Add a section to this document describing usage
-
-### JS + CSS library
-
-1. Install the npm package
-2. Import CSS in `src/scss/bs-ee.scss` (same as above)
-3. Import and re-export JS in `src/ts/index.ts`:
-   ```ts
-   export { default as MyLib } from 'my-library';
-   ```
-4. Ensure Vite config includes it in the bundle (check `build/vite.config.ts`)
-5. Run `npm run dist` then `npm run publish-dist`
-6. Document under the `bsee.*` namespace in this file
-
-## jQuery
-
-jQuery 4 is bundled and exposed as `window.$` and `window.jQuery`. Consuming projects do not need a separate jQuery script tag.
-
-jQuery plugins bundled as side-effects (attached to `$.fn`): **tablesorter**, **typeahead.js + Bloodhound**.
-
-**Parsley (form validation) was intentionally dropped.** It was only used on 2 forms in ptclinic.biz. Those forms were migrated to BS5 native validation (`needs-validation` + `was-validated` classes). Use HTML5 `required` / `pattern` attributes and BS5's built-in validation styles instead.
-
----
 
 ## Font Awesome Pro
 
-Font Awesome Pro icons are compiled into `css/bs-ee.css` and font files are included in `webfonts/` on the `public` branch. **Consuming projects need no extra setup** — icons work as soon as the two-tag pattern is in place.
+FA Pro icons are compiled into both CSS files. Font files are in `webfonts/` on the `public` branch. No extra setup needed.
 
 ```html
 <i class="fa-solid fa-house"></i>
@@ -117,39 +74,43 @@ Font Awesome Pro icons are compiled into `css/bs-ee.css` and font files are incl
 <i class="fa-light fa-star"></i>
 ```
 
-### Developer setup (this package only)
+**Developer setup (building this package):** requires a FA Pro npm registry token in `~/.npmrc` — see [setup.readme.md](setup.readme.md).
 
-To build this package locally, you need a Font Awesome Pro npm registry token. This is a one-time machine setup — add to `~/.npmrc`:
+## jQuery (biz-bs-ee only)
 
-```
-@fortawesome:registry=https://npm.fontawesome.com/
-//npm.fontawesome.com/:_authToken=YOUR_TOKEN_HERE
-```
+jQuery 4 is bundled in `biz-bs-ee.js` and exposed as `window.$` and `window.jQuery`. jQuery plugins bundled as side-effects: **tablesorter**, **typeahead.js + Bloodhound**.
 
-After that, `npm install` and `npm run dist` work normally. The build copies font files to `webfonts/` automatically via the `copy-fonts` script.
+## Adding a new library to a profile
+
+### CSS-only
+
+1. `npm install my-library`
+2. Import CSS in the appropriate SCSS entry point (`src/scss/bs-ee.scss` or `src/scss/biz-bs-ee.scss`):
+   ```scss
+   @include meta.load-css("my-library/dist/my-library.css");
+   ```
+3. `npm run dist`
+
+### JS + CSS
+
+1. `npm install my-library`
+2. Import CSS as above
+3. Import and export in the appropriate TS entry point (`src/ts/bs-ee.ts` or `src/ts/biz-bs-ee.ts`):
+   ```ts
+   export { default as MyLib } from 'my-library';
+   ```
+4. `npm run build-vite`
 
 ## Upgrading bundled libraries
 
-When a new version of Bootstrap, DataTables, Font Awesome, or any other bundled library is released:
-
-1. Update the version in `package.json` (or run `npm update <package>`)
+1. `npm update <package>` or update version in `package.json`
 2. `npm install`
-3. `npm run dist` and `npm run build-vite`
+3. `npm run dist && npm run build-vite`
 4. Verify output, then `npm run publish-dist`
 
-**Consuming projects get the upgrade automatically on their next `npm install`.** No changes needed in those projects.
+Consuming projects get the upgrade on their next `npm install`.
 
-See [setup.readme.md](setup.readme.md) for the full build and publish workflow.
-
-## Build Reference
-
-```sh
-npm run dist          # Rebuild CSS (Sass + PostCSS + minify) + copy webfonts/
-npm run build-vite    # Rebuild JS (Vite)
-npm run publish-dist  # Push css/, js/, and webfonts/ to public branch
-```
-
-## Related Docs
+## Related docs
 
 - [Package Overview](bs-ee.readme.md)
 - [SCSS Architecture](scss.readme.md)

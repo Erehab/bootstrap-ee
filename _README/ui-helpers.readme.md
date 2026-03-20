@@ -6,8 +6,8 @@ All helpers are exposed on the `bsee` global.
 ## Table of Contents
 
 1. [dropdownHover](#dropdownhover)
-2. [onInsert](#oninsert) *(Phase 2 — not yet implemented)*
-3. [toast](#toast) *(Phase 2 — not yet implemented)*
+2. [onInsert](#oninsert)
+3. [toast](#toast)
 
 ---
 
@@ -16,7 +16,7 @@ All helpers are exposed on the `bsee` global.
 Opens Bootstrap 5 dropdown menus on mouse hover (desktop only). Replaces the
 legacy `bootstrap-hover-dropdown` jQuery plugin. Skips touch devices automatically.
 
-**Source**: `src/ts/dropdown-hover.ts`
+**Source**: `src/ts/bsee-dropdown-hover.ts`
 
 ### Quick Start
 
@@ -78,11 +78,10 @@ Override options on individual toggles without JS:
 ```js
 // Before (jQuery plugin)
 $('[data-hover="dropdown"]').dropdownHover();
-$('.dropdown-toggle', container).dropdownHover();
 
 // After (BSEE native)
 bsee.dropdownHover.init();
-bsee.dropdownHover.attach(toggleEl);
+bsee.dropdownHover.attach(toggleEl); // for dynamic elements
 ```
 
 The `data-hover="dropdown"` HTML attribute is unchanged — no template edits needed.
@@ -91,34 +90,89 @@ The `data-hover="dropdown"` HTML attribute is unchanged — no template edits ne
 
 ## onInsert
 
-> **Phase 2 — not yet implemented.**
+Fires a callback whenever elements matching a CSS selector are inserted into the DOM.
+Replaces `jquery.initialize` (`initilize.js`). Uses native `MutationObserver` — no jQuery required.
 
-A native `MutationObserver`-based helper that fires a callback when elements
-matching a selector are inserted into the DOM. Replaces `initilize.js`
-(`jquery.initialize`).
+**Source**: `src/ts/bsee-on-insert.ts`
 
-Planned API:
+### Quick Start
 
 ```js
-// Fire callback whenever .my-widget is inserted anywhere in the document
-bsee.onInsert('.my-widget', (el) => {
-    initWidget(el);
+// Fire for all current + future .my-widget elements
+bsee.onInsert('.my-widget', (el) => initWidget(el));
+```
+
+Matches existing elements immediately, then watches for new insertions. Each element
+is only passed to the callback once.
+
+### API
+
+#### `onInsert(selector, callback): stopFn`
+
+| Parameter | Type | Description |
+|---|---|---|
+| `selector` | `string` | CSS selector to watch for |
+| `callback` | `(el: Element) => void` | Called once per matching element |
+
+Returns a `stop` function that disconnects the observer.
+
+```js
+// Auto-init tooltips on any dynamically added elements
+const stop = bsee.onInsert('[data-bs-toggle="tooltip"]', (el) => {
+    bsee.Tooltip.getOrCreateInstance(el);
 });
+
+// Cancel when no longer needed
+stop();
 ```
 
 ---
 
 ## toast
 
-> **Phase 2 — not yet implemented.**
+Programmatic toast notifications. Thin wrapper around Bootstrap 5's native Toast API.
+Replaces `jquery.bootstrap-growl`.
 
-A thin wrapper around Bootstrap 5's native Toast API that mimics the
-`$.bootstrapGrowl()` interface used in ptclinic.biz. Replaces
-`jquery.bootstrap-growl`.
+**Source**: `src/ts/toast.ts`
 
-Planned API:
+### Quick Start
 
 ```js
-bsee.toast('Saved successfully', { type: 'success' });
+bsee.toast('Saved successfully');
 bsee.toast('Something went wrong', { type: 'danger', delay: 8000 });
+```
+
+### API
+
+#### `toast(message, options?)`
+
+| Parameter | Type | Description |
+|---|---|---|
+| `message` | `string` | Toast body text (HTML allowed) |
+| `options` | `ToastOptions` | See below |
+
+### Options
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `type` | `string` | `'success'` | Bootstrap contextual class: `success`, `danger`, `warning`, `info`, `primary`, `secondary` |
+| `delay` | `number` | `5000` | Auto-hide delay in ms. Set to `0` to disable auto-hide. |
+| `id` | `string` | — | Optional ID on the toast element |
+| `offset.from` | `'top' \| 'bottom'` | `'top'` | Screen edge to anchor to |
+| `offset.amount` | `number` | `60` | Distance from edge in px |
+
+### Examples
+
+```js
+// Success
+bsee.toast('Record saved');
+
+// Error — stays longer
+bsee.toast('Save failed — check your connection', { type: 'danger', delay: 10000 });
+
+// Persistent (must be dismissed manually)
+bsee.toast('You have unsaved changes', { type: 'warning', delay: 0 });
+
+// Bottom-right position
+bsee.toast('Upload complete', { type: 'info', offset: { from: 'bottom', amount: 20 } });
 ```

@@ -64,4 +64,13 @@
     }
 }
 
+// Navbar search input
+.navbar-form .form-control {
+    background-color: #e6dfd1;
+
+    &:focus {
+        background-color: #e7f7f9;
+    }
+}
+
 // NOTICE 2026-03-06 Legacy BS3 navbar-collapse override removed; BS5 handles collapse via navbar-expand-{breakpoint}

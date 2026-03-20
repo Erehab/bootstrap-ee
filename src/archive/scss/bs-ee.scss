@@ -74,16 +74,39 @@ $theme-colors: map-merge($theme-colors, ("discovery": $discovery));
 // ─── BSEE Animations ─────────────────────────────────────────────────────────
 @import "animate";
 
+// ─── BIZ-Specific Styles ──────────────────────────────────────────────────────
+@import "note-items";
+@import "biz-utilities";
+@import "layout";
+@import "print";
+
 // ─── Bootstrap Helpers & Utility API ─────────────────────────────────────────
 @import "bootstrap/scss/helpers";
 @import "bootstrap/scss/utilities/api";
 
-// ─── Print ────────────────────────────────────────────────────────────────────
-@import "print";
-
-// ─── Legacy Spacing Compat ────────────────────────────────────────────────────
-// Erehab utility shorthand classes (.m-t, .p-b, etc.) — keep indefinitely
+// ─── Legacy Spacing Compat (ptclinic.biz templates) ──────────────────────────
+// TODO REMOVE - Delete once ptclinic.biz templates are migrated to BS5 utility classes
 @import "legacy-spacing";
+
+// ─── Third-party: DataTables + Extensions ────────────────────────────────────
+@include meta.load-css("datatables.net-bs5/css/dataTables.bootstrap5.css");
+@include meta.load-css("datatables.net-buttons-bs5/css/buttons.bootstrap5.css");
+@include meta.load-css("datatables.net-responsive-bs5/css/responsive.bootstrap5.css");
+@include meta.load-css("datatables.net-select-bs5/css/select.bootstrap5.css");
+@include meta.load-css("datatables.net-searchpanes-bs5/css/searchPanes.bootstrap5.css");
+@include meta.load-css("datatables.net-searchbuilder-bs5/css/searchBuilder.bootstrap5.css");
+@include meta.load-css("datatables.net-rowgroup-bs5/css/rowGroup.bootstrap5.css");
+@include meta.load-css("datatables.net-rowreorder-bs5/css/rowReorder.bootstrap5.css");
+@include meta.load-css("datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5.css");
+@include meta.load-css("datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.css");
+@include meta.load-css("datatables.net-colreorder-bs5/css/colReorder.bootstrap5.css");
+@include meta.load-css("datatables.net-keytable-bs5/css/keyTable.bootstrap5.css");
+@include meta.load-css("datatables.net-scroller-bs5/css/scroller.bootstrap5.css");
+@include meta.load-css("datatables.net-autofill-bs5/css/autoFill.bootstrap5.css");
+@include meta.load-css("datatables.net-staterestore-bs5/css/stateRestore.bootstrap5.css");
+
+// ─── Third-party: Flatpickr ───────────────────────────────────────────────────
+@include meta.load-css("flatpickr/dist/flatpickr.min.css");
 
 // ─── Third-party: Font Awesome Pro ───────────────────────────────────────────
 @import "@fortawesome/fontawesome-pro/scss/fontawesome";
