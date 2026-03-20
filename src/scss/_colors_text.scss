@@ -198,6 +198,13 @@ $_biz-colors: (
   "white": #ffffff,
 );
 
+// ─── Biz Color CSS Custom Properties ─────────────────────────────────────────
+:root {
+  @each $name, $value in $_biz-colors {
+    --biz-#{$name}: #{$value};
+  }
+}
+
 @each $name, $color in $_biz-colors {
   .#{$name} {
     background-color: $color !important;
