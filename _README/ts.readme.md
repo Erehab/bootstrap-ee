@@ -1,54 +1,82 @@
-# TypeScript API — bs-ee
+# TypeScript API — Bootstrap EE
 
-## Overview
+## Entry points
 
-The `src/ts/` folder re-exports Bootstrap components and DataTables from a single `index.ts` entry. No custom wrappers — just official Bootstrap JS bundled for consuming projects.
+| File | Profile | Contents |
+|---|---|---|
+| `src/ts/bs-ee.ts` | `bs-ee` | Bootstrap components + BSEE custom modules + utility lib shims. No DataTables, no jQuery. |
+| `src/ts/biz-bs-ee.ts` | `biz-bs-ee` | Everything in bs-ee + DataTables + jQuery + tablesorter + typeahead |
 
-The Vite build bundles everything into `js/bs-ee.js`. Consuming projects load this one file and get Bootstrap JS and DataTables included — no separate imports needed.
+## File inventory
 
-## Key files
+### Custom BSEE modules (prefixed `bsee-`)
 
-- `src/ts/index.ts` — imports from `bootstrap` and DataTables, then re-exports everything
-- `src/ts/animate.ts` — animation helpers — see [animate.readme.md](animate.readme.md)
-- `src/ts/dropdown-hover.ts` — hover dropdown helper — see [ui-helpers.readme.md](ui-helpers.readme.md)
+Files prefixed `bsee-` are custom-built for this project and safe to modify freely.
 
-## Exports
+| File | What it is |
+|---|---|
+| `src/ts/bsee-animate.ts` | Animation helpers — see [animate.readme.md](animate.readme.md) |
+| `src/ts/bsee-dropdown-hover.ts` | Hover-open dropdown behavior — see [ui-helpers.readme.md](ui-helpers.readme.md) |
+| `src/ts/bsee-on-insert.ts` | DOM mutation utility — see [ui-helpers.readme.md](ui-helpers.readme.md) |
 
-All standard Bootstrap components are exported by name (`Alert`, `Modal`, `Tooltip`, etc.) plus `DataTable` and BSEE helpers. Use them via the `bsee` global:
+### Third-party shims
+
+Thin wrappers that expose third-party libs through the BSEE bundle. Treat as stable — avoid modifying.
+
+| File | Library |
+|---|---|
+| `src/ts/toast.ts` | Bootstrap Toast wrapper |
+| `src/ts/flatpickr.ts` | Flatpickr date picker |
+| `src/ts/jscolor.ts` | jscolor color picker |
+| `src/ts/dayjs.ts` | Day.js date utility |
+| `src/ts/clipboard.ts` | ClipboardJS |
+| `src/ts/sortable.ts` | SortableJS |
+| `src/ts/typeahead.ts` | Typeahead.js + Bloodhound |
+| `src/ts/tablesorter.ts` | jQuery Tablesorter plugin |
+
+## Global namespace
+
+The IIFE bundle exposes everything under `window.bsee` (IIFE name defined in the Vite config). Bootstrap components are also available under `window.bootstrap` for compatibility with `data-bs-*` data-API.
 
 ```js
+// Bootstrap components
 const modal = new bsee.Modal(document.getElementById('my-modal'));
-const tip = new bsee.Tooltip(el);
+const tip = bsee.Tooltip.getOrCreateInstance(el);
+
+// BSEE custom modules
+bsee.animate.trigger(el, 'animate-shake');
+bsee.dropdownHover.init();
+
+// DataTables (biz-bs-ee profile only)
+new bsee.DataTable('#myTable', { responsive: true });
 ```
 
-`getOrCreateInstance` is available natively on all Bootstrap components:
+## Dynamic content initialization
 
-```js
-const modal = bsee.Modal.getOrCreateInstance(el);
-```
-
-## Bootstrap JS bundling
-
-Bootstrap JS (`bootstrap` npm package) is imported and re-exported through the Vite bundle. This means:
-
-- When Bootstrap is updated in this package, a rebuild and publish to `public` propagates to all consuming projects
-- Consuming projects do **not** add a separate Bootstrap JS dependency
-
-## Gotcha: Dynamic content initialization
-
-Most Bootstrap components auto-initialize on page load via `data-bs-*` attributes — no JS needed. The two exceptions are **tooltips** and **popovers**, which always require explicit JS initialization.
-
-If you inject content dynamically (AJAX, JS-rendered UI), those components won't initialize automatically. The fix is easy — call this after inserting content:
+Bootstrap tooltips and popovers require explicit JS initialization. For dynamically injected content:
 
 ```js
 function initBootstrap(container = document) {
-    container.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => new bsee.Tooltip(el));
-    container.querySelectorAll('[data-bs-toggle="popover"]').forEach(el => new bsee.Popover(el));
+    container.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el =>
+        bsee.Tooltip.getOrCreateInstance(el)
+    );
+    container.querySelectorAll('[data-bs-toggle="popover"]').forEach(el =>
+        bsee.Popover.getOrCreateInstance(el)
+    );
 }
 ```
 
-This may be added to `bs-ee.js` as a bundled helper in the future. For now, add it to your project if needed.
-
 ## Build
 
-JS is built with Vite into `js/` as both an ES module (`bs-ee.mjs`) and an IIFE bundle (`bs-ee.js`), both with source maps. See [build-and-contribute.readme.md](build-and-contribute.readme.md) for the full workflow.
+JS is built with Vite per profile. Configs live in `src/config/`:
+
+- `src/config/vite.bs-ee.ts` → `js/bs-ee.js` + `js/bs-ee.mjs`
+- `src/config/vite.biz-bs-ee.ts` → `js/biz-bs-ee.js` + `js/biz-bs-ee.mjs`
+
+```bash
+npm run build-vite              # build all profiles
+npm run build-vite-bs-ee        # core only
+npm run build-vite-biz-bs-ee    # biz only
+```
+
+See [setup.readme.md](setup.readme.md) for the full workflow.

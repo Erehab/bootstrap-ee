@@ -1,0 +1,89 @@
+// Note Item Variants
+// Typed note card system used in ptclinic.biz customer pages.
+// 18 variants — all preserved. Colors unchanged from legacy audit.
+// Selectors updated: .panel-heading → .card-header, .panel-footer → .card-footer
+
+// ─── Mixin ─────────────────────────────────────────────────────────────────
+@mixin note-item($border, $bg, $header-bg: $border, $header-color: #ffffff) {
+    overflow: hidden; // Clip card-body bg to card border-radius
+    border-color: $border;
+
+    > .card-header {
+        background-color: $header-bg;
+        border-color: $border;
+        color: $header-color;
+    }
+
+    > .card-body {
+        background-color: $bg !important;           // Resist Bootstrap dark mode CSS var override
+        color: color-contrast($bg) !important;      // Auto black/white based on bg luminance
+    }
+
+    > .card-footer {
+        background-color: #e6dfd1;
+        border-top-color: #c5c0b6;
+        color: #2c3e50;
+    }
+
+    .badge {
+        background-color: $header-bg;
+        color: $header-color;
+    }
+}
+
+// ─── Variants ──────────────────────────────────────────────────────────────
+// Theme-color aliases — map to card-variant classes for dark mode support
+.note_item,
+.note_item1       { @extend .card-warning; }
+.note_item_status { @extend .card-warning; }
+.note_item_work   { @extend .card-warning; }
+.note_item_g5     { @extend .card-primary; }
+.note_item_finance { @extend .card-success; }
+.note_item_top    { @extend .card-danger; }
+.note_item_design { @extend .card-discovery; }
+
+// Custom variants — specific legacy colors, not mapped to theme colors
+.note_item_contact {
+    @include note-item(#ffa523, #f0ffff, #ffa523, #ffffff);
+}
+
+.note_item_link {
+    @include note-item(#ffa523, #f0fff0, #ffa523, #ffffff);
+}
+
+.note_item_other,
+.note_item_cp {
+    @include note-item(#008080, #fffff0, #008080, #ffffff);
+}
+
+.note_item_domain {
+    @include note-item(#0080ff, #ffffbc, #0080ff, #ffffff);
+}
+
+.note_item_email {
+    @include note-item(#0037ff, #b5c4ff, #0037ff, #ffffff);
+}
+
+.note_item_local {
+    @include note-item(#a1a0b0, #3f37be, #3f37be, #ffffff);
+}
+
+.note_item_seo {
+    @include note-item(#c8b7d9, #400080, #400080, #ffffff);
+}
+
+.note_item_mss {
+    @include note-item(#d92388, #b300cc, #b300cc, #ffffff);
+}
+
+.note_item_nc {
+    @include note-item(#004646, #008080, #008080, #ffffff);
+}
+
+.note_item_pdr {
+    @include note-item(#60aeb7, #cdeff4, #60aeb7, #ffffff);
+}
+
+.note_item_activity {
+    @include note-item(#004646, #008080, #008080, #ffffff);
+}

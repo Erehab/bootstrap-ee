@@ -1,5 +1,17 @@
 # CHANGELOG
 
+### 2026-03-20
+
+**Profile system — BSEE refactored into framework-only core + biz profile**
+- Stripped all ptclinic.biz-specific styles from `bs-ee` profile: `_layout`, `_note-items`, `_biz-utilities` removed from core; body background, parsley, `#filesarea`, navbar-form colors removed from their partials; `_forms.scss` cleared to stub
+- Added `biz-bs-ee` profile: new `src/scss/biz-bs-ee.scss` and `src/ts/biz-bs-ee.ts` entry points that extend core with biz layout, note cards, biz utilities, DataTables, jQuery, flatpickr
+- Added `src/config/` — per-profile Vite configs (`vite.bs-ee.ts`, `vite.biz-bs-ee.ts`)
+- Added `src/archive/scss/` — snapshot of all SCSS partials before refactor, for reference
+- Renamed custom BSEE TS files with `bsee-` prefix: `bsee-animate.ts`, `bsee-dropdown-hover.ts`, `bsee-on-insert.ts`
+- Updated `package.json` build scripts: `build-vite` now runs all profiles in parallel
+- Rewrote all `_README/` docs for new profile architecture; corrected `onInsert` and `toast` as fully implemented
+- Updated `CLAUDE.md` for new structure
+
 ### 2026-03-08
 
 - Ignore `.claude/` directory in git — local Claude Code settings are machine-specific

@@ -1,52 +1,70 @@
-# SCSS Guide — bs-ee
+# SCSS Architecture — Bootstrap EE
 
-## Purpose
+## Entry points
 
-This document explains the SCSS architecture used by Bootstrap EE and how to extend or override variables and components.
+| File | Profile | What it produces |
+|---|---|---|
+| `src/scss/bs-ee.scss` | `bs-ee` | Core: Bootstrap + brand overrides + FA Pro |
+| `src/scss/biz-bs-ee.scss` | `biz-bs-ee` | Extends bs-ee: adds biz layout, note cards, biz utilities, DataTables |
 
-## Entrypoint
+The Sass compiler processes the entire `src/scss/` directory — all entry points are compiled automatically.
 
-`src/scss/bs-ee.scss` — primary entry; imports variables, Bootstrap core, component overrides, and utilities in order.
+## Variable files
 
-## Variables
+| File | Load order | Purpose |
+|---|---|---|
+| `_fbs-colors.scss` | Before Bootstrap | FBS/Atlassian palette as `$fbs-*` vars. No CSS output — reference only. |
+| `_bsee-pre.scss` | Before Bootstrap | **Start here for brand changes.** Overrides Bootstrap `!default` vars: colors, fonts, radii, spacing. |
+| `_bsee-post.scss` | After Bootstrap vars | Vars that reference Bootstrap's own vars (`$purple`, `$gray-500`, etc.) |
 
-- `src/scss/_bsee-pre.scss` — **start here**. All Erehab brand overrides: colors, fonts, radii, spacing (~50 lines, all readable).
-- `src/scss/_variables.scss` — Bootstrap variable overrides beyond what's in `_bsee-pre.scss`.
-- `src/scss/_variables-dark.scss` — dark-mode overrides.
-- `src/scss/_fbs-colors.scss` — legacy FBS palette reference (`$fbs-*` vars). Not wired in by default; available for reference only.
+## Component partials
 
-## Component Partials
-
-All partials live flat in `src/scss/`:
+### Core (bs-ee profile)
 
 | File | Purpose |
 |---|---|
-| `_navbar.scss` | Navbar overrides |
-| `_buttons.scss` | Button variants and hover behavior |
-| `_cards.scss` | Card padding and style overrides |
-| `_dropdowns.scss` | Dropdown overrides |
-| `_forms.scss` | Form control overrides |
-| `_note-items.scss` | ptclinic.biz note card variants (18 types) |
-| `_biz-utilities.scss` | Named color utilities (29 colors + `_text` variants) |
-| `_layout.scss` | App layout — sidebar, main-content |
-| `_legacy-spacing.scss` | Compat layer for old `m-t`/`p-b` class names |
-| `_print.scss` | Print media styles |
-| `_bsee-pre.scss` | Imports before Bootstrap core |
-| `_bsee-post.scss` | Imports after Bootstrap core |
-| `_animate.scss` | Animation keyframes and utility classes (entrance, exit, attention, state flash) |
+| `_buttons.scss` | Custom inverted-hover mixin + all button variants |
+| `_cards.scss` | Card border/header/footer color defaults |
+| `_dropdowns.scss` | Tighter padding, dark mode hover, column variants |
+| `_forms.scss` | Reserved for future overrides (cleared — see archive) |
+| `_navbar.scss` | Fixed 40px height, navy bg, hover states |
+| `_animate.scss` | Custom animation utility system |
+| `_print.scss` | Suppress URL printing, bump print font size |
+| `_legacy-spacing.scss` | Erehab shorthand utilities (`.m-t`, `.p-b`, etc.) |
 
-## How to Add Overrides
+### Biz only (biz-bs-ee profile)
 
-1. **Brand changes** (colors, fonts, radii): edit `src/scss/_bsee-pre.scss`.
-2. **New component overrides**: create a new partial in `src/scss/` and import it in `bs-ee.scss`.
-3. **New utility classes**: use Bootstrap's utility API in `bs-ee.scss` before the `utilities/api` import, or add to `_biz-utilities.scss`.
-4. Never edit Bootstrap core files in `node_modules`.
+| File | Purpose |
+|---|---|
+| `_layout.scss` | ptclinic.biz app layout — `#sidebar`, `#main-content`, etc. |
+| `_note-items.scss` | 18 `.note_item_*` card variants for the ptclinic note system |
+| `_biz-utilities.scss` | 29 named color utilities + typography helpers |
+
+## How to make changes
+
+**Brand colors, fonts, radii, spacing** → edit `_bsee-pre.scss`
+
+**Component overrides** → edit the relevant partial, or create a new one and import it in `bs-ee.scss`
+
+**New utility classes** → use Bootstrap's utility API (`$utilities` map before the `utilities/api` import in `bs-ee.scss`)
+
+**Biz-only styles** → do NOT add to BSEE. Add to `biz.css` in the biz project instead. Use `var(--bs-*)` CSS custom properties to reference Bootstrap values without SCSS.
+
+**Never edit Bootstrap files in `node_modules`.**
+
+## The $discovery color
+
+`$discovery: #4b49ac` is injected into Bootstrap's `$theme-colors` map in `bs-ee.scss`. This means Bootstrap auto-generates all variants: `.btn-discovery`, `.badge-discovery`, `.alert-discovery`, `.text-discovery`, `.bg-discovery`, etc.
+
+## Archive
+
+`src/archive/scss/` contains a snapshot of all SCSS partials as they were before the profile refactor. Reference only — do not edit.
 
 ## Build
 
 ```bash
-npm run dist   # compile, prefix, minify
-npm run css    # CSS only
+npm run css    # compile + prefix + minify all profiles
+npm run dist   # css + copy webfonts
 ```
 
-See [setup.readme.md](setup.readme.md) for the full workflow including publishing to the `public` branch.
+See [setup.readme.md](setup.readme.md) for the full workflow.

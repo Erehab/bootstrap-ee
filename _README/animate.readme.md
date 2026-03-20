@@ -22,7 +22,7 @@ Bootstrap EE ships a custom animation library with no third-party dependency. Al
 **Key files:**
 
 - `src/scss/_animate.scss` — all keyframes and utility classes
-- `src/ts/animate.ts` — JS helpers (`trigger`, `observe`, `onEnter`)
+- `src/ts/bsee-animate.ts` — JS helpers (`trigger`, `observe`, `onEnter`)
 - `htmltest/animations.html` — live interactive demo
 
 **Design goals:**
