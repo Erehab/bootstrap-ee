@@ -11,7 +11,7 @@
 @import "bootstrap/scss/functions";
 
 // 2. Erehab pre-Bootstrap overrides (must come before Bootstrap's _variables.scss)
-@import "colors_text";   // Optional FBS palette reference ($fbs-* vars) and Text/Font helpers
+@import "colors";   // FBS color vars ($fbs-*) + biz color map — must be before bsee-pre
 @import "bsee-pre";     // Overrides BS !default vars ($primary, fonts, spacing, etc.)
 
 // 3. Bootstrap variables, then dark mode, then maps + mixins + utilities
@@ -70,6 +70,9 @@ $theme-colors: map-merge($theme-colors, ("discovery": $discovery));
 @import "cards";
 @import "dropdowns";
 @import "forms";
+
+// ─── Colors & Text Utilities ──────────────────────────────────────────────────
+@import "colors_text";
 
 // ─── BSEE Animations ─────────────────────────────────────────────────────────
 @import "animate";

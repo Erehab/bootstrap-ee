@@ -2,6 +2,9 @@
 
 ### 2026-03-20
 
+- Split `_colors_text.scss` into `_colors.scss` (SCSS vars only, loaded early) and `_colors_text.scss` (CSS output — `:root` vars loop, utility classes, typography helpers, loaded after Bootstrap); fixes `$headings-font-family` undefined error
+- Add `--biz-*` CSS custom properties to `:root` via loop over `$_biz-colors` map (e.g. `var(--biz-cherry)`, `var(--biz-navy)`)
+
 - Remove biz-only SCSS files from active source (`_layout`, `_biz-utilities`, `_fbs-colors`) — archived in `src/archive/scss/`
 - `biz-bs-ee.scss`: remove `_layout` import (layout moving to biz.css)
 - `bs-ee.scss`: rename `fbs-colors` import to `colors_text`; comment out `_navbar` import for testing
