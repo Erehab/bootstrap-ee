@@ -2,6 +2,12 @@
 
 ### 2026-03-20
 
+- Remove biz-only SCSS files from active source (`_layout`, `_biz-utilities`, `_fbs-colors`) — archived in `src/archive/scss/`
+- `biz-bs-ee.scss`: remove `_layout` import (layout moving to biz.css)
+- `bs-ee.scss`: rename `fbs-colors` import to `colors_text`; comment out `_navbar` import for testing
+
+### 2026-03-20 (1)
+
 **Profile system — BSEE refactored into framework-only core + biz profile**
 - Stripped all ptclinic.biz-specific styles from `bs-ee` profile: `_layout`, `_note-items`, `_biz-utilities` removed from core; body background, parsley, `#filesarea`, navbar-form colors removed from their partials; `_forms.scss` cleared to stub
 - Added `biz-bs-ee` profile: new `src/scss/biz-bs-ee.scss` and `src/ts/biz-bs-ee.ts` entry points that extend core with biz layout, note cards, biz utilities, DataTables, jQuery, flatpickr
