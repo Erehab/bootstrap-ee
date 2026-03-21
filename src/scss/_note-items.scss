@@ -3,8 +3,12 @@
 // 18 variants — all preserved. Colors unchanged from legacy audit.
 // Selectors updated: .panel-heading → .card-header, .panel-footer → .card-footer
 
+@use "sass:map";
+
+$red: map.get($_biz-colors, "red");
+
 // ─── Mixin ─────────────────────────────────────────────────────────────────
-@mixin note-item($border, $bg, $header-bg: $border, $header-color: #ffffff) {
+@mixin note-item($border, $bg, $header-bg: $border, $header-color: color-contrast($header-bg), $body-color: color-contrast($bg)) {
     overflow: hidden; // Clip card-body bg to card border-radius
     border-color: $border;
 
@@ -15,8 +19,9 @@
     }
 
     > .card-body {
-        background-color: $bg !important;           // Resist Bootstrap dark mode CSS var override
-        color: color-contrast($bg) !important;      // Auto black/white based on bg luminance
+        background-color: $bg !important;
+        color: $body-color !important;
+        padding: .2rem .5rem;
     }
 
     > .card-footer {
@@ -33,57 +38,88 @@
 
 // ─── Variants ──────────────────────────────────────────────────────────────
 // Theme-color aliases — map to card-variant classes for dark mode support
-.note_item,
-.note_item1       { @extend .card-warning; }
-.note_item_status { @extend .card-warning; }
-.note_item_work   { @extend .card-warning; }
-.note_item_g5     { @extend .card-primary; }
-.note_item_finance { @extend .card-success; }
-.note_item_top    { @extend .card-danger; }
-.note_item_design { @extend .card-discovery; }
+.note-item,
+.note-item1       { @extend .card-warning; }
+.note-item-status { @extend .card-warning; }
+.note-item-work   { @extend .card-warning; }
+.note-item-g5     { @extend .card-primary; }
+.note-item-finance { @extend .card-success; }
+.note-item-top    { @extend .card-danger; }
+.note-item-design { @extend .card-discovery; }
 
 // Custom variants — specific legacy colors, not mapped to theme colors
-.note_item_contact {
-    @include note-item(#ffa523, #f0ffff, #ffa523, #ffffff);
+.note-item-status {
+    @include note-item($warning,$light);
 }
 
-.note_item_link {
-    @include note-item(#ffa523, #f0fff0, #ffa523, #ffffff);
+.note-item-top {
+    @include note-item($red,$danger,$red,$light);
 }
 
-.note_item_other,
-.note_item_cp {
-    @include note-item(#008080, #fffff0, #008080, #ffffff);
+.note-item-contact {
+    @include note-item(#ffa523, $light);
 }
 
-.note_item_domain {
-    @include note-item(#0080ff, #ffffbc, #0080ff, #ffffff);
+.note-item-link {
+    @include note-item(#ffa523, $light);
 }
 
-.note_item_email {
-    @include note-item(#0037ff, #b5c4ff, #0037ff, #ffffff);
+.note-item-other,
+.note-item-cp {
+    @include note-item(#008080, $light);
 }
 
-.note_item_local {
-    @include note-item(#a1a0b0, #3f37be, #3f37be, #ffffff);
+.note-item-domain {
+    @include note-item(#0080ff, $light);
 }
 
-.note_item_seo {
+.note-item-email {
+    @include note-item(#0037ff, $light);
+}
+
+.note-item-local {
+    @include note-item(#a1a0b0, #3f37be, #2921a1, #ffffff);
+}
+
+.note-item-seo {
     @include note-item(#c8b7d9, #400080, #400080, #ffffff);
 }
 
-.note_item_mss {
-    @include note-item(#d92388, #b300cc, #b300cc, #ffffff);
+.note-item-mss {
+    @include note-item(#d92388, #680575, #b300cc, #ffffff);
 }
 
-.note_item_nc {
+.note-item-nc {
     @include note-item(#004646, #008080, #008080, #ffffff);
 }
 
-.note_item_pdr {
+.note-item-pdr {
     @include note-item(#60aeb7, #cdeff4, #60aeb7, #ffffff);
 }
 
-.note_item_activity {
+.note-item-activity {
     @include note-item(#004646, #008080, #008080, #ffffff);
+}
+
+/* Note Extras */
+.note-item .card-header {
+    border-bottom: 0;
+    padding: 2px;
+}
+
+.note-item .card-header a {
+    color: var(--bs-light);
+}
+
+.note-item .card-header a:hover {
+    opacity: 50%;
+}
+
+.note-item .card-footer {
+    padding: 2px;
+    display: flex;
+}
+
+.note-item p {
+    margin-bottom: .5rem;
 }

@@ -1,5 +1,10 @@
 # CHANGELOG
 
+### 2026-03-21
+
+- Refactor `_note-items.scss`: rename underscore classes to kebab-case (`.note_item` → `.note-item`), improve mixin with auto `color-contrast` defaults for header/body, fix `.note-item-top` and `.note-item-status` overrides, add card-body padding
+- Minor: fix Vite bundle name to `bsee`, remove stray dropdown vars from `_bsee-pre.scss`, update light mode body bg color in `biz-bs-ee.scss`
+
 ### 2026-03-20
 
 - Document local dev workflow in `setup.readme.md` — `bsee-local`/`bsee-prod`/`bsee-check` scripts in consuming project, `watch:css` in BSEE
