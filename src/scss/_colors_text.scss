@@ -8,6 +8,12 @@
   }
 }
 
+/* Inverts the current theme's primary colors */
+.bg-invert {
+  background-color: var(--bs-body-color) !important;
+  color: var(--bs-body-bg) !important;
+}
+
 // ─── Named Color Utilities ────────────────────────────────────────────────────
 // Pattern: .{name} = bg + border, .{name}_text = text color only
 @each $name, $color in $_biz-colors {

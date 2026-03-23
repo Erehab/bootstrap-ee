@@ -6,7 +6,7 @@ import { version } from '../../package.json';
 // JS: Bootstrap + DataTables + jQuery + all BSEE custom modules + utility libs
 // SCSS entry: src/scss/biz-bs-ee.scss
 
-const NAME = 'bizBsEE';
+const NAME = 'bsee';
 
 const getBanner = () => `/*! Bootstrap EE v${version} | biz-bs-ee profile (https://github.com/Erehab/bootstrap-ee) */`;
 

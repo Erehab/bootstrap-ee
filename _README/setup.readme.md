@@ -143,6 +143,36 @@ Runs Sass watcher + browser-sync in parallel. Serves at `http://localhost:7788`,
 
 ---
 
+## Local dev against a consuming project
+
+Instead of publishing to the `public` branch and running `npm install` on every CSS change, you can symlink the consuming project's `node_modules/bootstrap-ee/` directly to your local BSEE source. CSS changes compile and show up immediately.
+
+**In the consuming project (e.g. ptclinic.biz):**
+
+```bash
+npm run bsee-local   # symlinks node_modules/bootstrap-ee → /Users/masonjo/packages/bootstrap-ee
+```
+
+**In BSEE (this project):**
+
+```bash
+npm run watch:css    # recompiles on every SCSS save
+```
+
+Save a SCSS file → Sass recompiles → consuming project picks up the new CSS on browser refresh.
+
+**To switch back to the GitHub version (before committing/deploying):**
+
+```bash
+# In the consuming project:
+npm run bsee-prod    # removes symlink, installs from GitHub public branch
+npm run bsee-check   # verify it's not a symlink
+```
+
+**Note:** `npm install` in the consuming project always overwrites the symlink. Re-run `npm run bsee-local` after any `npm install` if you want to return to local dev mode.
+
+---
+
 ## Upgrading bundled libraries
 
 1. Update version in `package.json` or `npm update <package>`

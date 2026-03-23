@@ -1,4 +1,4 @@
-var bizBsEE=function(nt){"use strict";/*! Bootstrap EE v2.2.0 | biz-bs-ee profile (https://github.com/Erehab/bootstrap-ee) */var Qt=typeof globalThis<"u"?globalThis:typeof window<"u"?window:typeof global<"u"?global:typeof self<"u"?self:{};function dn(t){return t&&t.__esModule&&Object.prototype.hasOwnProperty.call(t,"default")?t.default:t}var Eu={exports:{}};/*!
+var bsee=function(nt){"use strict";/*! Bootstrap EE v2.2.0 | biz-bs-ee profile (https://github.com/Erehab/bootstrap-ee) */var Qt=typeof globalThis<"u"?globalThis:typeof window<"u"?window:typeof global<"u"?global:typeof self<"u"?self:{};function dn(t){return t&&t.__esModule&&Object.prototype.hasOwnProperty.call(t,"default")?t.default:t}var Eu={exports:{}};/*!
  * jQuery JavaScript Library v4.0.0
  * https://jquery.com/
  *

@@ -9,16 +9,17 @@
 
 // ─── Body Background ──────────────────────────────────────────────────────────
 body {
-  background-color: #e9e9e9 !important;
+  background-color: #e7f4fd !important;
 }
 [data-bs-theme="dark"] body {
-  background-color: #1a1d21 !important;
+  background-color: #424c59 !important;
 }
 
-// ─── Note Card System ─────────────────────────────────────────────────────────
-@import "note-items";
-
-// ─── Biz Color Utilities ──────────────────────────────────────────────────────
+// ─── Biz Specific Items System ─────────────────────────────────────────────────────────
+@import "biz-buttons";
+@import "biz-customer";
+@import "biz-notes-needs";
+@import "biz-tabs";
 @import "biz-utilities";
 
 // ─── Third-party: DataTables + Extensions ────────────────────────────────────

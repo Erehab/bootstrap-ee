@@ -1,0 +1,150 @@
+:root {
+  --customer-topbar-height: 40px;
+  --customer-sidebar-width: 200px;
+}
+
+body.customerpage {
+  padding-top: var(--customer-topbar-height);
+}
+
+.btn {
+  --bs-btn-padding-x: .6rem;
+  --bs-btn-padding-y: .1rem;
+  --bs-btn-border-radius: 35px;
+}
+
+
+
+// ─── Topbar ───────────────────────────────────────────────────────────────────
+
+#customer-topbar {
+  height: var(--customer-topbar-height);
+  min-height: var(--customer-topbar-height);
+  padding-top: 0;
+  padding-bottom: 0;
+  z-index: $zindex-fixed;  // Bootstrap variable — equals 1030
+  overflow: visible;
+
+  // SCSS nesting: compiles to "#customer-topbar .nav-link { ... }"
+  // Removes default navbar padding from nav-links inside topbar
+  .nav-link {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    color: white;
+  }
+
+  .navbar-nav .nav-link {
+    &:hover, &:focus { color: #FFC501; }
+  }
+
+  .dropdown-menu {
+    --bs-dropdown-link-color: var(--bs-primary);
+    --bs-navbar-color: var(--biz-white); }
+}
+
+// ─── Nav Icons ────────────────────────────────────────────────────────────────
+
+// SCSS nesting used throughout — each level adds a descendant selector.
+// e.g. .nav-item > .dropdown-menu compiles to "#customer-nav-icons .nav-item .dropdown-menu"
+// No caret, fixed-width items so dropdowns don't shift the bar
+#customer-nav-icons {
+  .dropdown-toggle::after {
+    display: none;
+  }
+
+  .nav-item {
+    position: relative;
+    width: 2.5rem;
+    flex-shrink: 0;
+
+    .dropdown-menu {
+      position: absolute;
+      width: max-content;
+      min-width: 10rem;
+    }
+  }
+}
+
+// Mobile nav offcanvas: always show labels
+#customer-nav-icons-mobile {
+  .d-sm-none {
+    display: inline !important;
+  }
+}
+
+// ─── Sidebar + Layout ─────────────────────────────────────────────────────────
+
+#customer-sidebar {
+  width: var(--customer-sidebar-width);
+  top: var(--customer-topbar-height);
+  bottom: 0;
+  overflow-y: auto;
+  background-color: var(--biz-white);
+}
+
+#customer-main {
+  margin-left: var(--customer-sidebar-width);
+  min-width: 0;
+}
+
+footer {
+  margin-left: var(--customer-sidebar-width);
+}
+
+// Bootstrap mixin — media-breakpoint-down(lg) compiles to:
+// @media (max-width: 991.98px) { ... }
+// Breakpoint values come from Bootstrap's $grid-breakpoints map
+@include media-breakpoint-down(lg) {
+  #customer-sidebar {
+    display: none;
+  }
+
+  // Multiple selectors in one block — compiles to two separate rules
+  #customer-main,
+  footer {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+// ─── Customer Info Row ────────────────────────────────────────────────────────
+
+@mixin info-row($bg, $color: color-contrast($bg), $link: $link-color, $link-hover: $link-hover-color) {
+  background-color: $bg;
+  * { color: $color; }
+  a {
+    &:link, &:visited { color: $link; }
+    &:hover, &:active { color: $link-hover; }
+  }
+}
+
+.customer-info-row {
+  background-color: white;
+
+  .brimstone &   { @include info-row($bg: #e7d8d1); }
+  .notcustomer & { @include info-row($bg: #AB0007); }
+  .wordpress &   { @include info-row($bg: #3D78B7, $color: #fff, $link: #F39C12, $link-hover: #E74C3C); }
+  .bom &         { @include info-row($bg: #BF5613, $link: #004080, $link-hover: #3498DB); }
+  .rps &         { @include info-row($bg: #450053, $color: #fff, $link: #F39C12, $link-hover: #3498DB); }
+}
+
+.customer-info-banner {
+  display: block;
+  position: relative;
+
+  @include media-breakpoint-up(md) {
+    max-width: 50%;
+    flex-shrink: 0;
+  }
+}
+
+#practice-number {
+  color: var(--bs-warning);
+  font-size: 3.4rem;
+  line-height: 4rem;
+  font-weight: bold;
+  left: 40%;
+  letter-spacing: 6px;
+  position: absolute;
+  text-shadow: 3px 3px 3px #000, -3px -3px 3px #000, 3px -3px 3px #000, -3px 3px 3px #000;
+}

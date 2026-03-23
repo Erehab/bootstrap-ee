@@ -1,0 +1,74 @@
+// ─── Tab Items ────────────────────────────────────────────────────────────────
+// Override Bootstrap's nav-tabs CSS custom properties so our values win
+// without needing !important or higher specificity.
+
+.nav-tabs {
+  --bs-nav-tabs-border-width: 0;                        // Remove bottom border from tab row
+  --bs-nav-tabs-link-active-border-color: var(--bs-primary) var(--bs-primary) transparent;
+  border-bottom: 0;
+
+  .nav-link {
+    color: var(--bs-primary);
+    border: 0;
+    border-bottom: 2px solid var(--bs-primary);
+
+    &:not(.active):hover {
+      background-color: var(--bs-primary);
+      border-color: var(--bs-primary);
+      color: var(--bs-light);
+    }
+
+    // Active state — & resolves to .nav-tabs .nav-link.active
+    &.active {
+      border: 2px solid var(--bs-primary);
+      border-bottom: 0;
+      background-color: var(--bs-tertiary-bg);
+    }
+  }
+
+  // Also active when parent .nav-item has .show (e.g. dropdown open)
+  .nav-item.show .nav-link {
+    border: 2px solid var(--bs-primary);
+    border-bottom: 0;
+  }
+}
+
+#homeTabContent {
+  border-color: var(--bs-primary) !important;
+  background-color: var(--bs-tertiary-bg);
+}
+
+// ─── Dark mode overrides ───────────────────────────────────────────────────────
+// --bs-primary is too dark on dark backgrounds; use the emphasis variant instead.
+// Active tab matches bg-body-secondary (the content pane behind the tabs).
+
+[data-bs-theme="dark"] {
+  #homeTabContent {
+    border-color: var(--bs-primary-text-emphasis) !important;
+  }
+  .nav-tabs {
+    --bs-nav-tabs-link-active-border-color: var(--bs-primary-text-emphasis) var(--bs-primary-text-emphasis) transparent;
+
+    .nav-link {
+      color: var(--bs-primary-text-emphasis);
+      border-bottom-color: var(--bs-primary-text-emphasis);
+
+      &:not(.active):hover {
+        background-color: var(--bs-primary-text-emphasis);
+        border-color: var(--bs-primary-text-emphasis);
+        color: var(--bs-dark);
+      }
+
+      &.active {
+        background-color: var(--bs-secondary-bg);
+        border-color: var(--bs-primary-text-emphasis);
+        color: var(--bs-primary-text-emphasis);
+      }
+    }
+
+    .nav-item.show .nav-link {
+      border-color: var(--bs-primary-text-emphasis);
+      color: var(--bs-primary-text-emphasis);
+    }
+  }
+}
