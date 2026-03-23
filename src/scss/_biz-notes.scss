@@ -1,0 +1,158 @@
+// Note Item Variants
+// Typed note card system used in ptclinic.biz customer pages.
+// 18 variants — all preserved. Colors unchanged from legacy audit.
+// Selectors updated: .panel-heading → .card-header, .panel-footer → .card-footer
+
+// ─── Mixin ─────────────────────────────────────────────────────────────────
+@mixin note-item($border, $bg, $header-bg: $border, $header-color: color-contrast($header-bg), $body-color: color-contrast($bg)) {
+    overflow: hidden; // Clip card-body bg to card border-radius
+    border-color: $border;
+
+    > .card-header {
+        background-color: $header-bg;
+        border-color: $border;
+        color: $header-color;
+    }
+
+    > .card-body {
+        background-color: $bg !important;
+        color: $body-color !important;
+        padding: .2rem .5rem;
+    }
+
+    > .card-footer {
+        background-color: #e6dfd1;
+        border-top-color: #c5c0b6;
+        color: #2c3e50;
+    }
+
+    .badge {
+        background-color: $header-bg;
+        color: $header-color;
+    }
+}
+
+// ─── Variants ──────────────────────────────────────────────────────────────
+// Theme-color aliases — map to card-variant classes for dark mode support
+.note-item,
+.note-item1,
+.note-item-work   { @extend .card-warning; }
+
+// Custom variants — specific legacy colors, not mapped to theme colors
+.note-item-activity {
+    @include note-item($border: #004646, $bg: #008080, $header-bg: #008080, $header-color: #ffffff);
+}
+
+.note-item-contact {
+    @include note-item($border: #ffa523, $bg: $light);
+}
+
+.note-item-cp {
+    @include note-item($border: #008080, $bg: $light);
+}
+
+.note-item-design {
+    @include note-item($border: $discovery, $bg: $light);
+}
+
+.note-item-domain {
+    @include note-item($border: #0080ff, $bg: $light);
+}
+
+.note-item-email {
+    @include note-item($border: #0037ff, $bg: $light);
+}
+
+.note-item-finance {
+    @include note-item($border: $success, $bg: $light);
+}
+
+.note-item-g5 {
+    @include note-item($border: $primary, $bg: $light);
+}
+
+.note-item-link {
+    @include note-item($border: #ffa523, $bg: $light);
+}
+
+.note-item-local {
+    @include note-item($border: #a1a0b0, $bg: #3f37be, $header-bg: #2921a1, $header-color: #ffffff);
+}
+
+.note-item-mss {
+    @include note-item($border: #d92388, $bg: #680575, $header-bg: #b300cc, $header-color: #ffffff);
+}
+
+.note-item-other {
+    @include note-item($border: #008080, $bg: $light);
+}
+
+.note-item-nc {
+    @include note-item($border: #004646, $bg: #008080, $header-bg: #008080, $header-color: #ffffff);
+}
+
+.note-item-pdr {
+    @include note-item($border: #60aeb7, $bg: #cdeff4, $header-bg: #60aeb7, $header-color: #ffffff);
+}
+
+.note-item-seo {
+    @include note-item($border: #c8b7d9, $bg: #400080, $header-bg: #400080, $header-color: #ffffff);
+}
+
+.note-item-status {
+    @include note-item($border: $warning, $bg: $light);
+}
+
+.note-item-top {
+    @include note-item($border: $red, $bg: $danger, $header-bg: $red, $header-color: $light);
+}
+
+// Note Extras — nested under .note-item
+.note-item {
+    .card-header {
+        border-bottom: 0;
+        padding: 2px;
+
+        a {
+            color: var(--bs-light);
+
+            &:hover {
+                opacity: 50%;
+            }
+        }
+    }
+
+    .card-footer {
+        padding: 2px;
+        display: flex;
+    }
+
+    p {
+        margin-bottom: .5rem;
+    }
+}
+
+
+// Need Item — spacing and structural tweaks
+.need-item {
+    overflow: visible; // Allow dropdown menus to escape the card boundary
+
+    .card-header {
+        border-bottom: 0;
+        padding: 2px 4px;
+
+        a {
+            color: var(--bs-light);
+
+            &:hover {
+                opacity: 50%;
+            }
+        }
+    }
+
+    .card-body {
+        padding: .2rem .5rem;
+        overflow: hidden; // Clip inner content to card border-radius without cutting dropdowns
+        border-radius: 0 0 calc(var(--bs-card-border-radius) - 2px) calc(var(--bs-card-border-radius) - 2px);
+    }
+}
