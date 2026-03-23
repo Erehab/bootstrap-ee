@@ -115,6 +115,21 @@ To add a new profile: create `src/config/vite.{name}.ts`, `src/ts/{name}.ts`, `s
 - **Vite**: Bundles TypeScript per profile to `js/`
 - **npm-run-all**: Orchestrates parallel build tasks
 
+## SCSS Standards
+
+### Named Arguments
+**Always use named arguments when calling mixins.** Never pass positional arguments.
+
+```scss
+// WRONG
+@include info-row(#3D78B7, #fff, #F39C12, #E74C3C);
+
+// RIGHT
+@include info-row($bg: #3D78B7, $color: #fff, $link: #F39C12, $link-hover: #E74C3C);
+```
+
+Named arguments can be passed in any order, make each value's role self-documenting, and allow skipping optional parameters without losing track of position. This applies to all custom mixins and Bootstrap mixins alike.
+
 ## Development Notes
 
 ### Brand Colors / Overrides

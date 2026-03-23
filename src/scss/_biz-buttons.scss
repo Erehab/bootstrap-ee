@@ -53,3 +53,13 @@
 
 // Custom MSS purple variant
 .btn-mss { @include bsee-button-variant(rgba(70, 0, 84, 1)); }
+
+// btn-xs — badge-matched sizing, overrides .btn defaults above
+.btn.btn-xs {
+    padding: .35em .65em;
+    font-size: .75em;
+    font-weight: 700;
+    line-height: 1;
+    border: 0;
+    display: block;
+}

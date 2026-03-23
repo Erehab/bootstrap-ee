@@ -1,5 +1,11 @@
 # CHANGELOG
 
+### 2026-03-23
+
+- Split biz SCSS into focused partials: `_biz-buttons.scss`, `_biz-customer.scss`, `_biz-notes.scss`, `_biz-tabs.scss`; remove `_note-items.scss` and `_buttons.scss` from core
+- Restore legacy biz color values in `$_biz-colors` map (cherry, green, clover, teal, ice, hotpink, fuchsia, mauve, pearl, steelblue, mossgreen, wheat, coffee, copper, silver)
+- Add SCSS named-arguments standard to `CLAUDE.md`
+
 ### 2026-03-21
 
 - Refactor `_note-items.scss`: rename underscore classes to kebab-case (`.note_item` → `.note-item`), improve mixin with auto `color-contrast` defaults for header/body, fix `.note-item-top` and `.note-item-status` overrides, add card-body padding

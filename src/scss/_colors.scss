@@ -1,3 +1,5 @@
+@use "sass:map";
+
 // FBS Color Palette and E-rehab Font/Text Helpers
 // Source: FastBootstrap / Atlassian Design System color palette
 // These are curated explicit hex values (100–1000 scale) as an optional reference.
@@ -165,38 +167,39 @@ $fbs-dark-neutral-500a:  rgba(155, 180, 202, 0.5);
 // Pattern: .{name} = bg + border, .{name}_text = text color only
 
 $_biz-colors: (
-  "cherry": #c11010,
+  "cherry": #ff0000,
   "maroon": #85144b,
   "red": #ff4136,
   "orange": #ff851b,
   "yellow": #ffdc00,
-  "green": #27ae60,
-  // distinct from lime (was #2ECC40 — duplicate fixed)
-  "clover": #3d9970,
+  "green": #2ecc40,
+  "clover": #008000,
   "lime": #2ecc40,
   "olive": #3d9970,
-  "teal": #008080,
+  "teal": #008899,
   "aqua": #7fdbff,
   "navy": #001f3f,
   "blue": #0074d9,
-  "ice": #b0d4e3,
+  "ice": #66ffff,
   "deepblue": #092334,
   "purple": #b10dc9,
-  "hotpink": #ff69b4,
-  "fuchsia": #e30687,
-  // distinct from maroon (was #85144B — duplicate fixed)
-  "slategrey": #708090,
-  "mauve": #9c7c8a,
-  "pearl": #f0f0f0,
-  "steelblue": #4682b4,
-  "mossgreen": #8a9a5b,
-  "wheat": #f5deb3,
-  "coffee": #6f4e37,
-  "copper": #b87333,
-  "silver": #c0c0c0,
+  "hotpink": #bc006e,
+  "fuchsia": #85144b,
+  "slategrey": #3b424a,
+  "mauve": #625b56,
+  "pearl": #ab998f,
+  "steelblue": #788794,
+  "mossgreen": #717a75,
+  "wheat": #79745d,
+  "coffee": #372e25,
+  "copper": #6b3c02,
+  "silver": #dddddd,
   "black": #111111,
   "white": #ffffff,
 );
+
+// Named aliases for commonly used biz colors
+$red: map.get($_biz-colors, "red");
 
 // CSS output (utility classes, :root vars) is in _colors_text-output.scss
 // imported after Bootstrap vars/mixins are available.

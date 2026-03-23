@@ -18,3 +18,10 @@
     font-weight: bold;
     color: $success;
 }
+
+#breakpoint-helper {
+    display: block;
+    position: fixed;
+    z-index: 9999;
+    background-color: red;
+}

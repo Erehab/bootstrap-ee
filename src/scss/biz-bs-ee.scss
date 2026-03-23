@@ -15,10 +15,11 @@ body {
   background-color: #1a1d21 !important;
 }
 
-// ─── Note Card System ─────────────────────────────────────────────────────────
-@import "note-items";
-
-// ─── Biz Color Utilities ──────────────────────────────────────────────────────
+// ─── Biz Specific Items System ─────────────────────────────────────────────────────────
+@import "biz-buttons";
+@import "biz-customer";
+@import "biz-notes";
+@import "biz-tabs";
 @import "biz-utilities";
 
 // ─── Third-party: DataTables + Extensions ────────────────────────────────────
