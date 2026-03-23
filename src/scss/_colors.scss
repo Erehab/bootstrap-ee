@@ -178,11 +178,11 @@ $_biz-colors: (
   "olive": #3d9970,
   "teal": #008899,
   "aqua": #7fdbff,
-  "navy": #001f3f,
+  "navy": #142a52,
   "blue": #0074d9,
   "ice": #66ffff,
   "deepblue": #092334,
-  "purple": #b10dc9,
+  "purple": #650dc9,
   "hotpink": #bc006e,
   "fuchsia": #85144b,
   "slategrey": #3b424a,
@@ -198,8 +198,40 @@ $_biz-colors: (
   "white": #ffffff,
 );
 
-// Named aliases for commonly used biz colors
-$red: map.get($_biz-colors, "red");
+// Named aliases for all biz colors — compile-time only, no CSS output unless used
+$biz-cherry:    map.get($_biz-colors, "cherry");
+$biz-maroon:    map.get($_biz-colors, "maroon");
+$biz-red:       map.get($_biz-colors, "red");
+$biz-orange:    map.get($_biz-colors, "orange");
+$biz-yellow:    map.get($_biz-colors, "yellow");
+$biz-green:     map.get($_biz-colors, "green");
+$biz-clover:    map.get($_biz-colors, "clover");
+$biz-lime:      map.get($_biz-colors, "lime");
+$biz-olive:     map.get($_biz-colors, "olive");
+$biz-teal:      map.get($_biz-colors, "teal");
+$biz-aqua:      map.get($_biz-colors, "aqua");
+$biz-navy:      map.get($_biz-colors, "navy");
+$biz-blue:      map.get($_biz-colors, "blue");
+$biz-ice:       map.get($_biz-colors, "ice");
+$biz-deepblue:  map.get($_biz-colors, "deepblue");
+$biz-purple:    map.get($_biz-colors, "purple");
+$biz-hotpink:   map.get($_biz-colors, "hotpink");
+$biz-fuchsia:   map.get($_biz-colors, "fuchsia");
+$biz-slategrey: map.get($_biz-colors, "slategrey");
+$biz-mauve:     map.get($_biz-colors, "mauve");
+$biz-pearl:     map.get($_biz-colors, "pearl");
+$biz-steelblue: map.get($_biz-colors, "steelblue");
+$biz-mossgreen: map.get($_biz-colors, "mossgreen");
+$biz-wheat:     map.get($_biz-colors, "wheat");
+$biz-coffee:    map.get($_biz-colors, "coffee");
+$biz-copper:    map.get($_biz-colors, "copper");
+$biz-silver:    map.get($_biz-colors, "silver");
+$biz-black:     map.get($_biz-colors, "black");
+$biz-white:     map.get($_biz-colors, "white");
+
+// Unscoped aliases for backward compatibility
+$red:    $biz-red;
+$purple: $biz-purple;
 
 // CSS output (utility classes, :root vars) is in _colors_text-output.scss
 // imported after Bootstrap vars/mixins are available.

@@ -3,8 +3,53 @@
 // 18 variants — all preserved. Colors unchanged from legacy audit.
 // Selectors updated: .panel-heading → .card-header, .panel-footer → .card-footer
 
-// ─── Mixin ─────────────────────────────────────────────────────────────────
-@mixin note-item($border, $bg, $header-bg: $border, $header-color: color-contrast($header-bg), $body-color: color-contrast($bg)) {
+// ─── Mixins ─────────────────────────────────────────────────────────────────
+// todo-item: all colors dynamic via inline styles — mixin handles structure + dark mode only
+@mixin todo-item() {
+    overflow: visible; // Allow dropdown menus to escape the card boundary
+
+    > .card-header {
+        border-bottom: 0;
+        padding: 2px 4px;
+
+        a {
+            color: var(--bs-light);
+
+            &:hover {
+                opacity: 50%;
+            }
+        }
+    }
+
+    > .card-body {
+        padding: .2rem .5rem;
+        overflow: hidden;
+        border-radius: 0 0 calc(var(--bs-card-border-radius) - 2px) calc(var(--bs-card-border-radius) - 2px);
+    }
+
+    > .card-footer {
+        padding: 2px 4px;
+        display: flex;
+        align-items: center;
+        gap: .25rem;
+        background-color: #e6dfd1;
+        border-top-color: #c5c0b6;
+        color: #2c3e50;
+
+        [data-bs-theme="dark"] & {
+            background-color: var(--bs-dark);
+            border-top-color: var(--bs-border-color);
+            color: var(--bs-body-color);
+        }
+    }
+}
+
+@mixin note-item($border, $bg: null, $header-bg: $border, $header-color: color-contrast($header-bg), $body-color: null) {
+    $bg-auto: $bg == null;
+    $bg: if($bg, $bg, var(--bs-secondary-bg));
+    // If $bg was explicit, compute contrast against it; otherwise use the theme body color token
+    $body-color: if($body-color, $body-color, if($bg-auto, var(--bs-body-color), color-contrast($bg)));
+
     overflow: hidden; // Clip card-body bg to card border-radius
     border-color: $border;
 
@@ -24,6 +69,12 @@
         background-color: #e6dfd1;
         border-top-color: #c5c0b6;
         color: #2c3e50;
+
+        [data-bs-theme="dark"] & {
+            background-color: $dark;
+            border-top-color: var(--bs-border-color);
+            color: var(--bs-body-color);
+        }
     }
 
     .badge {
@@ -36,7 +87,7 @@
 // Theme-color aliases — map to card-variant classes for dark mode support
 .note-item,
 .note-item1,
-.note-item-work   { @extend .card-warning; }
+.note-item-work   { @include note-item($border: #ffa523); }
 
 // Custom variants — specific legacy colors, not mapped to theme colors
 .note-item-activity {
@@ -44,35 +95,35 @@
 }
 
 .note-item-contact {
-    @include note-item($border: #ffa523, $bg: $light);
+    @include note-item($border: #ffa523);
 }
 
 .note-item-cp {
-    @include note-item($border: #008080, $bg: $light);
+    @include note-item($border: #008080);
 }
 
 .note-item-design {
-    @include note-item($border: $discovery, $bg: $light);
+    @include note-item($border: $biz-purple);
 }
 
 .note-item-domain {
-    @include note-item($border: #0080ff, $bg: $light);
+    @include note-item($border: #0080ff);
 }
 
 .note-item-email {
-    @include note-item($border: #0037ff, $bg: $light);
+    @include note-item($border: #0037ff);
 }
 
 .note-item-finance {
-    @include note-item($border: $success, $bg: $light);
+    @include note-item($border: $biz-green);
 }
 
 .note-item-g5 {
-    @include note-item($border: $primary, $bg: $light);
+    @include note-item($border: $biz-navy);
 }
 
 .note-item-link {
-    @include note-item($border: #ffa523, $bg: $light);
+    @include note-item($border: #ffa523);
 }
 
 .note-item-local {
@@ -84,7 +135,7 @@
 }
 
 .note-item-other {
-    @include note-item($border: #008080, $bg: $light);
+    @include note-item($border: #008080);
 }
 
 .note-item-nc {
@@ -100,11 +151,11 @@
 }
 
 .note-item-status {
-    @include note-item($border: $warning, $bg: $light);
+    @include note-item($border: $biz-orange);
 }
 
 .note-item-top {
-    @include note-item($border: $red, $bg: $danger, $header-bg: $red, $header-color: $light);
+    @include note-item($border: $biz-red, $bg: $biz-cherry, $header-bg: $biz-red);
 }
 
 // Note Extras — nested under .note-item
@@ -156,3 +207,6 @@
         border-radius: 0 0 calc(var(--bs-card-border-radius) - 2px) calc(var(--bs-card-border-radius) - 2px);
     }
 }
+
+// Todo Item
+.todo-item { @include todo-item(); }

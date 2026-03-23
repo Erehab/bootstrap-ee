@@ -12,13 +12,13 @@ body {
   background-color: #e7f4fd !important;
 }
 [data-bs-theme="dark"] body {
-  background-color: #1a1d21 !important;
+  background-color: #424c59 !important;
 }
 
 // ─── Biz Specific Items System ─────────────────────────────────────────────────────────
 @import "biz-buttons";
 @import "biz-customer";
-@import "biz-notes";
+@import "biz-notes-needs";
 @import "biz-tabs";
 @import "biz-utilities";
 
