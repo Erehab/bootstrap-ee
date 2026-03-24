@@ -2,6 +2,10 @@
 
 ### 2026-03-24
 
+- Reorganize `_biz-notes-needs-todos-docs.scss` — move mixins adjacent to their sections, add section banners, add empty Docs section; delete old `_biz-notes-needs.scss`
+
+
+
 - Dark mode fixes for nav-tabs: use `--bs-primary-text-emphasis` for borders/text, active tab background matches `--bs-tertiary-bg` (synced with content pane)
 - Fix note-item mixin: `$bg: null` default resolves to `--bs-secondary-bg` (auto-flips in dark mode); explicit `$bg` still uses `color-contrast()`; card-footer gets dark mode token overrides
 - Add `$biz-*` SCSS variable aliases for all 29 biz colors in `_colors.scss`; swap SCSS theme vars in note variants to explicit biz hex values
