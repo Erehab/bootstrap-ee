@@ -102,8 +102,9 @@ footer {
   // Multiple selectors in one block — compiles to two separate rules
   #customer-main,
   footer {
-    margin-left: 0;
+    margin-left: var(--customer-sidebar-width);
     margin-right: 0;
+
   }
 }
 

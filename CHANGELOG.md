@@ -1,5 +1,12 @@
 # CHANGELOG
 
+### 2026-03-24
+
+- Dark mode fixes for nav-tabs: use `--bs-primary-text-emphasis` for borders/text, active tab background matches `--bs-tertiary-bg` (synced with content pane)
+- Fix note-item mixin: `$bg: null` default resolves to `--bs-secondary-bg` (auto-flips in dark mode); explicit `$bg` still uses `color-contrast()`; card-footer gets dark mode token overrides
+- Add `$biz-*` SCSS variable aliases for all 29 biz colors in `_colors.scss`; swap SCSS theme vars in note variants to explicit biz hex values
+- Split `_biz-notes.scss` into note cards and `_biz-notes-needs.scss` (need items)
+
 ### 2026-03-23
 
 - Split biz SCSS into focused partials: `_biz-buttons.scss`, `_biz-customer.scss`, `_biz-notes.scss`, `_biz-tabs.scss`; remove `_note-items.scss` and `_buttons.scss` from core

@@ -12,13 +12,13 @@
         border-bottom: 0;
         padding: 2px 4px;
 
-        a {
-            color: var(--bs-light);
+        // a {
+        //     color: var(--bs-body-color);
 
-            &:hover {
-                opacity: 50%;
-            }
-        }
+        //     &:hover {
+        //         opacity: 50%;
+        //     }
+        // }
     }
 
     > .card-body {
@@ -210,3 +210,7 @@
 
 // Todo Item
 .todo-item { @include todo-item(); }
+
+.todo-assign-btn:hover {
+    background-color: var(--bs-dark) !important;
+}
