@@ -224,6 +224,14 @@
     background-color: var(--bs-dark) !important;
 }
 
+.preset-btn {
+    &:hover {
+        background-color: var(--bs-body-bg) !important;
+        color: var(--bs-body-color) !important;
+        border-color: currentColor;
+    }
+}
+
 
 // ═══════════════════════════════════════════════════════════════════════════
 // Doc Items

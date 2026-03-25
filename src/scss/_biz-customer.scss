@@ -7,6 +7,14 @@ body.customerpage {
   padding-top: var(--customer-topbar-height);
 }
 
+body.notcustomer {
+  background-color: #ffe0e0 !important;
+
+  .content {
+    background-color: #ffd0d0;
+  }
+}
+
 .btn {
   --bs-btn-padding-x: .6rem;
   --bs-btn-padding-y: .1rem;
@@ -123,10 +131,10 @@ footer {
   background-color: white;
 
   .brimstone &   { @include info-row($bg: #e7d8d1); }
-  .notcustomer & { @include info-row($bg: #AB0007); }
   .wordpress &   { @include info-row($bg: #3D78B7, $color: #fff, $link: #F39C12, $link-hover: #E74C3C); }
   .bom &         { @include info-row($bg: #BF5613, $link: #004080, $link-hover: #3498DB); }
   .rps &         { @include info-row($bg: #450053, $color: #fff, $link: #F39C12, $link-hover: #3498DB); }
+  .notcustomer & { @include info-row($bg: #AB0007); } // Last — always wins via rule order
 }
 
 .customer-info-banner {

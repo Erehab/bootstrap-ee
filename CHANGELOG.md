@@ -2,6 +2,8 @@
 
 ### 2026-03-24
 
+- Add `body.notcustomer` background override (`#ffe0e0`) with `.content` sub-color (`#ffd0d0`), from legacy `_layout.scss`; move `.notcustomer` variant last in `.customer-info-row` so it always wins via rule order
+- Add `.doc-item` styles to `_biz-notes-needs-todos-docs.scss`
 - Reorganize `_biz-notes-needs-todos-docs.scss` — move mixins adjacent to their sections, add section banners, add empty Docs section; delete old `_biz-notes-needs.scss`
 
 
