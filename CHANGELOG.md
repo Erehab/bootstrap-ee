@@ -1,5 +1,13 @@
 # CHANGELOG
 
+### 2026-03-26
+
+- Customer layout updates: sidebar offcanvas bg, sidebar-hidden toggle state, overflow-x fix on `#customer-main`, offcanvas height fit-content, topbar icon hover color
+- Dark mode support for `body.notcustomer` background
+- Update info-row brand colors (wordpress, bom); remove brimstone variant
+- Add `#breakpoint-helper` debug overlay, scope `.btn-xs` to `#homeTabContent`
+- Tabs: use `--bs-tertiary-bg` for dark mode active tab and tab content background
+
 ### 2026-03-24
 
 - Add `body.notcustomer` background override (`#ffe0e0`) with `.content` sub-color (`#ffd0d0`), from legacy `_layout.scss`; move `.notcustomer` variant last in `.customer-info-row` so it always wins via rule order

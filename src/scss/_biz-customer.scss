@@ -13,6 +13,14 @@ body.notcustomer {
   .content {
     background-color: #ffd0d0;
   }
+
+  [data-bs-theme="dark"] & {
+    background-color: #4a1a1a !important;
+
+    .content {
+      background-color: #3a1010;
+    }
+  }
 }
 
 .btn {
@@ -87,16 +95,28 @@ body.notcustomer {
   top: var(--customer-topbar-height);
   bottom: 0;
   overflow-y: auto;
-  background-color: var(--biz-white);
+  background-color: var(--bs-dark-bg-subtle) !important;
+    background-color: var(--biz-white);
+
+}
+
+#sidebarOffcanvasBody {
+  padding: 0;
+}
+
+#sidebarOffcanvas {
+  --bs-offcanvas-bg: var(--bs-dark-bg-subtle);
 }
 
 #customer-main {
   margin-left: var(--customer-sidebar-width);
+  overflow-x: hidden;
   min-width: 0;
 }
 
 footer {
   margin-left: var(--customer-sidebar-width);
+  margin-right: 0;
 }
 
 // Bootstrap mixin — media-breakpoint-down(lg) compiles to:
@@ -106,14 +126,10 @@ footer {
   #customer-sidebar {
     display: none;
   }
-
-  // Multiple selectors in one block — compiles to two separate rules
-  #customer-main,
-  footer {
-    margin-left: var(--customer-sidebar-width);
-    margin-right: 0;
-
+  #customer-main {
+    margin-left:0;
   }
+
 }
 
 // ─── Customer Info Row ────────────────────────────────────────────────────────
@@ -130,9 +146,8 @@ footer {
 .customer-info-row {
   background-color: white;
 
-  .brimstone &   { @include info-row($bg: #e7d8d1); }
-  .wordpress &   { @include info-row($bg: #3D78B7, $color: #fff, $link: #F39C12, $link-hover: #E74C3C); }
-  .bom &         { @include info-row($bg: #BF5613, $link: #004080, $link-hover: #3498DB); }
+  .wordpress &   { @include info-row($bg: #0073aa, $color: #fff, $link: #F39C12, $link-hover: #E74C3C); }
+  .bom &         { @include info-row($bg: #da5e11, $link: #004080, $link-hover: #3498DB); }
   .rps &         { @include info-row($bg: #450053, $color: #fff, $link: #F39C12, $link-hover: #3498DB); }
   .notcustomer & { @include info-row($bg: #AB0007); } // Last — always wins via rule order
 }
@@ -156,4 +171,34 @@ footer {
   letter-spacing: 6px;
   position: absolute;
   text-shadow: 3px 3px 3px #000, -3px -3px 3px #000, 3px -3px 3px #000, -3px 3px 3px #000;
+}
+
+// ─── Breakpoint Helper ───────────────────────────────────────────────────────
+
+#breakpoint-helper {
+  display: block;
+  position: fixed;
+  z-index: 9999;
+  background-color: red;
+}
+
+// ─── Offcanvas Overrides ─────────────────────────────────────────────────────
+
+#userOffcanvas.offcanvas-top {
+  --bs-offcanvas-height: fit-content;
+}
+
+// ─── Sidebar Hidden State ────────────────────────────────────────────────────
+// Toggled via JS cookie (biz_ui_sidebar_hidden)
+
+body.sidebar-hidden {
+  #customer-sidebar { display: none !important; }
+  #customer-main { margin-left: 0; }
+  footer { margin-left: 0; }
+}
+
+// ─── Right-side Topbar Icon Hover ────────────────────────────────────────────
+
+#customer-topbar .ms-auto .nav-link {
+  &:hover, &:focus { color: #FFC501 !important; }
 }
