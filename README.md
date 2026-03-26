@@ -29,9 +29,7 @@ Bootstrap EE is a custom Bootstrap 5 distribution for Erehab/ptclinic.biz. Built
 | [scss.readme.md](_README/scss.readme.md) | SCSS architecture, variables, tokens, how to add overrides |
 | [ts.readme.md](_README/ts.readme.md) | TypeScript API, Bootstrap JS bundling, animate helper |
 | [animate.readme.md](_README/animate.readme.md) | Animation utilities — entrance, exit, utility, state flash, scroll observe, infinite scroll |
-
-## ACP Setup
-See the **_bootstrap-ee.readme.md** file and how it is setup.
+| [ui-helpers.readme.md](_README/ui-helpers.readme.md) | UI helpers — dropdownHover, onInsert, toast |
 
 ## Quick start
 
