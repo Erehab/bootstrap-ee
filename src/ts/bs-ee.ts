@@ -25,6 +25,7 @@ import { ClipboardJS } from './clipboard';
 import { Sortable } from './sortable';
 import { flatpickr } from './flatpickr';
 import { jscolor } from './jscolor';
+import { filetype } from './bsee-filetype';
 
 export { animate };
 export { dropdownHover };
@@ -37,6 +38,7 @@ export { ClipboardJS };
 export { Sortable };
 export { flatpickr };
 export { jscolor };
+export { filetype };
 
 // Expose Bootstrap components as window.bootstrap so data-bs-* data-API works.
 (window as any).bootstrap = {
@@ -57,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     (jscolor as any).install?.();
+    filetype.scan();
 });
 
 export {

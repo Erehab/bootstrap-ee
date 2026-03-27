@@ -1,0 +1,17 @@
+// Bootstrap EE — File Type Icon Styles
+// Minimal styling for bsee-filetype.ts icon decoration on links.
+
+.bsee-filetype-icon {
+    margin-right: 0.35em;
+    font-size: 0.9em;
+    opacity: 0.85;
+    vertical-align: baseline;
+}
+
+.bsee-filetype-link {
+    text-decoration: none;
+
+    &:hover .bsee-filetype-icon {
+        opacity: 1;
+    }
+}

@@ -2,6 +2,7 @@
 
 ### 2026-03-26
 
+- Add `bsee-filetype` module — replaces legacy jquery-filetype sprite plugin with FA Pro icons. Maps 60+ file extensions to FA icon classes (`fa-file-pdf`, `fa-file-image`, `fa-file-audio`, etc.), auto-scans links on page load, supports `data-filetype` override and opt-out. Wired into both `bs-ee` and `biz-bs-ee` profiles. README at `_README/filetype.readme.md`.
 - Customer layout updates: sidebar offcanvas bg, sidebar-hidden toggle state, overflow-x fix on `#customer-main`, offcanvas height fit-content, topbar icon hover color
 - Dark mode support for `body.notcustomer` background
 - Update info-row brand colors (wordpress, bom); remove brimstone variant

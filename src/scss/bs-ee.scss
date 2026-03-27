@@ -76,6 +76,9 @@ $theme-colors: map-merge($theme-colors, ("discovery": $discovery));
 // ─── BSEE Animations ─────────────────────────────────────────────────────────
 @import "animate";
 
+// ─── BSEE File Type Icons ────────────────────────────────────────────────────
+@import "filetype";
+
 // ─── Bootstrap Helpers & Utility API ─────────────────────────────────────────
 @import "bootstrap/scss/helpers";
 @import "bootstrap/scss/utilities/api";
