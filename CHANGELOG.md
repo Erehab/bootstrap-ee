@@ -10,6 +10,7 @@
 - Close legacy audit task — all recommendations addressed: profile system split biz from core, `dashboard.css` retired into `_biz-customer.scss`, parsley/filesarea/navbar-form removed from core, body background moved out of `_bsee-pre.scss`
 - Close "CSS/JS profiles" task — profile system already implemented (March 20)
 - Refresh TASKS.md to flat format: add frontmatter, strip section headers, remove Plans section, remove ACP section from README.md, add ui-helpers link, create `_archive/` and `_reference/` dirs
+- Review and triage 3 in-progress tasks: close Sherlock bundling (keep as page-level script, slim to todoform.php only), close FA icon audit (covered by twig-migrate skill), close initBootstrap helper (covered by `bsee.onInsert`); rewrite remaining tasks with clear next-steps
 
 ### 2026-03-24
 
