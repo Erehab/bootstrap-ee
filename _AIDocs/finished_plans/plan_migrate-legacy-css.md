@@ -152,9 +152,11 @@ output.less
 
 ## Phase 6: Publish & Verify
 
-- [ ] **Run `npm run publish-dist`** — Push built output to `public` branch
-- [ ] **Update consuming project** — Run `npm install` in ptclinic.biz project
-- [ ] **Smoke test** — Load key pages in Playwright, check for visual regressions, missing icons, console errors
+- [x] **Run `npm run publish-dist`** — Push built output to `public` branch *(completed March 2026)*
+- [x] **Update consuming project** — Run `npm install` in ptclinic.biz project *(completed)*
+- [x] **Smoke test** — Load key pages in Playwright, check for visual regressions, missing icons, console errors *(completed)*
+
+**Status: COMPLETE** — BSEE successfully published and integrated into ptclinic.biz. CSS migration complete. FA Pro icons bundled. BS5 classes applied throughout.
 
 ---
 

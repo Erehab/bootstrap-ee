@@ -324,15 +324,17 @@ Icon format: caller passes FA Pro icon name with prefix, e.g. `'fas fa-home'`. m
 
 ## Phase 5: Publish & Verify
 
-- [ ] **Run `npm run publish-dist`** — Push built BSEE to `public` branch.
-- [ ] **Update ptclinic.biz** — `npm install` to pick up new BSEE.
-- [ ] **Smoke test** — Load key pages in Playwright; verify no regressions.
+- [x] **Run `npm run publish-dist`** — Push built BSEE to `public` branch. *(completed March 2026)*
+- [x] **Update ptclinic.biz** — `npm install` to pick up new BSEE. *(completed)*
+- [x] **Smoke test** — Load key pages in Playwright; verify no regressions. *(completed)*
+
+**Status: COMPLETE** — BSEE successfully wired into ptclinic.biz; customer.twig verified rendering correctly with tooltip/popover auto-init via `bsee.onInsert()`.
 
 ---
 
 ## Phase 6: Deferred Library Replacements
 
-Libraries kept as separate tags in Phase 4 because they need investigation or a replacement decision before bundling into BSEE.
+**Status: DEFERRED** — These libraries are kept as separate tags in Phase 4 because they need investigation or a replacement decision before bundling into BSEE. Work is in the biz project, not BSEE. Track in biz-specific tasks.
 
 - [ ] **CodeMirror** — evaluate replacement (CodeMirror 6, Monaco Editor, or similar); bundle chosen lib into BSEE; remove CDN tags from all templates
 - [ ] **html5sortable vs sortablejs** — investigate which is actively used on `?page=mss` (practice_id=719); pick one, migrate usage, bundle in BSEE, remove the other

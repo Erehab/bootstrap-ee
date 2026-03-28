@@ -5,6 +5,8 @@
 - Wire `bsee.onInsert` to auto-initialize BS5 tooltips and popovers on dynamically injected content. Eliminates need for manual `$('span').tooltip()` calls in legacy pages. Wired in both `bs-ee` and `biz-bs-ee` profiles.
 - Complete Sherlock.js cleanup in biz project: remove from customer.twig and other templates; keep only on todoform.php pending Twig migration.
 - Regenerate JS bundles (`npm run dist`).
+- **Finish Plan: JS Modernization** — Phases 0–5 complete. BSEE successfully wired into ptclinic.biz with auto-init tooltips/popovers, jQuery bundled, legacy JS modernized. Phase 6 (CodeMirror, html5sortable, jquery.form, jquery.hotkeys, flatpickr migration, jscolor) deferred to biz-specific tasks. Archive: `_AIDocs/finished_plans/plan_js-modernization.md`.
+- **Finish Plan: CSS Migration** — Phases 1–6 complete. Legacy CSS/JS migrated to BSEE, Bootstrap 5 applied, FA Pro bundled, ptclinic.biz updated and verified. All breaking changes addressed. Archive: `_AIDocs/finished_plans/plan_migrate-legacy-css.md`.
 
 ### 2026-03-26
 
