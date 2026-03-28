@@ -1,5 +1,11 @@
 # CHANGELOG
 
+### 2026-03-28
+
+- Wire `bsee.onInsert` to auto-initialize BS5 tooltips and popovers on dynamically injected content. Eliminates need for manual `$('span').tooltip()` calls in legacy pages. Wired in both `bs-ee` and `biz-bs-ee` profiles.
+- Complete Sherlock.js cleanup in biz project: remove from customer.twig and other templates; keep only on todoform.php pending Twig migration.
+- Regenerate JS bundles (`npm run dist`).
+
 ### 2026-03-26
 
 - Add `bsee-filetype` module — replaces legacy jquery-filetype sprite plugin with FA Pro icons. Maps 60+ file extensions to FA icon classes (`fa-file-pdf`, `fa-file-image`, `fa-file-audio`, etc.), auto-scans links on page load, supports `data-filetype` override and opt-out. Wired into both `bs-ee` and `biz-bs-ee` profiles. README at `_README/filetype.readme.md`.

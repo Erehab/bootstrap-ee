@@ -84,8 +84,21 @@ document.addEventListener('DOMContentLoaded', () => {
         Tooltip.getOrCreateInstance(el as HTMLElement);
     });
 
+    document.querySelectorAll('[data-bs-toggle="popover"]').forEach(el => {
+        Popover.getOrCreateInstance(el as HTMLElement);
+    });
+
     (jscolor as any).install?.();
     filetype.scan();
+
+    // Auto-init tooltips and popovers on dynamically injected content
+    onInsert('[data-bs-toggle="tooltip"]', (el) => {
+        Tooltip.getOrCreateInstance(el as HTMLElement);
+    });
+
+    onInsert('[data-bs-toggle="popover"]', (el) => {
+        Popover.getOrCreateInstance(el as HTMLElement);
+    });
 });
 
 export {
