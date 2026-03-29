@@ -1,2 +1,38 @@
 // Forms
-// Reserved for future BSEE form overrides.
+// BSEE form element overrides.
+
+// ─── Form Controls ────────────────────────────────────────────────────────────
+// Input, textarea, select — primary color borders.
+.form-control {
+  border-color: $primary;
+}
+
+.form-select {
+  border-color: $primary;
+}
+
+// ─── Input Groups ─────────────────────────────────────────────────────────────
+// Input group addons: primary background with white text.
+.input-group-text {
+  background-color: $primary;
+  color: $white;
+  border-color: $primary;
+
+  // Icons (Font Awesome) in input groups — white
+  [class*="fa-"] {
+    color: $white;
+  }
+}
+
+/* BSEEForm focus styling - inner glow with warning color */
+.form-control:focus,
+.form-select:focus {
+  border-color: $primary;
+  box-shadow: inset 0 0 0 0.2rem rgba($warning, 0.45);
+}
+
+.input-group .form-control:focus,
+.input-group .form-select:focus {
+  border-color: $primary;
+  box-shadow: inset 0 0 0 0.2rem rgba($warning, 0.45);
+}
