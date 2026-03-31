@@ -4,8 +4,14 @@
 
 @use "sass:meta";
 
+// BIZ Specific BS5 Variable Overrides...mostly non-color items. The bsee-pre.scss has ones for all bsee projects
+$input-padding-y: 0.275rem; // 6px — Sky+Flow tight vertical padding
+$input-padding-x: 0.5rem; // 12px — matches BS default, Sky+Flow feel
+
 // ─── Core BSEE ────────────────────────────────────────────────────────────────
 @import "bs-ee";
+
+
 
 // ─── Body Background ──────────────────────────────────────────────────────────
 body {

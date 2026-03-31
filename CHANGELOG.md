@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### 2026-03-31
+
+- Update form element styling — refine primary borders and input group colors; import forms stylesheet into biz profile.
+
 ### 2026-03-29
 
 - Add form element styling — primary borders for inputs/textareas/selects, primary background with white text for input group addons. Focus state adds inset warning-color glow.
