@@ -26,6 +26,7 @@ Bootstrap EE is a custom Bootstrap 5 distribution for Erehab/ptclinic.biz. Built
 | [bs-ee.readme.md](_README/bs-ee.readme.md) | Package overview, what's bundled, how to consume in other projects |
 | [setup.readme.md](_README/setup.readme.md) | Prerequisites (FA Pro token), build workflow, upgrading libraries, publishing to public branch |
 | [shared-bundle.readme.md](_README/shared-bundle.readme.md) | Two-tag pattern, DataTables usage, Font Awesome usage, adding new libraries, upgrading |
+| [datatable.readme.md](_README/datatable.readme.md) | DataTables auto-init, overriding defaults, custom configuration, Font Awesome icons |
 | [scss.readme.md](_README/scss.readme.md) | SCSS architecture, variables, tokens, how to add overrides |
 | [ts.readme.md](_README/ts.readme.md) | TypeScript API, Bootstrap JS bundling, animate helper |
 | [animate.readme.md](_README/animate.readme.md) | Animation utilities — entrance, exit, utility, state flash, scroll observe, infinite scroll |

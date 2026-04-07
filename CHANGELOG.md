@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### 2026-04-06
+
+- **Integrate BS5 with DataTables + ColumnControl** — Created `bsee-datatable.ts` wrapper module with auto-init on `#grid` selector. Applies BS5 table classes and initializes DataTable with production defaults: colReorder, fixedHeader (with navbar offset), columnControl (per-column sort/search/remove dropdowns), stateSave, 25-row page length. Installed `datatables.net-columncontrol-bs5` — dropdown menus on column headers with sort (asc/desc/multi-sort), search, and remove controls. Auto-init enables sort+search on first column; override with `columnControl` array specifying `target` (column index) and `content` (control types: order, orderAsc, orderDesc, orderAddAsc, orderAddDesc, orderRemove, search, spacer). Wired into `biz-bs-ee` profile with DOMContentLoaded auto-init. Created `_README/datatable.readme.md` with quick start, override patterns, multi-column ColumnControl setup examples, and complete control options reference. Replaces legacy jQuery initialization pattern.
+
 ### 2026-03-31
 
 - Update form element styling — refine primary borders and input group colors; import forms stylesheet into biz profile.
