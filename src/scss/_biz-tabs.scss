@@ -45,6 +45,7 @@
 [data-bs-theme="dark"] {
   #homeTabContent {
     border-color: var(--bs-primary-text-emphasis) !important;
+    background-color: var(--bs-tertiary-bg);
   }
   .nav-tabs {
     --bs-nav-tabs-link-active-border-color: var(--bs-primary-text-emphasis) var(--bs-primary-text-emphasis) transparent;
@@ -60,7 +61,7 @@
       }
 
       &.active {
-        background-color: var(--bs-secondary-bg);
+        background-color: var(--bs-tertiary-bg);
         border-color: var(--bs-primary-text-emphasis);
         color: var(--bs-primary-text-emphasis);
       }

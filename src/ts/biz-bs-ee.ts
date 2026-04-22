@@ -8,6 +8,7 @@ import jQuery from 'jquery';
 
 import DataTable from 'datatables.net-bs5';
 import 'datatables.net-buttons-bs5';
+import ColumnControl from 'datatables.net-columncontrol-bs5';
 import 'datatables.net-responsive-bs5';
 import 'datatables.net-select-bs5';
 import 'datatables.net-searchpanes-bs5';
@@ -50,6 +51,8 @@ import { Sortable } from './sortable';
 import { flatpickr } from './flatpickr';
 import { jscolor } from './jscolor';
 import { Bloodhound } from './typeahead';
+import { filetype } from './bsee-filetype';
+import { datatable } from './bsee-datatable';
 
 export { animate };
 export { dropdownHover };
@@ -63,6 +66,8 @@ export { Sortable };
 export { flatpickr };
 export { jscolor };
 export { Bloodhound };
+export { filetype };
+export { datatable };
 
 // Expose Bootstrap components as window.bootstrap so data-bs-* data-API works.
 (window as any).bootstrap = {
@@ -82,11 +87,27 @@ document.addEventListener('DOMContentLoaded', () => {
         Tooltip.getOrCreateInstance(el as HTMLElement);
     });
 
+    document.querySelectorAll('[data-bs-toggle="popover"]').forEach(el => {
+        Popover.getOrCreateInstance(el as HTMLElement);
+    });
+
     (jscolor as any).install?.();
+    filetype.scan();
+    datatable.initGrid();
+
+    // Auto-init tooltips and popovers on dynamically injected content
+    onInsert('[data-bs-toggle="tooltip"]', (el) => {
+        Tooltip.getOrCreateInstance(el as HTMLElement);
+    });
+
+    onInsert('[data-bs-toggle="popover"]', (el) => {
+        Popover.getOrCreateInstance(el as HTMLElement);
+    });
 });
 
 export {
   DataTable,
+  ColumnControl,
   Alert,
   Button,
   Carousel,

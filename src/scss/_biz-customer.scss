@@ -7,6 +7,22 @@ body.customerpage {
   padding-top: var(--customer-topbar-height);
 }
 
+body.notcustomer {
+  background-color: #ffe0e0 !important;
+
+  .content {
+    background-color: #ffd0d0;
+  }
+
+  [data-bs-theme="dark"] & {
+    background-color: #4a1a1a !important;
+
+    .content {
+      background-color: #3a1010;
+    }
+  }
+}
+
 .btn {
   --bs-btn-padding-x: .6rem;
   --bs-btn-padding-y: .1rem;
@@ -15,18 +31,19 @@ body.customerpage {
 
 
 
-// ─── Topbar ───────────────────────────────────────────────────────────────────
+// ─── Topbar (shared) ─────────────────────────────────────────────────────────
+// .biz-topbar — reusable 40px fixed navbar used by dashboard, customer, reports.
+// #customer-topbar kept as alias for backwards compatibility.
 
+.biz-topbar,
 #customer-topbar {
   height: var(--customer-topbar-height);
   min-height: var(--customer-topbar-height);
   padding-top: 0;
   padding-bottom: 0;
-  z-index: $zindex-fixed;  // Bootstrap variable — equals 1030
+  z-index: $zindex-fixed;
   overflow: visible;
 
-  // SCSS nesting: compiles to "#customer-topbar .nav-link { ... }"
-  // Removes default navbar padding from nav-links inside topbar
   .nav-link {
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
@@ -39,14 +56,20 @@ body.customerpage {
 
   .dropdown-menu {
     --bs-dropdown-link-color: var(--bs-primary);
-    --bs-navbar-color: var(--biz-white); }
+    --bs-navbar-color: var(--biz-white);
+  }
+
+  // Right-side icon hover (search, sidebar, theme, etc.)
+  .ms-auto .nav-link {
+    &:hover, &:focus { color: #FFC501 !important; }
+  }
 }
 
-// ─── Nav Icons ────────────────────────────────────────────────────────────────
+// ─── Nav Icons (shared) ──────────────────────────────────────────────────────
+// .biz-nav-icons — fixed-width icon nav, no caret, no shift on hover.
+// #customer-nav-icons kept as alias for backwards compatibility.
 
-// SCSS nesting used throughout — each level adds a descendant selector.
-// e.g. .nav-item > .dropdown-menu compiles to "#customer-nav-icons .nav-item .dropdown-menu"
-// No caret, fixed-width items so dropdowns don't shift the bar
+.biz-nav-icons,
 #customer-nav-icons {
   .dropdown-toggle::after {
     display: none;
@@ -66,6 +89,7 @@ body.customerpage {
 }
 
 // Mobile nav offcanvas: always show labels
+.biz-nav-icons-mobile,
 #customer-nav-icons-mobile {
   .d-sm-none {
     display: inline !important;
@@ -79,16 +103,28 @@ body.customerpage {
   top: var(--customer-topbar-height);
   bottom: 0;
   overflow-y: auto;
-  background-color: var(--biz-white);
+  background-color: var(--bs-dark-bg-subtle) !important;
+    background-color: var(--biz-white);
+
+}
+
+#sidebarOffcanvasBody {
+  padding: 0;
+}
+
+#sidebarOffcanvas {
+  --bs-offcanvas-bg: var(--bs-dark-bg-subtle);
 }
 
 #customer-main {
   margin-left: var(--customer-sidebar-width);
+  overflow-x: hidden;
   min-width: 0;
 }
 
 footer {
   margin-left: var(--customer-sidebar-width);
+  margin-right: 0;
 }
 
 // Bootstrap mixin — media-breakpoint-down(lg) compiles to:
@@ -98,13 +134,10 @@ footer {
   #customer-sidebar {
     display: none;
   }
-
-  // Multiple selectors in one block — compiles to two separate rules
-  #customer-main,
-  footer {
-    margin-left: 0;
-    margin-right: 0;
+  #customer-main {
+    margin-left:0;
   }
+
 }
 
 // ─── Customer Info Row ────────────────────────────────────────────────────────
@@ -121,11 +154,10 @@ footer {
 .customer-info-row {
   background-color: white;
 
-  .brimstone &   { @include info-row($bg: #e7d8d1); }
-  .notcustomer & { @include info-row($bg: #AB0007); }
-  .wordpress &   { @include info-row($bg: #3D78B7, $color: #fff, $link: #F39C12, $link-hover: #E74C3C); }
-  .bom &         { @include info-row($bg: #BF5613, $link: #004080, $link-hover: #3498DB); }
+  .wordpress &   { @include info-row($bg: #0073aa, $color: #fff, $link: #F39C12, $link-hover: #E74C3C); }
+  .bom &         { @include info-row($bg: #da5e11, $link: #004080, $link-hover: #3498DB); }
   .rps &         { @include info-row($bg: #450053, $color: #fff, $link: #F39C12, $link-hover: #3498DB); }
+  .notcustomer & { @include info-row($bg: #AB0007); } // Last — always wins via rule order
 }
 
 .customer-info-banner {
@@ -148,3 +180,29 @@ footer {
   position: absolute;
   text-shadow: 3px 3px 3px #000, -3px -3px 3px #000, 3px -3px 3px #000, -3px 3px 3px #000;
 }
+
+// ─── Breakpoint Helper ───────────────────────────────────────────────────────
+
+#breakpoint-helper {
+  display: block;
+  position: fixed;
+  z-index: 9999;
+  background-color: red;
+}
+
+// ─── Offcanvas Overrides ─────────────────────────────────────────────────────
+
+#userOffcanvas.offcanvas-top {
+  --bs-offcanvas-height: fit-content;
+}
+
+// ─── Sidebar Hidden State ────────────────────────────────────────────────────
+// Toggled via JS cookie (biz_ui_sidebar_hidden)
+
+body.sidebar-hidden {
+  #customer-sidebar { display: none !important; }
+  #customer-main { margin-left: 0; }
+  footer { margin-left: 0; }
+}
+
+// Right-side topbar icon hover now handled inside .biz-topbar above

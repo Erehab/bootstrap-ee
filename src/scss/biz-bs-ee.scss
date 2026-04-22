@@ -4,8 +4,14 @@
 
 @use "sass:meta";
 
+// BIZ Specific BS5 Variable Overrides...mostly non-color items. The bsee-pre.scss has ones for all bsee projects
+$input-padding-y: 0.275rem; // 6px — Sky+Flow tight vertical padding
+$input-padding-x: 0.5rem; // 12px — matches BS default, Sky+Flow feel
+
 // ─── Core BSEE ────────────────────────────────────────────────────────────────
 @import "bs-ee";
+
+
 
 // ─── Body Background ──────────────────────────────────────────────────────────
 body {
@@ -15,16 +21,18 @@ body {
   background-color: #424c59 !important;
 }
 
+
 // ─── Biz Specific Items System ─────────────────────────────────────────────────────────
 @import "biz-buttons";
 @import "biz-customer";
-@import "biz-notes-needs";
+@import "biz-notes-needs-todos-docs";
 @import "biz-tabs";
 @import "biz-utilities";
 
 // ─── Third-party: DataTables + Extensions ────────────────────────────────────
 @include meta.load-css("datatables.net-bs5/css/dataTables.bootstrap5.css");
 @include meta.load-css("datatables.net-buttons-bs5/css/buttons.bootstrap5.css");
+@include meta.load-css("datatables.net-columncontrol-bs5/css/columnControl.bootstrap5.css");
 @include meta.load-css("datatables.net-responsive-bs5/css/responsive.bootstrap5.css");
 @include meta.load-css("datatables.net-select-bs5/css/select.bootstrap5.css");
 @include meta.load-css("datatables.net-searchpanes-bs5/css/searchPanes.bootstrap5.css");

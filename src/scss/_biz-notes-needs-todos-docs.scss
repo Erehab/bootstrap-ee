@@ -1,48 +1,9 @@
-// Note Item Variants
+// ═══════════════════════════════════════════════════════════════════════════
+// Note Items
 // Typed note card system used in ptclinic.biz customer pages.
 // 18 variants — all preserved. Colors unchanged from legacy audit.
 // Selectors updated: .panel-heading → .card-header, .panel-footer → .card-footer
-
-// ─── Mixins ─────────────────────────────────────────────────────────────────
-// todo-item: all colors dynamic via inline styles — mixin handles structure + dark mode only
-@mixin todo-item() {
-    overflow: visible; // Allow dropdown menus to escape the card boundary
-
-    > .card-header {
-        border-bottom: 0;
-        padding: 2px 4px;
-
-        a {
-            color: var(--bs-light);
-
-            &:hover {
-                opacity: 50%;
-            }
-        }
-    }
-
-    > .card-body {
-        padding: .2rem .5rem;
-        overflow: hidden;
-        border-radius: 0 0 calc(var(--bs-card-border-radius) - 2px) calc(var(--bs-card-border-radius) - 2px);
-    }
-
-    > .card-footer {
-        padding: 2px 4px;
-        display: flex;
-        align-items: center;
-        gap: .25rem;
-        background-color: #e6dfd1;
-        border-top-color: #c5c0b6;
-        color: #2c3e50;
-
-        [data-bs-theme="dark"] & {
-            background-color: var(--bs-dark);
-            border-top-color: var(--bs-border-color);
-            color: var(--bs-body-color);
-        }
-    }
-}
+// ═══════════════════════════════════════════════════════════════════════════
 
 @mixin note-item($border, $bg: null, $header-bg: $border, $header-color: color-contrast($header-bg), $body-color: null) {
     $bg-auto: $bg == null;
@@ -158,7 +119,7 @@
     @include note-item($border: $biz-red, $bg: $biz-cherry, $header-bg: $biz-red);
 }
 
-// Note Extras — nested under .note-item
+// ─── Extras ────────────────────────────────────────────────────────────────
 .note-item {
     .card-header {
         border-bottom: 0;
@@ -184,7 +145,11 @@
 }
 
 
-// Need Item — spacing and structural tweaks
+// ═══════════════════════════════════════════════════════════════════════════
+// Need Items
+// Structural tweaks for need cards — colors set inline via card-variant classes
+// ═══════════════════════════════════════════════════════════════════════════
+
 .need-item {
     overflow: visible; // Allow dropdown menus to escape the card boundary
 
@@ -208,5 +173,92 @@
     }
 }
 
-// Todo Item
+
+// ═══════════════════════════════════════════════════════════════════════════
+// Todo Items
+// All colors dynamic via inline styles — mixin handles structure + dark mode only
+// ═══════════════════════════════════════════════════════════════════════════
+
+@mixin todo-item() {
+    overflow: visible; // Allow dropdown menus to escape the card boundary
+
+    > .card-header {
+        border-bottom: 0;
+        padding: 2px 4px;
+
+        // a {
+        //     color: var(--bs-body-color);
+
+        //     &:hover {
+        //         opacity: 50%;
+        //     }
+        // }
+    }
+
+    > .card-body {
+        padding: .2rem .5rem;
+        overflow: hidden;
+        border-radius: 0 0 calc(var(--bs-card-border-radius) - 2px) calc(var(--bs-card-border-radius) - 2px);
+    }
+
+    > .card-footer {
+        padding: 2px 4px;
+        display: flex;
+        align-items: center;
+        gap: .25rem;
+        background-color: #e6dfd1;
+        border-top-color: #c5c0b6;
+        color: #2c3e50;
+
+        [data-bs-theme="dark"] & {
+            background-color: var(--bs-dark);
+            border-top-color: var(--bs-border-color);
+            color: var(--bs-body-color);
+        }
+    }
+}
+
 .todo-item { @include todo-item(); }
+
+.todo-assign-btn:hover {
+    background-color: var(--bs-dark) !important;
+}
+
+.preset-btn {
+    &:hover {
+        background-color: var(--bs-body-bg) !important;
+        color: var(--bs-body-color) !important;
+        border-color: currentColor;
+    }
+}
+
+
+// ═══════════════════════════════════════════════════════════════════════════
+// Doc Items
+// ═══════════════════════════════════════════════════════════════════════════
+
+.doc-item {
+    > .card-header {
+        background-color: #4e5761;
+        color: white;
+        padding: 6px 10px;
+        border-bottom: 0;
+
+        a:hover {
+            opacity: 50%;
+        }
+    }
+
+    > .card-footer {
+        background-color: #e6dfd1;
+        border-top-color: #c5c0b6;
+        color: #2c3e50;
+        padding: 4px 10px;
+
+        [data-bs-theme="dark"] & {
+            background-color: var(--bs-dark);
+            border-top-color: var(--bs-border-color);
+            color: var(--bs-body-color);
+        }
+    }
+}
