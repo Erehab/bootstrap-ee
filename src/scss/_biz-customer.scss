@@ -37,6 +37,8 @@ body.notcustomer {
 
 .biz-topbar,
 #customer-topbar {
+  --bs-navbar-color: #fff;
+  --bs-navbar-hover-color: #FFC501;
   height: var(--customer-topbar-height);
   min-height: var(--customer-topbar-height);
   padding-top: 0;
@@ -87,10 +89,9 @@ body.notcustomer {
     padding-right: 0.15rem;
 
     &::after {
-      margin-left: 0.1em;
+      margin-left: 0.15em;
       vertical-align: middle;
-      font-size: 0.6em;
-      border-top-color: white;
+      border-top-color: white !important;
     }
   }
 }
