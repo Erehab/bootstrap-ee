@@ -36208,14 +36208,9 @@ body.notcustomer .content {
   color: #FFC501 !important;
 }
 
-.biz-nav-icons .dropdown-toggle::after,
-#customer-nav-icons .dropdown-toggle::after {
-  display: none;
-}
 .biz-nav-icons .nav-item,
 #customer-nav-icons .nav-item {
   position: relative;
-  width: 2.5rem;
   flex-shrink: 0;
 }
 .biz-nav-icons .nav-item .dropdown-menu,
@@ -36225,6 +36220,16 @@ body.notcustomer .content {
   width: -moz-max-content;
   width: max-content;
   min-width: 10rem;
+}
+.biz-nav-icons .dropdown-toggle,
+#customer-nav-icons .dropdown-toggle {
+  padding-right: 0.15rem;
+}
+.biz-nav-icons .dropdown-toggle::after,
+#customer-nav-icons .dropdown-toggle::after {
+  margin-left: 0.1em;
+  vertical-align: middle;
+  font-size: 0.6em;
 }
 
 .biz-nav-icons-mobile .d-sm-none,
