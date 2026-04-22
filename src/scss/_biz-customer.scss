@@ -31,18 +31,19 @@ body.notcustomer {
 
 
 
-// ─── Topbar ───────────────────────────────────────────────────────────────────
+// ─── Topbar (shared) ─────────────────────────────────────────────────────────
+// .biz-topbar — reusable 40px fixed navbar used by dashboard, customer, reports.
+// #customer-topbar kept as alias for backwards compatibility.
 
+.biz-topbar,
 #customer-topbar {
   height: var(--customer-topbar-height);
   min-height: var(--customer-topbar-height);
   padding-top: 0;
   padding-bottom: 0;
-  z-index: $zindex-fixed;  // Bootstrap variable — equals 1030
+  z-index: $zindex-fixed;
   overflow: visible;
 
-  // SCSS nesting: compiles to "#customer-topbar .nav-link { ... }"
-  // Removes default navbar padding from nav-links inside topbar
   .nav-link {
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
@@ -55,14 +56,20 @@ body.notcustomer {
 
   .dropdown-menu {
     --bs-dropdown-link-color: var(--bs-primary);
-    --bs-navbar-color: var(--biz-white); }
+    --bs-navbar-color: var(--biz-white);
+  }
+
+  // Right-side icon hover (search, sidebar, theme, etc.)
+  .ms-auto .nav-link {
+    &:hover, &:focus { color: #FFC501 !important; }
+  }
 }
 
-// ─── Nav Icons ────────────────────────────────────────────────────────────────
+// ─── Nav Icons (shared) ──────────────────────────────────────────────────────
+// .biz-nav-icons — fixed-width icon nav, no caret, no shift on hover.
+// #customer-nav-icons kept as alias for backwards compatibility.
 
-// SCSS nesting used throughout — each level adds a descendant selector.
-// e.g. .nav-item > .dropdown-menu compiles to "#customer-nav-icons .nav-item .dropdown-menu"
-// No caret, fixed-width items so dropdowns don't shift the bar
+.biz-nav-icons,
 #customer-nav-icons {
   .dropdown-toggle::after {
     display: none;
@@ -82,6 +89,7 @@ body.notcustomer {
 }
 
 // Mobile nav offcanvas: always show labels
+.biz-nav-icons-mobile,
 #customer-nav-icons-mobile {
   .d-sm-none {
     display: inline !important;
@@ -197,8 +205,4 @@ body.sidebar-hidden {
   footer { margin-left: 0; }
 }
 
-// ─── Right-side Topbar Icon Hover ────────────────────────────────────────────
-
-#customer-topbar .ms-auto .nav-link {
-  &:hover, &:focus { color: #FFC501 !important; }
-}
+// Right-side topbar icon hover now handled inside .biz-topbar above
