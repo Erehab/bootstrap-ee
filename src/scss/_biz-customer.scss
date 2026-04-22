@@ -71,19 +71,25 @@ body.notcustomer {
 
 .biz-nav-icons,
 #customer-nav-icons {
-  .dropdown-toggle::after {
-    display: none;
-  }
-
   .nav-item {
     position: relative;
-    width: 2.5rem;
     flex-shrink: 0;
 
     .dropdown-menu {
       position: absolute;
       width: max-content;
       min-width: 10rem;
+    }
+  }
+
+  // Caret sits tight against the icon, not floating toward the next one
+  .dropdown-toggle {
+    padding-right: 0.15rem;
+
+    &::after {
+      margin-left: 0.1em;
+      vertical-align: middle;
+      font-size: 0.6em;
     }
   }
 }
