@@ -233,5 +233,23 @@ $biz-white:     map.get($_biz-colors, "white");
 $red:    $biz-red;
 $purple: $biz-purple;
 
+// ─── Named Background Utilities ───────────────────────────────────────────────
+// Soft tinted backgrounds used to flag row/card context (e.g. dashboard todo table).
+// Emits both `.{name}Background` and `.{name}Background > td` so the class works
+// on regular elements and on table rows (where Bootstrap's --bs-table-bg wins
+// over a plain <tr> background).
+$_biz-backgrounds: (
+  "wordpress": #d3f1ff,
+  "bom":       #fff4e6,
+  "mss":       #ece5ff,
+);
+
+@each $name, $color in $_biz-backgrounds {
+  .#{$name}Background,
+  .#{$name}Background > td {
+    background-color: $color !important;
+  }
+}
+
 // CSS output (utility classes, :root vars) is in _colors_text-output.scss
 // imported after Bootstrap vars/mixins are available.
