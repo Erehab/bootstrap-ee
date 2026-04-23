@@ -1,9 +1,30 @@
 :root {
   --customer-topbar-height: 40px;
   --customer-sidebar-width: 200px;
+
+  // Semantic background colors — customer type highlighting
+  --biz-wordpress-bg: #d3f1ff;
+  --biz-bom-bg: #FFF4E6;
+  --biz-mss-bg: #ECE5FF;
 }
 
-body.customerpage {
+[data-bs-theme="dark"] {
+  --biz-wordpress-bg: #1a3a4a;
+  --biz-bom-bg: #3a2e1a;
+  --biz-mss-bg: #2a2040;
+}
+
+// ─── Semantic Background Utilities ───────────────────────────────────────────
+// Apply to rows, cards, containers — auto-adapts to dark theme.
+
+.wordpressBackground,
+.wordpressBackground > td { background-color: var(--biz-wordpress-bg) !important; }
+.bomBackground,
+.bomBackground > td       { background-color: var(--biz-bom-bg) !important; }
+.mssBackground,
+.mssBackground > td       { background-color: var(--biz-mss-bg) !important; }
+
+body.biz-topbar-page {
   padding-top: var(--customer-topbar-height);
 }
 
@@ -37,6 +58,8 @@ body.notcustomer {
 
 .biz-topbar,
 #customer-topbar {
+  --bs-navbar-color: #fff;
+  --bs-navbar-hover-color: #FFC501;
   height: var(--customer-topbar-height);
   min-height: var(--customer-topbar-height);
   padding-top: 0;
@@ -52,11 +75,13 @@ body.notcustomer {
 
   .navbar-nav .nav-link {
     &:hover, &:focus { color: #FFC501; }
+    &.active { color: #FFC501 !important; }
   }
 
   .dropdown-menu {
-    --bs-dropdown-link-color: var(--bs-primary);
     --bs-navbar-color: var(--biz-white);
+    --bs-dropdown-link-hover-bg: var(--bs-secondary-bg);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   }
 
   // Right-side icon hover (search, sidebar, theme, etc.)
@@ -74,6 +99,11 @@ body.notcustomer {
   .nav-item {
     position: relative;
     flex-shrink: 0;
+    margin-left: 0.0em;
+
+    @include media-breakpoint-up(xl) {
+      margin-left: 0.7em;
+    }
 
     .dropdown-menu {
       position: absolute;
@@ -87,10 +117,9 @@ body.notcustomer {
     padding-right: 0.15rem;
 
     &::after {
-      margin-left: 0.1em;
+      margin-left: 0em;
       vertical-align: middle;
-      font-size: 0.6em;
-      border-top-color: white;
+      border-top-color: white !important;
     }
   }
 }

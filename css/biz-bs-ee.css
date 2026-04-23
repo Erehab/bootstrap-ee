@@ -36152,9 +36152,33 @@ body {
 :root {
   --customer-topbar-height: 40px;
   --customer-sidebar-width: 200px;
+  --biz-wordpress-bg: #d3f1ff;
+  --biz-bom-bg: #FFF4E6;
+  --biz-mss-bg: #ECE5FF;
 }
 
-body.customerpage {
+[data-bs-theme=dark] {
+  --biz-wordpress-bg: #1a3a4a;
+  --biz-bom-bg: #3a2e1a;
+  --biz-mss-bg: #2a2040;
+}
+
+.wordpressBackground,
+.wordpressBackground > td {
+  background-color: var(--biz-wordpress-bg) !important;
+}
+
+.bomBackground,
+.bomBackground > td {
+  background-color: var(--biz-bom-bg) !important;
+}
+
+.mssBackground,
+.mssBackground > td {
+  background-color: var(--biz-mss-bg) !important;
+}
+
+body.biz-topbar-page {
   padding-top: var(--customer-topbar-height);
 }
 
@@ -36179,6 +36203,8 @@ body.notcustomer .content {
 
 .biz-topbar,
 #customer-topbar {
+  --bs-navbar-color: #fff;
+  --bs-navbar-hover-color: #FFC501;
   height: var(--customer-topbar-height);
   min-height: var(--customer-topbar-height);
   padding-top: 0;
@@ -36197,10 +36223,15 @@ body.notcustomer .content {
 #customer-topbar .navbar-nav .nav-link:focus {
   color: #FFC501;
 }
+.biz-topbar .navbar-nav .nav-link.active,
+#customer-topbar .navbar-nav .nav-link.active {
+  color: #FFC501 !important;
+}
 .biz-topbar .dropdown-menu,
 #customer-topbar .dropdown-menu {
-  --bs-dropdown-link-color: var(--bs-primary);
   --bs-navbar-color: var(--biz-white);
+  --bs-dropdown-link-hover-bg: var(--bs-secondary-bg);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 .biz-topbar .ms-auto .nav-link:hover, .biz-topbar .ms-auto .nav-link:focus,
 #customer-topbar .ms-auto .nav-link:hover,
@@ -36212,6 +36243,13 @@ body.notcustomer .content {
 #customer-nav-icons .nav-item {
   position: relative;
   flex-shrink: 0;
+  margin-left: 0em;
+}
+@media (min-width: 1200px) {
+  .biz-nav-icons .nav-item,
+#customer-nav-icons .nav-item {
+    margin-left: 0.7em;
+  }
 }
 .biz-nav-icons .nav-item .dropdown-menu,
 #customer-nav-icons .nav-item .dropdown-menu {
@@ -36227,10 +36265,9 @@ body.notcustomer .content {
 }
 .biz-nav-icons .dropdown-toggle::after,
 #customer-nav-icons .dropdown-toggle::after {
-  margin-left: 0.1em;
+  margin-left: 0em;
   vertical-align: middle;
-  font-size: 0.6em;
-  border-top-color: white;
+  border-top-color: white !important;
 }
 
 .biz-nav-icons-mobile .d-sm-none,
@@ -36996,6 +37033,22 @@ body.sidebar-hidden footer {
   background-color: var(--bs-dark);
   border-top-color: var(--bs-border-color);
   color: var(--bs-body-color);
+}
+
+.js-todo-sortable tbody tr {
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+.js-todo-sortable tbody tr:active {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+.js-todo-sortable tr.myDragClass {
+  opacity: 0.75;
+  background-color: var(--bs-warning-bg-subtle) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
 }
 
 .nav-tabs {
