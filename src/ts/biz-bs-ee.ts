@@ -49,7 +49,7 @@ import { dayjs } from './dayjs';
 import { ClipboardJS } from './clipboard';
 import { Sortable } from './sortable';
 import { flatpickr } from './flatpickr';
-import { jscolor } from './jscolor';
+import { Coloris } from './coloris';
 import { Bloodhound } from './typeahead';
 import { filetype } from './bsee-filetype';
 import { datatable } from './bsee-datatable';
@@ -64,7 +64,7 @@ export { dayjs };
 export { ClipboardJS };
 export { Sortable };
 export { flatpickr };
-export { jscolor };
+export { Coloris };
 export { Bloodhound };
 export { filetype };
 export { datatable };
@@ -91,7 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
         Popover.getOrCreateInstance(el as HTMLElement);
     });
 
-    (jscolor as any).install?.();
     filetype.scan();
     datatable.initGrid();
 

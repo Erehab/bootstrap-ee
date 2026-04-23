@@ -2,6 +2,7 @@
 
 ### 2026-04-23
 
+- **Replace jscolor with Coloris** — Swap `@eastdesire/jscolor` for `@melloware/coloris`. New `src/ts/coloris.ts` wrapper calls `Coloris({ el: '[data-coloris]', wrap: false })` so BSEE uses BS5 `.input-group` markup instead of Coloris's `.clr-field`. A sibling `.js-coloris-swatch` addon auto-syncs its background to the input value; event delegation handles dynamically-added inputs. New `_coloris.scss` sizes the swatch addon; `coloris.css` loaded in `bs-ee.scss`. Usage: `<div class="input-group"><span class="input-group-text js-coloris-swatch"></span><input type="text" class="form-control" data-coloris value="#ff0000"></div>`.
 - **Toast wrapper: position API** — Replace `offset: { from, amount }` with `position: 'top-right' | 'top-left' | 'top-center' | 'bottom-right' | 'bottom-left' | 'bottom-center'` in `src/ts/toast.ts`. Builds toasts in a shared `.toast-container` using standard BS5 placement.
 - **Customer SCSS** — Add semantic background CSS vars/utilities (`.wordpressBackground`, `.bomBackground`, `.mssBackground`) with dark-theme values. Rename `body.customerpage` hook to `body.biz-topbar-page`. Tighten nav caret spacing and dropdown shadow; add `.active` topbar link color.
 - **Dashboard todo drag-to-reorder** — Add `.js-todo-sortable` styles in `_biz-notes-needs-todos-docs.scss` for TableDnD grab cursor and `.myDragClass` drop highlight.
