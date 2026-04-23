@@ -24,7 +24,7 @@ import { dayjs } from './dayjs';
 import { ClipboardJS } from './clipboard';
 import { Sortable } from './sortable';
 import { flatpickr } from './flatpickr';
-import { jscolor } from './jscolor';
+import { Coloris } from './coloris';
 import { filetype } from './bsee-filetype';
 
 export { animate };
@@ -37,7 +37,7 @@ export { dayjs };
 export { ClipboardJS };
 export { Sortable };
 export { flatpickr };
-export { jscolor };
+export { Coloris };
 export { filetype };
 
 // Expose Bootstrap components as window.bootstrap so data-bs-* data-API works.
@@ -62,7 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
         Popover.getOrCreateInstance(el as HTMLElement);
     });
 
-    (jscolor as any).install?.();
     filetype.scan();
 
     // Auto-init tooltips and popovers on dynamically injected content

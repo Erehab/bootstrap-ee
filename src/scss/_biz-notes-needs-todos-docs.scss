@@ -269,6 +269,21 @@
 // Applied to tables using TableDnD on the dashboard (ca/index.twig).
 // ═══════════════════════════════════════════════════════════════════════════
 
+// Dashboard admin filter row — fixed 1/11 slots so buttons align across rows.
+// Last row (just a few buttons) leaves the remaining slots empty, matching legacy.
+.js-admin-btn-row {
+    > .btn {
+        flex: 0 0 calc(100% / 11);
+        border-radius: 0;
+        min-width: 0;
+
+        &:first-child { border-top-left-radius: var(--bs-btn-border-radius); border-bottom-left-radius: var(--bs-btn-border-radius); }
+        &:last-child  { border-top-right-radius: var(--bs-btn-border-radius); border-bottom-right-radius: var(--bs-btn-border-radius); }
+
+        & + .btn { margin-left: -1px; } // collapse adjacent borders
+    }
+}
+
 .js-todo-sortable {
     tbody tr {
         cursor: grab;

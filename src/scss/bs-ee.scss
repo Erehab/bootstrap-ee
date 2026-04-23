@@ -90,6 +90,10 @@ $theme-colors: map-merge($theme-colors, ("discovery": $discovery));
 // Erehab utility shorthand classes (.m-t, .p-b, etc.) — keep indefinitely
 @import "legacy-spacing";
 
+// ─── Third-party: Coloris ─────────────────────────────────────────────────────
+@include meta.load-css("@melloware/coloris/dist/coloris.css");
+@import "coloris";
+
 // ─── Third-party: Font Awesome Pro ───────────────────────────────────────────
 @import "@fortawesome/fontawesome-pro/scss/fontawesome";
 @import "@fortawesome/fontawesome-pro/scss/solid";

@@ -1,0 +1,13 @@
+// ─── Coloris integration ─────────────────────────────────────────────────────
+// BSEE uses BS5 .input-group markup for color fields instead of Coloris's
+// default .clr-field wrapper (Coloris is init'd with wrap:false). The
+// .js-coloris-swatch addon has its background-color synced to the input value
+// by the coloris.ts wrapper. This partial just sizes the swatch addon.
+
+.input-group > .input-group-text.js-coloris-swatch {
+    // Narrow addon — the swatch itself is the content. Keep the BS5 border
+    // and padding so it aligns visually with the adjacent .form-control.
+    width: 2.5rem;
+    padding: 0;
+    cursor: pointer;
+}
