@@ -33664,7 +33664,7 @@ const Rp = ".js-coloris-swatch", nf = (t) => {
   const e = n.querySelector(Rp);
   e && (e.style.backgroundColor = t.value || "transparent");
 }, rf = () => {
-  fr({ el: "[data-coloris]", wrap: !1 }), document.querySelectorAll("[data-coloris]").forEach(nf), document.addEventListener("input", (t) => {
+  fr.init(), document.querySelectorAll("[data-coloris]").forEach(nf), document.addEventListener("input", (t) => {
     var e;
     const n = t.target;
     n && ((e = n.matches) != null && e.call(n, "input[data-coloris]")) && nf(n);
@@ -33853,6 +33853,17 @@ function xC() {
 const SC = {
   initGrid: xC
 };
+function kC(t, n = 300) {
+  let e = null;
+  const r = (...i) => {
+    e !== null && clearTimeout(e), e = setTimeout(() => {
+      e = null, t(...i);
+    }, n);
+  };
+  return r.cancel = () => {
+    e !== null && (clearTimeout(e), e = null);
+  }, r;
+}
 window.jQuery = yt;
 window.$ = yt;
 window.bootstrap = {
@@ -33904,6 +33915,7 @@ export {
   DC as animate,
   SC as datatable,
   li as dayjs,
+  kC as debounce,
   yw as dropdownHover,
   CC as filetype,
   It as flatpickr,

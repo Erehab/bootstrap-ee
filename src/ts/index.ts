@@ -48,6 +48,7 @@ import { Sortable } from './sortable';
 import { flatpickr } from './flatpickr';
 import { Coloris } from './coloris';
 import { Bloodhound } from './typeahead';
+import { debounce } from './debounce';
 
 export { animate };
 export { dropdownHover };
@@ -61,6 +62,7 @@ export { Sortable };
 export { flatpickr };
 export { Coloris };
 export { Bloodhound };
+export { debounce };
 
 // Expose Bootstrap components as window.bootstrap so data-bs-* data-API and
 // third-party code that checks window.bootstrap (e.g. bsee.toast fallback) works.

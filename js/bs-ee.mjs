@@ -7809,7 +7809,7 @@ const xs = ".js-coloris-swatch", Jo = (n) => {
   const e = t.querySelector(xs);
   e && (e.style.backgroundColor = n.value || "transparent");
 }, ea = () => {
-  Rt({ el: "[data-coloris]", wrap: !1 }), document.querySelectorAll("[data-coloris]").forEach(Jo), document.addEventListener("input", (n) => {
+  Rt.init(), document.querySelectorAll("[data-coloris]").forEach(Jo), document.addEventListener("input", (n) => {
     var e;
     const t = n.target;
     t && ((e = t.matches) != null && e.call(t, "input[data-coloris]")) && Jo(t);
@@ -7955,6 +7955,17 @@ const Zh = {
    */
   map: no
 };
+function np(n, t = 300) {
+  let e = null;
+  const i = (...r) => {
+    e !== null && clearTimeout(e), e = setTimeout(() => {
+      e = null, n(...r);
+    }, t);
+  };
+  return i.cancel = () => {
+    e !== null && (clearTimeout(e), e = null);
+  }, i;
+}
 window.bootstrap = {
   Alert: ii,
   Button: ri,
@@ -8000,6 +8011,7 @@ export {
   Nt as Tooltip,
   Jh as animate,
   fn as dayjs,
+  np as debounce,
   qd as dropdownHover,
   Zh as filetype,
   $e as flatpickr,

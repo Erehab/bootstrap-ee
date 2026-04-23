@@ -1,13 +1,36 @@
 // ─── Coloris integration ─────────────────────────────────────────────────────
-// BSEE uses BS5 .input-group markup for color fields instead of Coloris's
-// default .clr-field wrapper (Coloris is init'd with wrap:false). The
-// .js-coloris-swatch addon has its background-color synced to the input value
-// by the coloris.ts wrapper. This partial just sizes the swatch addon.
+// BSEE renders color fields as a BS5 .input-group with a .js-coloris-swatch
+// addon. Coloris auto-wraps each [data-coloris] input in a .clr-field; we let
+// that happen but hide Coloris's own swatch button, since our addon is the
+// live swatch (painted by coloris.ts).
 
-.input-group > .input-group-text.js-coloris-swatch {
-    // Narrow addon — the swatch itself is the content. Keep the BS5 border
-    // and padding so it aligns visually with the adjacent .form-control.
-    width: 2.5rem;
-    padding: 0;
-    cursor: pointer;
+.input-group {
+    // When Coloris wraps the input in .clr-field inside an .input-group, make
+    // the wrapper transparent to BS5's layout: let it fill the remaining width
+    // and inherit the flex child slot the raw input would have occupied.
+    > .clr-field {
+        flex: 1 1 auto;
+        width: 1%;
+        min-width: 0;
+        display: flex; // so the inner input fills the wrapper
+
+        > .form-control {
+            // Let BS5 handle border-radius seams with sibling addons.
+            flex: 1 1 auto;
+            width: 1%;
+            min-width: 0;
+        }
+
+        > button {
+            // Hide Coloris's own right-side swatch button — our
+            // .js-coloris-swatch addon is the visible swatch.
+            display: none;
+        }
+    }
+
+    > .input-group-text.js-coloris-swatch {
+        width: 2.5rem;
+        padding: 0;
+        cursor: pointer;
+    }
 }

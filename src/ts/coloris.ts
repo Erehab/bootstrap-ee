@@ -33,7 +33,11 @@ const paintSwatch = (input: HTMLInputElement): void => {
 };
 
 const initColoris = (): void => {
-    Coloris({ el: '[data-coloris]', wrap: false });
+    // init() creates the picker DOM and binds click/input handlers via event
+    // delegation on [data-coloris]. It also auto-wraps each input in a
+    // .clr-field — which is fine; we just hide Coloris's own swatch button
+    // via CSS and paint our own .js-coloris-swatch input-group addon.
+    Coloris.init();
 
     // Paint existing swatches from current input values.
     document.querySelectorAll<HTMLInputElement>('[data-coloris]').forEach(paintSwatch);
@@ -47,7 +51,7 @@ const initColoris = (): void => {
         }
     });
 
-    // Clicking the swatch addon opens the picker by focusing its sibling input.
+    // Clicking the swatch addon opens the picker by clicking the sibling input.
     document.addEventListener('click', (ev) => {
         const target = ev.target as HTMLElement | null;
         if (!target) return;
