@@ -262,3 +262,26 @@
         }
     }
 }
+
+
+// ═══════════════════════════════════════════════════════════════════════════
+// Dashboard Todo Table — drag-to-reorder
+// Applied to tables using TableDnD on the dashboard (ca/index.twig).
+// ═══════════════════════════════════════════════════════════════════════════
+
+.js-todo-sortable {
+    tbody tr {
+        cursor: grab;
+
+        &:active {
+            cursor: grabbing;
+        }
+    }
+
+    tr.myDragClass {
+        opacity: .75;
+        background-color: var(--bs-warning-bg-subtle) !important;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, .25);
+        cursor: grabbing;
+    }
+}
