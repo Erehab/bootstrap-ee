@@ -53,6 +53,7 @@ import { Coloris } from './coloris';
 import { Bloodhound } from './typeahead';
 import { filetype } from './bsee-filetype';
 import { datatable } from './bsee-datatable';
+import { debounce } from './debounce';
 
 export { animate };
 export { dropdownHover };
@@ -68,6 +69,7 @@ export { Coloris };
 export { Bloodhound };
 export { filetype };
 export { datatable };
+export { debounce };
 
 // Expose Bootstrap components as window.bootstrap so data-bs-* data-API works.
 (window as any).bootstrap = {

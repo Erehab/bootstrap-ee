@@ -26,6 +26,7 @@ import { Sortable } from './sortable';
 import { flatpickr } from './flatpickr';
 import { Coloris } from './coloris';
 import { filetype } from './bsee-filetype';
+import { debounce } from './debounce';
 
 export { animate };
 export { dropdownHover };
@@ -39,6 +40,7 @@ export { Sortable };
 export { flatpickr };
 export { Coloris };
 export { filetype };
+export { debounce };
 
 // Expose Bootstrap components as window.bootstrap so data-bs-* data-API works.
 (window as any).bootstrap = {
