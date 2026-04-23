@@ -14157,20 +14157,6 @@ input.clr-color:focus {
   margin-top: 20px;
 }
 
-.input-group > .clr-field {
-  flex: 1 1 auto;
-  width: 1%;
-  min-width: 0;
-  display: flex;
-}
-.input-group > .clr-field > .form-control {
-  flex: 1 1 auto;
-  width: 1%;
-  min-width: 0;
-}
-.input-group > .clr-field > button {
-  display: none;
-}
 .input-group > .input-group-text.js-coloris-swatch {
   width: 2.5rem;
   padding: 0;

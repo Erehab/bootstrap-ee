@@ -1,27 +1,29 @@
 /**
  * Coloris wrapper for BSEE
  *
- * Exposes the Coloris color picker. Initializes on DOMContentLoaded with
- * `wrap: false` so Coloris does NOT create its own .clr-field wrapper —
- * we use BS5 .input-group markup instead:
+ * Wires color inputs marked with `data-bsee-color` to the Coloris picker,
+ * using BS5 .input-group markup for the swatch addon:
  *
  *   <div class="input-group">
  *     <span class="input-group-text js-coloris-swatch"></span>
- *     <input type="text" class="form-control" data-coloris value="#ff0000">
+ *     <input type="text" class="form-control" data-bsee-color value="#ff0000">
  *   </div>
  *
- * Any sibling `.js-coloris-swatch` inside the same `.input-group` as the
- * coloris input gets its background-color synced to the input's value, so
- * the addon acts as the live swatch.
+ * We use `data-bsee-color` (a custom selector) instead of Coloris's default
+ * `[data-coloris]` because Coloris only honors `wrap: false` when bound to
+ * a custom selector — the default selector forces its own `.clr-field`
+ * wrapper which conflicts with BS5 .input-group layout.
  *
- * Click handling is via Coloris's own event delegation — dynamically-added
- * inputs open the picker without any extra wiring.
+ * The `.js-coloris-swatch` addon acts as the live swatch (painted by us via
+ * a delegated input listener). Clicking the addon forwards to the input to
+ * open the picker.
  *
  * @see https://coloris.js.org/
  */
 
 import Coloris from '@melloware/coloris';
 
+const BSEE_COLOR_SELECTOR = '[data-bsee-color]';
 const SWATCH_SELECTOR = '.js-coloris-swatch';
 
 const paintSwatch = (input: HTMLInputElement): void => {
@@ -33,20 +35,23 @@ const paintSwatch = (input: HTMLInputElement): void => {
 };
 
 const initColoris = (): void => {
-    // init() creates the picker DOM and binds click/input handlers via event
-    // delegation on [data-coloris]. It also auto-wraps each input in a
-    // .clr-field — which is fine; we just hide Coloris's own swatch button
-    // via CSS and paint our own .js-coloris-swatch input-group addon.
+    // init() creates the picker DOM and binds click/input handlers for its
+    // default [data-coloris] selector (which matches nothing in BSEE markup,
+    // so no stray wrappers are created).
     Coloris.init();
 
+    // Bind the BSEE selector with wrap:false so Coloris does NOT wrap inputs
+    // in its own .clr-field — BS5 .input-group is the wrapper.
+    Coloris({ el: BSEE_COLOR_SELECTOR, wrap: false });
+
     // Paint existing swatches from current input values.
-    document.querySelectorAll<HTMLInputElement>('[data-coloris]').forEach(paintSwatch);
+    document.querySelectorAll<HTMLInputElement>(BSEE_COLOR_SELECTOR).forEach(paintSwatch);
 
     // Keep swatch in sync as the user picks a color. Coloris dispatches `input`
     // events on the underlying input, which bubble up to document.
     document.addEventListener('input', (ev) => {
         const target = ev.target as HTMLElement | null;
-        if (target && target.matches?.('input[data-coloris]')) {
+        if (target && target.matches?.(`input${BSEE_COLOR_SELECTOR}`)) {
             paintSwatch(target as HTMLInputElement);
         }
     });
@@ -58,7 +63,7 @@ const initColoris = (): void => {
         const swatch = target.closest<HTMLElement>(SWATCH_SELECTOR);
         if (!swatch) return;
         const group = swatch.closest('.input-group');
-        const input = group?.querySelector<HTMLInputElement>('input[data-coloris]');
+        const input = group?.querySelector<HTMLInputElement>(`input${BSEE_COLOR_SELECTOR}`);
         if (input) input.click();
     });
 };
