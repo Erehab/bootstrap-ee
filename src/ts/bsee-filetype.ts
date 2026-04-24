@@ -8,14 +8,21 @@
  *
  * AUTO-INIT
  * ---------
- * On DOMContentLoaded, all links with [data-filetype] or matching a known
- * extension are decorated with an FA icon. Opt-in by default via the
- * data attribute; opt-out with [data-filetype="none"].
+ * On DOMContentLoaded, two kinds of links get decorated:
+ *   1. Any link with [data-filetype] — anywhere on the page.
+ *   2. Links inside an element marked [data-file-links], when the href ends
+ *      in a known extension. This scoping prevents navigation, card links,
+ *      or prose anchors that happen to end in .html/.pdf from being decorated.
  *
- *   <!-- Auto-detected by extension -->
- *   <a href="/files/report.pdf">Annual Report</a>
+ * Opt out of a single link with [data-filetype="none"].
  *
- *   <!-- Force a specific icon -->
+ *   <!-- Scoped auto-detection: only these anchors are scanned -->
+ *   <ul data-file-links>
+ *     <li><a href="/files/report.pdf">Annual Report</a></li>
+ *     <li><a href="/files/budget.xlsx">Budget</a></li>
+ *   </ul>
+ *
+ *   <!-- Force a specific icon, no scope required -->
  *   <a href="/api/download/123" data-filetype="pdf">Annual Report</a>
  *
  *   <!-- Opt out -->
@@ -169,19 +176,27 @@ function decorateLink(link: HTMLAnchorElement): void {
 }
 
 function scan(container: Element | Document = document): void {
-    // First: links with explicit data-filetype
+    // Links with explicit data-filetype are always decorated, anywhere in the container.
     container.querySelectorAll<HTMLAnchorElement>('a[data-filetype]').forEach(decorateLink);
 
-    // Second: links with href matching a known extension
-    container.querySelectorAll<HTMLAnchorElement>('a[href]').forEach(link => {
-        const href = link.getAttribute('href');
-        if (!href) {
-            return;
-        }
-        const ext = getExtension(href);
-        if (ext && ext in iconMap) {
-            decorateLink(link);
-        }
+    // Extension-based auto-decoration is opt-in per scope: only scan inside
+    // elements marked [data-file-links]. This avoids decorating navigation,
+    // card links, or inline prose anchors that happen to end in .html / .pdf / etc.
+    const scopes = container instanceof Element && container.matches('[data-file-links]')
+        ? [container]
+        : Array.from(container.querySelectorAll<Element>('[data-file-links]'));
+
+    scopes.forEach(scope => {
+        scope.querySelectorAll<HTMLAnchorElement>('a[href]').forEach(link => {
+            const href = link.getAttribute('href');
+            if (!href) {
+                return;
+            }
+            const ext = getExtension(href);
+            if (ext && ext in iconMap) {
+                decorateLink(link);
+            }
+        });
     });
 }
 

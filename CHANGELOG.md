@@ -1,5 +1,10 @@
 # CHANGELOG
 
+### 2026-04-24
+
+- **filetype: scope extension-based auto-decoration to `[data-file-links]`** — Previously `bsee-filetype` scanned every `<a>` on `DOMContentLoaded` and prepended a FA icon whenever the href ended in a known extension (including `.html`), which decorated nav links, card links, and prose anchors. Now extension-based auto-detection only runs inside elements marked `[data-file-links]`. Explicit `data-filetype="..."` anchors are still decorated anywhere, and `data-filetype="none"` still opts a single link out.
+- **Full build in one command** — `npm run dist` now also runs `build-vite` (JS bundles) in parallel with `css` + `copy-fonts`. One command produces CSS, fonts, and JS.
+
 ### 2026-04-23
 
 - **Replace jscolor with Coloris** — Swap `@eastdesire/jscolor` for `@melloware/coloris`. New `src/ts/coloris.ts` wrapper calls `Coloris({ el: '[data-coloris]', wrap: false })` so BSEE uses BS5 `.input-group` markup instead of Coloris's `.clr-field`. A sibling `.js-coloris-swatch` addon auto-syncs its background to the input value; event delegation handles dynamically-added inputs. New `_coloris.scss` sizes the swatch addon; `coloris.css` loaded in `bs-ee.scss`. Usage: `<div class="input-group"><span class="input-group-text js-coloris-swatch"></span><input type="text" class="form-control" data-coloris value="#ff0000"></div>`.
