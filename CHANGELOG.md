@@ -2,6 +2,7 @@
 
 ### 2026-04-24
 
+- **Favicon for htmltest pages** — Add `htmltest/favicon.svg` (blue square, `#0055cc` = BSEE primary, white "ee" monogram) and wire `<link rel="icon" type="image/svg+xml" href="favicon.svg">` into all 9 htmltest HTML files.
 - **Adopt stock BS5 navbar** — Delete dormant `src/scss/_navbar.scss` and the custom `.bsee-nav-link` class. `bs-ee-nav` web component now emits standard BS5 `.navbar-expand-lg .navbar-nav > .nav-item > .nav-link` markup, and `bs-ee.scss` adds one override: `.navbar-dark .navbar-nav .nav-link.active` uses `$fbs-yellow-600` so the active link pops against navy. Dead `$navbar-dark-bg` var removed from `_bsee-post.scss`. Docs updated (CLAUDE.md, scss.readme.md).
 - **One-command release** — `npm run publish-dist` now runs `npm run dist` first, so a single command builds CSS + fonts + JS and pushes to the `public` branch. Simplified preflight check in `build/publish-dist.sh`, consolidated missing-output error. Docs updated (CLAUDE.md, setup.readme.md, shared-bundle.readme.md).
 - **filetype: scope extension-based auto-decoration to `[data-file-links]`** — Previously `bsee-filetype` scanned every `<a>` on `DOMContentLoaded` and prepended a FA icon whenever the href ended in a known extension (including `.html`), which decorated nav links, card links, and prose anchors. Now extension-based auto-detection only runs inside elements marked `[data-file-links]`. Explicit `data-filetype="..."` anchors are still decorated anywhere, and `data-filetype="none"` still opts a single link out.
