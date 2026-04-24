@@ -28,14 +28,9 @@ if [ "$CURRENT_BRANCH" != "main" ]; then
     exit 1
 fi
 
-# css/ and js/ must exist
-if [ ! -f "css/bs-ee.css" ]; then
-    echo "Error: css/bs-ee.css not found. Run 'npm run dist' first."
-    exit 1
-fi
-
-if [ ! -f "js/bs-ee.js" ]; then
-    echo "Error: js/bs-ee.js not found. Run 'npm run build-vite' first."
+# css/ and js/ must exist (npm run dist produces both)
+if [ ! -f "css/bs-ee.css" ] || [ ! -f "js/bs-ee.js" ]; then
+    echo "Error: build output missing. Run 'npm run dist' first."
     exit 1
 fi
 

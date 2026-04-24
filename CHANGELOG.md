@@ -2,6 +2,7 @@
 
 ### 2026-04-24
 
+- **One-command release** — `npm run publish-dist` now runs `npm run dist` first, so a single command builds CSS + fonts + JS and pushes to the `public` branch. Simplified preflight check in `build/publish-dist.sh`, consolidated missing-output error. Docs updated (CLAUDE.md, setup.readme.md, shared-bundle.readme.md).
 - **filetype: scope extension-based auto-decoration to `[data-file-links]`** — Previously `bsee-filetype` scanned every `<a>` on `DOMContentLoaded` and prepended a FA icon whenever the href ended in a known extension (including `.html`), which decorated nav links, card links, and prose anchors. Now extension-based auto-detection only runs inside elements marked `[data-file-links]`. Explicit `data-filetype="..."` anchors are still decorated anywhere, and `data-filetype="none"` still opts a single link out.
 - **Full build in one command** — `npm run dist` now also runs `build-vite` (JS bundles) in parallel with `css` + `copy-fonts`. One command produces CSS, fonts, and JS.
 

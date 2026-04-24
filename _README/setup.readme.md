@@ -61,16 +61,15 @@ Never edit `public` directly. All changes happen on `main`, then built output is
 ## Standard workflow
 
 1. Make changes on `main` (SCSS, TS, etc.)
-2. Run the full build: `npm run dist && npm run build-vite`
-3. Publish: `npm run publish-dist`
-4. Consuming projects pick up changes on their next `npm install`.
+2. Publish: `npm run publish-dist` (builds everything and pushes to `public`)
+3. Consuming projects pick up changes on their next `npm install`.
 
 ---
 
 ## Build commands
 
 ```bash
-# Full CSS build (compile + prefix + minify all profiles)
+# Full build — CSS + fonts + JS bundles (both profiles), all in parallel
 npm run dist
 
 # CSS only
@@ -88,6 +87,9 @@ npm run watch:css
 
 # Dev server + CSS watch
 npm run dev
+
+# Full release: build everything AND publish to the `public` branch
+npm run publish-dist
 ```
 
 ### Build output
@@ -122,10 +124,11 @@ npm run publish-dist
 
 The script at `build/publish-dist.sh`:
 
-1. Verifies you are on `main` with a clean working tree
-2. Creates (or reuses) a git worktree at `../.public-worktree` on the `public` branch
-3. Copies `css/`, `js/`, `webfonts/`, `package.json`, and `src/` into the worktree
-4. Commits and force-pushes `public` to origin
+1. Runs `npm run dist` to build CSS, fonts, and JS bundles
+2. Verifies you are on `main` with a clean working tree
+3. Creates (or reuses) a git worktree at `../.public-worktree` on the `public` branch
+4. Copies `css/`, `js/`, `webfonts/`, `package.json`, `src/`, and `_README/` into the worktree
+5. Commits and force-pushes `public` to origin
 
 The main working tree is never touched.
 

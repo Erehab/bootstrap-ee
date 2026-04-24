@@ -45,8 +45,14 @@ npm run lint:ts
 
 ### Full distribution build
 ```bash
+# CSS + fonts + JS bundles (both profiles), all in parallel
 npm run dist
+
+# Full release: build everything and publish to the `public` branch
+npm run publish-dist
 ```
+
+`publish-dist` runs `dist` first, so you don't need to chain the two.
 
 ## Architecture
 

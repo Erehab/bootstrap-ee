@@ -99,14 +99,13 @@ jQuery 4 is bundled in `biz-bs-ee.js` and exposed as `window.$` and `window.jQue
    ```ts
    export { default as MyLib } from 'my-library';
    ```
-4. `npm run build-vite`
+4. `npm run dist` (builds CSS + JS together)
 
 ## Upgrading bundled libraries
 
 1. `npm update <package>` or update version in `package.json`
 2. `npm install`
-3. `npm run dist && npm run build-vite`
-4. Verify output, then `npm run publish-dist`
+3. `npm run publish-dist` — builds CSS + JS and publishes to the `public` branch in one step
 
 Consuming projects get the upgrade on their next `npm install`.
 

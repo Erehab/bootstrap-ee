@@ -14,7 +14,7 @@
     "css-prefix-main": "postcss --config build/postcss.config.js --replace \"css/*.css\" \"!css/*.rtl*.css\" \"!css/*.min.css\"",
     "copy-fonts": "mkdir -p webfonts && cp node_modules/@fortawesome/fontawesome-pro/webfonts/*.woff2 webfonts/",
     "dist": "npm-run-all --aggregate-output --parallel css copy-fonts build-vite",
-    "publish-dist": "bash build/publish-dist.sh",
+    "publish-dist": "npm run dist && bash build/publish-dist.sh",
     "build-vite": "npm-run-all --aggregate-output --parallel build-vite-*",
     "build-vite-bs-ee": "vite build -c src/config/vite.bs-ee.ts",
     "build-vite-biz-bs-ee": "vite build -c src/config/vite.biz-bs-ee.ts",
