@@ -27,7 +27,6 @@ The Sass compiler processes the entire `src/scss/` directory — all entry point
 | `_cards.scss` | Card border/header/footer color defaults |
 | `_dropdowns.scss` | Tighter padding, dark mode hover, column variants |
 | `_forms.scss` | Reserved for future overrides (cleared — see archive) |
-| `_navbar.scss` | Fixed 40px height, navy bg, hover states |
 | `_animate.scss` | Custom animation utility system |
 | `_print.scss` | Suppress URL printing, bump print font size |
 | `_legacy-spacing.scss` | Erehab shorthand utilities (`.m-t`, `.p-b`, etc.) |

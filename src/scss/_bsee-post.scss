@@ -13,10 +13,6 @@
 // $purple is BS5's #6f42c1. Current Erehab discovery is a slightly different shade.
 $discovery: $purple; // Purple — formerly FBS "discovery" color
 
-// ─── Navbar ───────────────────────────────────────────────────────────────────
-// Custom var (not a BS override) — used in _navbar.scss
-$navbar-dark-bg: #154764; // Deep navy
-
 // ─── Warning text helper ──────────────────────────────────────────────────────
 // When using warning color on text (not backgrounds), use for WCAG AA compliance.
 $warning-text: darken(#f39c12, 30%); // ≈ #7a4f00

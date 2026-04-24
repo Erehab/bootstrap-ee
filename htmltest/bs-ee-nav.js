@@ -35,25 +35,25 @@ class BsEeNav extends HTMLElement {
 
         const pageLinks = pages.map(p => {
             const active = p.id === current;
-            return `<a href="${p.href}" class="bsee-nav-link text-decoration-none${active ? ' active' : ''}">${p.label}</a>`;
+            return `<li class="nav-item"><a href="${p.href}" class="nav-link${active ? ' active' : ''}"${active ? ' aria-current="page"' : ''}>${p.label}</a></li>`;
         }).join('');
 
         const extLinks = external.map(e =>
-            `<a href="${e.href}" target="_blank" rel="noopener" class="bsee-nav-link bsee-nav-link--ext text-decoration-none">${e.label} ↗</a>`
+            `<li class="nav-item"><a href="${e.href}" target="_blank" rel="noopener" class="nav-link">${e.label} ↗</a></li>`
         ).join('');
 
         this.innerHTML = `
-            <nav class="navbar navbar-dark px-3" style="background:#1e3a5f; min-height:48px;">
-                <a href="index.html" class="navbar-brand fw-bold text-decoration-none text-white">Bootstrap EE</a>
-                <div class="d-flex align-items-center gap-3 fs-sm flex-wrap">
+            <nav class="navbar navbar-expand-lg navbar-dark px-3" style="background:#1e3a5f;">
+                <a href="index.html" class="navbar-brand fw-bold">Bootstrap EE</a>
+                <ul class="navbar-nav me-auto flex-row flex-wrap column-gap-3">
                     ${pageLinks}
-                    <span style="width:1px;height:16px;background:rgba(255,255,255,.2);display:inline-block;"></span>
+                </ul>
+                <ul class="navbar-nav flex-row flex-wrap column-gap-3 align-items-center">
                     ${extLinks}
-                    <span style="width:1px;height:16px;background:rgba(255,255,255,.2);display:inline-block;"></span>
-                    <button id="bsee-theme-toggle" title="Toggle dark/light mode"
-                        style="background:none;border:none;cursor:pointer;padding:4px 6px;color:#93c5fd;font-size:1rem;line-height:1;">
-                    </button>
-                </div>
+                    <li class="nav-item">
+                        <button id="bsee-theme-toggle" type="button" class="btn btn-sm btn-link nav-link p-1" title="Toggle dark/light mode"></button>
+                    </li>
+                </ul>
             </nav>`;
 
         this._applyTheme(localStorage.getItem('bsee-theme') || 'light');

@@ -65,10 +65,16 @@ $theme-colors: map-merge($theme-colors, ("discovery": $discovery));
 @import "bootstrap/scss/card";
 
 // ─── BSEE Component Overrides ─────────────────────────────────────────────────
-// @import "navbar";   Testing without 2026-03-20 JBM
 @import "cards";
 @import "dropdowns";
 @import "forms";
+
+// Navbar: only override is the active link color on dark navbars —
+// use FBS yellow-600 so the active item pops against the navy background.
+.navbar-dark .navbar-nav .nav-link.active,
+.navbar-dark .navbar-nav .show > .nav-link {
+    color: $fbs-yellow-600;
+}
 
 // ─── Colors & Text Utilities ──────────────────────────────────────────────────
 @import "colors_text";

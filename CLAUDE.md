@@ -69,7 +69,6 @@ src/scss/
   _cards.scss         — Card border/header/footer defaults
   _dropdowns.scss     — Tighter padding, dark mode hover, column variants
   _forms.scss         — Reserved for future form overrides
-  _navbar.scss        — Fixed 40px height, navy bg, hover states
   _animate.scss       — Custom animation utility system
   _print.scss         — Print utilities (suppress URLs, bump font size)
   _legacy-spacing.scss — Erehab shorthand utilities (.m-t, .p-b, etc.)
