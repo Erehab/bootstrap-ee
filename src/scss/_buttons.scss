@@ -1,0 +1,71 @@
+// Buttons — BSEE default button styling
+//
+// Inverted hover effect: on hover, bg becomes white and text becomes the
+// original bg color. Applied to all standard BS5 theme buttons plus the
+// BSEE $discovery variant.
+//
+// OVERRIDE BACK TO STOCK BS5
+// --------------------------
+// Consumers who prefer the default Bootstrap solid-fill hover can re-import
+// Bootstrap's button mixins AFTER bs-ee.scss in their own SCSS entry point:
+//
+//     @import "bootstrap/scss/buttons";
+//
+// Or scope back specific variants using Bootstrap's button-variant mixin.
+
+@mixin bsee-button-variant($bg, $border: $bg, $color: #ffffff) {
+    background-color: $bg;
+    border-color: $border;
+    color: $color;
+
+    &:hover,
+    &:focus {
+        background-color: #ffffff;
+        border-color: $bg;
+        color: $bg;
+    }
+
+    &:active,
+    &.active {
+        background-color: darken($bg, 10%);
+        border-color: darken($border, 10%);
+        color: #ffffff;
+    }
+
+    [data-bs-theme="dark"] &:hover,
+    [data-bs-theme="dark"] &:focus {
+        background-color: #2c2f33;
+        border-color: $bg;
+        color: $bg;
+    }
+
+    [data-bs-theme="dark"] &:active,
+    [data-bs-theme="dark"] &.active {
+        background-color: #1a1d21;
+        border-color: $border;
+        color: $bg;
+    }
+}
+
+.btn-primary   { @include bsee-button-variant($bg: $primary); }
+.btn-success   { @include bsee-button-variant($bg: $success); }
+.btn-warning   { @include bsee-button-variant($bg: $warning, $border: $warning, $color: #ffffff); }
+.btn-danger    { @include bsee-button-variant($bg: $danger); }
+.btn-info      { @include bsee-button-variant($bg: $info); }
+
+// .btn-secondary = dark button (was bare .btn in legacy Erehab).
+// Documented: .btn-secondary in BSEE is dark (#333 bg).
+.btn-secondary { @include bsee-button-variant($bg: #333333, $border: #000000, $color: #ffffff); }
+
+// Discovery — purple, a BSEE-defined theme color added via $theme-colors map
+// in bs-ee.scss. Override here so it gets the same inverted-hover treatment.
+.btn-discovery { @include bsee-button-variant($bg: $discovery); }
+
+// btn-xs — badge-matched sizing utility, smaller than .btn-sm.
+.btn.btn-xs {
+    padding: .35em .65em;
+    font-size: .75em;
+    font-weight: 700;
+    line-height: 1;
+    border: 0;
+}

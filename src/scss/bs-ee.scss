@@ -65,6 +65,7 @@ $theme-colors: map-merge($theme-colors, ("discovery": $discovery));
 @import "bootstrap/scss/card";
 
 // ─── BSEE Component Overrides ─────────────────────────────────────────────────
+@import "buttons";
 @import "cards";
 @import "dropdowns";
 @import "forms";

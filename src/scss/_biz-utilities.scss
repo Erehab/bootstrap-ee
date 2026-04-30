@@ -5,7 +5,38 @@
 // FUTURE: Migrate templates to BS5-compatible .text-cherry style names.
 // Reference: _AIDocs/audit_bootswatch.md, _AIDocs/design-decisions.md
 
+.accordion {
+  --bs-accordion-btn-padding-x: 1rem;
+  --bs-accordion-border-width: 0;
+}
 
+/* Hide default icon */
+.accordion-button::after {
+  display: none !important;
+}
+
+/* Set Default Icon (collapsed) */
+.accordion-button.collapsed::before {
+  content: "\e82d"; /* FA code for caret-large-left */
+  font-family: var(--fa-family-classic);
+  font-weight: 900;
+  position: absolute;
+  right: 1rem;
+}
+
+/* Set Active Icon (opened) */
+.accordion-button:not(.collapsed)::before {
+  content: "\e82c"; /* FA code for caret-large-down */
+  font-family: var(--fa-family-classic);
+  font-weight: 900;
+  position: absolute;
+  right: 1rem;
+}
+
+/* Remove focus box shadow */
+.accordion-button:focus {
+  box-shadow: none;
+}
 
 // ─── Status Helpers ───────────────────────────────────────────────────────────
 .next-step-description,

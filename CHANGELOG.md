@@ -1,5 +1,10 @@
 # CHANGELOG
 
+### 2026-04-29
+
+- **Accordion overrides for biz profile** — `_biz-utilities.scss` adds `.accordion` CSS var overrides (`--bs-accordion-btn-padding-x: 1rem`, `--bs-accordion-border-width: 0`), swaps the default chevron SVG for FA caret-large icons (`\e82d` collapsed, `\e82c` expanded) via `::before` using `var(--fa-family-classic)`, and removes the focus box-shadow on `.accordion-button`. Templates should place the icon trigger via `<button class="accordion-button collapsed">`.
+- **Extract BSEE button styling to core `_buttons.scss`** — Move `bsee-button-variant` mixin and standard `.btn-*` variants out of `_biz-buttons.scss` into a new `src/scss/_buttons.scss` imported by `bs-ee.scss`. `_biz-buttons.scss` keeps only biz-only `.btn-mss` purple variant and the `#homeTabContent .btn-xs` block-display rule. Adds `.btn-xs` to button size demos in `htmltest/index.html` and `htmltest/components.html`.
+
 ### 2026-04-24
 
 - **Favicon for htmltest pages** — Add `htmltest/favicon.svg` (blue square, `#0055cc` = BSEE primary, white "ee" monogram) and wire `<link rel="icon" type="image/svg+xml" href="favicon.svg">` into all 9 htmltest HTML files.
