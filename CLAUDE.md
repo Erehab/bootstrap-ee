@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Bootstrap EE is a custom Bootstrap 5 distribution for Erehab projects. Built directly on Bootstrap 5.3.2 with Erehab brand overrides and Font Awesome Pro bundled. It uses a **profile system** — different entry points produce different CSS/JS bundles depending on what a project needs.
+Bootstrap EE is a custom Bootstrap 5 distribution for Erehab projects. Built directly on Bootstrap 5.3.2 with Erehab brand overrides and Font Awesome Pro bundled. It uses a **profile system** — different entry points produce different CSS/JS bundles depending on what a project needs, so each consuming project ships only the Bootstrap/brand/icons it actually uses instead of one bloated catch-all bundle.
 
 **Not based on FastBootstrap** — the old FBS/Atlassian Design System token layer was removed. The SCSS is clean Bootstrap 5 with straightforward variable overrides in `src/scss/_bsee-pre.scss`.
 
